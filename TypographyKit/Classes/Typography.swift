@@ -57,7 +57,12 @@ public struct Typography {
             self.fontName = fontTextStyle[TypographyKitConfigKey.fontName.rawValue] as? String
             self.pointSize = fontTextStyle[TypographyKitConfigKey.pointSize.rawValue] as? Float
             if let textColor = fontTextStyle[TypographyKitConfigKey.textColor.rawValue] as? String {
-                self.textColor = TypographyColor(string: textColor)?.uiColor
+                if let typographyColors = result?["typography-colors"] as? [String: String],
+                    let colorValue = typographyColors[textColor] {
+                    self.textColor = TypographyColor(string: colorValue)?.uiColor
+                } else {
+                    self.textColor = TypographyColor(string: textColor)?.uiColor
+                }
             } else {
                 self.textColor = nil
             }

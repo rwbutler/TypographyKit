@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>typography-colors</key>
+    <dict>
+        <key>blueGem</key>
+        <string>#2C0E8C</string>
+    </dict>
 	<key>typography-kit</key>
 	<dict>
 		<key>point-step-size</key>
@@ -18,7 +23,7 @@
 			<key>point-size</key>
 			<integer>36</integer>
 			<key>text-color</key>
-			<string>#bd0000</string>
+			<string>blueGem</string>
 			<key>letter-case</key>
 			<string>regular</string>
 		</dict>
