@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     func letterCase(_ letterCase: LetterCase, preserveSuffix: Bool = false) -> String {
         switch letterCase {
         case .capitalized:

@@ -36,7 +36,7 @@ public struct TypographyKit {
 public struct Typography {
     let fontName: String?
     let pointSize: Float? // base point size for font
-    var letterCase: LetterCase?
+    public var letterCase: LetterCase?
     var textColor: UIColor?
     
     public init?(for textStyle: UIFontTextStyle) {
