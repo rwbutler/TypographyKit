@@ -1,0 +1,16 @@
+PODS:
+  - TypographyKit (0.1.0)
+
+DEPENDENCIES:
+  - TypographyKit (from `../`)
+
+EXTERNAL SOURCES:
+  TypographyKit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  TypographyKit: 8519c7d97c0cdfec2ed76eaa62e54f821b1973aa
+
+PODFILE CHECKSUM: 15768159cbfee0085340fd368c41d25d5cce6743
+
+COCOAPODS: 1.2.1

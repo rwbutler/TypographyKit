@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>typography-kit</key>
+	<dict>
+		<key>point-step-size</key>
+		<integer>2</integer>
+		<key>point-step-multiplier</key>
+		<integer>1</integer>
+	</dict>
+	<key>ui-font-text-styles</key>
+	<dict>
+		<key>heading</key>
+		<dict>
+			<key>font-name</key>
+			<string>Avenir-Medium</string>
+			<key>point-size</key>
+			<integer>36</integer>
+			<key>text-color</key>
+			<string>#bd0000</string>
+			<key>letter-case</key>
+			<string>regular</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

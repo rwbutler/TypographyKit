@@ -1,0 +1,6 @@
+framework module TypographyKit {
+  umbrella header "TypographyKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
