@@ -103,6 +103,7 @@ enum TypographyColor {
         case "#[a-zA-Z0-9]{6}":
             if let _ = TypographyColor.parseHex(hexString: string) { // Check can be converted to a color
                 self = .hex(string: string)
+                break
             }
             return nil
         case "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
@@ -123,13 +124,13 @@ enum TypographyColor {
                 let green = Float(colorValues[1]),
                 let blue = Float(colorValues[2]) {
                 self = .rgb(r: red / 255.0, g: green / 255.0, b: blue / 255.0)
-            } else {
-                return nil
+                break
             }
-            break
+            return nil
         default:
             if let _ = TypographyColor.colorNameMap[string] {
                 self = .named(string: string)
+                break
             }
             return nil
         }
