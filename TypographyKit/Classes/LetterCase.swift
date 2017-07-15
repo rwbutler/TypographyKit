@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public enum LetterCase: String {
     case regular
     case capitalized                 // e.g. Capitalized Case

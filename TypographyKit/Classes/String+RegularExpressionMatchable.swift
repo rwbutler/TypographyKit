@@ -9,7 +9,7 @@
 import Foundation
 
 extension String: RegularExpressionPatternMatchable {
-    static func ~=(lhs: String, rhs: String) -> Bool {
+    static func ~= (lhs: String, rhs: String) -> Bool {
         let matchRange = rhs.range(of: lhs, options: .regularExpression)
         return matchRange != nil && matchRange == (rhs.startIndex..<rhs.endIndex)
     }

@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 enum TypographyColor {
     case black
     case darkGray
@@ -28,7 +26,7 @@ enum TypographyColor {
     case named(string: String)
     case rgb(r: Float, g: Float, b: Float)
     case rgba(r: Float, g: Float, b: Float, a: Float)
-    
+
     static var colorNameMap: [String: UIColor] {
         return ["black": .black,
                 "darkGray": .darkGray,
@@ -46,15 +44,15 @@ enum TypographyColor {
                 "brown": .brown,
                 "clear": .clear]
     }
-    
+
     var cgColor: CGColor {
         return self.uiColor.cgColor
     }
-    
+
     var ciColor: CIColor {
         return self.uiColor.ciColor
     }
-    
+
     var uiColor: UIColor {
         switch self {
         case .black:
@@ -97,36 +95,48 @@ enum TypographyColor {
             return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: CGFloat(a))
         }
     }
-    
+
     init?(string: String) {
         switch string {
         case "#[a-zA-Z0-9]{6}":
+            fallthrough
+        case "[a-zA-Z0-9]{6}":
             if let _ = TypographyColor.parseHex(hexString: string) { // Check can be converted to a color
                 self = .hex(string: string)
                 break
             }
             return nil
+            // swiftlint:disable:next line_length
         case "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
-            let colorComponentPattern = "[01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]"
-            let colorComponentRegEx = try! NSRegularExpression(pattern: colorComponentPattern,
-                                                               options: .dotMatchesLineSeparators)
-            let matches = colorComponentRegEx.matches(in: string, options: [], range: NSMakeRange(0, string.characters.count))
-            var colorValues: [String] = []
-            for match in matches {
-                let matchEndIndex = match.range.location + match.range.length
-                let startIdx = string.index(string.startIndex, offsetBy: match.range.location)
-                let endIdx = string.index(string.startIndex, offsetBy: matchEndIndex)
-                let range = startIdx..<endIdx
-                colorValues.append(string[range])
+            fallthrough
+            // swiftlint:disable:next line_length
+        case "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
+            do {
+                let colorComponentPattern = "[01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]"
+                let colorComponentRegEx = try NSRegularExpression(pattern: colorComponentPattern,
+                                                                  options: .dotMatchesLineSeparators)
+                let matches = colorComponentRegEx.matches(in: string,
+                                                          options: [],
+                                                          range: NSRange(location: 0, length: string.characters.count))
+                var colorValues: [String] = []
+                for match in matches {
+                    let matchEndIndex = match.range.location + match.range.length
+                    let startIdx = string.index(string.startIndex, offsetBy: match.range.location)
+                    let endIdx = string.index(string.startIndex, offsetBy: matchEndIndex)
+                    let range = startIdx..<endIdx
+                    colorValues.append(string[range])
+                }
+                if colorValues.count == 3,
+                    let red = Float(colorValues[0]),
+                    let green = Float(colorValues[1]),
+                    let blue = Float(colorValues[2]) {
+                    self = .rgb(r: red / 255.0, g: green / 255.0, b: blue / 255.0)
+                    break
+                }
+                return nil
+            } catch _ {
+                return nil
             }
-            if colorValues.count == 3,
-                let red = Float(colorValues[0]),
-                let green = Float(colorValues[1]),
-                let blue = Float(colorValues[2]) {
-                self = .rgb(r: red / 255.0, g: green / 255.0, b: blue / 255.0)
-                break
-            }
-            return nil
         default:
             if let _ = TypographyColor.colorNameMap[string] {
                 self = .named(string: string)
@@ -135,13 +145,17 @@ enum TypographyColor {
             return nil
         }
     }
-    
-    /// Parses a hexadecimal string to a color (if possible)
+
+    /// Parses a hexadecimal string to a color if possible
     private static func parseHex(hexString: String) -> TypographyColor? {
-        let r = hexString[hexString.index(after: hexString.startIndex)..<hexString.index(hexString.index(after: hexString.startIndex), offsetBy: 2)]
-        let g = hexString[hexString.index(hexString.startIndex, offsetBy: 3)..<hexString.index(hexString.startIndex, offsetBy: 5)]
-        let b = hexString[hexString.index(hexString.startIndex, offsetBy: 5)..<hexString.endIndex]
-        
+        let unparsed = hexString.hasPrefix("#")
+            ? hexString.substring(from: hexString.index(after: hexString.startIndex))
+            : hexString
+        let r = unparsed[unparsed.startIndex..<unparsed.index(unparsed.index(after: unparsed.startIndex), offsetBy: 1)]
+        // swiftlint:disable:next line_length
+        let g = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 2)..<unparsed.index(unparsed.startIndex, offsetBy: 4)]
+        let b = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 4)..<unparsed.endIndex]
+
         if let rInt = UInt(r, radix: 16),
             let gInt = UInt(g, radix: 16),
             let bInt = UInt(b, radix: 16) {

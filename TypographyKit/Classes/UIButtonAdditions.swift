@@ -16,39 +16,48 @@ public extension UIButton {
         }
         return controlStates
     }
-    
+
     public var letterCase: LetterCase {
         get {
+            // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase) as! LetterCase
         }
         set {
-            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase, newValue, .OBJC_ASSOCIATION_RETAIN)
-            
+            objc_setAssociatedObject(self,
+                                     &TypographyKitPropertyAdditionsKey.letterCase,
+                                     newValue, .OBJC_ASSOCIATION_RETAIN)
+
             for controlState in controlStates {
                 let title = self.title(for: controlState)?.letterCase(newValue)
                 self.setTitle(title, for: controlState)
             }
         }
     }
-    
+
     public var fontTextStyle: UIFontTextStyle {
         get {
+            // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFontTextStyle
         }
         set {
-            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle, newValue, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self,
+                                     &TypographyKitPropertyAdditionsKey.fontTextStyle,
+                                     newValue, .OBJC_ASSOCIATION_RETAIN)
             if let typography = Typography(for: newValue) {
                 self.typography = typography
             }
         }
     }
-    
+
     public var typography: Typography {
         get {
+            // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography) as! Typography
         }
         set {
-            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography, newValue, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self,
+                                     &TypographyKitPropertyAdditionsKey.typography,
+                                     newValue, .OBJC_ASSOCIATION_RETAIN)
             if let newFont = newValue.font(UIApplication.shared.preferredContentSizeCategory) {
                 self.titleLabel?.font = newFont
             }
@@ -66,8 +75,11 @@ public extension UIButton {
                                                    object: nil)
         }
     }
-    
-    public func text(_ text: String?, style: UIFontTextStyle, letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
+
+    public func text(_ text: String?,
+                     style: UIFontTextStyle,
+                     letterCase: LetterCase? = nil,
+                     textColor: UIColor? = nil) {
         if let text = text {
             for controlState in controlStates {
                 self.setTitle(text, for: controlState)
@@ -84,7 +96,7 @@ public extension UIButton {
             self.typography = typography
         }
     }
-    
+
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategoryNewValueKey] as? UIContentSizeCategory {
             self.titleLabel?.font = self.typography.font(newValue)

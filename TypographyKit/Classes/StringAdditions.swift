@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public extension String {
     func letterCase(_ letterCase: LetterCase, preserveSuffix: Bool = false) -> String {
         switch letterCase {
@@ -31,11 +29,11 @@ public extension String {
             return self
         }
     }
-    
+
     func kebabCased(preserveSuffix: Bool = false) -> String {
         return self.capitalizeSubSequences(capitalizeFirst: false, conjunction: "-", preserveSuffix: preserveSuffix)
     }
-    
+
     func lowerCamelCased(preserveSuffix: Bool = false) -> String {
         let upperCamelCased = self.upperCamelCased(preserveSuffix: preserveSuffix)
         if let firstChar = self.characters.first {
@@ -43,20 +41,22 @@ public extension String {
         }
         return upperCamelCased
     }
-    
+
     func macroCased() -> String {
         return self.capitalizeSubSequences(capitalizeFirst: true, conjunction: "_").uppercased()
     }
-    
+
     func snakeCased() -> String {
         return self.capitalizeSubSequences(capitalizeFirst: false)
     }
-    
+
     func upperCamelCased(preserveSuffix: Bool = false) -> String {
         return self.capitalizeSubSequences(capitalizeFirst: true, preserveSuffix: preserveSuffix)
     }
-    
-    private func capitalizeSubSequences(capitalizeFirst: Bool, conjunction: String = "", preserveSuffix: Bool = false) -> String {
+
+    private func capitalizeSubSequences(capitalizeFirst: Bool,
+                                        conjunction: String = "",
+                                        preserveSuffix: Bool = false) -> String {
         var result = ""
         for subSequence in self.characters.split(separator: " ") {
             if let firstChar = subSequence.first {

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol RegularExpressionPatternMatchable {
-    static func ~=(lhs: Self, rhs: Self) -> Bool
+    static func ~= (lhs: Self, rhs: Self) -> Bool
 }

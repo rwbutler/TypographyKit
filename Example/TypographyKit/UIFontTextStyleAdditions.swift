@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-extension UIFontTextStyle
-{
+extension UIFontTextStyle {
     static let heading = UIFontTextStyle(rawValue: "heading")
 }
