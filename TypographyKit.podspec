@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TypographyKit'
-  s.version          = '0.0.6'
-  s.summary          = 'Visually consistent, accessible type for your iOS app.'
+  s.version          = '0.0.7'
+  s.summary          = 'Visually consistent, accessible type for your iOS application.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

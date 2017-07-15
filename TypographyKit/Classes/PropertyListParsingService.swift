@@ -33,7 +33,7 @@ struct PropertyListParsingService: ParsingService {
                     let pointSize = fontTextStyle[ConfigurationKey.pointSize.rawValue] as? Float
                     var textColor: UIColor? = nil
                     if let textColorName = fontTextStyle[ConfigurationKey.textColor.rawValue] as? String {
-                        if let color = TypographyKit.colors[textColorName] {
+                        if let color = typographyColors[textColorName] {
                             textColor = color
                         } else {
                             textColor = TypographyColor(string: textColorName)?.uiColor
