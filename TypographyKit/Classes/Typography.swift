@@ -12,18 +12,18 @@ public struct Typography {
     public var letterCase: LetterCase?
     public var textColor: UIColor?
     private static let contentSizeCategoryMap: [UIContentSizeCategory: Float] = [
-        UIContentSizeCategory.extraSmall: -2,
-        UIContentSizeCategory.small: -1,
-        UIContentSizeCategory.medium: 0,
-        UIContentSizeCategory.large: 1,
-        UIContentSizeCategory.extraLarge: 2,
-        UIContentSizeCategory.extraExtraLarge: 3,
-        UIContentSizeCategory.extraExtraExtraLarge: 4,
-        UIContentSizeCategory.accessibilityMedium: 5,
-        UIContentSizeCategory.accessibilityLarge: 6,
-        UIContentSizeCategory.accessibilityExtraLarge: 7,
-        UIContentSizeCategory.accessibilityExtraExtraLarge: 8,
-        UIContentSizeCategory.accessibilityExtraExtraExtraLarge: 9
+        UIContentSizeCategory.extraSmall: -3,
+        UIContentSizeCategory.small: -2,
+        UIContentSizeCategory.medium: -1,
+        UIContentSizeCategory.large: 0,
+        UIContentSizeCategory.extraLarge: 1,
+        UIContentSizeCategory.extraExtraLarge: 2,
+        UIContentSizeCategory.extraExtraExtraLarge: 3,
+        UIContentSizeCategory.accessibilityMedium: 4,
+        UIContentSizeCategory.accessibilityLarge: 5,
+        UIContentSizeCategory.accessibilityExtraLarge: 6,
+        UIContentSizeCategory.accessibilityExtraExtraLarge: 7,
+        UIContentSizeCategory.accessibilityExtraExtraExtraLarge: 8
     ]
 
     public init?(for textStyle: UIFontTextStyle) {
