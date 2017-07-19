@@ -179,6 +179,19 @@ However occasionally, you may need to override the default letter casing of a ty
 myLabel.text("hello world", style: .heading, letterCase: .capitalized)
 ```
 
+### Dynamic Type Configuration
+By default, your font point size will increase by 2 points for each notch on the Larger Text slider in the iOS accessibility settings however you may optionally specify how your UIKit elements react to changes in UIContentSizeCategory. 
+
+You may specify your own point step size and multiplier by inclusion of a dictionary with key ```typography-kit``` as part of your ```TypographyKit.plist``` file.
+
+	<key>typography-kit</key>
+	<dict>
+		<key>point-step-size</key>
+		<integer>2</integer>
+		<key>point-step-multiplier</key>
+		<integer>1</integer>
+	</dict>
+
 ## Author
 
 Ross Butler
