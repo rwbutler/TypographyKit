@@ -6,7 +6,7 @@
 //
 //
 
-enum TypographyColor {
+public enum TypographyColor {
     case black
     case darkGray
     case lightGray
@@ -26,7 +26,7 @@ enum TypographyColor {
     case named(string: String)
     case rgb(r: Float, g: Float, b: Float)
     case rgba(r: Float, g: Float, b: Float, a: Float)
-
+    
     static var colorNameMap: [String: UIColor] {
         return ["black": .black,
                 "darkGray": .darkGray,
@@ -44,16 +44,16 @@ enum TypographyColor {
                 "brown": .brown,
                 "clear": .clear]
     }
-
-    var cgColor: CGColor {
+    
+    public var cgColor: CGColor {
         return self.uiColor.cgColor
     }
-
-    var ciColor: CIColor {
+    
+    public var ciColor: CIColor {
         return self.uiColor.ciColor
     }
-
-    var uiColor: UIColor {
+    
+    public var uiColor: UIColor {
         switch self {
         case .black:
             return .black
@@ -95,8 +95,8 @@ enum TypographyColor {
             return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: CGFloat(a))
         }
     }
-
-    init?(string: String) {
+    
+    public init?(string: String) {
         switch string {
         case "#[a-zA-Z0-9]{6}":
             fallthrough
@@ -106,46 +106,53 @@ enum TypographyColor {
                 break
             }
             return nil
-            // swiftlint:disable:next line_length
+        // swiftlint:disable:next line_length
         case "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
             fallthrough
-            // swiftlint:disable:next line_length
+        // swiftlint:disable:next line_length
         case "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
-            do {
-                let colorComponentPattern = "[01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]"
-                let colorComponentRegEx = try NSRegularExpression(pattern: colorComponentPattern,
-                                                                  options: .dotMatchesLineSeparators)
-                let matches = colorComponentRegEx.matches(in: string,
-                                                          options: [],
-                                                          range: NSRange(location: 0, length: string.characters.count))
-                var colorValues: [String] = []
-                for match in matches {
-                    let matchEndIndex = match.range.location + match.range.length
-                    let startIdx = string.index(string.startIndex, offsetBy: match.range.location)
-                    let endIdx = string.index(string.startIndex, offsetBy: matchEndIndex)
-                    let range = startIdx..<endIdx
-                    colorValues.append(string[range])
-                }
-                if colorValues.count == 3,
-                    let red = Float(colorValues[0]),
-                    let green = Float(colorValues[1]),
-                    let blue = Float(colorValues[2]) {
+                let rgbValues = type(of: self).rgbValues(from: string)
+                if rgbValues.count == 3,
+                    let red = Float(rgbValues[0]),
+                    let green = Float(rgbValues[1]),
+                    let blue = Float(rgbValues[2]) {
                     self = .rgb(r: red / 255.0, g: green / 255.0, b: blue / 255.0)
                     break
                 }
                 return nil
-            } catch _ {
-                return nil
-            }
         default:
-            if let _ = TypographyColor.colorNameMap[string] {
+            if #available(iOS 11, *), let _ = UIColor(named: string) { // Validate a color is returned
+                self = .named(string: string)
+                break
+            }
+            if let _ = TypographyColor.colorNameMap[string] { // Validate a color is returned
                 self = .named(string: string)
                 break
             }
             return nil
         }
     }
-
+    
+    private static func rgbValues(from string: String) -> [String] {
+        var colorValues: [String] = []
+        do {
+            let colorComponentPattern = "[01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]"
+            let colorComponentRegEx = try NSRegularExpression(pattern: colorComponentPattern,
+                                                              options: .dotMatchesLineSeparators)
+            let matches = colorComponentRegEx.matches(in: string,
+                                                      options: [],
+                                                      range: NSRange(location: 0, length: string.characters.count))
+            for match in matches {
+                let matchEndIndex = match.range.location + match.range.length
+                let startIdx = string.index(string.startIndex, offsetBy: match.range.location)
+                let endIdx = string.index(string.startIndex, offsetBy: matchEndIndex)
+                let range = startIdx..<endIdx
+                colorValues.append(string[range])
+            }
+        } catch {} // Just return empty array
+        return colorValues
+    }
+    
     /// Parses a hexadecimal string to a color if possible
     private static func parseHex(hexString: String) -> TypographyColor? {
         let unparsed = hexString.hasPrefix("#")
@@ -155,7 +162,7 @@ enum TypographyColor {
         // swiftlint:disable:next line_length
         let g = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 2)..<unparsed.index(unparsed.startIndex, offsetBy: 4)]
         let b = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 4)..<unparsed.endIndex]
-
+        
         if let rInt = UInt(r, radix: 16),
             let gInt = UInt(g, radix: 16),
             let bInt = UInt(b, radix: 16) {

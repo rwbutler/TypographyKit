@@ -138,6 +138,9 @@ It is also possible override the text color of a typography style on a case-by-c
 myLabel.text("hello world", style: .heading, textColor: .blue)
 ```
 
+### iOS11
+TypographyKit also supports definition of colors via asset catalogs  available from iOS 11 onwards. Simply include the name of the color as part of your style in ```TypographyKit.plist``` and if the color is found in your asset catalog it will automatically be applied.
+
 ### Letter Casing
 
 Useful String additions are provided to easily convert letter case. 
