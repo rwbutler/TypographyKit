@@ -10,10 +10,7 @@ import UIKit
 import TypographyKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var heading: UILabel!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        heading.fontTextStyle = .heading
     }
 }

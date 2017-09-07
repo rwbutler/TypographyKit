@@ -17,7 +17,6 @@
 		C774084DEDE0DAFFFC6CA43E4602B10E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		CCF8A45E22B996699CA8F024A1729D32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A081ECB980D0036D182 /* UILabelAdditions.swift */; };
-		E4370A0D1ECB98370036D182 /* UIButtonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */; };
 		E4370A0E1ECB983C0036D182 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A021ECB97A90036D182 /* Typography.swift */; };
 		E4370A0F1ECB98400036D182 /* LetterCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A041ECB97C60036D182 /* LetterCase.swift */; };
 		E4370A101ECB98440036D182 /* StringAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A061ECB97E30036D182 /* StringAdditions.swift */; };
@@ -32,6 +31,9 @@
 		E494EB031F1A412600E13158 /* ParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB021F1A412600E13158 /* ParsingService.swift */; };
 		E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB041F1A462300E13158 /* ConfigurationSettings.swift */; };
 		E494EB081F1A4A2E00E13158 /* ParsingServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB071F1A4A2E00E13158 /* ParsingServiceResult.swift */; };
+		E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */; };
+		E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */; };
+		E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		E494EB021F1A412600E13158 /* ParsingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingService.swift; sourceTree = "<group>"; };
 		E494EB041F1A462300E13158 /* ConfigurationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationSettings.swift; sourceTree = "<group>"; };
 		E494EB071F1A4A2E00E13158 /* ParsingServiceResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingServiceResult.swift; sourceTree = "<group>"; };
+		E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewAdditions.swift; sourceTree = "<group>"; };
+		E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldAdditions.swift; sourceTree = "<group>"; };
 		EE7B84523676BEA727C4020121C00682 /* TypographyKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TypographyKit-dummy.m"; sourceTree = "<group>"; };
 		F40B8AEBA03D5E425E5689AA683098D3 /* Pods-TypographyKit_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TypographyKit_Example-resources.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -280,6 +284,8 @@
 			children = (
 				E4370A081ECB980D0036D182 /* UILabelAdditions.swift */,
 				E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */,
+				E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */,
+				E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
@@ -440,7 +446,7 @@
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					56BBB2E8F1AE2D92BFED105A2A890449 = {
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
@@ -490,18 +496,20 @@
 				E494EAF91F1A35E000E13158 /* ConfigurationKey.swift in Sources */,
 				E494EAFB1F1A362300E13158 /* TypographyKit.swift in Sources */,
 				E43CC45A1ED06BD70062FEA5 /* TypographyColor.swift in Sources */,
+				E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */,
 				E43CC45C1ED06BE70062FEA5 /* String+RegularExpressionMatchable.swift in Sources */,
 				E494EAFF1F1A3F7600E13158 /* PropertyListParsingService.swift in Sources */,
 				E4370A0E1ECB983C0036D182 /* Typography.swift in Sources */,
 				E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */,
+				E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */,
 				E43CC45B1ED06BE40062FEA5 /* RegularExpressionMatchable.swift in Sources */,
 				E494EAF51F1A359100E13158 /* TypographyKitPropertyAdditionsKey.swift in Sources */,
 				E494EB031F1A412600E13158 /* ParsingService.swift in Sources */,
 				A9107AE55CB63D23A51201BB01F82CD0 /* TypographyKit-dummy.m in Sources */,
 				E494EAF71F1A35C200E13158 /* ConfigurationType.swift in Sources */,
-				E4370A0D1ECB98370036D182 /* UIButtonAdditions.swift in Sources */,
 				E4370A0F1ECB98400036D182 /* LetterCase.swift in Sources */,
 				E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */,
+				E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

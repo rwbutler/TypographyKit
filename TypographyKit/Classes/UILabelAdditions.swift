@@ -8,21 +8,7 @@
 
 import Foundation
 
-public extension UILabel {
-
-    public var letterCase: LetterCase {
-        get {
-            // swiftlint:disable:next force_cast
-            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase) as! LetterCase
-        }
-        set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.letterCase,
-                                     newValue, .OBJC_ASSOCIATION_RETAIN)
-            self.text = self.text?.letterCase(newValue)
-        }
-    }
-
+extension UILabel {
     public var fontTextStyle: UIFontTextStyle {
         get {
             // swiftlint:disable:next force_cast
@@ -35,6 +21,28 @@ public extension UILabel {
             if let typography = Typography(for: newValue) {
                 self.typography = typography
             }
+        }
+    }
+
+    public var fontTextStyleName: String {
+        get {
+            return fontTextStyle.rawValue
+        }
+        set {
+            fontTextStyle = UIFontTextStyle(rawValue: newValue)
+        }
+    }
+
+    public var letterCase: LetterCase {
+        get {
+            // swiftlint:disable:next force_cast
+            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase) as! LetterCase
+        }
+        set {
+            objc_setAssociatedObject(self,
+                                     &TypographyKitPropertyAdditionsKey.letterCase,
+                                     newValue, .OBJC_ASSOCIATION_RETAIN)
+            self.text = self.text?.letterCase(newValue)
         }
     }
 
@@ -62,6 +70,8 @@ public extension UILabel {
                                                    object: nil)
         }
     }
+
+    // MARK: Functions
 
     public func attributedText(_ text: NSAttributedString?,
                                style: UIFontTextStyle,

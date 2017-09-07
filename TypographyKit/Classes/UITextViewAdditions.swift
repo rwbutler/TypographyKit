@@ -1,20 +1,24 @@
 //
-//  UIButtonAdditions.swift
-//  TypographyKit
+//  UITextViewAdditions.swift
+//  Pods-TypographyKit_Example
 //
-//  Created by Ross Butler on 5/16/17.
-//
+//  Created by Ross Butler on 9/7/17.
 //
 
 import Foundation
 
-extension UIButton {
-    private var controlStates: [UIControlState] {
-        var controlStates: [UIControlState] = [.normal, .highlighted, .disabled, .selected, .application]
-        if #available(iOS 9, *) {
-            controlStates.append(.focused)
+extension UITextView {
+    public var letterCase: LetterCase {
+        get {
+            // swiftlint:disable:next force_cast
+            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase) as! LetterCase
         }
-        return controlStates
+        set {
+            objc_setAssociatedObject(self,
+                                     &TypographyKitPropertyAdditionsKey.letterCase,
+                                     newValue, .OBJC_ASSOCIATION_RETAIN)
+            self.text = self.text?.letterCase(newValue)
+        }
     }
 
     public var fontTextStyle: UIFontTextStyle {
@@ -41,23 +45,6 @@ extension UIButton {
         }
     }
 
-    public var letterCase: LetterCase {
-        get {
-            // swiftlint:disable:next force_cast
-            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase) as! LetterCase
-        }
-        set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.letterCase,
-                                     newValue, .OBJC_ASSOCIATION_RETAIN)
-
-            for controlState in controlStates {
-                let title = self.title(for: controlState)?.letterCase(newValue)
-                self.setTitle(title, for: controlState)
-            }
-        }
-    }
-
     public var typography: Typography {
         get {
             // swiftlint:disable:next force_cast
@@ -68,12 +55,10 @@ extension UIButton {
                                      &TypographyKitPropertyAdditionsKey.typography,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
             if let newFont = newValue.font(UIApplication.shared.preferredContentSizeCategory) {
-                self.titleLabel?.font = newFont
+                self.font = newFont
             }
             if let textColor = newValue.textColor {
-                for controlState in controlStates {
-                    self.setTitleColor(textColor, for: controlState)
-                }
+                self.textColor = textColor
             }
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
@@ -85,8 +70,6 @@ extension UIButton {
         }
     }
 
-    // MARK: Functions
-
     public func attributedText(_ text: NSAttributedString?,
                                style: UIFontTextStyle,
                                letterCase: LetterCase = .regular,
@@ -94,39 +77,36 @@ extension UIButton {
 
         let typography = Typography(for: style)
         if let textColor = textColor {
-            self.titleLabel?.textColor = textColor
+            self.textColor = textColor
         }
 
         if let text = text {
-            for controlState in controlStates {
-                self.setAttributedTitle(text, for: controlState)
-            }
+            self.attributedText = text
             let mutableText = NSMutableAttributedString(attributedString: text)
             mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.characters.count),
                                             options: [],
                                             using: { value, range, _ in
-                                                let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
-                                                if let fontAttribute = value[NSFontAttributeName] as? UIFont,
-                                                    let newPointSize = typography?.font(contentSizeCategory)?.pointSize,
-                                                    let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
-                                                    mutableText.removeAttribute(NSFontAttributeName, range: range)
-                                                    mutableText.addAttribute(NSFontAttributeName, value: newFont, range: range)
+                                                if let fontAttribute = value[NSFontAttributeName] as? UIFont {
+                                                    let currentContentSizeCategory = UIApplication.shared.preferredContentSizeCategory
+                                                    if let newPointSize = typography?.font(currentContentSizeCategory)?.pointSize,
+                                                        let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
+                                                        mutableText.removeAttribute(NSFontAttributeName, range: range)
+                                                        mutableText.addAttribute(NSFontAttributeName, value: newFont, range: range)
+                                                    }
                                                 }
             })
-            for controlState in controlStates {
-                self.setAttributedTitle(mutableText, for: controlState)
-            }
+            self.attributedText = mutableText
         }
     }
+
+    // MARK: Functions
 
     public func text(_ text: String?,
                      style: UIFontTextStyle,
                      letterCase: LetterCase? = nil,
                      textColor: UIColor? = nil) {
         if let text = text {
-            for controlState in controlStates {
-                self.setTitle(text, for: controlState)
-            }
+            self.text = text
         }
         if var typography = Typography(for: style) {
             // Only override letterCase and textColor if explicitly specified
@@ -142,7 +122,8 @@ extension UIButton {
 
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategoryNewValueKey] as? UIContentSizeCategory {
-            self.titleLabel?.font = self.typography.font(newValue)
+            self.font = self.typography.font(newValue)
+            self.setNeedsLayout()
         }
     }
 }

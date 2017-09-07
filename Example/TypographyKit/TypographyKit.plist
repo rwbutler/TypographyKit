@@ -4,7 +4,7 @@
 <dict>
     <key>typography-colors</key>
     <dict>
-        <key>blueGem</key>
+        <key>blue-gem</key>
         <string>#2C0E8C</string>
     </dict>
 	<key>typography-kit</key>
@@ -23,10 +23,21 @@
 			<key>point-size</key>
 			<integer>36</integer>
 			<key>text-color</key>
-			<string>blueGem</string>
+			<string>blue-gem</string>
 			<key>letter-case</key>
 			<string>regular</string>
 		</dict>
+        <key>paragraph</key>
+        <dict>
+            <key>font-name</key>
+            <string>Avenir-Medium</string>
+            <key>point-size</key>
+            <integer>16</integer>
+            <key>text-color</key>
+            <string>blue-gem</string>
+            <key>letter-case</key>
+            <string>regular</string>
+        </dict>
 	</dict>
 </dict>
 </plist>

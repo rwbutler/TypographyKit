@@ -62,6 +62,12 @@ Or where your text has been set through IB simply set the UIFontTextStyle progra
 self.titleLabel.fontTextStyle = .heading
 ```
 
+If you are happy to use strings, an alternative means of setting the `fontTextStyle` property is to set the key path `fontTextStyleName` on your UIKit element to the string value representing your fontTextStyle - in the example above, this would be 'heading'.
+
+![Setting the fontTextStyleName key path in Interface Builder](key-path.png)
+
+Using this method it is possible to support Dynamic Type in your application with *zero code*.
+
 Your UILabel and UIButton elements will automatically respond to changes in the Dynamic Type setting on iOS on setting a UIFontTextStyle with no further work needed.
 
 ### Typography Styles

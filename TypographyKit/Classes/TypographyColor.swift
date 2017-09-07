@@ -26,7 +26,7 @@ public enum TypographyColor {
     case named(string: String)
     case rgb(r: Float, g: Float, b: Float)
     case rgba(r: Float, g: Float, b: Float, a: Float)
-    
+
     static var colorNameMap: [String: UIColor] {
         return ["black": .black,
                 "darkGray": .darkGray,
@@ -44,15 +44,15 @@ public enum TypographyColor {
                 "brown": .brown,
                 "clear": .clear]
     }
-    
+
     public var cgColor: CGColor {
         return self.uiColor.cgColor
     }
-    
+
     public var ciColor: CIColor {
         return self.uiColor.ciColor
     }
-    
+
     public var uiColor: UIColor {
         switch self {
         case .black:
@@ -95,7 +95,7 @@ public enum TypographyColor {
             return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: CGFloat(a))
         }
     }
-    
+
     public init?(string: String) {
         switch string {
         case "#[a-zA-Z0-9]{6}":
@@ -132,7 +132,7 @@ public enum TypographyColor {
             return nil
         }
     }
-    
+
     private static func rgbValues(from string: String) -> [String] {
         var colorValues: [String] = []
         do {
@@ -152,7 +152,7 @@ public enum TypographyColor {
         } catch {} // Just return empty array
         return colorValues
     }
-    
+
     /// Parses a hexadecimal string to a color if possible
     private static func parseHex(hexString: String) -> TypographyColor? {
         let unparsed = hexString.hasPrefix("#")
@@ -162,7 +162,7 @@ public enum TypographyColor {
         // swiftlint:disable:next line_length
         let g = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 2)..<unparsed.index(unparsed.startIndex, offsetBy: 4)]
         let b = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 4)..<unparsed.endIndex]
-        
+
         if let rInt = UInt(r, radix: 16),
             let gInt = UInt(g, radix: 16),
             let bInt = UInt(b, radix: 16) {

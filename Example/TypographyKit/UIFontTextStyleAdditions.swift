@@ -11,4 +11,5 @@ import UIKit
 
 extension UIFontTextStyle {
     static let heading = UIFontTextStyle(rawValue: "heading")
+    static let paragraph = UIFontTextStyle(rawValue: "paragraph")
 }
