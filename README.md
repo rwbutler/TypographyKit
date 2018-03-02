@@ -38,6 +38,8 @@ Include a TypographyKit.plist as part of your app project ([example](./Example/T
 		</dict>
 	</dict>
 
+Or if you prefer to use JSON you may include a TypographyKit.json ([example](./Example/TypographyKit/TypographyKit.json)) instead.
+
 Define additional UIFontTextStyles within your app matching those defined in your .plist:
 
 ```
@@ -122,7 +124,7 @@ extension UIColor {
 }
 ```    
  
- Your named colors can be used when defining your typography styles in TypographyKit.plist.
+Your named colors can be used when defining your typography styles in TypographyKit.plist.
  
  	<key>ui-font-text-styles</key>
 	<dict>
@@ -144,7 +146,7 @@ It is also possible override the text color of a typography style on a case-by-c
 myLabel.text("hello world", style: .heading, textColor: .blue)
 ```
 
-### iOS11
+### iOS 11
 TypographyKit also supports definition of colors via asset catalogs  available from iOS 11 onwards. Simply include the name of the color as part of your style in ```TypographyKit.plist``` and if the color is found in your asset catalog it will automatically be applied.
 
 ### Letter Casing
@@ -200,6 +202,15 @@ You may specify your own point step size and multiplier by inclusion of a dictio
 		<key>point-step-multiplier</key>
 		<integer>1</integer>
 	</dict>
+
+### Remote Configuration
+TypographyKit also allows you to host your configuration remotely so that your colors and font styles can be updated dynamically. To do so, simply add the following line to your app delegate so that it is invoked when your app finishes launching:
+
+```
+TypographyKit.configurationURL = URL(string: "https://github.com/rwbutler/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.plist")
+```
+
+Your typography styles and colors will be updated the next time your app is launched. However, should you need your styles to be updated sooner you may call ``` TypographyKit.refresh()```.
 
 ## Author
 

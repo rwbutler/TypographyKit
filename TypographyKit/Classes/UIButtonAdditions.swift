@@ -102,7 +102,7 @@ extension UIButton {
                 self.setAttributedTitle(text, for: controlState)
             }
             let mutableText = NSMutableAttributedString(attributedString: text)
-            mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.characters.count),
+            mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
                                             options: [],
                                             using: { value, range, _ in
                                                 let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory

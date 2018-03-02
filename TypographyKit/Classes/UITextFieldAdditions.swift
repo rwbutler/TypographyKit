@@ -85,7 +85,7 @@ extension UITextField {
         if let text = text {
             self.attributedText = text
             let mutableText = NSMutableAttributedString(attributedString: text)
-            mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.characters.count),
+            mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
                                             options: [],
                                             using: { value, range, _ in
                                                 let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory

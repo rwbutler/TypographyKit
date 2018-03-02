@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13DAF9752047198B0076E016 /* TypographyKit.json in Resources */ = {isa = PBXBuildFile; fileRef = 13DAF9742047198B0076E016 /* TypographyKit.json */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13DAF9742047198B0076E016 /* TypographyKit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TypographyKit.json; sourceTree = "<group>"; };
 		41AB6D3FB80D226587D8FF2B /* Pods_TypographyKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* TypographyKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypographyKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				13DAF9742047198B0076E016 /* TypographyKit.json */,
 				E4370A111ECB9C450036D182 /* TypographyKit.plist */,
 				E43CC45D1ED0715F0062FEA5 /* UIFontTextStyleAdditions.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -257,6 +260,7 @@
 			files = (
 				E4370A121ECB9C450036D182 /* TypographyKit.plist in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				13DAF9752047198B0076E016 /* TypographyKit.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);

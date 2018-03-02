@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DAF971204717A70076E016 /* JSONParsingService.swift */; };
 		5FD755630CA2A22440CC71194E50599B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		80EC1E330975EC661AE203E4A9546611 /* Pods-TypographyKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A14CE90FFD1549FA40C8E28C234451A /* Pods-TypographyKit_Tests-dummy.m */; };
 		81FF30911842D255B04BF132DA72AA99 /* Pods-TypographyKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7343C1B1EF6D34FD86635216483E1044 /* Pods-TypographyKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		0164F88DE54097B2924C93B085E3AF14 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A758ACFE9821CA5BED01D51743713CA /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13DAF971204717A70076E016 /* JSONParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingService.swift; sourceTree = "<group>"; };
 		231F53C35C0FEF18B6BAB07540F8AD27 /* Pods-TypographyKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TypographyKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		2BCAEF257B3C4B48171E4E8B94E5416C /* Pods-TypographyKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TypographyKit_Example.modulemap"; sourceTree = "<group>"; };
 		2DE2873A3F34E290E5C1539B237FFF79 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */,
+				13DAF971204717A70076E016 /* JSONParsingService.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -446,7 +449,7 @@
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					56BBB2E8F1AE2D92BFED105A2A890449 = {
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 					};
 				};
 			};
@@ -493,6 +496,7 @@
 			files = (
 				E4370A101ECB98440036D182 /* StringAdditions.swift in Sources */,
 				E494EB081F1A4A2E00E13158 /* ParsingServiceResult.swift in Sources */,
+				13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */,
 				E494EAF91F1A35E000E13158 /* ConfigurationKey.swift in Sources */,
 				E494EAFB1F1A362300E13158 /* TypographyKit.swift in Sources */,
 				E43CC45A1ED06BD70062FEA5 /* TypographyColor.swift in Sources */,

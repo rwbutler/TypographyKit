@@ -6,7 +6,11 @@
 //
 //
 
-enum ConfigurationType: String {
+public enum ConfigurationType: String {
     case plist
     case json
+
+    static var values: [ConfigurationType] {
+        return [.json, .plist]
+    }
 }

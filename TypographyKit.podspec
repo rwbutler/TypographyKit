@@ -8,15 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TypographyKit'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Visually consistent, accessible type for your iOS application.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
+  s.swift_version    = '3.2'
   s.description      = <<-DESC
 TypographyKit makes it easy to define typography styles in your iOS app helping you achieve visual consistency in your design as well as supporting Dynamic Type even where using custom fonts.
                        DESC

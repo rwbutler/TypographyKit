@@ -98,19 +98,15 @@ public enum TypographyColor {
 
     public init?(string: String) {
         switch string {
-        case "#[a-zA-Z0-9]{6}":
-            fallthrough
-        case "[a-zA-Z0-9]{6}":
-            if let _ = TypographyColor.parseHex(hexString: string) { // Check can be converted to a color
+        case "#[a-zA-Z0-9]{6}", "[a-zA-Z0-9]{6}":
+            if TypographyColor.parseHex(hexString: string) != nil { // Check can be converted to a color
                 self = .hex(string: string)
                 break
             }
             return nil
         // swiftlint:disable:next line_length
-        case "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
-            fallthrough
-        // swiftlint:disable:next line_length
-        case "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
+        case "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)",
+             "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
                 let rgbValues = type(of: self).rgbValues(from: string)
                 if rgbValues.count == 3,
                     let red = Float(rgbValues[0]),
@@ -121,11 +117,11 @@ public enum TypographyColor {
                 }
                 return nil
         default:
-            if #available(iOS 11, *), let _ = UIColor(named: string) { // Validate a color is returned
+            if #available(iOS 11, *), UIColor(named: string) != nil { // Validate a color is returned
                 self = .named(string: string)
                 break
             }
-            if let _ = TypographyColor.colorNameMap[string] { // Validate a color is returned
+            if TypographyColor.colorNameMap[string] != nil { // Validate a color is returned
                 self = .named(string: string)
                 break
             }
@@ -141,7 +137,7 @@ public enum TypographyColor {
                                                               options: .dotMatchesLineSeparators)
             let matches = colorComponentRegEx.matches(in: string,
                                                       options: [],
-                                                      range: NSRange(location: 0, length: string.characters.count))
+                                                      range: NSRange(location: 0, length: string.count))
             for match in matches {
                 let matchEndIndex = match.range.location + match.range.length
                 let startIdx = string.index(string.startIndex, offsetBy: match.range.location)

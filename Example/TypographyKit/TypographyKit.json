@@ -1,0 +1,23 @@
+{
+	"typography-colors": {
+		"blue-gem": "#2C0E8C"
+	},
+	"typography-kit": {
+		"point-step-size": 2,
+		"point-step-multiplier": 1
+	},
+	"ui-font-text-styles": {
+		"heading": {
+			"font-name": "Avenir-Medium",
+			"point-size": 36,
+			"text-color": "blue-gem",
+			"letter-case": "regular"
+		},
+		"paragraph": {
+			"font-name": "Avenir-Medium",
+			"point-size": 16,
+			"text-color": "blue-gem",
+			"letter-case": "regular"
+		}
+	}
+}

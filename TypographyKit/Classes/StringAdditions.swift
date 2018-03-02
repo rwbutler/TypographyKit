@@ -36,8 +36,8 @@ public extension String {
 
     func lowerCamelCased(preserveSuffix: Bool = false) -> String {
         let upperCamelCased = self.upperCamelCased(preserveSuffix: preserveSuffix)
-        if let firstChar = self.characters.first {
-            return String(firstChar).lowercased() + String(upperCamelCased.characters.dropFirst())
+        if let firstChar = self.first {
+            return String(firstChar).lowercased() + String(upperCamelCased.dropFirst())
         }
         return upperCamelCased
     }
@@ -58,7 +58,7 @@ public extension String {
                                         conjunction: String = "",
                                         preserveSuffix: Bool = false) -> String {
         var result = ""
-        for subSequence in self.characters.split(separator: " ") {
+        for subSequence in self.split(separator: " ") {
             if let firstChar = subSequence.first {
                 let prefixWithCase = (capitalizeFirst) ? String(firstChar).uppercased() : String(firstChar).lowercased()
                 let suffix = String(subSequence.dropFirst())
@@ -66,8 +66,8 @@ public extension String {
                 result += prefixWithCase + suffixWithCase + conjunction
             }
         }
-        if !conjunction.isEmpty, result.characters.count > 0 {
-            return String(result.characters.dropLast())
+        if !conjunction.isEmpty, result.count > 0 {
+            return String(result.dropLast())
         }
         return result
     }
