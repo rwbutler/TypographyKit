@@ -23,8 +23,7 @@ public struct TypographyKit {
     // Lazily-initialised properties
     public static var configurationType: ConfigurationType = {
         for configurationType in ConfigurationType.values {
-            let configURL = bundledConfigurationURL(configurationType)
-            if FileManager.default.fileExists(atPath: configURL.path) {
+            if bundledConfigurationURL(configurationType) != nil {
                 return configurationType
             }
         }
@@ -67,8 +66,8 @@ private extension TypographyKit {
 
     static let configurationName: String = "TypographyKit"
 
-    static func bundledConfigurationURL(_ configType: ConfigurationType = TypographyKit.configurationType) -> URL {
-        return Bundle.main.url(forResource: configurationName, withExtension: configType.rawValue)!
+    static func bundledConfigurationURL(_ configType: ConfigurationType = TypographyKit.configurationType) -> URL? {
+        return Bundle.main.url(forResource: configurationName, withExtension: configType.rawValue)
     }
 
     static func loadConfiguration() -> ParsingServiceResult? {
@@ -76,7 +75,8 @@ private extension TypographyKit {
             let data = try? Data(contentsOf: configurationURL) else {
                 guard let cachedConfigurationURL = cachedConfigurationURL,
                     let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
-                        guard let bundledData = try? Data(contentsOf: bundledConfigurationURL()) else {
+                        guard let bundledConfigurationURL = bundledConfigurationURL(),
+                            let bundledData = try? Data(contentsOf: bundledConfigurationURL) else {
                             return nil
                         }
                         return parseConfiguration(data: bundledData)
