@@ -9,7 +9,7 @@
 import Foundation
 
 extension UILabel {
-    public var fontTextStyle: UIFontTextStyle {
+    @objc public var fontTextStyle: UIFontTextStyle {
         get {
             // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFontTextStyle
@@ -24,7 +24,7 @@ extension UILabel {
         }
     }
 
-    public var fontTextStyleName: String {
+    @objc public var fontTextStyleName: String {
         get {
             return fontTextStyle.rawValue
         }
@@ -89,12 +89,12 @@ extension UILabel {
             mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
                                             options: [],
                                             using: { value, range, _ in
-                if let fontAttribute = value[NSFontAttributeName] as? UIFont {
+                if let fontAttribute = value[NSAttributedStringKey.font] as? UIFont {
                     let currentContentSizeCategory = UIApplication.shared.preferredContentSizeCategory
                     if let newPointSize = typography?.font(currentContentSizeCategory)?.pointSize,
                         let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
-                        mutableText.removeAttribute(NSFontAttributeName, range: range)
-                        mutableText.addAttribute(NSFontAttributeName, value: newFont, range: range)
+                        mutableText.removeAttribute(NSAttributedStringKey.font, range: range)
+                        mutableText.addAttribute(NSAttributedStringKey.font, value: newFont, range: range)
                     }
                 }
             })

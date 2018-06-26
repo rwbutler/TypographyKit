@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TypographyKit'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = 'Visually consistent, accessible type for your iOS application.'
-  s.swift_version    = '3.2'
+  s.swift_version    = '4.1'
   s.description      = <<-DESC
 TypographyKit makes it easy to define typography styles in your iOS app helping you achieve visual consistency in your design as well as supporting Dynamic Type even where using custom fonts.
                        DESC
