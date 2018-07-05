@@ -143,7 +143,7 @@ public enum TypographyColor {
                 let startIdx = string.index(string.startIndex, offsetBy: match.range.location)
                 let endIdx = string.index(string.startIndex, offsetBy: matchEndIndex)
                 let range = startIdx..<endIdx
-                colorValues.append(string[range])
+                colorValues.append(String(string[range]))
             }
         } catch {} // Just return empty array
         return colorValues
@@ -152,7 +152,7 @@ public enum TypographyColor {
     /// Parses a hexadecimal string to a color if possible
     private static func parseHex(hexString: String) -> TypographyColor? {
         let unparsed = hexString.hasPrefix("#")
-            ? hexString.substring(from: hexString.index(after: hexString.startIndex))
+            ? String(hexString[hexString.index(after: hexString.startIndex)...])
             : hexString
         let r = unparsed[unparsed.startIndex..<unparsed.index(unparsed.index(after: unparsed.startIndex), offsetBy: 1)]
         // swiftlint:disable:next line_length
