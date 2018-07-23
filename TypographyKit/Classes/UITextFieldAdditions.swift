@@ -77,27 +77,28 @@ extension UITextField {
                                letterCase: LetterCase = .regular,
                                textColor: UIColor? = nil) {
 
+        let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
+        let fontAttributeKey = NSAttributedStringKey.font
         let typography = Typography(for: style)
         if let textColor = textColor {
             self.textColor = textColor
         }
 
-        if let text = text {
-            self.attributedText = text
-            let mutableText = NSMutableAttributedString(attributedString: text)
-            mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
-                                            options: [],
-                                            using: { value, range, _ in
-                                                let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
-                                                if let fontAttribute = value[NSAttributedStringKey.font] as? UIFont,
-                                                    let newPointSize = typography?.font(contentSizeCategory)?.pointSize,
-                                                        let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
-                                                        mutableText.removeAttribute(NSAttributedStringKey.font, range: range)
-                                                        mutableText.addAttribute(NSAttributedStringKey.font, value: newFont, range: range)
-                                                }
-            })
-            self.attributedText = mutableText
-        }
+        guard let text = text else { return }
+        self.attributedText = text
+        let mutableText = NSMutableAttributedString(attributedString: text)
+        mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
+                                        options: [],
+                                        using: { value, range, _ in
+                                            if let fontAttribute = value[fontAttributeKey] as? UIFont,
+                                                let newPointSize = typography?.font(contentSizeCategory)?.pointSize,
+                                                let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
+                                                mutableText.removeAttribute(fontAttributeKey, range: range)
+                                                mutableText.addAttribute(fontAttributeKey, value: newFont, range: range)
+                                            }
+        })
+        self.attributedText = mutableText
+
     }
 
     public func text(_ text: String?,

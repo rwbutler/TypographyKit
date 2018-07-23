@@ -1,6 +1,9 @@
 {
 	"typography-colors": {
-		"blue-gem": "#2C0E8C"
+        "background": "lighter royal-blue",
+        "gold": "#FFAB01",
+        "royal-blue": "#08224C",
+        "text": "gold"
 	},
 	"typography-kit": {
 		"point-step-size": 2,
@@ -10,13 +13,13 @@
 		"heading": {
 			"font-name": "Avenir-Medium",
 			"point-size": 36,
-			"text-color": "blue-gem",
+			"text-color": "text",
 			"letter-case": "regular"
 		},
 		"paragraph": {
 			"font-name": "Avenir-Medium",
 			"point-size": 16,
-			"text-color": "blue-gem",
+			"text-color": "text",
 			"letter-case": "regular"
 		}
 	}

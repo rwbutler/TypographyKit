@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TypographyKit'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'Visually consistent, accessible type for your iOS application.'
   s.swift_version    = '4.1'
   s.description      = <<-DESC

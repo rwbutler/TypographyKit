@@ -11,6 +11,32 @@ protocol ParsingService {
 }
 
 extension ParsingService {
+    private func trimWhitespace(_ string: String) -> String {
+        return string.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private func parseColorValue(_ colorValue: String, existingColors: [String: UIColor]? = nil) -> UIColor? {
+        #if !TYPOGRAPHYKIT_UICOLOR_EXTENSION
+        let shades: [String] = ["light ", "lighter ", "lightest ", "dark ", "darker ", "darkest ",
+                                " light", " lighter", " lightest", " dark", " darker", " darkest"]
+        for shade in shades {
+            if colorValue.contains(shade) {
+                let colorValue = trimWhitespace(colorValue.replacingOccurrences(of: shade, with: ""))
+                if let existingColors = existingColors,
+                    let color = existingColors[colorValue] {
+                    return color.shade(trimWhitespace(shade))
+                }
+                return TypographyColor(string: colorValue)?.uiColor.shade(trimWhitespace(shade))
+            }
+        }
+        #endif
+        if let existingColors = existingColors,
+            let color = existingColors[colorValue] {
+            return color
+        }
+        return TypographyColor(string: colorValue)?.uiColor
+    }
+
     func parse(_ configEntries: [String: Any]) -> ParsingServiceResult? {
         var configuration: ConfigurationSettings = ConfigurationSettings(pointStepSize: 2.0,
                                                                          pointStepMultiplier: 1.0)
@@ -23,10 +49,18 @@ extension ParsingService {
             configuration = ConfigurationSettings(pointStepSize: pointStepSize,
                                                   pointStepMultiplier: pointStepMultiplier)
         }
+        var colorAliases: [String: String] = [:] // keys which are synonyms for other colors
         if let typographyColorNames = configEntries["typography-colors"] as? [String: String] {
             for (key, value) in typographyColorNames {
-                typographyColors[key] = TypographyColor(string: value)?.uiColor
+                if let color = parseColorValue(value) {
+                    typographyColors[key] = color
+                } else {
+                    colorAliases[key] = value
+                }
             }
+        }
+        for (key, value) in colorAliases {
+            typographyColors[key] = parseColorValue(value, existingColors: typographyColors)
         }
         if let fontTextStyles = configEntries["ui-font-text-styles"] as? [String: [String: Any]] {
             for (fontTextStyleKey, fontTextStyle) in fontTextStyles {

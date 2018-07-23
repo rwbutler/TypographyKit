@@ -4,8 +4,14 @@
 <dict>
     <key>typography-colors</key>
     <dict>
-        <key>blue-gem</key>
-        <string>#2C0E8C</string>
+        <key>background</key>
+        <string>lighter royal-blue</string>
+        <key>gold</key>
+        <string>#FFAB01</string>
+        <key>royal-blue</key>
+        <string>#08224C</string>
+        <key>text</key>
+        <string>gold</string>
     </dict>
 	<key>typography-kit</key>
 	<dict>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		135C78DF20F7C14500BDB06D /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C78DE20F7C14500BDB06D /* UIColorAdditions.swift */; };
 		13DAF9752047198B0076E016 /* TypographyKit.json in Resources */ = {isa = PBXBuildFile; fileRef = 13DAF9742047198B0076E016 /* TypographyKit.json */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		135C78DE20F7C14500BDB06D /* UIColorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorAdditions.swift; sourceTree = "<group>"; };
 		13DAF9742047198B0076E016 /* TypographyKit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TypographyKit.json; sourceTree = "<group>"; };
 		41AB6D3FB80D226587D8FF2B /* Pods_TypographyKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* TypographyKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypographyKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		135C78E020F7C44000BDB06D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				135C78DE20F7C14500BDB06D /* UIColorAdditions.swift */,
+				E43CC45D1ED0715F0062FEA5 /* UIFontTextStyleAdditions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		4423B83F2BB4D0BD243A1139 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +119,7 @@
 		607FACD21AFB9204008FA782 /* Example for TypographyKit */ = {
 			isa = PBXGroup;
 			children = (
+				135C78E020F7C44000BDB06D /* Extensions */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -115,7 +127,6 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				13DAF9742047198B0076E016 /* TypographyKit.json */,
 				E4370A111ECB9C450036D182 /* TypographyKit.plist */,
-				E43CC45D1ED0715F0062FEA5 /* UIFontTextStyleAdditions.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 			);
 			name = "Example for TypographyKit";
@@ -220,7 +231,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -388,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				135C78DF20F7C14500BDB06D /* UIColorAdditions.swift in Sources */,
 				E43CC45E1ED0715F0062FEA5 /* UIFontTextStyleAdditions.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -439,14 +451,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -486,14 +506,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -550,10 +578,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 804755A28AB849CA8DEF3FEA /* Pods-TypographyKit_Tests.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -570,10 +594,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 794134C9F24FF33556688DF4 /* Pods-TypographyKit_Tests.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";

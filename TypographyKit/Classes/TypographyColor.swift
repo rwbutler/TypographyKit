@@ -89,10 +89,10 @@ public enum TypographyColor {
             return TypographyColor.colorNameMap[colorName]! // Previously validated
         case .hex(let hexString):
             return TypographyColor.parseHex(hexString: hexString)!.uiColor // Previously validated
-        case .rgb(let r, let g, let b):
-            return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: 1.0)
-        case .rgba(let r, let g, let b, let a):
-            return UIColor(red: CGFloat(r), green: CGFloat(g), blue: CGFloat(b), alpha: CGFloat(a))
+        case .rgb(let red, let green, let blue):
+            return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
+        case .rgba(let red, let green, let blue, let alpha):
+            return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
         }
     }
 
@@ -106,16 +106,17 @@ public enum TypographyColor {
             return nil
         // swiftlint:disable:next line_length
         case "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)",
-             "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
-                let rgbValues = type(of: self).rgbValues(from: string)
-                if rgbValues.count == 3,
-                    let red = Float(rgbValues[0]),
-                    let green = Float(rgbValues[1]),
-                    let blue = Float(rgbValues[2]) {
-                    self = .rgb(r: red / 255.0, g: green / 255.0, b: blue / 255.0)
-                    break
-                }
-                return nil
+             // swiftlint:disable:next line_length
+        "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
+            let rgbValues = type(of: self).rgbValues(from: string)
+            if rgbValues.count == 3,
+                let red = Float(rgbValues[0]),
+                let green = Float(rgbValues[1]),
+                let blue = Float(rgbValues[2]) {
+                self = .rgb(r: red / 255.0, g: green / 255.0, b: blue / 255.0)
+                break
+            }
+            return nil
         default:
             if #available(iOS 11, *), UIColor(named: string) != nil { // Validate a color is returned
                 self = .named(string: string)
@@ -154,14 +155,18 @@ public enum TypographyColor {
         let unparsed = hexString.hasPrefix("#")
             ? String(hexString[hexString.index(after: hexString.startIndex)...])
             : hexString
-        let r = unparsed[unparsed.startIndex..<unparsed.index(unparsed.index(after: unparsed.startIndex), offsetBy: 1)]
-        // swiftlint:disable:next line_length
-        let g = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 2)..<unparsed.index(unparsed.startIndex, offsetBy: 4)]
-        let b = unparsed[unparsed.index(unparsed.startIndex, offsetBy: 4)..<unparsed.endIndex]
 
-        if let rInt = UInt(r, radix: 16),
-            let gInt = UInt(g, radix: 16),
-            let bInt = UInt(b, radix: 16) {
+        let redComponentIdx = unparsed.startIndex,
+        greenComponentIdx = unparsed.index(unparsed.startIndex, offsetBy: 2),
+        blueComponentIdx = unparsed.index(unparsed.startIndex, offsetBy: 4)
+
+        let redComponent = unparsed[redComponentIdx..<greenComponentIdx],
+        greenComponent = unparsed[greenComponentIdx..<blueComponentIdx],
+        blueComponent = unparsed[blueComponentIdx..<unparsed.endIndex]
+
+        if let rInt = UInt(redComponent, radix: 16),
+            let gInt = UInt(greenComponent, radix: 16),
+            let bInt = UInt(blueComponent, radix: 16) {
             let red = Float(rInt) / 255.0
             let green = Float(gInt) / 255.0
             let blue = Float(bInt) / 255.0

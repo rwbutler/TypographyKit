@@ -3,7 +3,7 @@
 //  TypographyKit
 //
 //  Created by Ross Butler on 5/20/17.
-//  Copyright © 2017 CocoaPods. All rights reserved.
+//  Copyright © 2017 Ross Butler. All rights reserved.
 //
 
 import Foundation
