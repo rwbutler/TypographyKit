@@ -3,6 +3,7 @@
 
 [![CI Status](http://img.shields.io/travis/rwbutler/TypographyKit.svg?style=flat)](https://travis-ci.org/rwbutler/TypographyKit)
 [![Version](https://img.shields.io/cocoapods/v/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 [![Platform](https://img.shields.io/cocoapods/p/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 
@@ -16,12 +17,46 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-TypographyKit is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Cocoapods
 
-```ruby
+[CocoaPods](http://cocoapods.org) is a dependency manager which integrates dependencies into your Xcode workspace. To install it using [RubyGems](https://rubygems.org/) run:
+
+```
+gem install cocoapods
+```
+
+To install TypographyKit using Cocoapods, simply add the following line to your Podfile:
+
+```
 pod "TypographyKit"
 ```
+
+Then run the command:
+
+```
+pod install
+```
+
+For more information [see here](https://cocoapods.org/#getstarted).
+
+### Carthage
+
+Carthage is a dependency manager which produces a binary for manual integration into your project. It can be installed via [Homebrew](https://brew.sh/) using the commands:
+
+```
+brew update
+brew install carthage
+```
+
+In order to integrate TypographyKit into your project via Carthage, add the following line to your project's Cartfile:
+
+```
+github "rwbutler/TypographyKit"
+```
+
+From the macOS Terminal run `carthage update --platform iOS` to build the framework then drag `TypographyKit.framework` into your Xcode project.
+
+For more information [see here](https://github.com/Carthage/Carthage#quick-start).
 
 ## Usage
 

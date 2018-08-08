@@ -1,9 +1,12 @@
 language: objective-c
 osx_image: xcode9
+before_install:
+  - gem install cocoapods -v '1.5.0'
 install:
   - ./install_swiftlint.sh
 script:
   - gem install travis --no-rdoc --no-ri
   - travis lint .travis.yml --no-interactive
   - swiftlint
-  - xcodebuild clean build -workspace Example/TypographyKit.xcworkspace -scheme TypographyKit-Example -destination "platform=iOS Simulator,name=iPhone 6S" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean build -workspace Example/TypographyKit.xcworkspace -scheme TypographyKit-Example -destination "platform=iOS Simulator,name=iPhone 8" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - pod lib lint
