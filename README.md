@@ -1,5 +1,5 @@
 
-![TypographyKit](TypographyKit.png)
+![TypographyKit](https://github.com/rwbutler/TypographyKit/raw/master/TypographyKit.png)
 
 [![CI Status](http://img.shields.io/travis/rwbutler/TypographyKit.svg?style=flat)](https://travis-ci.org/rwbutler/TypographyKit)
 [![Version](https://img.shields.io/cocoapods/v/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
