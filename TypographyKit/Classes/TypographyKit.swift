@@ -30,6 +30,14 @@ public struct TypographyKit {
         return .plist // default
     }()
 
+    public static var minimumPointSize: Float? = {
+        return configuration?.configurationSettings.minimumPointSize
+    }()
+
+    public static var maximumPointSize: Float? = {
+        return configuration?.configurationSettings.maximumPointSize
+    }()
+
     public static var pointStepSize: Float = {
         return configuration?.configurationSettings.pointStepSize ?? 2.0
     }()
@@ -90,7 +98,7 @@ private extension TypographyKit {
     }
 
     private static func parseConfiguration(data: Data) -> ParsingServiceResult? {
-        var parsingService: ParsingService? = nil
+        var parsingService: ParsingService?
         switch configurationType {
         case .plist:
             parsingService = PropertyListParsingService()

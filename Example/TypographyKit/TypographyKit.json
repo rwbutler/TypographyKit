@@ -6,6 +6,8 @@
         "text": "gold"
 	},
 	"typography-kit": {
+        "minimum-point-size": 10,
+        "maximum-point-size": 100,
 		"point-step-size": 2,
 		"point-step-multiplier": 1
 	},

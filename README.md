@@ -241,11 +241,17 @@ You may specify your own point step size and multiplier by inclusion of a dictio
 
 	<key>typography-kit</key>
 	<dict>
+	  <key>minimum-point-size</key>
+		<integer>10</integer>
+		<key>maximum-point-size</key>
+		<integer>100</integer>
 		<key>point-step-size</key>
 		<integer>2</integer>
 		<key>point-step-multiplier</key>
 		<integer>1</integer>
 	</dict>
+
+Optionally, you may clamp the font point size to a lower and / or upper bound using the `minimum-point-size` and `maximum-point-size` properties.
 
 ### Remote Configuration
 TypographyKit also allows you to host your configuration remotely so that your colors and font styles can be updated dynamically. To do so, simply add the following line to your app delegate so that it is invoked when your app finishes launching:

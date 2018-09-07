@@ -38,15 +38,18 @@ extension ParsingService {
     }
 
     func parse(_ configEntries: [String: Any]) -> ParsingServiceResult? {
-        var configuration: ConfigurationSettings = ConfigurationSettings(pointStepSize: 2.0,
-                                                                         pointStepMultiplier: 1.0)
+        var configuration: ConfigurationSettings = ConfigurationSettings()
         var typographyColors: [String: UIColor] = [:]
         var typographyStyles: [String: Typography] = [:]
 
         if let typographyKitConfig = configEntries["typography-kit"] as? [String: Float],
             let pointStepSize = typographyKitConfig["point-step-size"],
             let pointStepMultiplier = typographyKitConfig["point-step-multiplier"] {
-            configuration = ConfigurationSettings(pointStepSize: pointStepSize,
+            let minimumPointSize = typographyKitConfig["minimum-point-size"]
+            let maximumPointSize = typographyKitConfig["maximum-point-size"]
+            configuration = ConfigurationSettings(minimumPointSize: minimumPointSize,
+                                                  maximumPointSize: maximumPointSize,
+                                                  pointStepSize: pointStepSize,
                                                   pointStepMultiplier: pointStepMultiplier)
         }
         var colorAliases: [String: String] = [:] // keys which are synonyms for other colors
@@ -66,7 +69,7 @@ extension ParsingService {
             for (fontTextStyleKey, fontTextStyle) in fontTextStyles {
                 let fontName = fontTextStyle[ConfigurationKey.fontName.rawValue] as? String
                 let pointSize = fontTextStyle[ConfigurationKey.pointSize.rawValue] as? Float
-                var textColor: UIColor? = nil
+                var textColor: UIColor?
                 if let textColorName = fontTextStyle[ConfigurationKey.textColor.rawValue] as? String {
                     if let color = typographyColors[textColorName] {
                         textColor = color
@@ -74,14 +77,12 @@ extension ParsingService {
                         textColor = TypographyColor(string: textColorName)?.uiColor
                     }
                 }
-                var letterCase: LetterCase? = nil
+                var letterCase: LetterCase?
                 if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
                     letterCase = LetterCase(rawValue: letterCaseName)
                 }
-                typographyStyles[fontTextStyleKey] = Typography(fontName: fontName,
-                                                                fontSize: pointSize,
-                                                                letterCase: letterCase,
-                                                                textColor: textColor)
+                typographyStyles[fontTextStyleKey] = Typography(fontName: fontName, fontSize: pointSize,
+                                                                letterCase: letterCase, textColor: textColor)
             }
         }
         return (configurationSettings: configuration,

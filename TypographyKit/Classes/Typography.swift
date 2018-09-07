@@ -56,6 +56,12 @@ public struct Typography {
         pointSize += (TypographyKit.pointStepSize
             * contentSizeCategoryStepMultiplier
             * TypographyKit.pointStepMultiplier)
+        if let minimumPointSize = TypographyKit.minimumPointSize, pointSize < minimumPointSize {
+            pointSize = minimumPointSize
+        }
+        if let maximumPointSize = TypographyKit.maximumPointSize, maximumPointSize < pointSize {
+            pointSize = maximumPointSize
+        }
         return UIFont(name: fontName, size: CGFloat(pointSize))
     }
 }

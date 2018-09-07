@@ -22,7 +22,7 @@ extension UIColor {
         case lighter
         case lightest
         case white
-    
+
         fileprivate var scale: Double {
             switch self {
             case .lightness(let scalingFactor):
