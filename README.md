@@ -7,13 +7,18 @@
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 [![Platform](https://img.shields.io/cocoapods/p/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 
-TypographyKit makes it easy to define typography styles and colour palettes in your iOS app helping you achieve visual consistency in your design as well as supporting [Dynamic Type](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/) even when using custom fonts.
+TypographyKit makes it easy to define typography styles and colour palettes in your iOS app helping you achieve visual consistency in your design as well as supporting [Dynamic Type](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/) even when using custom fonts. [[More information]](https://medium.com/@rwbutler/typographykit-an-ios-framework-to-help-you-support-dynamic-type-and-enable-visual-consistency-bce7e4a82c30)
 
-## Example
+## Features
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
+- [x] Dynamic Type support for UILabel, UIButton, UITextField and UITextView as well as some support for NSAttributedString.
+- [x] Dynamic Type support for custom fonts prior to iOS 11 (iOS 9 onwards).
+- [x] Optionally support Dynamic Type using *zero code* (by setting the `fontTextStyleName` key path String to the name of your typography style in IB). 
+- [x] Helps make your app visually consistent across all screen by allowing you to define all of your typography styles and app color scheme in a single location.
+- [x] Host and update your font styles and color schemes [remotely](#remote-configuration). [[Blog post]](https://medium.com/@rwbutler/remotely-configured-colour-palettes-in-typographykit-e565c927e2b4)
+- [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Blog post]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
+- [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
+- [x] Use either a PList or JSON to define your TypographyKit configuration. 
 
 ## Installation
 
@@ -57,6 +62,10 @@ github "rwbutler/TypographyKit"
 From the macOS Terminal run `carthage update --platform iOS` to build the framework then drag `TypographyKit.framework` into your Xcode project.
 
 For more information [see here](https://github.com/Carthage/Carthage#quick-start).
+
+## Example App
+
+An example app exists in the [Example directory](https://github.com/rwbutler/TypographyKit/tree/master/Example) to provide some pointers on getting started.
 
 ## Usage
 
