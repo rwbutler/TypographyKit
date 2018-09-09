@@ -110,7 +110,7 @@ self.titleLabel.fontTextStyle = .heading
 
 If you are happy to use strings, an alternative means of setting the `fontTextStyle` property is to set the key path `fontTextStyleName` on your UIKit element to the string value representing your fontTextStyle - in the example above, this would be 'heading'.
 
-![Setting the fontTextStyleName key path in Interface Builder](key-path.png)
+![Setting the fontTextStyleName key path in Interface Builder](https://github.com/rwbutler/TypographyKit/raw/master/key-path.png)
 
 Using this method it is possible to support Dynamic Type in your application with *zero code*.
 
