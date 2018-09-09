@@ -86,6 +86,9 @@ public enum TypographyColor {
         case .clear:
             return .clear
         case .named(let colorName):
+            if #available(iOS 11, *), let color = UIColor(named: colorName) {
+                return color
+            }
             return TypographyColor.colorNameMap[colorName]! // Previously validated
         case .hex(let hexString):
             return TypographyColor.parseHex(hexString: hexString)!.uiColor // Previously validated

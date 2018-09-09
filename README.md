@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 [![Platform](https://img.shields.io/cocoapods/p/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 
-TypographyKit makes it easy to define typography styles and colour palettes in your iOS app helping you achieve visual consistency in your design as well as supporting [Dynamic Type](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/) even when using custom fonts. [[More information]](https://medium.com/@rwbutler/typographykit-an-ios-framework-to-help-you-support-dynamic-type-and-enable-visual-consistency-bce7e4a82c30)
+TypographyKit makes it easy to define typography styles and colour palettes in your iOS app helping you achieve visual consistency in your design as well as supporting [Dynamic Type](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/) even when using custom fonts. [[Summary]](https://medium.com/@rwbutler/typographykit-an-ios-framework-to-help-you-support-dynamic-type-and-enable-visual-consistency-bce7e4a82c30) [[Detailed]](https://medium.com/@rwbutler/dynamic-type-in-ios-with-typographykit-9ed0ac5dbf64)
 
 ## Features
 
@@ -15,8 +15,8 @@ TypographyKit makes it easy to define typography styles and colour palettes in y
 - [x] Dynamic Type support for custom fonts prior to iOS 11 (iOS 9 onwards).
 - [x] Optionally support Dynamic Type using *zero code* (by setting the `fontTextStyleName` key path String to the name of your typography style in IB). 
 - [x] Helps make your app visually consistent across all screen by allowing you to define all of your typography styles and app color scheme in a single location.
-- [x] Host and update your font styles and color schemes [remotely](#remote-configuration). [[Blog post]](https://medium.com/@rwbutler/remotely-configured-colour-palettes-in-typographykit-e565c927e2b4)
-- [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Blog post]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
+- [x] Host and update your font styles and color schemes [remotely](#remote-configuration). [[Details]](https://medium.com/@rwbutler/remotely-configured-colour-palettes-in-typographykit-e565c927e2b4)
+- [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Details]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
 - [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
 - [x] Use either a PList or JSON to define your TypographyKit configuration. 
 
