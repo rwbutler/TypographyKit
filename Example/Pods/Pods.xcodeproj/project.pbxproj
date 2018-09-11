@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		135C78DD20F7662C00BDB06D /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C78DB20F7662300BDB06D /* UIColorAdditions.swift */; };
+		138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */; };
+		138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */; };
+		138F0E822146CBC900CA8D8F /* TypographyKitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */; };
 		13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DAF971204717A70076E016 /* JSONParsingService.swift */; };
 		5FD755630CA2A22440CC71194E50599B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		80EC1E330975EC661AE203E4A9546611 /* Pods-TypographyKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A14CE90FFD1549FA40C8E28C234451A /* Pods-TypographyKit_Tests-dummy.m */; };
@@ -52,6 +55,9 @@
 		0164F88DE54097B2924C93B085E3AF14 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A758ACFE9821CA5BED01D51743713CA /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		135C78DB20F7662300BDB06D /* UIColorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorAdditions.swift; sourceTree = "<group>"; };
+		138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitViewController.swift; sourceTree = "<group>"; };
+		138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitTableViewCell.swift; sourceTree = "<group>"; };
+		138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyKitTableViewCell.xib; sourceTree = "<group>"; };
 		13DAF971204717A70076E016 /* JSONParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingService.swift; sourceTree = "<group>"; };
 		231F53C35C0FEF18B6BAB07540F8AD27 /* Pods-TypographyKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TypographyKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		2BCAEF257B3C4B48171E4E8B94E5416C /* Pods-TypographyKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TypographyKit_Example.modulemap"; sourceTree = "<group>"; };
@@ -130,6 +136,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		138F0E8321470D1500CA8D8F /* TypographyKitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */,
+				138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */,
+				138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */,
+			);
+			name = TypographyKitViewController;
+			sourceTree = "<group>";
+		};
+		138F0E8421470D2700CA8D8F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E4370A081ECB980D0036D182 /* UILabelAdditions.swift */,
+				E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */,
+				E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */,
+				E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */,
+				135C78DB20F7662300BDB06D /* UIColorAdditions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		2E12F01B602974338CCD1E86E69C4650 /* TypographyKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,11 +314,8 @@
 		E4735D981EF002D2007DD0DB /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				E4370A081ECB980D0036D182 /* UILabelAdditions.swift */,
-				E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */,
-				E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */,
-				E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */,
-				135C78DB20F7662300BDB06D /* UIColorAdditions.swift */,
+				138F0E8421470D2700CA8D8F /* Extensions */,
+				138F0E8321470D1500CA8D8F /* TypographyKitViewController */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
@@ -413,6 +438,7 @@
 			buildPhases = (
 				12D174F51072BFA6F99A9F4ECD7CBAC4 /* Sources */,
 				B50251DBE5C7C80A80EE567CBEB262D4 /* Frameworks */,
+				138F0E812146CBC100CA8D8F /* Resources */,
 				DE4B2A17E0DB044FD998EBD70CBD3F02 /* Headers */,
 				E494EB0C1F1A7A9D00E13158 /* SwiftLint */,
 			);
@@ -478,6 +504,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		138F0E812146CBC100CA8D8F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				138F0E822146CBC900CA8D8F /* TypographyKitTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXShellScriptBuildPhase section */
 		E494EB0C1F1A7A9D00E13158 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -507,11 +544,13 @@
 				E494EAFB1F1A362300E13158 /* TypographyKit.swift in Sources */,
 				E43CC45A1ED06BD70062FEA5 /* TypographyColor.swift in Sources */,
 				E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */,
+				138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */,
 				E43CC45C1ED06BE70062FEA5 /* String+RegularExpressionMatchable.swift in Sources */,
 				E494EAFF1F1A3F7600E13158 /* PropertyListParsingService.swift in Sources */,
 				135C78DD20F7662C00BDB06D /* UIColorAdditions.swift in Sources */,
 				E4370A0E1ECB983C0036D182 /* Typography.swift in Sources */,
 				E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */,
+				138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */,
 				E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */,
 				E43CC45B1ED06BE40062FEA5 /* RegularExpressionMatchable.swift in Sources */,
 				E494EAF51F1A359100E13158 /* TypographyKitPropertyAdditionsKey.swift in Sources */,

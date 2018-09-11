@@ -11,7 +11,6 @@ import UIKit
 #if !TYPOGRAPHYKIT_UICOLOR_EXTENSION
 extension UIColor {
     public enum Lightness {
-
         private static let lightScalingFactor: Double       = 1.25
         private static let lighterScalingFactor: Double     = 1.5
         private static let lightestScalingFactor: Double    = 1.75

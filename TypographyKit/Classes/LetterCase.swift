@@ -17,3 +17,28 @@ public enum LetterCase: String {
     case upper                       // e.g. UPPER CASE
     case upperCamel = "upper-camel"  // e.g. UpperCamelCase
 }
+
+extension LetterCase: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .capitalized:
+            return "Capitalized"
+        case .kebab:
+            return "Kebab case"
+        case .lower:
+            return "Lower case"
+        case .lowerCamel:
+            return "Lower camel case"
+        case .macro:
+            return "Macro case"
+        case .regular:
+            return "" // No letter casing is applied
+        case .snake:
+            return "Snake case"
+        case .upper:
+            return "Upper case"
+        case .upperCamel:
+            return "Upper camel case"
+        }
+    }
+}

@@ -57,6 +57,17 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQs-iP-6r0">
+                                <rect key="frame" x="105" y="613" width="165" height="34"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="View typography styles"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="presentTypographyStyles:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fBQ-5a-aLC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.84705882352941175" green="0.47450980392156861" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -67,10 +78,14 @@
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="HaK-K9-u7C"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3Dx-WJ-xp7" secondAttribute="trailing" id="KdD-sc-e5j"/>
                             <constraint firstItem="Wic-EW-q8f" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="R3Q-rS-cbb"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="OQs-iP-6r0" secondAttribute="trailing" constant="10" id="TxO-Z9-odi"/>
+                            <constraint firstItem="OQs-iP-6r0" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="VDh-HC-vrv"/>
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="ZDN-rH-IaO"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="top" secondItem="Wic-EW-q8f" secondAttribute="bottom" constant="20" id="Zl4-04-KV8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wic-EW-q8f" secondAttribute="trailing" constant="10" id="giU-DR-1Gs"/>
                             <constraint firstItem="Wic-EW-q8f" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="hS7-aM-N5h"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="OQs-iP-6r0" secondAttribute="bottom" constant="20" id="lJR-7v-YUz"/>
+                            <constraint firstItem="OQs-iP-6r0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="mfM-cy-3Ro"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CQM-xr-ytX" secondAttribute="trailing" constant="10" id="oGu-1P-bd5"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="tar-81-zOu"/>
                             <constraint firstItem="Wic-EW-q8f" firstAttribute="top" secondItem="3Dx-WJ-xp7" secondAttribute="bottom" constant="20" id="uK9-Ep-mtf"/>

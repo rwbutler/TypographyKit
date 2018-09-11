@@ -54,6 +54,19 @@ public struct TypographyKit {
         return configuration?.typographyStyles ?? [:]
     }()
 
+    // MARK: Functions
+    internal static func colorName(color: UIColor) -> String? {
+        return colors.first(where: { $0.value == color })?.key
+    }
+
+    public static func presentTypographyStyles() {
+        guard let presenter = UIApplication.shared.keyWindow?.rootViewController else { return }
+        let typographyKitViewController = TypographyKitViewController(style: .grouped)
+        typographyKitViewController.modalPresentationStyle = .overCurrentContext
+        let navigationController = UINavigationController(rootViewController: typographyKitViewController)
+        presenter.present(navigationController, animated: true, completion: nil)
+    }
+
     public static func refresh() {
         configuration = loadConfiguration()
     }
