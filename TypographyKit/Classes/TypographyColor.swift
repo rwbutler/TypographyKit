@@ -24,7 +24,9 @@ public enum TypographyColor {
     case clear
     case hex(string: String)
     case named(string: String)
+    // swiftlint:disable:next variable_name
     case rgb(r: Float, g: Float, b: Float)
+    // swiftlint:disable:next variable_name
     case rgba(r: Float, g: Float, b: Float, a: Float)
 
     static var colorNameMap: [String: UIColor] {
