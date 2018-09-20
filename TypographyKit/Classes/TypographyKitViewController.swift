@@ -55,7 +55,7 @@ class TypographyKitViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     private func colorIsBright(color: UIColor) -> Bool {
@@ -81,7 +81,7 @@ private extension TypographyKitViewController {
         tableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.dataSource = self
         tableView.estimatedRowHeight = 150
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     func configureView() {

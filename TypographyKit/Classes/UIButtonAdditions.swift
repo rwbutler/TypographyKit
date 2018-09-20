@@ -9,18 +9,18 @@
 import Foundation
 
 extension UIButton {
-    private var controlStates: [UIControlState] {
-        var controlStates: [UIControlState] = [.normal, .highlighted, .disabled, .selected, .application]
+    private var controlStates: [UIControl.State] {
+        var controlStates: [UIControl.State] = [.normal, .highlighted, .disabled, .selected, .application]
         if #available(iOS 9, *) {
             controlStates.append(.focused)
         }
         return controlStates
     }
 
-    @objc public var fontTextStyle: UIFontTextStyle {
+    @objc public var fontTextStyle: UIFont.TextStyle {
         get {
             // swiftlint:disable:next force_cast
-            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFontTextStyle
+            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFont.TextStyle
         }
         set {
             objc_setAssociatedObject(self,
@@ -37,7 +37,7 @@ extension UIButton {
             return fontTextStyle.rawValue
         }
         set {
-            fontTextStyle = UIFontTextStyle(rawValue: newValue)
+            fontTextStyle = UIFont.TextStyle(rawValue: newValue)
         }
     }
 
@@ -80,7 +80,7 @@ extension UIButton {
             }
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(contentSizeCategoryDidChange(_:)),
-                                                   name: NSNotification.Name.UIContentSizeCategoryDidChange,
+                                                   name: UIContentSizeCategory.didChangeNotification,
                                                    object: nil)
         }
     }
@@ -88,12 +88,12 @@ extension UIButton {
     // MARK: Functions
 
     public func attributedText(_ text: NSAttributedString?,
-                               style: UIFontTextStyle,
+                               style: UIFont.TextStyle,
                                letterCase: LetterCase = .regular,
                                textColor: UIColor? = nil) {
 
         let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
-        let fontAttributeKey = NSAttributedStringKey.font
+        let fontAttributeKey = NSAttributedString.Key.font
         let typography = Typography(for: style)
         if let textColor = textColor {
             self.titleLabel?.textColor = textColor
@@ -121,7 +121,7 @@ extension UIButton {
     }
 
     public func text(_ text: String?,
-                     style: UIFontTextStyle,
+                     style: UIFont.TextStyle,
                      letterCase: LetterCase? = nil,
                      textColor: UIColor? = nil) {
         if let text = text {
@@ -142,7 +142,7 @@ extension UIButton {
     }
 
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
-        if let newValue = notification.userInfo?[UIContentSizeCategoryNewValueKey] as? UIContentSizeCategory {
+        if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
             self.titleLabel?.font = self.typography.font(newValue)
         }
     }

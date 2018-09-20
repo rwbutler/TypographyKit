@@ -26,7 +26,7 @@ public struct Typography {
         UIContentSizeCategory.accessibilityExtraExtraExtraLarge: 8
     ]
 
-    public init?(for textStyle: UIFontTextStyle) {
+    public init?(for textStyle: UIFont.TextStyle) {
         if let typographyStyle = TypographyKit.fontTextStyles[textStyle.rawValue] {
             fontName = typographyStyle.fontName
             pointSize = typographyStyle.pointSize

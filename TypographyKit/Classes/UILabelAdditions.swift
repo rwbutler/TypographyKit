@@ -9,10 +9,10 @@
 import Foundation
 
 extension UILabel {
-    @objc public var fontTextStyle: UIFontTextStyle {
+    @objc public var fontTextStyle: UIFont.TextStyle {
         get {
             // swiftlint:disable:next force_cast
-            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFontTextStyle
+            return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFont.TextStyle
         }
         set {
             objc_setAssociatedObject(self,
@@ -29,7 +29,7 @@ extension UILabel {
             return fontTextStyle.rawValue
         }
         set {
-            fontTextStyle = UIFontTextStyle(rawValue: newValue)
+            fontTextStyle = UIFont.TextStyle(rawValue: newValue)
         }
     }
 
@@ -66,7 +66,7 @@ extension UILabel {
             }
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(contentSizeCategoryDidChange(_:)),
-                                                   name: NSNotification.Name.UIContentSizeCategoryDidChange,
+                                                   name: UIContentSizeCategory.didChangeNotification,
                                                    object: nil)
         }
     }
@@ -74,7 +74,7 @@ extension UILabel {
     // MARK: Functions
 
     public func attributedText(_ text: NSAttributedString?,
-                               style: UIFontTextStyle,
+                               style: UIFont.TextStyle,
                                letterCase: LetterCase = .regular,
                                textColor: UIColor? = nil) {
 
@@ -89,12 +89,12 @@ extension UILabel {
             mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
                                             options: [],
                                             using: { value, range, _ in
-                if let fontAttribute = value[NSAttributedStringKey.font] as? UIFont {
+                                                if let fontAttribute = value[NSAttributedString.Key.font] as? UIFont {
                     let currentContentSizeCategory = UIApplication.shared.preferredContentSizeCategory
                     if let newPointSize = typography?.font(currentContentSizeCategory)?.pointSize,
                         let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
-                        mutableText.removeAttribute(NSAttributedStringKey.font, range: range)
-                        mutableText.addAttribute(NSAttributedStringKey.font, value: newFont, range: range)
+                        mutableText.removeAttribute(NSAttributedString.Key.font, range: range)
+                        mutableText.addAttribute(NSAttributedString.Key.font, value: newFont, range: range)
                     }
                 }
             })
@@ -103,7 +103,7 @@ extension UILabel {
     }
 
     public func text(_ text: String?,
-                     style: UIFontTextStyle,
+                     style: UIFont.TextStyle,
                      letterCase: LetterCase? = nil,
                      textColor: UIColor? = nil) {
         if let text = text {
@@ -122,7 +122,7 @@ extension UILabel {
     }
 
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
-        if let newValue = notification.userInfo?[UIContentSizeCategoryNewValueKey] as? UIContentSizeCategory {
+        if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
             self.font = self.typography.font(newValue)
             self.setNeedsLayout()
         }

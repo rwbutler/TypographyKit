@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIFontTextStyle {
-    static let heading = UIFontTextStyle(rawValue: "heading")
-    static let paragraph = UIFontTextStyle(rawValue: "paragraph")
+extension UIFont.TextStyle {
+    static let heading = UIFont.TextStyle(rawValue: "heading")
+    static let paragraph = UIFont.TextStyle(rawValue: "paragraph")
 }

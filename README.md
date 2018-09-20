@@ -12,7 +12,7 @@ TypographyKit makes it easy to define typography styles and colour palettes in y
 ## Features
 
 - [x] Dynamic Type support for UILabel, UIButton, UITextField and UITextView as well as some support for NSAttributedString.
-- [x] Dynamic Type support for custom fonts prior to iOS 11 (iOS 9 onwards).
+- [x] Dynamic Type support for custom fonts prior to iOS 11 (iOS 8 onwards).
 - [x] Optionally support Dynamic Type using *zero code* (by setting the `fontTextStyleName` key path String to the name of your typography style in IB). 
 - [x] Helps make your app visually consistent across all screen by allowing you to define all of your typography styles and app color scheme in a single location.
 - [x] Host and update your font styles and color schemes [remotely](#remote-configuration). [[Details]](https://medium.com/@rwbutler/remotely-configured-colour-palettes-in-typographykit-e565c927e2b4)
