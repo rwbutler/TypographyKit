@@ -59,12 +59,23 @@ public struct TypographyKit {
         return colors.first(where: { $0.value == color })?.key
     }
 
+    /// Presents TypographyKitViewController modally
     public static func presentTypographyStyles() {
         guard let presenter = UIApplication.shared.keyWindow?.rootViewController else { return }
         let typographyKitViewController = TypographyKitViewController(style: .grouped)
         typographyKitViewController.modalPresentationStyle = .overCurrentContext
         let navigationController = UINavigationController(rootViewController: typographyKitViewController)
         presenter.present(navigationController, animated: true, completion: nil)
+    }
+
+    /// Allows TypographyKitViewController to be pushed onto a navigation stack
+    public static func pushTypographyStyles(navigationController: UINavigationController, animated: Bool = false) {
+        let typographyKitViewController = TypographyKitViewController(style: .grouped)
+        let navigationSettings = TypographyKitViewController
+            .NavigationSettings(animated: animated, isNavigationBarHidden: navigationController.isNavigationBarHidden)
+        typographyKitViewController.navigationSettings = navigationSettings
+        navigationController.isNavigationBarHidden = false
+        navigationController.pushViewController(typographyKitViewController, animated: animated)
     }
 
     public static func refresh() {

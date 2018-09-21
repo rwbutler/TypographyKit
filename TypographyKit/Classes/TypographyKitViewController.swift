@@ -8,6 +8,11 @@
 import Foundation
 
 class TypographyKitViewController: UITableViewController {
+    public struct NavigationSettings {
+        let animated: Bool
+        let isNavigationBarHidden: Bool
+    }
+    var navigationSettings: NavigationSettings?
     private var typographyStyleNames: [String] = []
 
     override func viewDidLoad() {
@@ -90,7 +95,12 @@ private extension TypographyKitViewController {
     }
 
     @objc func close() {
-        dismiss(animated: true, completion: nil)
+        if let navigationController = navigationController, let settings = navigationSettings {
+            navigationController.isNavigationBarHidden = settings.isNavigationBarHidden
+            navigationController.popViewController(animated: settings.animated)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     @objc func export() {
