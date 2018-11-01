@@ -8,10 +8,12 @@
 
 // Public interface
 public struct TypographyKit {
+
+    // MARK: Global state
     public static var configurationURL: URL? = bundledConfigurationURL() {
         didSet { // detect configuration format by extension
             guard let lastPathComponent = configurationURL?.lastPathComponent.lowercased() else { return }
-            for configurationType in ConfigurationType.values {
+            for configurationType in ConfigurationType.allCases {
                 if lastPathComponent.contains(configurationType.rawValue.lowercased()) {
                     TypographyKit.configurationType = configurationType
                     return
@@ -20,14 +22,13 @@ public struct TypographyKit {
         }
     }
 
-    // Lazily-initialised properties
     public static var configurationType: ConfigurationType = {
-        for configurationType in ConfigurationType.values {
+        for configurationType in ConfigurationType.allCases {
             if bundledConfigurationURL(configurationType) != nil {
                 return configurationType
             }
         }
-        return .plist // default
+        return .json // default
     }()
 
     public static var minimumPointSize: Float? = {

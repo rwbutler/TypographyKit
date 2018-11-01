@@ -8,10 +8,14 @@
 import Foundation
 
 class TypographyKitViewController: UITableViewController {
+
+    // MARK: Type definitions
     public struct NavigationSettings {
         let animated: Bool
         let isNavigationBarHidden: Bool
     }
+
+    // MARK: State
     var navigationSettings: NavigationSettings?
     private var typographyStyleNames: [String] = []
 
