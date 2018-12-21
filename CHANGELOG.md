@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2018-12-21
+### Changed
+- Added the ability to specify presentation options for TypographyKitViewController.
+
+## [1.0.1] - 2018-09-21
+
+## [1.0.0] - 2018-09-20
+
+## [0.4.5] - 2018-09-19
+
 ## [0.4.4] - 2018-09-11
 ### Added
 - Invoking `TypographyKit.presentTypographyStyles()` will now present a TypographyKitViewController modally for listing all the typography styles in your app with an option to export to PDF.

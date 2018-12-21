@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
+        TypographyKit.configurationURL = Bundle.main.url(forResource: "TypographyKit", withExtension: "json")
     }
 
     @IBAction func presentTypographyStyles(_ sender: UIButton) {

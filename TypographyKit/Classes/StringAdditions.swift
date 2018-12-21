@@ -66,7 +66,7 @@ public extension String {
                 result += prefixWithCase + suffixWithCase + conjunction
             }
         }
-        if !conjunction.isEmpty, result.count > 0 {
+        if !conjunction.isEmpty, !result.isEmpty {
             return String(result.dropLast())
         }
         return result

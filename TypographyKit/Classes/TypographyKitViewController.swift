@@ -10,12 +10,11 @@ import Foundation
 class TypographyKitViewController: UITableViewController {
 
     // MARK: Type definitions
-    public struct NavigationSettings {
-        let animated: Bool
-        let isNavigationBarHidden: Bool
-    }
+    public typealias Delegate = TypographyKitViewControllerDelegate
+    public typealias NavigationSettings = ViewControllerNavigationSettings
 
     // MARK: State
+    weak var delegate: Delegate?
     var navigationSettings: NavigationSettings?
     private var typographyStyleNames: [String] = []
 
@@ -77,11 +76,27 @@ class TypographyKitViewController: UITableViewController {
 }
 
 private extension TypographyKitViewController {
+
     private func configureNavigationBar() {
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
-        navigationItem.leftBarButtonItem = doneButton
+        let closeButtonType = navigationSettings?.closeButton ?? .done
+        let doneButton = UIBarButtonItem(barButtonSystemItem: closeButtonType,
+                                         target: self,
+                                         action: #selector(close))
         let exportButton = UIBarButtonItem(title: "Export", style: .plain, target: self, action: #selector(export))
-        navigationItem.rightBarButtonItem = exportButton
+        let closeButtonAlignment = navigationSettings?.closeButtonAlignment ?? .closeButtonLeftExportButtonRight
+        switch closeButtonAlignment {
+        case .closeButtonLeftExportButtonRight:
+            navigationItem.leftBarButtonItem = doneButton
+            navigationItem.rightBarButtonItem = exportButton
+        case .closeButtonRightExportButtonLeft:
+            navigationItem.leftBarButtonItem = exportButton
+            navigationItem.rightBarButtonItem = doneButton
+        case .noCloseButtonExportButtonLeft:
+            navigationItem.leftBarButtonItem = exportButton
+        case .noCloseButtonExportButtonRight:
+            navigationItem.rightBarButtonItem = exportButton
+        }
+        navigationItem.leftItemsSupplementBackButton = true
     }
 
     private func configureTableView() {
@@ -99,12 +114,18 @@ private extension TypographyKitViewController {
     }
 
     @objc func close() {
-        if let navigationController = navigationController, let settings = navigationSettings {
-            navigationController.isNavigationBarHidden = settings.isNavigationBarHidden
-            navigationController.popViewController(animated: settings.animated)
-        } else {
-            dismiss(animated: true, completion: nil)
+        if viewControllerShouldDismiss() {
+            let isAnimated: Bool = navigationSettings?.animated ?? true
+            let isModal: Bool = navigationSettings?.isModal ?? (navigationController == nil)
+            
+            if isModal {
+                dismiss(animated: isAnimated, completion: nil)
+            } else {
+                hideNavigationBarIfNeeded()
+                navigationController?.popViewController(animated: isAnimated)
+            }
         }
+        delegate?.viewControllerDidFinish()
     }
 
     @objc func export() {
@@ -138,4 +159,19 @@ private extension TypographyKitViewController {
         }
         present(activityViewController, animated: true, completion: nil)
     }
+    
+    /// Hides or unhides the navigation bar according to navigational preferences.
+    private func hideNavigationBarIfNeeded() {
+        let isNavigationBarHidden: Bool? = navigationSettings?.isNavigationBarHidden
+        if let isNavigationBarHidden = isNavigationBarHidden {
+            navigationController?.isNavigationBarHidden = isNavigationBarHidden
+        }
+    }
+    
+    /// Determines whether or not this view controller should dismiss itself
+    /// or whether code outside the controller is responsible for this.
+    private func viewControllerShouldDismiss() -> Bool {
+        return navigationSettings?.autoClose ?? true // default to auto-close
+    }
+    
 }

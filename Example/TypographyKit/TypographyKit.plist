@@ -2,17 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>typography-colors</key>
-    <dict>
-        <key>background</key>
-        <string>lighter royal-blue</string>
-        <key>gold</key>
-        <string>#FFAB01</string>
-        <key>royal-blue</key>
-        <string>#08224C</string>
-        <key>text</key>
-        <string>gold</string>
-    </dict>
+	<key>typography-colors</key>
+	<dict>
+		<key>background</key>
+		<string>lighter royal-blue</string>
+		<key>gold</key>
+		<string>#FFAB01</string>
+		<key>royal-blue</key>
+		<string>#08224C</string>
+		<key>text</key>
+		<string>gold</string>
+	</dict>
 	<key>typography-kit</key>
 	<dict>
 		<key>point-step-size</key>
@@ -29,21 +29,21 @@
 			<key>point-size</key>
 			<integer>36</integer>
 			<key>text-color</key>
-			<string>blue-gem</string>
+			<string>text</string>
 			<key>letter-case</key>
 			<string>regular</string>
 		</dict>
-        <key>paragraph</key>
-        <dict>
-            <key>font-name</key>
-            <string>Avenir-Medium</string>
-            <key>point-size</key>
-            <integer>16</integer>
-            <key>text-color</key>
-            <string>blue-gem</string>
-            <key>letter-case</key>
-            <string>regular</string>
-        </dict>
+		<key>paragraph</key>
+		<dict>
+			<key>font-name</key>
+			<string>Avenir-Medium</string>
+			<key>point-size</key>
+			<integer>16</integer>
+			<key>text-color</key>
+			<string>text</string>
+			<key>letter-case</key>
+			<string>regular</string>
+		</dict>
 	</dict>
 </dict>
 </plist>

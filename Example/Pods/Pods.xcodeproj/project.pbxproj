@@ -12,6 +12,9 @@
 		138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */; };
 		138F0E822146CBC900CA8D8F /* TypographyKitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */; };
 		13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DAF971204717A70076E016 /* JSONParsingService.swift */; };
+		13DFA4C021CD305800CD9AEA /* TypographyKitViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFA4BE21CD303B00CD9AEA /* TypographyKitViewControllerDelegate.swift */; };
+		13DFA4C521CD318C00CD9AEA /* CloseButtonAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFA4C321CD318000CD9AEA /* CloseButtonAlignment.swift */; };
+		13DFA4C621CD319700CD9AEA /* ViewControllerNavigationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFA4C121CD314600CD9AEA /* ViewControllerNavigationSettings.swift */; };
 		5FD755630CA2A22440CC71194E50599B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		80EC1E330975EC661AE203E4A9546611 /* Pods-TypographyKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A14CE90FFD1549FA40C8E28C234451A /* Pods-TypographyKit_Tests-dummy.m */; };
 		81FF30911842D255B04BF132DA72AA99 /* Pods-TypographyKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7343C1B1EF6D34FD86635216483E1044 /* Pods-TypographyKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,6 +62,9 @@
 		138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitTableViewCell.swift; sourceTree = "<group>"; };
 		138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyKitTableViewCell.xib; sourceTree = "<group>"; };
 		13DAF971204717A70076E016 /* JSONParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingService.swift; sourceTree = "<group>"; };
+		13DFA4BE21CD303B00CD9AEA /* TypographyKitViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitViewControllerDelegate.swift; sourceTree = "<group>"; };
+		13DFA4C121CD314600CD9AEA /* ViewControllerNavigationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNavigationSettings.swift; sourceTree = "<group>"; };
+		13DFA4C321CD318000CD9AEA /* CloseButtonAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonAlignment.swift; sourceTree = "<group>"; };
 		231F53C35C0FEF18B6BAB07540F8AD27 /* Pods-TypographyKit_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TypographyKit_Tests-umbrella.h"; sourceTree = "<group>"; };
 		2BCAEF257B3C4B48171E4E8B94E5416C /* Pods-TypographyKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TypographyKit_Example.modulemap"; sourceTree = "<group>"; };
 		2DE2873A3F34E290E5C1539B237FFF79 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,6 +148,9 @@
 				138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */,
 				138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */,
 				138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */,
+				13DFA4BE21CD303B00CD9AEA /* TypographyKitViewControllerDelegate.swift */,
+				13DFA4C121CD314600CD9AEA /* ViewControllerNavigationSettings.swift */,
+				13DFA4C321CD318000CD9AEA /* CloseButtonAlignment.swift */,
 			);
 			name = TypographyKitViewController;
 			sourceTree = "<group>";
@@ -478,7 +487,7 @@
 				LastUpgradeCheck = 0940;
 				TargetAttributes = {
 					56BBB2E8F1AE2D92BFED105A2A890449 = {
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1010;
 					};
 					65D76B0CEC0219205589D8239A4F50C7 = {
 						LastSwiftMigration = 0940;
@@ -528,7 +537,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\ncd ../../TypographyKit/\nswiftlint\nelse\necho \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\ncd ../../\nswiftlint\nelse\necho \"error: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -539,9 +548,11 @@
 			files = (
 				E4370A101ECB98440036D182 /* StringAdditions.swift in Sources */,
 				E494EB081F1A4A2E00E13158 /* ParsingServiceResult.swift in Sources */,
+				13DFA4C521CD318C00CD9AEA /* CloseButtonAlignment.swift in Sources */,
 				13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */,
 				E494EAF91F1A35E000E13158 /* ConfigurationKey.swift in Sources */,
 				E494EAFB1F1A362300E13158 /* TypographyKit.swift in Sources */,
+				13DFA4C021CD305800CD9AEA /* TypographyKitViewControllerDelegate.swift in Sources */,
 				E43CC45A1ED06BD70062FEA5 /* TypographyColor.swift in Sources */,
 				E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */,
 				138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */,
@@ -550,6 +561,7 @@
 				135C78DD20F7662C00BDB06D /* UIColorAdditions.swift in Sources */,
 				E4370A0E1ECB983C0036D182 /* Typography.swift in Sources */,
 				E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */,
+				13DFA4C621CD319700CD9AEA /* ViewControllerNavigationSettings.swift in Sources */,
 				138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */,
 				E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */,
 				E43CC45B1ED06BE40062FEA5 /* RegularExpressionMatchable.swift in Sources */,
