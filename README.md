@@ -28,19 +28,19 @@ TypographyKit makes it easy to define typography styles and colour palettes in y
 
 [CocoaPods](http://cocoapods.org) is a dependency manager which integrates dependencies into your Xcode workspace. To install it using [RubyGems](https://rubygems.org/) run:
 
-```
+```bash
 gem install cocoapods
 ```
 
 To install TypographyKit using Cocoapods, simply add the following line to your Podfile:
 
-```
+```ruby
 pod "TypographyKit"
 ```
 
 Then run the command:
 
-```
+```bash
 pod install
 ```
 
@@ -50,14 +50,14 @@ For more information [see here](https://cocoapods.org/#getstarted).
 
 Carthage is a dependency manager which produces a binary for manual integration into your project. It can be installed via [Homebrew](https://brew.sh/) using the commands:
 
-```
+```bash
 brew update
 brew install carthage
 ```
 
 In order to integrate TypographyKit into your project via Carthage, add the following line to your project's Cartfile:
 
-```
+```ogdl
 github "rwbutler/TypographyKit"
 ```
 
@@ -73,6 +73,7 @@ An example app exists in the [Example directory](https://github.com/rwbutler/Typ
 
 Include a TypographyKit.plist as part of your app project ([example](./Example/TypographyKit/TypographyKit.plist)) in which you define your typography styles.
 
+```xml
 	<key>ui-font-text-styles</key>
 	<dict>
 		<key>heading</key>
@@ -83,12 +84,13 @@ Include a TypographyKit.plist as part of your app project ([example](./Example/T
 			<integer>36</integer>
 		</dict>
 	</dict>
+```
 
 Or if you prefer to use JSON you may include a TypographyKit.json ([example](./Example/TypographyKit/TypographyKit.json)) instead.
 
 Define additional UIFontTextStyles within your app matching those defined in your .plist:
 
-```
+```swift
 extension UIFontTextStyle
 {
     static let heading = UIFontTextStyle(rawValue: "heading")
@@ -96,17 +98,17 @@ extension UIFontTextStyle
 ```
 
 Where you would usually set the text on a UILabel e.g.
-```
+```swift
 self.titleLabel.text = "My label text"
 ```
 
 Use TypographyKit's UIKit additions:
-```
+```swift
 self.titleLabel.text("My label text", style: .heading)
 ```
 
 Or where your text has been set through IB simply set the UIFontTextStyle programmatically:
-```
+```swift
 self.titleLabel.fontTextStyle = .heading
 ```
 
@@ -121,6 +123,7 @@ Your UILabel and UIButton elements will automatically respond to changes in the 
 ### Typography Styles
 Typography styles you define in TypographyKit.plist can optionally include a text color and a letter case.
 
+```xml
 	<key>ui-font-text-styles</key>
 	<dict>
 		<key>heading</key>
@@ -135,27 +138,32 @@ Typography styles you define in TypographyKit.plist can optionally include a tex
 			<string>upper</string>
 		</dict>
 	</dict>
+```
 
 ### Color Palettes
 Android has from the start provided developers with the means to define a color palette for an app in the form of the colors.xml file. Colors.xml also allows developers to define colors by their hex values. TypographyKit allows developers to define a color palette for an app by creating an entry in the TypographyKit.plist.
 
+```xml
     <key>typography-colors</key>
     <dict>
         <key>blueGem</key>
         <string>#2C0E8C</string>
     </dict>
+```
 
 Colors can be defined using hex values, RGB values or simple colors by using their names e.g. 'blue'.
 
+```xml	
 	<key>typography-colors</key>
     <dict>
         <key>blueGem</key>
         <string>rgb(44, 14, 140)</string>
     </dict>
-    
+```
+
 Create a UIColor extension to use the newly-defined colors throughout your app:
 
-```
+```swift
 extension UIColor {
     static let blueGem: UIColor = TypographyKit.colors["blueGem"]!
 }
@@ -163,7 +171,7 @@ extension UIColor {
     
 Or:
    
-```
+```swift
 extension UIColor {
 	static let fallback: UIColor = .black
 	static let blueGem: UIColor = TypographyKit.colors["blueGem"] ?? fallback
@@ -172,6 +180,7 @@ extension UIColor {
  
 Your named colors can be used when defining your typography styles in TypographyKit.plist.
  
+```xml
  	<key>ui-font-text-styles</key>
 	<dict>
 		<key>heading</key>
@@ -184,11 +193,11 @@ Your named colors can be used when defining your typography styles in Typography
 			<string>blueGem</string>
 		</dict>
 	</dict>
-	
+```
 	
 It is also possible override the text color of a typography style on a case-by-case basis:
 
-```
+```swift
 myLabel.text("hello world", style: .heading, textColor: .blue)
 ```
 
@@ -199,7 +208,7 @@ TypographyKit also supports definition of colors via asset catalogs  available f
 
 Useful String additions are provided to easily convert letter case. 
 
-```
+```swift
 let pangram = "The quick brown fox jumps over the lazy dog"
 let upperCamelCased = pangram.letterCase(.upperCamel)
 print(upperCamelCased)
@@ -207,7 +216,7 @@ print(upperCamelCased)
 ```
 With numerous convenience functions:
 
-```
+```swift
 let upperCamelCased = pangram.upperCamelCased()
 // prints TheQuickBrownFoxJumpsOverTheLazyDog
 
@@ -217,6 +226,7 @@ let kebabCased = pangram.kebabCased()
 
 Typography styles can be assigned a default letter casing.
 
+```xml
 	<key>ui-font-text-styles</key>
 	<dict>
 		<key>heading</key>
@@ -229,10 +239,11 @@ Typography styles can be assigned a default letter casing.
 			<string>upper</string>
 		</dict>
 	</dict>
+```
 
 However occasionally, you may need to override the default letter casing of a typography style:
 
-```
+```swift
 myLabel.text("hello world", style: .heading, letterCase: .capitalized)
 ```
 
@@ -241,6 +252,7 @@ By default, your font point size will increase by 2 points for each notch on the
 
 You may specify your own point step size and multiplier by inclusion of a dictionary with key ```typography-kit``` as part of your ```TypographyKit.plist``` file.
 
+```xml
 	<key>typography-kit</key>
 	<dict>
 	  <key>minimum-point-size</key>
@@ -252,13 +264,14 @@ You may specify your own point step size and multiplier by inclusion of a dictio
 		<key>point-step-multiplier</key>
 		<integer>1</integer>
 	</dict>
+```
 
 Optionally, you may clamp the font point size to a lower and / or upper bound using the `minimum-point-size` and `maximum-point-size` properties.
 
 ### Remote Configuration
 TypographyKit also allows you to host your configuration remotely so that your colors and font styles can be updated dynamically. To do so, simply add the following line to your app delegate so that it is invoked when your app finishes launching:
 
-```
+```swift
 TypographyKit.configurationURL = URL(string: "https://github.com/rwbutler/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.plist")
 ```
 
