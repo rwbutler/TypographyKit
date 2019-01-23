@@ -9,6 +9,11 @@
 // Public interface
 public struct TypographyKit {
     
+    typealias Colors = [String: UIColor]
+    public typealias Configuration = TypographyKitConfiguration
+    typealias Settings = ConfigurationSettings
+    typealias Styles = [String: Typography]
+    
     // MARK: Global state
     public static var configurationURL: URL? = bundledConfigurationURL() {
         didSet { // detect configuration format by extension
@@ -129,9 +134,30 @@ public struct TypographyKit {
         navigationController.pushViewController(typographyKitViewController, animated: navigationSettings.animated)
     }
     
-    public static func refresh() {
+    public static func refresh(_ completion: ((TypographyKit.Configuration?) -> Void)? = nil) {
         configuration = loadConfiguration()
+        guard let colors = configuration?.typographyColors,
+            let settings = configuration?.configurationSettings,
+            let styles = configuration?.typographyStyles else {
+                completion?(nil)
+                return
+        }
+        let config = TypographyKitConfiguration(colors: colors, settings: settings, styles: styles)
+        completion?(config)
     }
+    
+    public static func refreshWithData(_ data: Data, completion: ((TypographyKit.Configuration?) -> Void)? = nil) {
+        configuration = loadConfigurationWithData(data)
+        guard let colors = configuration?.typographyColors,
+            let settings = configuration?.configurationSettings,
+            let styles = configuration?.typographyStyles else {
+                completion?(nil)
+                return
+        }
+        let config = TypographyKitConfiguration(colors: colors, settings: settings, styles: styles)
+        completion?(config)
+    }
+    
 }
 
 // Private properties & functions
@@ -156,6 +182,13 @@ private extension TypographyKit {
     static func loadConfiguration() -> ParsingServiceResult? {
         guard let configurationURL = configurationURL,
             let data = try? Data(contentsOf: configurationURL) else {
+             return loadConfigurationWithData(nil)
+        }
+        return loadConfigurationWithData(data)
+    }
+    
+    static func loadConfigurationWithData(_ data: Data?) -> ParsingServiceResult? {
+        guard let data = data else {
                 guard let cachedConfigurationURL = cachedConfigurationURL,
                     let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
                         guard let bundledConfigurationURL = bundledConfigurationURL(),

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		135A677F21F7879A004B4C54 /* TypographyKitConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135A677E21F7879A004B4C54 /* TypographyKitConfiguration.swift */; };
 		135C78DD20F7662C00BDB06D /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C78DB20F7662300BDB06D /* UIColorAdditions.swift */; };
 		138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */; };
 		138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		0164F88DE54097B2924C93B085E3AF14 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A758ACFE9821CA5BED01D51743713CA /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		135A677E21F7879A004B4C54 /* TypographyKitConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitConfiguration.swift; sourceTree = "<group>"; };
 		135C78DB20F7662300BDB06D /* UIColorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorAdditions.swift; sourceTree = "<group>"; };
 		138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitViewController.swift; sourceTree = "<group>"; };
 		138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitTableViewCell.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				E4370A021ECB97A90036D182 /* Typography.swift */,
 				E43CC4531ED06A730062FEA5 /* TypographyColor.swift */,
 				E494EAF31F1A356B00E13158 /* TypographyKitPropertyAdditionsKey.swift */,
+				135A677E21F7879A004B4C54 /* TypographyKitConfiguration.swift */,
 			);
 			name = Typography;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				A9107AE55CB63D23A51201BB01F82CD0 /* TypographyKit-dummy.m in Sources */,
 				E494EAF71F1A35C200E13158 /* ConfigurationType.swift in Sources */,
 				E4370A0F1ECB98400036D182 /* LetterCase.swift in Sources */,
+				135A677F21F7879A004B4C54 /* TypographyKitConfiguration.swift in Sources */,
 				E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */,
 				E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */,
 			);
