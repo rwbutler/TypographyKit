@@ -253,17 +253,17 @@ By default, your font point size will increase by 2 points for each notch on the
 You may specify your own point step size and multiplier by inclusion of a dictionary with key ```typography-kit``` as part of your ```TypographyKit.plist``` file.
 
 ```xml
-	<key>typography-kit</key>
-	<dict>
-	  <key>minimum-point-size</key>
-		<integer>10</integer>
-		<key>maximum-point-size</key>
-		<integer>100</integer>
-		<key>point-step-size</key>
-		<integer>2</integer>
-		<key>point-step-multiplier</key>
-		<integer>1</integer>
-	</dict>
+<key>typography-kit</key>
+<dict>
+    <key>minimum-point-size</key>
+    <integer>10</integer>
+    <key>maximum-point-size</key>
+    <integer>100</integer>
+    <key>point-step-size</key>
+    <integer>2</integer>
+    <key>point-step-multiplier</key>
+    <integer>1</integer>
+</dict>
 ```
 
 Optionally, you may clamp the font point size to a lower and / or upper bound using the `minimum-point-size` and `maximum-point-size` properties.
