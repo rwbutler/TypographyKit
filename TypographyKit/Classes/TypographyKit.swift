@@ -21,9 +21,10 @@ public struct TypographyKit {
             for configurationType in ConfigurationType.allCases {
                 if lastPathComponent.contains(configurationType.rawValue.lowercased()) {
                     TypographyKit.configurationType = configurationType
-                    return
+                    break
                 }
             }
+            refresh()
         }
     }
     

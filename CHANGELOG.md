@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2019-03-15
+
+### Added
+- Added `refreshWithData(_:)` for refreshing configuration data from a configuration file which has already been downloaded.
+
+### Changed
+- After updating the `configurationURL` property, configuration is reloaded from the new URL.
+- Prioritizes JSON configuration files over property lists should both exist in an app's bundle.
+
 ## [1.1.0] - 2018-12-21
 ### Changed
 - Added the ability to specify presentation options for TypographyKitViewController.
@@ -56,3 +65,4 @@ Support for recursive color definitions and obtaining lighter / darker shades of
 ## [0.0.3] - 2017-06-13
 ## [0.0.2] - 2017-06-13
 ## [0.0.1] - 2017-06-13
+Initial release.

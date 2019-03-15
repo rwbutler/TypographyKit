@@ -7,6 +7,6 @@
 //
 
 public enum ConfigurationType: String, CaseIterable, RawRepresentable {
-    case plist
     case json
+    case plist
 }
