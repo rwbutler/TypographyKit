@@ -50,11 +50,8 @@ extension UIButton {
             objc_setAssociatedObject(self,
                                      &TypographyKitPropertyAdditionsKey.letterCase,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
-
-            for controlState in controlStates {
-                let title = self.title(for: controlState)?.letterCase(newValue)
-                self.setTitle(title, for: controlState)
-            }
+            let title = self.title(for: .normal)?.letterCase(newValue)
+            self.setTitle(title, for: .normal)
         }
     }
 
@@ -100,9 +97,7 @@ extension UIButton {
         }
 
         guard let text = text else { return }
-        for controlState in controlStates {
-            self.setAttributedTitle(text, for: controlState)
-        }
+        self.setAttributedTitle(text, for: .normal)
         let mutableText = NSMutableAttributedString(attributedString: text)
         mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
                                         options: [],
@@ -114,9 +109,7 @@ extension UIButton {
                                                 mutableText.addAttribute(fontAttributeKey, value: newFont, range: range)
                                             }
         })
-        for controlState in controlStates {
-            self.setAttributedTitle(mutableText, for: controlState)
-        }
+        self.setAttributedTitle(mutableText, for: .normal)
 
     }
 
@@ -125,9 +118,7 @@ extension UIButton {
                      letterCase: LetterCase? = nil,
                      textColor: UIColor? = nil) {
         if let text = text {
-            for controlState in controlStates {
-                self.setTitle(text, for: controlState)
-            }
+            self.setTitle(text, for: .normal)
         }
         if var typography = Typography(for: style) {
             // Only override letterCase and textColor if explicitly specified
