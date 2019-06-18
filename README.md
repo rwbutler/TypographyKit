@@ -174,7 +174,7 @@ We can create a new typography style called `interactive-text` based on a style 
 
 *PLIST*
 
-```
+```xml
 <key>paragraph</key>
 <dict>
 	<key>font-name</key>
@@ -197,7 +197,7 @@ We can create a new typography style called `interactive-text` based on a style 
 
 *JSON*
 
-```
+```json
 "paragraph": {
 	"font-name": "Avenir-Medium",
 	"point-size": 16,
