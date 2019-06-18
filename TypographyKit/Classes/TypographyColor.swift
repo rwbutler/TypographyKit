@@ -7,6 +7,18 @@
 //
 
 public enum TypographyColor {
+    
+    // MARK: - Type definitions
+    private struct RegEx {
+        static let hexColor1 = "#[a-zA-Z0-9]{6}"
+        static let hexColor2 = "[a-zA-Z0-9]{6}"
+        // swiftlint:disable:next line_length
+        static let rgbColor1 = "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)"
+        // swiftlint:disable:next line_length
+        static let rgbColor2 = "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)"
+    }
+    
+    // MARK: - Cases
     case black
     case darkGray
     case lightGray
@@ -24,11 +36,10 @@ public enum TypographyColor {
     case clear
     case hex(string: String)
     case named(string: String)
-    // swiftlint:disable:next variable_name
-    case rgb(r: Float, g: Float, b: Float)
-    // swiftlint:disable:next variable_name
-    case rgba(r: Float, g: Float, b: Float, a: Float)
-
+    case rgb(red: Float, green: Float, blue: Float)
+    case rgba(red: Float, green: Float, blue: Float, alpha: Float)
+    
+    // MARK: - Properties
     static var colorNameMap: [String: UIColor] {
         return ["black": .black,
                 "darkGray": .darkGray,
@@ -46,15 +57,15 @@ public enum TypographyColor {
                 "brown": .brown,
                 "clear": .clear]
     }
-
+    
     public var cgColor: CGColor {
         return self.uiColor.cgColor
     }
-
+    
     public var ciColor: CIColor {
         return self.uiColor.ciColor
     }
-
+    
     public var uiColor: UIColor {
         switch self {
         case .black:
@@ -100,41 +111,62 @@ public enum TypographyColor {
             return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
         }
     }
-
+    
+    // MARK: - Initializer
     public init?(string: String) {
+        let isInColorMap = TypographyColor.colorNameMap[string] != nil
+        if #available(iOS 11, *), UIColor(named: string) != nil || isInColorMap { // Validate a color is returned
+            self = .named(string: string)
+            return
+        }
+        
         switch string {
-        case "#[a-zA-Z0-9]{6}", "[a-zA-Z0-9]{6}":
-            if TypographyColor.parseHex(hexString: string) != nil { // Check can be converted to a color
-                self = .hex(string: string)
-                break
+        case RegEx.hexColor1, RegEx.hexColor2:
+            guard TypographyColor.parseHex(hexString: string) != nil else { // Check can be converted to a color
+                return nil
             }
-            return nil
-        // swiftlint:disable:next line_length
-        case "rgb\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)",
-             // swiftlint:disable:next line_length
-        "\\(([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5]),([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\\)":
+            self = .hex(string: string)
+        case RegEx.rgbColor1, RegEx.rgbColor2:
             let rgbValues = type(of: self).rgbValues(from: string)
-            if rgbValues.count == 3,
-                let red = Float(rgbValues[0]),
-                let green = Float(rgbValues[1]),
-                let blue = Float(rgbValues[2]) {
-                self = .rgb(r: red / 255.0, g: green / 255.0, b: blue / 255.0)
-                break
+            guard rgbValues.count == 3, let red = Float(rgbValues[0]), let green = Float(rgbValues[1]),
+                let blue = Float(rgbValues[2]) else {
+                    return nil
             }
-            return nil
+            self = .rgb(red: red / 255.0, green: green / 255.0, blue: blue / 255.0)
         default:
-            if #available(iOS 11, *), UIColor(named: string) != nil { // Validate a color is returned
-                self = .named(string: string)
-                break
-            }
-            if TypographyColor.colorNameMap[string] != nil { // Validate a color is returned
-                self = .named(string: string)
-                break
-            }
             return nil
         }
     }
+    
+}
 
+// Private API
+private extension TypographyColor {
+    
+    /// Parses a hexadecimal string to a color if possible
+    private static func parseHex(hexString: String) -> TypographyColor? {
+        let unparsed = hexString.hasPrefix("#")
+            ? String(hexString[hexString.index(after: hexString.startIndex)...])
+            : hexString
+        
+        let redComponentIdx = unparsed.startIndex,
+        greenComponentIdx = unparsed.index(unparsed.startIndex, offsetBy: 2),
+        blueComponentIdx = unparsed.index(unparsed.startIndex, offsetBy: 4)
+        
+        let redComponent = unparsed[redComponentIdx..<greenComponentIdx],
+        greenComponent = unparsed[greenComponentIdx..<blueComponentIdx],
+        blueComponent = unparsed[blueComponentIdx..<unparsed.endIndex]
+        
+        if let rValue = UInt(redComponent, radix: 16), let gValue = UInt(greenComponent, radix: 16),
+            let bValue = UInt(blueComponent, radix: 16) {
+            let red = Float(rValue) / 255.0
+            let green = Float(gValue) / 255.0
+            let blue = Float(bValue) / 255.0
+            return .rgb(red: red, green: green, blue: blue)
+        }
+        return nil
+    }
+    
     private static func rgbValues(from string: String) -> [String] {
         var colorValues: [String] = []
         do {
@@ -154,31 +186,5 @@ public enum TypographyColor {
         } catch {} // Just return empty array
         return colorValues
     }
-
-    /// Parses a hexadecimal string to a color if possible
-    private static func parseHex(hexString: String) -> TypographyColor? {
-        let unparsed = hexString.hasPrefix("#")
-            ? String(hexString[hexString.index(after: hexString.startIndex)...])
-            : hexString
-
-        let redComponentIdx = unparsed.startIndex,
-        greenComponentIdx = unparsed.index(unparsed.startIndex, offsetBy: 2),
-        blueComponentIdx = unparsed.index(unparsed.startIndex, offsetBy: 4)
-
-        let redComponent = unparsed[redComponentIdx..<greenComponentIdx],
-        greenComponent = unparsed[greenComponentIdx..<blueComponentIdx],
-        blueComponent = unparsed[blueComponentIdx..<unparsed.endIndex]
-
-        if let rInt = UInt(redComponent, radix: 16),
-            let gInt = UInt(greenComponent, radix: 16),
-            let bInt = UInt(blueComponent, radix: 16) {
-            let red = Float(rInt) / 255.0
-            let green = Float(gInt) / 255.0
-            let blue = Float(bInt) / 255.0
-            return .rgb(r: red,
-                        g: green,
-                        b: blue)
-        }
-        return nil
-    }
+    
 }

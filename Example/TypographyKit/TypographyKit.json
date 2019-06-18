@@ -1,6 +1,7 @@
 {
 	"typography-colors": {
-        "background": "lighter royal-blue",
+        "interactive": "lightest purple",
+        "background": "dark royal-blue",
         "gold": "#FFAB01",
         "royal-blue": "#08224C",
         "text": "gold"
@@ -23,6 +24,10 @@
 			"point-size": 16,
 			"text-color": "text",
 			"letter-case": "regular"
-		}
+		},
+        "interactive-text": {
+            "extends": "paragraph",
+            "text-color": "interactive"
+        }
 	}
 }

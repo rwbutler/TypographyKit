@@ -5,7 +5,9 @@
 	<key>typography-colors</key>
 	<dict>
 		<key>background</key>
-		<string>lighter royal-blue</string>
+		<string>dark royal-blue</string>
+		<key>interactive</key>
+		<string>lightest purple</string>
 		<key>gold</key>
 		<string>#FFAB01</string>
 		<key>royal-blue</key>
@@ -44,6 +46,13 @@
 			<key>letter-case</key>
 			<string>regular</string>
 		</dict>
+        <key>interactive-text</key>
+        <dict>
+            <key>extends</key>
+            <string>paragraph</string>
+            <key>text-color</key>
+            <string>interactive</string>
+        </dict>
 	</dict>
 </dict>
 </plist>

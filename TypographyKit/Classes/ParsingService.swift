@@ -14,7 +14,7 @@ extension ParsingService {
     private func trimWhitespace(_ string: String) -> String {
         return string.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-
+    
     private func parseColorValue(_ colorValue: String, existingColors: [String: UIColor]? = nil) -> UIColor? {
         #if !TYPOGRAPHYKIT_UICOLOR_EXTENSION
         let shades: [String] = ["light ", "lighter ", "lightest ", "dark ", "darker ", "darkest ",
@@ -36,12 +36,12 @@ extension ParsingService {
         }
         return TypographyColor(string: colorValue)?.uiColor
     }
-
+    
     func parse(_ configEntries: [String: Any]) -> ParsingServiceResult? {
         var configuration: ConfigurationSettings = ConfigurationSettings()
         var typographyColors: [String: UIColor] = [:]
         var typographyStyles: [String: Typography] = [:]
-
+        
         if let typographyKitConfig = configEntries["typography-kit"] as? [String: Float],
             let pointStepSize = typographyKitConfig["point-step-size"],
             let pointStepMultiplier = typographyKitConfig["point-step-multiplier"] {
@@ -67,6 +67,7 @@ extension ParsingService {
         }
         if let fontTextStyles = configEntries["ui-font-text-styles"] as? [String: [String: Any]] {
             for (fontTextStyleKey, fontTextStyle) in fontTextStyles {
+                
                 let fontName = fontTextStyle[ConfigurationKey.fontName.rawValue] as? String
                 let pointSize = fontTextStyle[ConfigurationKey.pointSize.rawValue] as? Float
                 var textColor: UIColor?
@@ -81,8 +82,18 @@ extension ParsingService {
                 if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
                     letterCase = LetterCase(rawValue: letterCaseName)
                 }
-                typographyStyles[fontTextStyleKey] = Typography(fontName: fontName, fontSize: pointSize,
-                                                                letterCase: letterCase, textColor: textColor)
+                if let existingStyleName = fontTextStyle[ConfigurationKey.extends.rawValue] as? String,
+                    let existingStyle = typographyStyles[existingStyleName] {
+                    let newFace = fontName ?? existingStyle.fontName
+                    let newSize = pointSize ?? existingStyle.pointSize
+                    let newCase = letterCase ?? existingStyle.letterCase
+                    let newColor = textColor ?? existingStyle.textColor
+                    typographyStyles[fontTextStyleKey] = Typography(fontName: newFace, fontSize: newSize,
+                                                                    letterCase: newCase, textColor: newColor)
+                } else {
+                    typographyStyles[fontTextStyleKey] = Typography(fontName: fontName, fontSize: pointSize,
+                                                                    letterCase: letterCase, textColor: textColor)
+                }
             }
         }
         return (configurationSettings: configuration,

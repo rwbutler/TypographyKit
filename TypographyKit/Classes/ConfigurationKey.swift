@@ -7,8 +7,9 @@
 //
 
 enum ConfigurationKey: String {
+    case extends
     case fontName = "font-name"
+    case letterCase = "letter-case"
     case pointSize = "point-size"
     case textColor = "text-color"
-    case letterCase = "letter-case"
 }

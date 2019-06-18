@@ -11,6 +11,29 @@
 
 TypographyKit makes it easy to define typography styles and colour palettes in your iOS app helping you achieve visual consistency in your design as well as supporting [Dynamic Type](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/) even when using custom fonts. [[Summary]](https://medium.com/@rwbutler/typographykit-an-ios-framework-to-help-you-support-dynamic-type-and-enable-visual-consistency-bce7e4a82c30) [[Detailed]](https://medium.com/@rwbutler/dynamic-type-in-ios-with-typographykit-9ed0ac5dbf64)
 
+To learn more about how to use TypographyKit, take a look at the table of contents below:
+
+- [Features](#features)
+- [What's New in TypographyKit 1.1.3?](#whats-new-in-typographykit-113)
+- [Installation](#installation)
+	- [Cocoapods](#cocoapods)
+	- [Carthage](#carthage)
+- [Example App](#example-app)
+- [Usage](#usage)
+	- [Typography Styles](#typography-styles)
+	- [Extending Styles](#extending-styles)
+	- [Color Palettes](#color-palettes)
+	- [iOS 11](#ios-11)
+	- [Letter Casing](#letter-casing)
+	- [Dynamic Type Configuration](#dynamic-type-configuration)
+	- [Remote Configuration](#remote-configuration)
+- [Author](#author)
+- [License](#license)
+- [Additional Software](#additional-software)
+	- [Controls](#controls)
+	- [Frameworks](#frameworks)
+	- [Tools](#tools)
+
 ## Features
 
 - [x] Dynamic Type support for UILabel, UIButton, UITextField and UITextView as well as some support for NSAttributedString.
@@ -21,6 +44,10 @@ TypographyKit makes it easy to define typography styles and colour palettes in y
 - [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Details]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
 - [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
 - [x] Use either a PList or JSON to define your TypographyKit configuration. 
+
+## What's new in TypographyKit 1.1.3?
+
+TypographyKit 1.1.3 allows a new typography style to be created by extending an existing style. For more information see [extending styles](#extending-styles).
 
 ## Installation
 
@@ -138,6 +165,49 @@ Typography styles you define in TypographyKit.plist can optionally include a tex
 			<string>upper</string>
 		</dict>
 	</dict>
+```
+
+### Extending Styles
+From version 1.1.3 onwards it is possible to use an existing typography style to create a new one. For example, imagine you would like to create a new style based on an existing one but changing the text color. We can use the `extends` keyword to extend a style that exists already and then specify which properties of the that style to override e.g. the `text-color` property.
+
+We can create a new typography style called `interactive-text` based on a style we have defined already called `paragraph` as follows:
+
+*PLIST*
+
+```
+<key>paragraph</key>
+<dict>
+	<key>font-name</key>
+	<string>Avenir-Medium</string>
+	<key>point-size</key>
+	<integer>16</integer>
+	<key>text-color</key>
+	<string>text</string>
+	<key>letter-case</key>
+	<string>regular</string>
+</dict>
+<key>interactive-text</key>
+<dict>
+	<key>extends</key>
+	<string>paragraph</string>
+	<key>text-color</key>
+	<string>purple</string>
+</dict>
+```
+
+*JSON*
+
+```
+"paragraph": {
+	"font-name": "Avenir-Medium",
+	"point-size": 16,
+	"text-color": "text",
+	"letter-case": "regular"
+},
+"interactive-text": {
+	"extends": "paragraph",
+	"text-color": "purple"
+}        
 ```
 
 ### Color Palettes
