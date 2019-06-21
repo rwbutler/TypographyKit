@@ -14,6 +14,7 @@ TypographyKit makes it easy to define typography styles and colour palettes in y
 To learn more about how to use TypographyKit, take a look at the table of contents below:
 
 - [Features](#features)
+- [Roadmap](#roadmap)
 - [What's New in TypographyKit 1.1.3?](#whats-new-in-typographykit-113)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
@@ -44,6 +45,13 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 - [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Details]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
 - [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
 - [x] Use either a PList or JSON to define your TypographyKit configuration. 
+
+## Roadmap
+
+Upcoming features for TypographyKit include:
+
+- [x] Improved support for using the system font.
+- [x] Support for dark mode in iOS 13.
 
 ## What's new in TypographyKit 1.1.3?
 
