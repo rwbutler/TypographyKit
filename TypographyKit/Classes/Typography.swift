@@ -7,6 +7,7 @@
 //
 
 public struct Typography {
+    public let name: String
     public let fontName: String?
     public let pointSize: Float? // base point size for font
     public var letterCase: LetterCase?
@@ -28,6 +29,7 @@ public struct Typography {
 
     public init?(for textStyle: UIFont.TextStyle) {
         if let typographyStyle = TypographyKit.fontTextStyles[textStyle.rawValue] {
+            name = typographyStyle.name
             fontName = typographyStyle.fontName
             pointSize = typographyStyle.pointSize
             letterCase = typographyStyle.letterCase
@@ -37,10 +39,12 @@ public struct Typography {
         }
     }
 
-    public init(fontName: String? = nil,
+    public init(name: String,
+                fontName: String? = nil,
                 fontSize: Float? = nil,
                 letterCase: LetterCase? = nil,
                 textColor: UIColor? = nil) {
+        self.name = name
         self.fontName = fontName
         self.pointSize = fontSize
         self.letterCase = letterCase

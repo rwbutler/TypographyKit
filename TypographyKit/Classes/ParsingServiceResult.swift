@@ -6,6 +6,14 @@
 //
 //
 
-typealias ParsingServiceResult = (configurationSettings: ConfigurationSettings,
-    typographyColors: [String: UIColor],
-    typographyStyles: [String: Typography])
+struct ParsingServiceResult {
+    let configurationSettings: ConfigurationSettings
+    let typographyColors: [String: UIColor]
+    let typographyStyles: [String: Typography]
+    
+    init(settings: ConfigurationSettings, colors: [String: UIColor], styles: [String: Typography]) {
+        self.configurationSettings = settings
+        self.typographyColors = colors
+        self.typographyStyles = styles
+    }
+}

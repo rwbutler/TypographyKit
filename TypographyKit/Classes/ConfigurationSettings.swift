@@ -12,10 +12,10 @@ struct ConfigurationSettings {
     let pointStepSize: Float
     let pointStepMultiplier: Float
 
-    init(minimumPointSize: Float? = nil, maximumPointSize: Float? = nil,
+    init(minPointSize: Float? = nil, maxPointSize: Float? = nil,
          pointStepSize: Float = 2.0, pointStepMultiplier: Float = 1.0) {
-        self.minimumPointSize = minimumPointSize
-        self.maximumPointSize = maximumPointSize
+        self.minimumPointSize = minPointSize
+        self.maximumPointSize = maxPointSize
         self.pointStepSize = pointStepSize
         self.pointStepMultiplier = pointStepMultiplier
     }

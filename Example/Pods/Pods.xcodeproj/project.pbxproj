@@ -12,6 +12,8 @@
 		138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */; };
 		138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */; };
 		138F0E822146CBC900CA8D8F /* TypographyKitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */; };
+		13BB900622C3A6D3006D19E7 /* TypographyStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB900422C3A6B6006D19E7 /* TypographyStyles.swift */; };
+		13BB900722C3A6D7006D19E7 /* TypographyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB900222C3A685006D19E7 /* TypographyColors.swift */; };
 		13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DAF971204717A70076E016 /* JSONParsingService.swift */; };
 		13DFA4C021CD305800CD9AEA /* TypographyKitViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFA4BE21CD303B00CD9AEA /* TypographyKitViewControllerDelegate.swift */; };
 		13DFA4C521CD318C00CD9AEA /* CloseButtonAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFA4C321CD318000CD9AEA /* CloseButtonAlignment.swift */; };
@@ -63,6 +65,8 @@
 		138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitViewController.swift; sourceTree = "<group>"; };
 		138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitTableViewCell.swift; sourceTree = "<group>"; };
 		138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyKitTableViewCell.xib; sourceTree = "<group>"; };
+		13BB900222C3A685006D19E7 /* TypographyColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyColors.swift; sourceTree = "<group>"; };
+		13BB900422C3A6B6006D19E7 /* TypographyStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyStyles.swift; sourceTree = "<group>"; };
 		13DAF971204717A70076E016 /* JSONParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingService.swift; sourceTree = "<group>"; };
 		13DFA4BE21CD303B00CD9AEA /* TypographyKitViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitViewControllerDelegate.swift; sourceTree = "<group>"; };
 		13DFA4C121CD314600CD9AEA /* ViewControllerNavigationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNavigationSettings.swift; sourceTree = "<group>"; };
@@ -347,8 +351,10 @@
 				E4370A041ECB97C60036D182 /* LetterCase.swift */,
 				E4370A021ECB97A90036D182 /* Typography.swift */,
 				E43CC4531ED06A730062FEA5 /* TypographyColor.swift */,
-				E494EAF31F1A356B00E13158 /* TypographyKitPropertyAdditionsKey.swift */,
+				13BB900222C3A685006D19E7 /* TypographyColors.swift */,
 				135A677E21F7879A004B4C54 /* TypographyKitConfiguration.swift */,
+				E494EAF31F1A356B00E13158 /* TypographyKitPropertyAdditionsKey.swift */,
+				13BB900422C3A6B6006D19E7 /* TypographyStyles.swift */,
 			);
 			name = Typography;
 			sourceTree = "<group>";
@@ -490,7 +496,7 @@
 				LastUpgradeCheck = 0940;
 				TargetAttributes = {
 					56BBB2E8F1AE2D92BFED105A2A890449 = {
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 					65D76B0CEC0219205589D8239A4F50C7 = {
 						LastSwiftMigration = 0940;
@@ -569,7 +575,9 @@
 				138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */,
 				E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */,
 				E43CC45B1ED06BE40062FEA5 /* RegularExpressionMatchable.swift in Sources */,
+				13BB900722C3A6D7006D19E7 /* TypographyColors.swift in Sources */,
 				E494EAF51F1A359100E13158 /* TypographyKitPropertyAdditionsKey.swift in Sources */,
+				13BB900622C3A6D3006D19E7 /* TypographyStyles.swift in Sources */,
 				E494EB031F1A412600E13158 /* ParsingService.swift in Sources */,
 				A9107AE55CB63D23A51201BB01F82CD0 /* TypographyKit-dummy.m in Sources */,
 				E494EAF71F1A35C200E13158 /* ConfigurationType.swift in Sources */,

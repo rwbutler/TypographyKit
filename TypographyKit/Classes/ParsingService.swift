@@ -10,94 +10,159 @@ protocol ParsingService {
     func parse(_ data: Data) -> ParsingServiceResult?
 }
 
+private enum CodingKeys {
+    static let colorsEntry = "typography-colors"
+    static let minimumPointSize = "minimum-point-size"
+    static let maximumPointSize = "maximum-point-size"
+    static let pointStepMultiplier = "point-step-multiplier"
+    static let pointStepSize = "point-step-size"
+    static let stylesEntry = "ui-font-text-styles"
+    static let umbrellaEntry = "typography-kit"
+}
+
 extension ParsingService {
-    private func trimWhitespace(_ string: String) -> String {
-        return string.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
     
-    private func parseColorValue(_ colorValue: String, existingColors: [String: UIColor]? = nil) -> UIColor? {
-        #if !TYPOGRAPHYKIT_UICOLOR_EXTENSION
-        let shades: [String] = ["light ", "lighter ", "lightest ", "dark ", "darker ", "darkest ",
-                                " light", " lighter", " lightest", " dark", " darker", " darkest"]
-        for shade in shades {
-            if colorValue.contains(shade) {
-                let colorValue = trimWhitespace(colorValue.replacingOccurrences(of: shade, with: ""))
-                if let existingColors = existingColors,
-                    let color = existingColors[colorValue] {
-                    return color.shade(trimWhitespace(shade))
-                }
-                return TypographyColor(string: colorValue)?.uiColor.shade(trimWhitespace(shade))
-            }
-        }
-        #endif
-        if let existingColors = existingColors,
-            let color = existingColors[colorValue] {
-            return color
-        }
-        return TypographyColor(string: colorValue)?.uiColor
-    }
+    // MARK: - Type definitions
+    fileprivate typealias ColorEntries = [String: String]
+    fileprivate typealias FontTextStyleEntries = [String: [String: Any]]
     
     func parse(_ configEntries: [String: Any]) -> ParsingServiceResult? {
         var configuration: ConfigurationSettings = ConfigurationSettings()
-        var typographyColors: [String: UIColor] = [:]
-        var typographyStyles: [String: Typography] = [:]
+        var typographyColors: TypographyColors = [:], typographyStyles: TypographyStyles = [:]
         
-        if let typographyKitConfig = configEntries["typography-kit"] as? [String: Float],
-            let pointStepSize = typographyKitConfig["point-step-size"],
-            let pointStepMultiplier = typographyKitConfig["point-step-multiplier"] {
-            let minimumPointSize = typographyKitConfig["minimum-point-size"]
-            let maximumPointSize = typographyKitConfig["maximum-point-size"]
-            configuration = ConfigurationSettings(minimumPointSize: minimumPointSize,
-                                                  maximumPointSize: maximumPointSize,
+        if let typographyKitConfig = configEntries[CodingKeys.umbrellaEntry] as? [String: Float],
+            let pointStepSize = typographyKitConfig[CodingKeys.pointStepSize],
+            let pointStepMultiplier = typographyKitConfig[CodingKeys.pointStepMultiplier] {
+            let minimumPointSize = typographyKitConfig[CodingKeys.minimumPointSize]
+            let maximumPointSize = typographyKitConfig[CodingKeys.maximumPointSize]
+            configuration = ConfigurationSettings(minPointSize: minimumPointSize, maxPointSize: maximumPointSize,
                                                   pointStepSize: pointStepSize,
                                                   pointStepMultiplier: pointStepMultiplier)
         }
-        var colorAliases: [String: String] = [:] // keys which are synonyms for other colors
-        if let typographyColorNames = configEntries["typography-colors"] as? [String: String] {
-            for (key, value) in typographyColorNames {
-                if let color = parseColorValue(value) {
-                    typographyColors[key] = color
-                } else {
-                    colorAliases[key] = value
+        if let jsonColorEntries = configEntries[CodingKeys.colorsEntry] as? ColorEntries {
+            typographyColors = parseColorEntries(jsonColorEntries)
+        }
+        if let fontTextStyles = configEntries[CodingKeys.stylesEntry] as? FontTextStyleEntries {
+            typographyStyles = parseFontTextStyleEntries(fontTextStyles, colorEntries: typographyColors)
+        }
+        return ParsingServiceResult(settings: configuration, colors: typographyColors,
+                                    styles: typographyStyles)
+    }
+    
+}
+
+private extension ParsingService {
+    
+    /// Extends the original Typography style with another style, replacing properties of the
+    /// original with those of the new style where defined.
+    private func extend(_ original: Typography, with modified: Typography) -> Typography {
+        let newFace = modified.fontName ?? original.fontName
+        let newSize = modified.pointSize ?? original.pointSize
+        let newCase = modified.letterCase ?? original.letterCase
+        let newColor = modified.textColor ?? original.textColor
+        return Typography(name: modified.name, fontName: newFace, fontSize: newSize,
+                          letterCase: newCase, textColor: newColor)
+    }
+    
+    /// Parses a color represented as a `String`.
+    private func parseColorString(_ colorString: String, colorEntries: TypographyColors = [:]) -> UIColor? {
+        #if !TYPOGRAPHYKIT_UICOLOR_EXTENSION
+        let shades = ["light", "lighter", "lightest", "dark", "darker", "darkest"]
+        for shade in shades where colorString.contains(shade) {
+            let withWhitespaces = [" \(shade)", "\(shade) "]
+            for withWhitespace in withWhitespaces where colorString.contains(withWhitespace) {
+                let colorValue = trimWhitespace(colorString.replacingOccurrences(of: withWhitespace, with: ""))
+                if let color = colorEntries[colorValue] {
+                    return color.shade(shade)
                 }
+                return TypographyColor(string: colorValue)?.uiColor.shade(shade)
             }
         }
-        for (key, value) in colorAliases {
-            typographyColors[key] = parseColorValue(value, existingColors: typographyColors)
+        #endif
+        if let color = colorEntries[colorString] {
+            return color
         }
-        if let fontTextStyles = configEntries["ui-font-text-styles"] as? [String: [String: Any]] {
-            for (fontTextStyleKey, fontTextStyle) in fontTextStyles {
-                
+        return TypographyColor(string: colorString)?.uiColor
+    }
+    
+    /// Parses color definitions from the configuration file.
+    /// - parameter jsonColorEntries: A dictionary representing color names mapping to
+    /// color values as defined in the configuration file.
+    /// - returns: A dictionary mapping from the color name to the color value.
+    private func parseColorEntries(_ colorEntries: ColorEntries) -> TypographyColors {
+        var result: TypographyColors = [:]
+        var extendedColors: [(colorKey: String, colorValue: String)] = [] // Keys which are synonyms for other colors.
+        for (colorName, colorValue) in colorEntries {
+            if let color = parseColorString(colorValue) {
+                result[colorName] = color
+            } else {
+                extendedColors.append((colorName, colorValue))
+            }
+            for extendedColor in extendedColors {
+                let colorValue = extendedColor.colorValue
+                if let newColor = parseColorString(colorValue, colorEntries: result) {
+                    result[extendedColor.colorKey] = newColor
+                }
+            }
+            // Keep colors which cannot yet be parsed.
+            extendedColors = extendedColors.filter { result[$0.colorKey] == nil }
+        }
+        for extendedColor in extendedColors {
+            if let newColor = parseColorString(extendedColor.colorValue, colorEntries: result) {
+                result[extendedColor.colorKey] = newColor
+            }
+        }
+        return result
+    }
+    
+    /// Parse UIFontTextStyle definitions from configuration file.
+    private func parseFontTextStyleEntries(_ styleEntries: FontTextStyleEntries, colorEntries: TypographyColors)
+        -> TypographyStyles {
+            var typographyStyles: TypographyStyles = [:]
+            // Typography objects which are extensions of existing styles.
+            var extendedTypographyStyles: [(String, Typography)] = []
+            for (fontTextStyleKey, fontTextStyle) in styleEntries {
                 let fontName = fontTextStyle[ConfigurationKey.fontName.rawValue] as? String
                 let pointSize = fontTextStyle[ConfigurationKey.pointSize.rawValue] as? Float
                 var textColor: UIColor?
                 if let textColorName = fontTextStyle[ConfigurationKey.textColor.rawValue] as? String {
-                    if let color = typographyColors[textColorName] {
+                    if let color = colorEntries[textColorName] {
                         textColor = color
                     } else {
-                        textColor = TypographyColor(string: textColorName)?.uiColor
+                        textColor = parseColorString(textColorName, colorEntries: colorEntries)
                     }
                 }
                 var letterCase: LetterCase?
                 if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
                     letterCase = LetterCase(rawValue: letterCaseName)
                 }
-                if let existingStyleName = fontTextStyle[ConfigurationKey.extends.rawValue] as? String,
-                    let existingStyle = typographyStyles[existingStyleName] {
-                    let newFace = fontName ?? existingStyle.fontName
-                    let newSize = pointSize ?? existingStyle.pointSize
-                    let newCase = letterCase ?? existingStyle.letterCase
-                    let newColor = textColor ?? existingStyle.textColor
-                    typographyStyles[fontTextStyleKey] = Typography(fontName: newFace, fontSize: newSize,
-                                                                    letterCase: newCase, textColor: newColor)
+                
+                if let existingStyleName = fontTextStyle[ConfigurationKey.extends.rawValue] as? String {
+                    let newStyle = Typography(name: fontTextStyleKey, fontName: fontName, fontSize: pointSize,
+                                              letterCase: letterCase, textColor: textColor)
+                    if let existingStyle = typographyStyles[existingStyleName] {
+                        typographyStyles[fontTextStyleKey] = extend(existingStyle, with: newStyle)
+                    } else {
+                        extendedTypographyStyles.append((existingStyleName, newStyle))
+                    }
                 } else {
-                    typographyStyles[fontTextStyleKey] = Typography(fontName: fontName, fontSize: pointSize,
-                                                                    letterCase: letterCase, textColor: textColor)
+                    let style = Typography(name: fontTextStyleKey, fontName: fontName, fontSize: pointSize,
+                                           letterCase: letterCase, textColor: textColor)
+                    typographyStyles[fontTextStyleKey] = style
+                    for extendedStyle in extendedTypographyStyles where extendedStyle.0 == fontTextStyleKey {
+                        let newStyleKey = extendedStyle.1.name
+                        typographyStyles[newStyleKey] = extend(style, with: extendedStyle.1)
+                    }
                 }
             }
-        }
-        return (configurationSettings: configuration,
-                typographyColors: typographyColors,
-                typographyStyles: typographyStyles)
+            return typographyStyles
     }
+    
+    /// Returns the provided the provided `String` with whitespace trimmed.
+    /// - parameter string: The `String` to be trimmed.
+    /// - returns: The original `String` with whitespace trimmed.
+    private func trimWhitespace(_ string: String) -> String {
+        return string.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
 }
