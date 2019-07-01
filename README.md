@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 [![Platform](https://img.shields.io/cocoapods/p/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 [![Twitter](https://img.shields.io/badge/twitter-@TypographyKit-blue.svg?style=flat)](https://twitter.com/TypographyKit)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://swift.org/)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://swift.org/)
 
 TypographyKit makes it easy to define typography styles and colour palettes in your iOS app helping you achieve visual consistency in your design as well as supporting [Dynamic Type](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/) even when using custom fonts. [[Summary]](https://medium.com/@rwbutler/typographykit-an-ios-framework-to-help-you-support-dynamic-type-and-enable-visual-consistency-bce7e4a82c30) [[Detailed]](https://medium.com/@rwbutler/dynamic-type-in-ios-with-typographykit-9ed0ac5dbf64)
 
@@ -15,6 +15,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 - [Features](#features)
 - [Roadmap](#roadmap)
+- [What's New in TypographyKit 2.0.0?](#whats-new-in-typographykit-200)
 - [What's New in TypographyKit 1.1.5?](#whats-new-in-typographykit-115)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
@@ -50,8 +51,23 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 Upcoming features for TypographyKit include:
 
-- [x] Improved support for using the system font.
 - [x] Support for dark mode in iOS 13.
+
+## What's new in TypographyKit 2.0.0?
+
+TypographyKit 2.0.0 brings support for Swift 5.0. The previous version supporting Swift 4.2 is version 1.1.5.
+
+If you require the Swift 4.2 version then in your `Podfile`:
+
+```ruby
+pod "TypographyKit" "~> 1.1.5" 
+```
+
+Or if you are using Carthage add the following to your `Cartfile`:
+
+```ogdl
+github "rwbutler/TypographyKit" ~> 1.1.5
+```
 
 ## What's new in TypographyKit 1.1.5?
 
