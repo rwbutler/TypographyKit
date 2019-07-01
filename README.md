@@ -15,7 +15,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 - [Features](#features)
 - [Roadmap](#roadmap)
-- [What's New in TypographyKit 1.1.3?](#whats-new-in-typographykit-113)
+- [What's New in TypographyKit 1.1.5?](#whats-new-in-typographykit-115)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
 	- [Carthage](#carthage)
@@ -24,7 +24,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 	- [Typography Styles](#typography-styles)
 	- [Extending Styles](#extending-styles)
 	- [Color Palettes](#color-palettes)
-	- [iOS 11](#ios-11)
+	- [UIColor(named:)](#uicolornamed)
 	- [Letter Casing](#letter-casing)
 	- [Dynamic Type Configuration](#dynamic-type-configuration)
 	- [Remote Configuration](#remote-configuration)
@@ -53,9 +53,11 @@ Upcoming features for TypographyKit include:
 - [x] Improved support for using the system font.
 - [x] Support for dark mode in iOS 13.
 
-## What's new in TypographyKit 1.1.3?
+## What's new in TypographyKit 1.1.5?
 
-TypographyKit 1.1.3 allows a new typography style to be created by extending an existing style. For more information see [extending styles](#extending-styles).
+It is now possible to reference the system font or system font and weight as part of your configuration by setting the `font-name` property value to `System` or e.g. `System-Bold` to additionally specify the font weight.
+
+It is now possible to use `UIFontMetrics` to scale fonts where iOS 11 is available and using the system-provided `UIFont.TextStyle` options only by setting the `scaling-mode` property in the configuration file. Allowable values include `stepping` (default behavior), `uifontmetrics` and `uifontmetrics-with-fallback`. See [`CHANGELOG.md`](./CHANGELOG.md).
 
 ## Installation
 
@@ -279,8 +281,8 @@ It is also possible override the text color of a typography style on a case-by-c
 myLabel.text("hello world", style: .heading, textColor: .blue)
 ```
 
-### iOS 11
-TypographyKit also supports definition of colors via asset catalogs  available from iOS 11 onwards. Simply include the name of the color as part of your style in ```TypographyKit.plist``` and if the color is found in your asset catalog it will automatically be applied.
+### UIColor(named:)
+TypographyKit also supports definition of colors via asset catalogs available from iOS 11 onwards. Simply include the name of the color as part of your style in the configuration file and if the color is found in your asset catalog it will automatically be applied.
 
 ### Letter Casing
 

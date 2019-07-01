@@ -10,7 +10,8 @@
         "minimum-point-size": 10,
         "maximum-point-size": 100,
 		"point-step-size": 2,
-		"point-step-multiplier": 1
+		"point-step-multiplier": 1,
+        "scaling-mode": "stepping"
 	},
 	"ui-font-text-styles": {
 		"heading": {
@@ -21,10 +22,15 @@
 		},
 		"paragraph": {
 			"font-name": "Avenir-Medium",
-			"point-size": 16,
+			"point-size": 18,
 			"text-color": "text",
 			"letter-case": "regular"
 		},
+        "example": {
+            "font-name": "System-Bold",
+            "point-size": 16,
+            "text-color": "text"
+        },
         "interactive-text": {
             "extends": "paragraph",
             "text-color": "interactive"

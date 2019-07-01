@@ -16,6 +16,7 @@ private enum CodingKeys {
     static let maximumPointSize = "maximum-point-size"
     static let pointStepMultiplier = "point-step-multiplier"
     static let pointStepSize = "point-step-size"
+    static let scalingMode = "scaling-mode"
     static let stylesEntry = "ui-font-text-styles"
     static let umbrellaEntry = "typography-kit"
 }
@@ -24,20 +25,23 @@ extension ParsingService {
     
     // MARK: - Type definitions
     fileprivate typealias ColorEntries = [String: String]
+    fileprivate typealias ExtendedTypographyStyleEntry = (existingStyleName: String, newStyle: Typography)
     fileprivate typealias FontTextStyleEntries = [String: [String: Any]]
     
     func parse(_ configEntries: [String: Any]) -> ParsingServiceResult? {
-        var configuration: ConfigurationSettings = ConfigurationSettings()
-        var typographyColors: TypographyColors = [:], typographyStyles: TypographyStyles = [:]
+        var configuration = ConfigurationSettings()
+        var typographyColors: TypographyColors = [:]
+        var typographyStyles: TypographyStyles = [:]
         
-        if let typographyKitConfig = configEntries[CodingKeys.umbrellaEntry] as? [String: Float],
-            let pointStepSize = typographyKitConfig[CodingKeys.pointStepSize],
-            let pointStepMultiplier = typographyKitConfig[CodingKeys.pointStepMultiplier] {
-            let minimumPointSize = typographyKitConfig[CodingKeys.minimumPointSize]
-            let maximumPointSize = typographyKitConfig[CodingKeys.maximumPointSize]
+        if let typographyKitConfig = configEntries[CodingKeys.umbrellaEntry] as? [String: Any],
+            let stepSize = typographyKitConfig[CodingKeys.pointStepSize] as? Float,
+            let stepMultiplier = typographyKitConfig[CodingKeys.pointStepMultiplier] as? Float {
+            let minimumPointSize = typographyKitConfig[CodingKeys.minimumPointSize] as? Float
+            let maximumPointSize = typographyKitConfig[CodingKeys.maximumPointSize] as? Float
+            let scalingMode = typographyKitConfig[CodingKeys.scalingMode] as? String
             configuration = ConfigurationSettings(minPointSize: minimumPointSize, maxPointSize: maximumPointSize,
-                                                  pointStepSize: pointStepSize,
-                                                  pointStepMultiplier: pointStepMultiplier)
+                                                  pointStepSize: stepSize, pointStepMultiplier: stepMultiplier,
+                                                  scalingMode: scalingMode)
         }
         if let jsonColorEntries = configEntries[CodingKeys.colorsEntry] as? ColorEntries {
             typographyColors = parseColorEntries(jsonColorEntries)
@@ -120,7 +124,7 @@ private extension ParsingService {
         -> TypographyStyles {
             var typographyStyles: TypographyStyles = [:]
             // Typography objects which are extensions of existing styles.
-            var extendedTypographyStyles: [(String, Typography)] = []
+            var extendedTypographyStyles: [ExtendedTypographyStyleEntry] = []
             for (fontTextStyleKey, fontTextStyle) in styleEntries {
                 let fontName = fontTextStyle[ConfigurationKey.fontName.rawValue] as? String
                 let pointSize = fontTextStyle[ConfigurationKey.pointSize.rawValue] as? Float
@@ -149,9 +153,12 @@ private extension ParsingService {
                     let style = Typography(name: fontTextStyleKey, fontName: fontName, fontSize: pointSize,
                                            letterCase: letterCase, textColor: textColor)
                     typographyStyles[fontTextStyleKey] = style
-                    for extendedStyle in extendedTypographyStyles where extendedStyle.0 == fontTextStyleKey {
-                        let newStyleKey = extendedStyle.1.name
-                        typographyStyles[newStyleKey] = extend(style, with: extendedStyle.1)
+                    
+                    // Iterate to find out whether any previously-defined styles extend this newly-parsed style.
+                    for extendedStyle in extendedTypographyStyles
+                        where extendedStyle.existingStyleName == fontTextStyleKey {
+                            let newStyleKey = extendedStyle.newStyle.name
+                            typographyStyles[newStyleKey] = extend(style, with: extendedStyle.newStyle)
                     }
                 }
             }

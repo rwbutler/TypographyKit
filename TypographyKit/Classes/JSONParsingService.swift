@@ -6,6 +6,7 @@
 //
 
 struct JSONParsingService: ParsingService {
+    
     func parse(_ data: Data) -> ParsingServiceResult? {
         guard let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: [])
             as? [String: Any],
@@ -14,4 +15,5 @@ struct JSONParsingService: ParsingService {
         }
         return parse(result)
     }
+    
 }

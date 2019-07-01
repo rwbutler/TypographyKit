@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.5] - 2019-07-01
+### Added
+- Support for scaling using `UIFontMetrics` where iOS 11 using the `TypographyKit.scalingMode` property.
+- Better support for using the system font by listing the font name as `System` or the font name and weight e.g. `System-Bold`.
+
+### Changed
+- Deployment target increased from 8.0 -> 8.2.
+
 ## [1.1.4] - 2019-06-26
 ### Changed
 - Fixed an issue whereby color definitions referencing other color definitions could fail to be parsed correctly.

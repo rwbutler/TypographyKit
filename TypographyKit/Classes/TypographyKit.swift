@@ -15,6 +15,10 @@ public struct TypographyKit {
     typealias Styles = [String: Typography]
     
     // MARK: Global state
+    public static var colors: [String: UIColor] = {
+        return configuration?.typographyColors ?? [:]
+    }()
+    
     public static var configurationURL: URL? = bundledConfigurationURL() {
         didSet { // detect configuration format by extension
             guard let lastPathComponent = configurationURL?.lastPathComponent.lowercased() else { return }
@@ -37,6 +41,10 @@ public struct TypographyKit {
         return .json // default
     }()
     
+    public static var fontTextStyles: [String: Typography] = {
+        return configuration?.typographyStyles ?? [:]
+    }()
+    
     public static var minimumPointSize: Float? = {
         return configuration?.configurationSettings.minimumPointSize
     }()
@@ -53,12 +61,8 @@ public struct TypographyKit {
         return configuration?.configurationSettings.pointStepMultiplier ?? 1.0
     }()
     
-    public static var colors: [String: UIColor] = {
-        return configuration?.typographyColors ?? [:]
-    }()
-    
-    public static var fontTextStyles: [String: Typography] = {
-        return configuration?.typographyStyles ?? [:]
+    public static var scalingMode: ScalingMode = {
+        return configuration?.configurationSettings.scalingMode ?? .stepping
     }()
     
     // MARK: Functions
@@ -66,7 +70,7 @@ public struct TypographyKit {
         return colors.first(where: { $0.value == color })?.key
     }
     
-    /// Presents TypographyKitViewController modally
+    /// Presents TypographyKitViewController modally.
     public static func presentTypographyStyles(delegate: TypographyKitViewControllerDelegate? = nil,
                                                animated: Bool = false, shouldRefresh: Bool = true) {
         guard let presenter = UIApplication.shared.keyWindow?.rootViewController else { return }

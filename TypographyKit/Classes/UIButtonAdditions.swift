@@ -113,9 +113,7 @@ extension UIButton {
 
     }
 
-    public func text(_ text: String?,
-                     style: UIFont.TextStyle,
-                     letterCase: LetterCase? = nil,
+    public func text(_ text: String?, style: UIFont.TextStyle, letterCase: LetterCase? = nil,
                      textColor: UIColor? = nil) {
         if let text = text {
             self.setTitle(text, for: .normal)
