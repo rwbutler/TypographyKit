@@ -41,7 +41,10 @@ public struct Typography {
         "semi-bold": UIFont.Weight.semibold,
         "ultra-light": UIFont.Weight.ultraLight
     ]
-    private static let systemFontName = "system"
+    private static let boldSystemFontName = "Bold\(systemFontName)"
+    private static let italicSystemFontName = "Italic\(systemFontName)"
+    private static let monospacedDigitSystemFontName = "MonospacedDigit\(systemFontName)"
+    private static let systemFontName = "System"
     
     public init?(for textStyle: UIFont.TextStyle) {
         guard let typographyStyle = TypographyKit.fontTextStyles[textStyle.rawValue] else {
@@ -92,23 +95,49 @@ public struct Typography {
 
 private extension Typography {
     
+    /// Resolves font entries in configuration to the following `UIFont` methods:
+    /// System -> systemFont(ofSize: CGFloat) -> UIFont
+    /// BoldSystem -> boldSystemFont(ofSize: CGFloat) -> UIFont
+    /// ItalicSystem -> italicSystemFont(ofSize: CGFloat) -> UIFont
+    private func unweightedSystemFont(_ fontName: String, pointSize: CGFloat) -> UIFont? {
+        let lowerCasedFontName = fontName.lowercased()
+        let lowerCasedSystemFontName = type(of: self).systemFontName.lowercased()
+        let lowerCasedBoldSystemFontName = type(of: self).boldSystemFontName.lowercased()
+        let lowerCasedItalicSystemFontName = type(of: self).italicSystemFontName.lowercased()
+        let points = CGFloat(pointSize)
+        switch lowerCasedFontName {
+        case lowerCasedSystemFontName:
+            return UIFont.systemFont(ofSize: points)
+        case lowerCasedBoldSystemFontName:
+            return UIFont.boldSystemFont(ofSize: points)
+        case lowerCasedItalicSystemFontName:
+            return UIFont.italicSystemFont(ofSize: points)
+        default:
+            return nil
+        }
+    }
+    
     /// Resolves font definitions defined in configuration to the system font with the specified `UIFont.Weight`.
     /// e.g. 'system-ultra-light' resolves to the system font with `UIFont.Weight` of `.ultraLight`.
     private func resolveSystemFont(_ fontName: String, pointSize: Float) -> UIFont? {
         let lowerCasedFontName = fontName.lowercased()
-        let lowerCasedSystemFontName = type(of: self).systemFontName
-        guard lowerCasedFontName.starts(with: lowerCasedSystemFontName) else {
-            return nil
+        let points = CGFloat(pointSize)
+        if let unweightedFont = unweightedSystemFont(fontName, pointSize: points) {
+            return unweightedFont
         }
+        let lowerCasedSystemFontName = type(of: self).systemFontName.lowercased()
+        let lowerCasedMonospacedDigitSystemFontName = type(of: self).monospacedDigitSystemFontName.lowercased()
         let fontWeights = type(of: self).fontWeightMap
-        if lowerCasedFontName == lowerCasedSystemFontName {
-            return UIFont.systemFont(ofSize: CGFloat(pointSize))
-        }
         for (fontWeightName, fontWeight) in fontWeights {
             let lowercasedFontWeightName = fontWeightName.lowercased()
-            let fontWithWeightName = "\(lowerCasedSystemFontName)-\(lowercasedFontWeightName)"
-            if lowerCasedFontName == fontWithWeightName {
-                return UIFont.systemFont(ofSize: CGFloat(pointSize), weight: fontWeight)
+            let systemFontWithWeightName = "\(lowerCasedSystemFontName)-\(lowercasedFontWeightName)"
+            if lowerCasedFontName == systemFontWithWeightName {
+                return UIFont.systemFont(ofSize: points, weight: fontWeight)
+            }
+            let monospacedDigitFontWithWeightName =
+            "\(lowerCasedMonospacedDigitSystemFontName)-\(lowercasedFontWeightName)"
+            if #available(iOS 9.0, *), lowerCasedFontName == monospacedDigitFontWithWeightName {
+                return UIFont.monospacedDigitSystemFont(ofSize: points, weight: fontWeight)
             }
         }
         return nil
@@ -131,23 +160,23 @@ private extension Typography {
     /// Scales `UIFont` using a step size * multiplier increasing in-line with the `UIContentSizeCategory` value.
     private func scaleUsingStepping(_ fontName: String, pointSize: Float, contentSize: UIContentSizeCategory)
         -> UIFont? {
-        // No scaling if the UIContentSizeCategory cannot be found in map.
-        let defaultContentSizeCategoryScaling: Float = 0.0
-        let contentSizeCategoryScaling = type(of: self).contentSizeCategoryMap[contentSize]
-            ?? defaultContentSizeCategoryScaling
-        let stepSizeMultiplier = TypographyKit.pointStepMultiplier
-        let stepSize = TypographyKit.pointStepSize
-        var newPointSize = pointSize + (stepSize * stepSizeMultiplier * contentSizeCategoryScaling)
-        if let minimumPointSize = TypographyKit.minimumPointSize, pointSize < minimumPointSize {
-            newPointSize = minimumPointSize
-        }
-        if let maximumPointSize = TypographyKit.maximumPointSize, maximumPointSize < pointSize {
-            newPointSize = maximumPointSize
-        }
-        if let systemFont = resolveSystemFont(fontName, pointSize: newPointSize) {
-            return systemFont
-        }
-        return UIFont(name: fontName, size: CGFloat(newPointSize))
+            // No scaling if the UIContentSizeCategory cannot be found in map.
+            let defaultContentSizeCategoryScaling: Float = 0.0
+            let contentSizeCategoryScaling = type(of: self).contentSizeCategoryMap[contentSize]
+                ?? defaultContentSizeCategoryScaling
+            let stepSizeMultiplier = TypographyKit.pointStepMultiplier
+            let stepSize = TypographyKit.pointStepSize
+            var newPointSize = pointSize + (stepSize * stepSizeMultiplier * contentSizeCategoryScaling)
+            if let minimumPointSize = TypographyKit.minimumPointSize, pointSize < minimumPointSize {
+                newPointSize = minimumPointSize
+            }
+            if let maximumPointSize = TypographyKit.maximumPointSize, maximumPointSize < pointSize {
+                newPointSize = maximumPointSize
+            }
+            if let systemFont = resolveSystemFont(fontName, pointSize: newPointSize) {
+                return systemFont
+            }
+            return UIFont(name: fontName, size: CGFloat(newPointSize))
     }
     
 }
