@@ -10,6 +10,14 @@ import UIKit
 
 #if !TYPOGRAPHYKIT_UICOLOR_EXTENSION
 extension UIColor {
+    
+    private struct ColorComponents {
+        var red: CGFloat
+        var green: CGFloat
+        var blue: CGFloat
+        var alpha: CGFloat = 0.0
+    }
+    
     public enum Lightness {
         private static let lightScalingFactor: Double       = 1.25
         private static let lighterScalingFactor: Double     = 1.5
@@ -66,28 +74,29 @@ extension UIColor {
         }
     }
 
+    private func colorComponents(scalingFactor: CGFloat) -> ColorComponents {
+        var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
+        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        return ColorComponents(red: red * scalingFactor, green: green * scalingFactor, blue: blue * scalingFactor,
+                               alpha: alpha)
+    }
+    
     private func darker(darkness: Double) -> UIColor {
         guard darkness <= 1.0 else { return self }
-
-        let scalingFactor: CGFloat = CGFloat(darkness)
-        var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
-        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        let newR = CGFloat.maximum(red * scalingFactor, 0.0),
-        newG = CGFloat.maximum(green * scalingFactor, 0.0),
-        newB = CGFloat.maximum(blue * scalingFactor, 0.0)
-        return UIColor(red: newR, green: newG, blue: newB, alpha: alpha)
+        var components = colorComponents(scalingFactor: CGFloat(darkness))
+        components.red = CGFloat.maximum(components.red, 0.0)
+        components.green = CGFloat.maximum(components.green, 0.0)
+        components.blue = CGFloat.maximum(components.blue, 0.0)
+        return UIColor(red: components.red, green: components.green, blue: components.blue, alpha: components.alpha)
     }
-
+    
     private func lighter(lightness: Double) -> UIColor {
         guard lightness >= 1.0 else { return self }
-
-        let scalingFactor: CGFloat = CGFloat(lightness)
-        var red: CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
-        self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        let newR = CGFloat.minimum(red * scalingFactor, 1.0),
-        newG = CGFloat.minimum(green * scalingFactor, 1.0),
-        newB = CGFloat.minimum(blue * scalingFactor, 1.0)
-        return UIColor(red: newR, green: newG, blue: newB, alpha: alpha)
+        var components = colorComponents(scalingFactor: CGFloat(lightness))
+        components.red = CGFloat.minimum(components.red, 1.0)
+        components.green = CGFloat.minimum(components.green, 1.0)
+        components.blue = CGFloat.minimum(components.blue, 1.0)
+        return UIColor(red: components.red, green: components.green, blue: components.blue, alpha: components.alpha)
     }
 
     public func shade(_ lightness: Lightness) -> UIColor {
