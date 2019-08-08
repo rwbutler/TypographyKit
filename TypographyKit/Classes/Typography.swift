@@ -68,6 +68,11 @@ public struct Typography {
         self.textStyle = UIFont.TextStyle(rawValue: name)
     }
     
+    /// Convenience method for retrieving the font for the preferred `UIContentSizeCategory`.
+    public func font() -> UIFont? {
+        return font(UIApplication.shared.preferredContentSizeCategory)
+    }
+    
     /// Returns a `UIFont` scaled appropriately for the given `UIContentSizeCategory` using the specified scaling
     /// method.
     public func font(_ contentSizeCategory: UIContentSizeCategory) -> UIFont? {
@@ -89,6 +94,11 @@ public struct Typography {
         case .stepping:
             return scaleUsingStepping(fontName, pointSize: pointSize, contentSize: contentSizeCategory)
         }
+    }
+    
+    /// Convenience method for retrieving the line height.
+    public func lineHeight() -> CGFloat? {
+        return font()?.lineHeight
     }
     
 }
