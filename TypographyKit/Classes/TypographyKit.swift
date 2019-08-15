@@ -70,6 +70,53 @@ public struct TypographyKit {
         return colors.first(where: { $0.value == color })?.key
     }
     
+    @available(iOS 9.0, *)
+    public static func presentTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
+                                               animated: Bool = false, shouldRefresh: Bool = true) {
+        let currentBundle = Bundle(for: TKColorsViewController.self)
+        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
+        let viewController = storyboard.instantiateInitialViewController()
+        guard let colorsViewController = viewController as? TKColorsViewController,
+            let presenter = UIApplication.shared.keyWindow?.rootViewController else {
+                return
+        }
+        colorsViewController.delegate = delegate
+        colorsViewController.modalPresentationStyle = .overCurrentContext
+        let navigationController = UINavigationController(rootViewController: colorsViewController)
+        let navigationSettings = TypographyKitViewController
+            .NavigationSettings(animated: animated,
+                                autoClose: true,
+                                closeButtonAlignment: .closeButtonLeftExportButtonRight,
+                                isModal: true,
+                                isNavigationBarHidden: navigationController.isNavigationBarHidden,
+                                shouldRefresh: shouldRefresh)
+        colorsViewController.navigationSettings = navigationSettings
+        if shouldRefresh {
+            TypographyKit.refresh()
+        }
+        presenter.present(navigationController, animated: animated, completion: nil)
+    }
+    
+    @available(iOS 9.0, *)
+    public static func presentTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
+                                               navigationSettings: ViewControllerNavigationSettings) {
+        let currentBundle = Bundle(for: TKColorsViewController.self)
+        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
+        let viewController = storyboard.instantiateInitialViewController()
+        guard let colorsViewController = viewController as? TKColorsViewController,
+            let presenter = UIApplication.shared.keyWindow?.rootViewController else {
+                return
+        }
+        colorsViewController.delegate = delegate
+        colorsViewController.modalPresentationStyle = .overCurrentContext
+        let navigationController = UINavigationController(rootViewController: colorsViewController)
+        colorsViewController.navigationSettings = navigationSettings
+        if navigationSettings.shouldRefresh {
+            TypographyKit.refresh()
+        }
+        presenter.present(navigationController, animated: navigationSettings.animated, completion: nil)
+    }
+    
     /// Presents TypographyKitViewController modally.
     public static func presentTypographyStyles(delegate: TypographyKitViewControllerDelegate? = nil,
                                                animated: Bool = false, shouldRefresh: Bool = true) {
@@ -104,6 +151,50 @@ public struct TypographyKit {
             TypographyKit.refresh()
         }
         presenter.present(navigationController, animated: navigationSettings.animated, completion: nil)
+    }
+    
+    @available(iOS 9.0, *)
+    public static func pushTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
+                                            navigationController: UINavigationController,
+                                            animated: Bool = false,
+                                            shouldRefresh: Bool = true) {
+        let currentBundle = Bundle(for: TKColorsViewController.self)
+        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
+        let viewController = storyboard.instantiateInitialViewController()
+        guard let colorsViewController = viewController as? TKColorsViewController else {
+            return
+        }
+        colorsViewController.delegate = delegate
+        let navigationSettings = TypographyKitViewController
+            .NavigationSettings(animated: animated,
+                                autoClose: true,
+                                isNavigationBarHidden: navigationController.isNavigationBarHidden,
+                                shouldRefresh: shouldRefresh)
+        colorsViewController.navigationSettings = navigationSettings
+        navigationController.isNavigationBarHidden = false
+        if shouldRefresh {
+            TypographyKit.refresh()
+        }
+        navigationController.pushViewController(colorsViewController, animated: animated)
+    }
+    
+    @available(iOS 9.0, *)
+    public static func pushTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
+                                            navigationController: UINavigationController,
+                                            navigationSettings: ViewControllerNavigationSettings) {
+        let currentBundle = Bundle(for: TKColorsViewController.self)
+        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
+        let viewController = storyboard.instantiateInitialViewController()
+        guard let colorsViewController = viewController as? TKColorsViewController else {
+            return
+        }
+        colorsViewController.delegate = delegate
+        colorsViewController.navigationSettings = navigationSettings
+        navigationController.isNavigationBarHidden = false
+        if navigationSettings.shouldRefresh {
+            TypographyKit.refresh()
+        }
+        navigationController.pushViewController(colorsViewController, animated: navigationSettings.animated)
     }
     
     /// Allows TypographyKitViewController to be pushed onto a navigation stack
@@ -187,22 +278,22 @@ private extension TypographyKit {
     static func loadConfiguration() -> ParsingServiceResult? {
         guard let configurationURL = configurationURL,
             let data = try? Data(contentsOf: configurationURL) else {
-             return loadConfigurationWithData(nil)
+                return loadConfigurationWithData(nil)
         }
         return loadConfigurationWithData(data)
     }
     
     static func loadConfigurationWithData(_ data: Data?) -> ParsingServiceResult? {
         guard let data = data else {
-                guard let cachedConfigurationURL = cachedConfigurationURL,
-                    let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
-                        guard let bundledConfigurationURL = bundledConfigurationURL(),
-                            let bundledData = try? Data(contentsOf: bundledConfigurationURL) else {
-                                return nil
-                        }
-                        return parseConfiguration(data: bundledData)
-                }
-                return parseConfiguration(data: cachedData)
+            guard let cachedConfigurationURL = cachedConfigurationURL,
+                let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
+                    guard let bundledConfigurationURL = bundledConfigurationURL(),
+                        let bundledData = try? Data(contentsOf: bundledConfigurationURL) else {
+                            return nil
+                    }
+                    return parseConfiguration(data: bundledData)
+            }
+            return parseConfiguration(data: cachedData)
         }
         if let cachedConfigurationURL = cachedConfigurationURL {
             try? data.write(to: cachedConfigurationURL)

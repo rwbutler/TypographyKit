@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		13317E2622CA1F4B00C96CD9 /* ScalingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */; };
+		133A83762302FAE200A10591 /* TKColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133A83752302FAE200A10591 /* TKColorsViewController.swift */; };
+		133A837A2302FB4800A10591 /* TKColorsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133A83792302FB4800A10591 /* TKColorsViewController.storyboard */; };
+		133A837D2302FDA400A10591 /* TKColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133A837C2302FDA400A10591 /* TKColorCell.swift */; };
 		135A677F21F7879A004B4C54 /* TypographyKitConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135A677E21F7879A004B4C54 /* TypographyKitConfiguration.swift */; };
 		135C78DD20F7662C00BDB06D /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C78DB20F7662300BDB06D /* UIColorAdditions.swift */; };
 		138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */; };
@@ -62,6 +65,9 @@
 		0164F88DE54097B2924C93B085E3AF14 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A758ACFE9821CA5BED01D51743713CA /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingMode.swift; sourceTree = "<group>"; };
+		133A83752302FAE200A10591 /* TKColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TKColorsViewController.swift; sourceTree = "<group>"; };
+		133A83792302FB4800A10591 /* TKColorsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TKColorsViewController.storyboard; sourceTree = "<group>"; };
+		133A837C2302FDA400A10591 /* TKColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TKColorCell.swift; sourceTree = "<group>"; };
 		135A677E21F7879A004B4C54 /* TypographyKitConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitConfiguration.swift; sourceTree = "<group>"; };
 		135C78DB20F7662300BDB06D /* UIColorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorAdditions.swift; sourceTree = "<group>"; };
 		138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyKitViewController.swift; sourceTree = "<group>"; };
@@ -150,17 +156,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		138F0E8321470D1500CA8D8F /* TypographyKitViewController */ = {
+		133A83742302FAC100A10591 /* Typography Colors */ = {
+			isa = PBXGroup;
+			children = (
+				133A837B2302FD9100A10591 /* Cells */,
+				133A83CF23058AE400A10591 /* View Controller */,
+			);
+			name = "Typography Colors";
+			sourceTree = "<group>";
+		};
+		133A837B2302FD9100A10591 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				133A837C2302FDA400A10591 /* TKColorCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		133A837E2303021600A10591 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */,
+				138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		133A83CE23058AC800A10591 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				138F0E7A2146A73A00CA8D8F /* TypographyKitViewController.swift */,
-				138F0E7C2146AD8D00CA8D8F /* TypographyKitTableViewCell.swift */,
-				138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */,
 				13DFA4BE21CD303B00CD9AEA /* TypographyKitViewControllerDelegate.swift */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		133A83CF23058AE400A10591 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				133A83752302FAE200A10591 /* TKColorsViewController.swift */,
+				133A83792302FB4800A10591 /* TKColorsViewController.storyboard */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		133A83D023058AEB00A10591 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
 				13DFA4C121CD314600CD9AEA /* ViewControllerNavigationSettings.swift */,
 				13DFA4C321CD318000CD9AEA /* CloseButtonAlignment.swift */,
 			);
-			name = TypographyKitViewController;
+			name = "View Model";
+			sourceTree = "<group>";
+		};
+		138F0E8321470D1500CA8D8F /* Typography Styles */ = {
+			isa = PBXGroup;
+			children = (
+				133A837E2303021600A10591 /* Cells */,
+				133A83CE23058AC800A10591 /* View Controller */,
+				133A83D023058AEB00A10591 /* View Model */,
+			);
+			name = "Typography Styles";
 			sourceTree = "<group>";
 		};
 		138F0E8421470D2700CA8D8F /* Extensions */ = {
@@ -332,7 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				138F0E8421470D2700CA8D8F /* Extensions */,
-				138F0E8321470D1500CA8D8F /* TypographyKitViewController */,
+				133A83742302FAC100A10591 /* Typography Colors */,
+				138F0E8321470D1500CA8D8F /* Typography Styles */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
@@ -531,6 +588,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				133A837A2302FB4800A10591 /* TKColorsViewController.storyboard in Resources */,
 				138F0E822146CBC900CA8D8F /* TypographyKitTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,6 +627,7 @@
 				13DFA4C021CD305800CD9AEA /* TypographyKitViewControllerDelegate.swift in Sources */,
 				E43CC45A1ED06BD70062FEA5 /* TypographyColor.swift in Sources */,
 				E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */,
+				133A837D2302FDA400A10591 /* TKColorCell.swift in Sources */,
 				138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */,
 				E43CC45C1ED06BE70062FEA5 /* String+RegularExpressionMatchable.swift in Sources */,
 				E494EAFF1F1A3F7600E13158 /* PropertyListParsingService.swift in Sources */,
@@ -589,6 +648,7 @@
 				135A677F21F7879A004B4C54 /* TypographyKitConfiguration.swift in Sources */,
 				E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */,
 				E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */,
+				133A83762302FAE200A10591 /* TKColorsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

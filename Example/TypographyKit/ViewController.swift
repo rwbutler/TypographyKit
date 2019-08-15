@@ -10,6 +10,9 @@ import UIKit
 import TypographyKit
 
 class ViewController: UIViewController {
+
+    @IBOutlet weak var colorsButton: UIButton!
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -18,9 +21,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .background
         TypographyKit.configurationURL = Bundle.main.url(forResource: "TypographyKit", withExtension: "json")
+        if #available(iOS 9.0, *) {
+            colorsButton.isHidden = false
+        }
+    }
+
+    @IBAction func presentTypographyColors(_ sender: UIButton) {
+        if #available(iOS 9.0, *) {
+            TypographyKit.presentTypographyColors()
+        }
     }
 
     @IBAction func presentTypographyStyles(_ sender: UIButton) {
         TypographyKit.presentTypographyStyles()
     }
+
 }
