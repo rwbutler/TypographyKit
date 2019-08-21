@@ -96,7 +96,7 @@
                                     <action selector="presentTypographyColors:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PWN-rc-BjL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqB-Rn-cdS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqB-Rn-cdS">
                                 <rect key="frame" x="39" y="341.5" width="297" height="27"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Example using an ">
@@ -130,7 +130,9 @@
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="3NM-0U-Ri5"/>
                             <constraint firstItem="fqB-Rn-cdS" firstAttribute="top" secondItem="sx8-d3-8iw" secondAttribute="bottom" constant="20" id="8v7-YN-4sN"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="baF-RR-tAw" secondAttribute="trailing" constant="10" id="DTH-Bs-dGB"/>
+                            <constraint firstItem="fqB-Rn-cdS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="Dqz-0J-v2g"/>
                             <constraint firstItem="baF-RR-tAw" firstAttribute="top" secondItem="CQM-xr-ytX" secondAttribute="bottom" constant="20" id="Ean-dA-53B"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="fqB-Rn-cdS" secondAttribute="trailing" constant="10" id="FFP-Zr-le5"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="HaK-K9-u7C"/>
                             <constraint firstItem="OQs-iP-6r0" firstAttribute="top" secondItem="gth-By-DPQ" secondAttribute="bottom" constant="10" id="Igz-7X-kGj"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="sx8-d3-8iw" secondAttribute="trailing" constant="10" id="KUR-bx-ciR"/>
