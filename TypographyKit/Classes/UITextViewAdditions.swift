@@ -70,32 +70,29 @@ extension UITextView {
         }
     }
 
-    public func attributedText(_ text: NSAttributedString?,
-                               style: UIFont.TextStyle,
-                               letterCase: LetterCase = .regular,
-                               textColor: UIColor? = nil) {
-
-        let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
-        let fontAttributeKey = NSAttributedString.Key.font
-        let typography = Typography(for: style)
+    public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
+                               letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
+        // Update text.
+        if let text = text {
+            self.attributedText = text
+        }
+        // Update text color.
         if let textColor = textColor {
             self.textColor = textColor
         }
-
-        guard let text = text else { return }
-        self.attributedText = text
-        let mutableText = NSMutableAttributedString(attributedString: text)
-        mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
-                                        options: [],
-                                        using: { value, range, _ in
-                                            if let fontAttribute = value[fontAttributeKey] as? UIFont,
-                                                let newPointSize = typography?.font(contentSizeCategory)?.pointSize,
-                                                let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
-                                                mutableText.removeAttribute(fontAttributeKey, range: range)
-                                                mutableText.addAttribute(fontAttributeKey, value: newFont, range: range)
-                                            }
+        guard var typography = Typography(for: style), let attrString = attributedText else {
+            return
+        }
+        // Apply overriding parameters.
+        typography.textColor = textColor ?? typography.textColor
+        typography.letterCase = letterCase ?? typography.letterCase
+        
+        let mutableString = NSMutableAttributedString(attributedString: attrString)
+        let textRange = NSRange(location: 0, length: attrString.string.count)
+        mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
+            update(attributedString: mutableString, with: value, in: range, and: typography)
         })
-        self.attributedText = mutableText
+        self.attributedText = mutableString
     }
 
     // MARK: Functions
@@ -121,6 +118,9 @@ extension UITextView {
 
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
+            if attributedText != nil {
+                self.attributedText(attributedText, style: fontTextStyle)
+            }
             self.font = self.typography.font(newValue)
             self.setNeedsLayout()
         }

@@ -11,6 +11,7 @@ import TypographyKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var attributedStringLabel: UILabel!
     @IBOutlet weak var colorsButton: UIButton!
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -24,6 +25,8 @@ class ViewController: UIViewController {
         if #available(iOS 9.0, *) {
             colorsButton.isHidden = false
         }
+        let text = attributedStringLabel.attributedText
+        attributedStringLabel.attributedText(text, style: .paragraph)
     }
 
     @IBAction func presentTypographyColors(_ sender: UIButton) {

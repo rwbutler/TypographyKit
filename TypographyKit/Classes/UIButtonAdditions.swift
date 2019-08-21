@@ -84,33 +84,29 @@ extension UIButton {
 
     // MARK: Functions
 
-    public func attributedText(_ text: NSAttributedString?,
-                               style: UIFont.TextStyle,
-                               letterCase: LetterCase = .regular,
-                               textColor: UIColor? = nil) {
-
-        let contentSizeCategory = UIApplication.shared.preferredContentSizeCategory
-        let fontAttributeKey = NSAttributedString.Key.font
-        let typography = Typography(for: style)
-        if let textColor = textColor {
-            self.titleLabel?.textColor = textColor
+    public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
+                               letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
+        // Update text.
+        if let text = text {
+            self.setAttributedTitle(text, for: .normal)
         }
-
-        guard let text = text else { return }
-        self.setAttributedTitle(text, for: .normal)
-        let mutableText = NSMutableAttributedString(attributedString: text)
-        mutableText.enumerateAttributes(in: NSRange(location: 0, length: text.string.count),
-                                        options: [],
-                                        using: { value, range, _ in
-                                            if let fontAttribute = value[fontAttributeKey] as? UIFont,
-                                                let newPointSize = typography?.font(contentSizeCategory)?.pointSize,
-                                                let newFont = UIFont(name: fontAttribute.fontName, size: newPointSize) {
-                                                mutableText.removeAttribute(fontAttributeKey, range: range)
-                                                mutableText.addAttribute(fontAttributeKey, value: newFont, range: range)
-                                            }
+        // Update text color.
+        if let textColor = textColor {
+            self.setTitleColor(textColor, for: .normal)
+        }
+        guard var typography = Typography(for: style), let attrString = titleLabel?.attributedText else {
+            return
+        }
+        // Apply overriding parameters.
+        typography.textColor = textColor ?? typography.textColor
+        typography.letterCase = letterCase ?? typography.letterCase
+        
+        let mutableString = NSMutableAttributedString(attributedString: attrString)
+        let textRange = NSRange(location: 0, length: attrString.string.count)
+        mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
+            update(attributedString: mutableString, with: value, in: range, and: typography)
         })
-        self.setAttributedTitle(mutableText, for: .normal)
-
+        self.setAttributedTitle(mutableString, for: .normal)
     }
 
     public func text(_ text: String?, style: UIFont.TextStyle, letterCase: LetterCase? = nil,
@@ -132,6 +128,9 @@ extension UIButton {
 
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
+            if let attributedText = titleLabel?.attributedText {
+                self.attributedText(attributedText, style: fontTextStyle)
+            }
             self.titleLabel?.font = self.typography.font(newValue)
         }
     }

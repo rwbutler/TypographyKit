@@ -96,12 +96,39 @@
                                     <action selector="presentTypographyColors:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PWN-rc-BjL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqB-Rn-cdS">
+                                <rect key="frame" x="39" y="341.5" width="297" height="27"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Example using an ">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="attributed">
+                                        <attributes>
+                                            <color key="NSBackgroundColor" red="0.36862745879999997" green="0.039215687659999998" blue="0.35294118520000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="24" name="Arial-BoldMT"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" string">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.84705882352941175" green="0.47450980392156861" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2lc-eq-7dG"/>
+                            <constraint firstItem="fqB-Rn-cdS" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="320-MH-QNh"/>
                             <constraint firstItem="OQs-iP-6r0" firstAttribute="leading" secondItem="gth-By-DPQ" secondAttribute="leading" id="3In-S0-AuS"/>
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="3NM-0U-Ri5"/>
+                            <constraint firstItem="fqB-Rn-cdS" firstAttribute="top" secondItem="sx8-d3-8iw" secondAttribute="bottom" constant="20" id="8v7-YN-4sN"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="baF-RR-tAw" secondAttribute="trailing" constant="10" id="DTH-Bs-dGB"/>
                             <constraint firstItem="baF-RR-tAw" firstAttribute="top" secondItem="CQM-xr-ytX" secondAttribute="bottom" constant="20" id="Ean-dA-53B"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="HaK-K9-u7C"/>
@@ -117,7 +144,6 @@
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="top" secondItem="Wic-EW-q8f" secondAttribute="bottom" constant="20" id="Zl4-04-KV8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wic-EW-q8f" secondAttribute="trailing" constant="10" id="giU-DR-1Gs"/>
                             <constraint firstItem="Wic-EW-q8f" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="hS7-aM-N5h"/>
-                            <constraint firstItem="OQs-iP-6r0" firstAttribute="centerX" secondItem="gth-By-DPQ" secondAttribute="centerX" id="kCR-Co-Du6"/>
                             <constraint firstItem="sx8-d3-8iw" firstAttribute="top" secondItem="acd-G9-IRn" secondAttribute="bottom" constant="20" id="kUC-F6-E4f"/>
                             <constraint firstItem="OQs-iP-6r0" firstAttribute="trailing" secondItem="gth-By-DPQ" secondAttribute="trailing" id="koS-Pc-p5J"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="OQs-iP-6r0" secondAttribute="bottom" constant="20" id="lJR-7v-YUz"/>
@@ -132,6 +158,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="attributedStringLabel" destination="fqB-Rn-cdS" id="VgV-oW-bbw"/>
                         <outlet property="colorsButton" destination="gth-By-DPQ" id="kgi-gF-FgY"/>
                     </connections>
                 </viewController>

@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] - 2019-08-21
+### Changed
+- Fixed an issue whereby updating an element's attributed text only updated the font size and not the typeface.
+
 ## [2.2.0] - 2019-08-15
 ### Added
 - Added `TKColorsViewController` for displaying all colors defined in TypographyKit configuration.
