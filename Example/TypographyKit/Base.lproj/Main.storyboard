@@ -121,6 +121,29 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06g-yE-c4J">
+                                <rect key="frame" x="26" y="388.5" width="323" height="39"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Example button using an ">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="attributed">
+                                            <attributes>
+                                                <color key="NSBackgroundColor" red="0.36862745879999997" green="0.039215687659999998" blue="0.35294118520000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="24" name="Arial-BoldMT"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" string">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.84705882352941175" green="0.47450980392156861" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -142,8 +165,12 @@
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="OQs-iP-6r0" secondAttribute="trailing" constant="10" id="TxO-Z9-odi"/>
                             <constraint firstItem="acd-G9-IRn" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Uqd-N6-WJx"/>
                             <constraint firstItem="OQs-iP-6r0" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="VDh-HC-vrv"/>
+                            <constraint firstItem="06g-yE-c4J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="WVK-bE-u2y"/>
+                            <constraint firstItem="06g-yE-c4J" firstAttribute="top" secondItem="fqB-Rn-cdS" secondAttribute="bottom" constant="20" id="YSt-0Y-1jV"/>
+                            <constraint firstItem="06g-yE-c4J" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Yjy-sI-Gii"/>
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="ZDN-rH-IaO"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="top" secondItem="Wic-EW-q8f" secondAttribute="bottom" constant="20" id="Zl4-04-KV8"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="06g-yE-c4J" secondAttribute="trailing" constant="10" id="bS8-LX-gb7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wic-EW-q8f" secondAttribute="trailing" constant="10" id="giU-DR-1Gs"/>
                             <constraint firstItem="Wic-EW-q8f" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="hS7-aM-N5h"/>
                             <constraint firstItem="sx8-d3-8iw" firstAttribute="top" secondItem="acd-G9-IRn" secondAttribute="bottom" constant="20" id="kUC-F6-E4f"/>
@@ -160,6 +187,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="attributedStringButton" destination="06g-yE-c4J" id="czW-WZ-2va"/>
                         <outlet property="attributedStringLabel" destination="fqB-Rn-cdS" id="VgV-oW-bbw"/>
                         <outlet property="colorsButton" destination="gth-By-DPQ" id="kgi-gF-FgY"/>
                     </connections>

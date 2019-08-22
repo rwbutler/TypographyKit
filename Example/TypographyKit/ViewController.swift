@@ -11,6 +11,7 @@ import TypographyKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var attributedStringButton: UIButton!
     @IBOutlet weak var attributedStringLabel: UILabel!
     @IBOutlet weak var colorsButton: UIButton!
 
@@ -25,8 +26,10 @@ class ViewController: UIViewController {
         if #available(iOS 9.0, *) {
             colorsButton.isHidden = false
         }
-        let text = attributedStringLabel.attributedText
-        attributedStringLabel.attributedText(text, style: .paragraph)
+        let buttonText = attributedStringButton.titleLabel?.attributedText
+        attributedStringButton.attributedText(buttonText, style: .paragraph)
+        let labelText = attributedStringLabel.attributedText
+        attributedStringLabel.attributedText(labelText, style: .paragraph)
     }
 
     @IBAction func presentTypographyColors(_ sender: UIButton) {
