@@ -18,6 +18,15 @@ class TypographyKitViewController: UITableViewController {
     var navigationSettings: NavigationSettings?
     private var typographyStyleNames: [String] = []
 
+    lazy var styleControl: UISegmentedControl = {
+        let segControl = UISegmentedControl(items: [])
+        segControl.addTarget(self, action: #selector(changeStyle), for: .valueChanged)
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        }
+        return segControl
+    }()
+    
     override func viewDidLoad() {
         title = "TypographyKit Styles"
         typographyStyleNames = TypographyKit.fontTextStyles.map({ $0.key }).sorted()
@@ -73,6 +82,23 @@ class TypographyKitViewController: UITableViewController {
         let colorBrightness = (red * 0.299) + (green * 0.587) + (blue * 0.114)
         return colorBrightness > brightnessThreshold
     }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard #available(iOS 13, *) else { return nil }
+        return styleControl
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard #available(iOS 13, *) else { return 0 }
+        return styleControl.frame.height
+    }
+    
+    @objc func changeStyle(_ sender: UISegmentedControl) {
+        guard #available(iOS 13, *) else { return }
+        let style = TypographyInterfaceStyle.allCases[sender.selectedSegmentIndex]
+        overrideUserInterfaceStyle = style.userInterfaceStyle
+        tableView.reloadData()
+    }
 }
 
 private extension TypographyKitViewController {
@@ -107,10 +133,24 @@ private extension TypographyKitViewController {
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
     }
+    
+    private func configureHeader() {
+        guard #available(iOS 13, *) else { return }
+        styleControl.removeAllSegments()
+        TypographyInterfaceStyle.allCases.enumerated().forEach { item in
+            let (index, style) = item
+            let title = style.rawValue.upperCamelCased()
+            styleControl.insertSegment(withTitle: title, at: index, animated: false)
+        }
+
+        let currentStyle = TypographyInterfaceStyle(style: traitCollection.userInterfaceStyle)
+        styleControl.selectedSegmentIndex = TypographyInterfaceStyle.allCases.firstIndex(of: currentStyle) ?? 0
+    }
 
     func configureView() {
         configureNavigationBar()
         configureTableView()
+        configureHeader()
     }
 
     @objc func close() {

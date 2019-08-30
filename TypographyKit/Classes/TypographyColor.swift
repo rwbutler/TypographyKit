@@ -6,7 +6,7 @@
 //
 //
 
-public enum TypographyColor {
+public indirect enum TypographyColor {
     
     // MARK: - Type definitions
     private struct RegEx {
@@ -38,6 +38,8 @@ public enum TypographyColor {
     case named(string: String)
     case rgb(red: Float, green: Float, blue: Float)
     case rgba(red: Float, green: Float, blue: Float, alpha: Float)
+    case dynamicColor(colors: [TypographyInterfaceStyle: TypographyColor])
+    case shade(shade: String, color: TypographyColor)
     
     // MARK: - Properties
     static var colorNameMap: [String: UIColor] {
@@ -109,6 +111,18 @@ public enum TypographyColor {
             return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1.0)
         case .rgba(let red, let green, let blue, let alpha):
             return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+        case .dynamicColor(let colorDictionary):
+            guard #available(iOS 13, *) else {
+                return colorDictionary[.light]?.uiColor ?? .black
+            }
+            
+            return UIColor { (traitCollection) -> UIColor in
+                let key = TypographyInterfaceStyle(style: traitCollection.userInterfaceStyle)
+                let color = colorDictionary[key] ?? colorDictionary[.light]
+                return color!.uiColor
+            }
+        case .shade(let shade, let color):
+            return color.uiColor.shade(shade)
         }
     }
     

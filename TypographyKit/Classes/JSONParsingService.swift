@@ -8,12 +8,11 @@
 struct JSONParsingService: ParsingService {
     
     func parse(_ data: Data) -> ParsingServiceResult? {
-        guard let jsonDictionary = ((try? JSONSerialization.jsonObject(with: data, options: [])
-            as? [String: Any]) as [String: Any]??),
-            let result = jsonDictionary else {
+        guard let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: [])
+            as? [String: Any] else {
                 return nil
         }
-        return parse(result)
+        return parse(jsonDictionary)
     }
     
 }

@@ -30,6 +30,11 @@
 		9E6C9768E8AB9BBF166C6226D0404B36 /* TypographyKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BF8F5044427E45803E81B90AB0FFF4BF /* TypographyKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9107AE55CB63D23A51201BB01F82CD0 /* TypographyKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE7B84523676BEA727C4020121C00682 /* TypographyKit-dummy.m */; };
 		BDCD712980CD4B2C0D4A5987007D92E2 /* Pods-TypographyKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BCE4F369F5E1C6AA47FBD61CDB2BDC /* Pods-TypographyKit_Example-dummy.m */; };
+		BE2157B82319633C00139DCC /* LoggingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2157B72319633C00139DCC /* LoggingService.swift */; };
+		BEA6024722F4874900CCB31E /* TypographyInterfaceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA6024522F486E000CCB31E /* TypographyInterfaceStyle.swift */; };
+		BEA6024922F487DB00CCB31E /* FontTextStyleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA6024822F487DB00CCB31E /* FontTextStyleParser.swift */; };
+		BEA6024B22F487ED00CCB31E /* ColorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA6024A22F487EC00CCB31E /* ColorParser.swift */; };
+		BEA6024D22F488B200CCB31E /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA6024C22F488B200CCB31E /* ParsingError.swift */; };
 		C774084DEDE0DAFFFC6CA43E4602B10E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		CCF8A45E22B996699CA8F024A1729D32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A081ECB980D0036D182 /* UILabelAdditions.swift */; };
@@ -99,6 +104,11 @@
 		AC89C8305E4586BCFA0B10269203EE3E /* Pods_TypographyKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4BF26DEE265C7289EF7E3F7496F5102 /* Pods-TypographyKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TypographyKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BC11CF1A68FE26085F164DAAC7979112 /* Pods-TypographyKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TypographyKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BE2157B72319633C00139DCC /* LoggingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingService.swift; sourceTree = "<group>"; };
+		BEA6024522F486E000CCB31E /* TypographyInterfaceStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyInterfaceStyle.swift; sourceTree = "<group>"; };
+		BEA6024822F487DB00CCB31E /* FontTextStyleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTextStyleParser.swift; sourceTree = "<group>"; };
+		BEA6024A22F487EC00CCB31E /* ColorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorParser.swift; sourceTree = "<group>"; };
+		BEA6024C22F488B200CCB31E /* ParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingError.swift; sourceTree = "<group>"; };
 		BF8F5044427E45803E81B90AB0FFF4BF /* TypographyKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TypographyKit-umbrella.h"; sourceTree = "<group>"; };
 		C13B7BF37C9910A2E68AA9EC4AD7A189 /* Pods-TypographyKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TypographyKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		C3BCE4F369F5E1C6AA47FBD61CDB2BDC /* Pods-TypographyKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TypographyKit_Example-dummy.m"; sourceTree = "<group>"; };
@@ -418,6 +428,7 @@
 				E494EAF31F1A356B00E13158 /* TypographyKitPropertyAdditionsKey.swift */,
 				13BB900422C3A6B6006D19E7 /* TypographyStyles.swift */,
 				13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */,
+				BEA6024522F486E000CCB31E /* TypographyInterfaceStyle.swift */,
 			);
 			name = Typography;
 			sourceTree = "<group>";
@@ -426,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				E494EB011F1A410800E13158 /* Parsing */,
+				BE2157B72319633C00139DCC /* LoggingService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -451,6 +463,8 @@
 		E494EB091F1A4A7A00E13158 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				BEA6024A22F487EC00CCB31E /* ColorParser.swift */,
+				BEA6024822F487DB00CCB31E /* FontTextStyleParser.swift */,
 				E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */,
 				13DAF971204717A70076E016 /* JSONParsingService.swift */,
 			);
@@ -461,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				E494EB021F1A412600E13158 /* ParsingService.swift */,
+				BEA6024C22F488B200CCB31E /* ParsingError.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -559,7 +574,7 @@
 				LastUpgradeCheck = 0940;
 				TargetAttributes = {
 					56BBB2E8F1AE2D92BFED105A2A890449 = {
-						LastSwiftMigration = 1030;
+						LastSwiftMigration = 1100;
 					};
 					65D76B0CEC0219205589D8239A4F50C7 = {
 						LastSwiftMigration = 1020;
@@ -639,16 +654,21 @@
 				E4370A0E1ECB983C0036D182 /* Typography.swift in Sources */,
 				E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */,
 				13DFA4C621CD319700CD9AEA /* ViewControllerNavigationSettings.swift in Sources */,
+				BEA6024722F4874900CCB31E /* TypographyInterfaceStyle.swift in Sources */,
 				138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */,
+				BEA6024922F487DB00CCB31E /* FontTextStyleParser.swift in Sources */,
 				E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */,
+				BE2157B82319633C00139DCC /* LoggingService.swift in Sources */,
 				E43CC45B1ED06BE40062FEA5 /* RegularExpressionMatchable.swift in Sources */,
 				13BB900722C3A6D7006D19E7 /* TypographyColors.swift in Sources */,
+				BEA6024D22F488B200CCB31E /* ParsingError.swift in Sources */,
 				E494EAF51F1A359100E13158 /* TypographyKitPropertyAdditionsKey.swift in Sources */,
 				13BB900622C3A6D3006D19E7 /* TypographyStyles.swift in Sources */,
 				E494EB031F1A412600E13158 /* ParsingService.swift in Sources */,
 				A9107AE55CB63D23A51201BB01F82CD0 /* TypographyKit-dummy.m in Sources */,
 				E494EAF71F1A35C200E13158 /* ConfigurationType.swift in Sources */,
 				E4370A0F1ECB98400036D182 /* LetterCase.swift in Sources */,
+				BEA6024B22F487ED00CCB31E /* ColorParser.swift in Sources */,
 				135A677F21F7879A004B4C54 /* TypographyKitConfiguration.swift in Sources */,
 				E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */,
 				E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */,

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,17 +13,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Rs-kD-xkV" id="w3b-BA-6W2">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="103"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Typography style name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ino-2D-xn9">
-                        <rect key="frame" x="16" y="11" width="207" height="27.5"/>
+                        <rect key="frame" x="15" y="11" width="207" height="27.5"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="999" text="Details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52R-py-XSn">
-                        <rect key="frame" x="16" y="48.5" width="49" height="22"/>
+                        <rect key="frame" x="15" y="48.5" width="49" height="22"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,6 +34,7 @@
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="52R-py-XSn" secondAttribute="bottom" id="B8Z-uw-7kz"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="52R-py-XSn" secondAttribute="trailing" constant="10" placeholder="YES" id="D45-h7-ErC"/>
                     <constraint firstItem="52R-py-XSn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ino-2D-xn9" secondAttribute="bottom" id="Do4-aE-Z8E"/>
+                    <constraint firstAttribute="bottom" secondItem="Ino-2D-xn9" secondAttribute="bottom" priority="250" id="JG9-Lv-07y"/>
                     <constraint firstItem="Ino-2D-xn9" firstAttribute="top" secondItem="w3b-BA-6W2" secondAttribute="topMargin" id="LYG-6g-VTo"/>
                     <constraint firstItem="52R-py-XSn" firstAttribute="leading" secondItem="Ino-2D-xn9" secondAttribute="leading" id="OWK-8a-Ib1"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="52R-py-XSn" secondAttribute="trailing" id="VqB-KT-JHu"/>

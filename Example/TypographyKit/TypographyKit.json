@@ -1,10 +1,17 @@
 {
 	"typography-colors": {
         "interactive": "lightest purple",
-        "background": "dark royal-blue",
+        "background": {
+            "dark": "dark royal-blue",
+            "light": "lightest gray"
+        },
         "gold": "#FFAB01",
         "royal-blue": "#08224C",
-        "text": "gold"
+        "text": {
+            "light": "",
+            "dark": "lightest gray"
+        },
+        "text-dark": "text darker"
 	},
 	"typography-kit": {
         "minimum-point-size": 10,
