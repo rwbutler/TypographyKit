@@ -2,10 +2,11 @@
 //  FontTextStyleParser.swift
 //  TypographyKit
 //
-//  Created by Roger Smith2 on 02/08/2019.
+//  Created by Roger Smith on 02/08/2019.
 //
 
 struct FontTextStyleParser {
+    
     typealias TextStyleResult = Result<Typography, ParsingError>
     
     let textStyles: FontTextStyleEntries
@@ -21,9 +22,11 @@ struct FontTextStyleParser {
         }
         return typographyFontStyles
     }
+    
 }
 
 private extension FontTextStyleParser {
+    
     mutating func parse(_ key: String, _ value: [String: Any]) {
         //Already Parsed
         if typographyFontStyles[key] != nil { return }
@@ -71,9 +74,11 @@ private extension FontTextStyleParser {
         
         return .failure(.notFound(element: key))
     }
+    
 }
 
 private extension FontTextStyleParser {
+    
     func typography(_ key: String, _ fontTextStyle: [String: Any]) -> Typography {
         let fontName = fontTextStyle[ConfigurationKey.fontName.rawValue] as? String
         let pointSize = fontTextStyle[ConfigurationKey.pointSize.rawValue] as? Float
@@ -100,4 +105,5 @@ private extension FontTextStyleParser {
         return Typography(name: modified.name, fontName: newFace, fontSize: newSize,
                           letterCase: newCase, textColor: newColor)
     }
+    
 }

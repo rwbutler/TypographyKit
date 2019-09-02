@@ -21,11 +21,10 @@ extension TypographyKitElement {
         let fontAttribute = attrs[.font] as? UIFont
         if let font = fontAttribute ?? typography.font() {
             let fontSize = typography.font()?.pointSize ?? font.pointSize
-            if let fontWithSize = UIFont(name: font.fontName, size: fontSize) {
-                // The font size of the typography size should be the priority in order to support Dynamic Type.
-                attributedString.removeAttribute(.font, range: range)
-                attributedString.addAttribute(.font, value: fontWithSize, range: range)
-            }
+            let fontWithSize = font.withSize(fontSize)
+            // The font size of the typography size should be the priority in order to support Dynamic Type.
+            attributedString.removeAttribute(.font, range: range)
+            attributedString.addAttribute(.font, value: fontWithSize, range: range)
         }
         let textColorAttribute = attrs[.foregroundColor] as? UIColor
         if let textColor = textColorAttribute ?? typography.textColor {

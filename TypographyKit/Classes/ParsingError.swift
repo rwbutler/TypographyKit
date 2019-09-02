@@ -2,7 +2,7 @@
 //  ParsingError.swift
 //  TypographyKit
 //
-//  Created by Roger Smith2 on 02/08/2019.
+//  Created by Roger Smith on 02/08/2019.
 //
 
 indirect enum ParsingError: Error {

@@ -59,10 +59,12 @@ class TypographyKitViewController: UITableViewController {
         }
         typographyKitCell.typographyStyleDetails.text = typographyStyleDetails
         typographyKitCell.typographyStyleDetails.textColor = typographyStyle.textColor
-        if let typographyColor = typographyStyle.textColor, colorIsBright(color: typographyColor) {
-            typographyKitCell.contentView.backgroundColor = UIColor.gray
-        } else {
-            typographyKitCell.contentView.backgroundColor = UIColor.white
+        if let typographyColor = typographyStyle.textColor {
+            if colorIsBright(color: typographyColor) {
+                typographyKitCell.contentView.backgroundColor = UIColor.gray
+            } else {
+                typographyKitCell.contentView.backgroundColor = UIColor.white
+            }
         }
         return typographyKitCell
     }

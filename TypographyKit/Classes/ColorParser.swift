@@ -2,10 +2,11 @@
 //  ColorParser.swift
 //  TypographyKit
 //
-//  Created by Roger Smith2 on 02/08/2019.
+//  Created by Roger Smith on 02/08/2019.
 //
 
 struct ColorParser {
+    
     typealias ColorResult = Result<TypographyColor, ParsingError>
     
     let colors: [String: Any]
@@ -20,18 +21,17 @@ struct ColorParser {
             backTrace = []
             parseCol(key: key, value: value)
         }
-        
         return typographyColors
     }
+    
 }
 
 private extension ColorParser {
-    mutating func parseCol(key: String, value: Any?) {
-        //Already Parsed
-        if typographyColors[key] != nil { return }
     
-        //Already found to be invalid
-        if invalidColors[key] != nil { return }
+    mutating func parseCol(key: String, value: Any?) {
+        if typographyColors[key] != nil { return } // Already Parsed
+    
+        if invalidColors[key] != nil { return } // Already found to be invalid
         
         backTrace.append(key)
         switch parseColor(key, value) {
@@ -97,10 +97,12 @@ private extension ColorParser {
         
         return .failure(.notFound(element: value))
     }
+    
 }
 
 // Shades
 private extension ColorParser {
+    
     mutating func parseShadedColor(value: String) -> TypographyColor? {
         let colorWords = value.split(separator: " ")
         guard let shade = colorWords.first(where: { ColorParser.shades.contains(String($0)) }) else {
@@ -108,21 +110,27 @@ private extension ColorParser {
         }
         let newValue = value.replacingOccurrences(of: shade, with: "")
         let trimmed = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
-        let result: ColorResult = parseColorString(trimmed).map { .shade(shade: String(shade), color: $0) }
+        let result: ColorResult = parseColorString(trimmed).map {
+            .shade(shade: String(shade), color: $0)
+        }
         return try? result.get()
     }
+    
 }
 
-// Aliased Colours
+// Aliased Colors
 private extension ColorParser {
+    
     mutating func parseAliasedColor(_ key: String, _ value: Any) -> TypographyColor? {
         parseCol(key: key, value: value)
         return typographyColors[key]
     }
+    
 }
 
 // Dynamic Colors
 private extension ColorParser {
+    
     mutating func parseDynamicColor(_ colorDictionary: [String: String]) -> ColorResult {
         var colors: [TypographyInterfaceStyle: TypographyColor] = [:]
         
@@ -136,7 +144,10 @@ private extension ColorParser {
             }
         }
         
-        guard colors[.light] != nil else { return .failure(ParsingError.invalidDynamicColor) }
+        guard colors[.light] != nil else {
+            return .failure(ParsingError.invalidDynamicColor)
+        }
         return .success(.dynamicColor(colors: colors))
     }
+    
 }

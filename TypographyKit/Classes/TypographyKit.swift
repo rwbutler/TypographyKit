@@ -72,7 +72,7 @@ public struct TypographyKit {
     
     @available(iOS 9.0, *)
     public static func presentTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
-                                               animated: Bool = false, shouldRefresh: Bool = true) {
+                                               animated: Bool = true, shouldRefresh: Bool = true) {
         let currentBundle = Bundle(for: TKColorsViewController.self)
         let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
         let viewController = storyboard.instantiateInitialViewController()
@@ -119,7 +119,7 @@ public struct TypographyKit {
     
     /// Presents TypographyKitViewController modally.
     public static func presentTypographyStyles(delegate: TypographyKitViewControllerDelegate? = nil,
-                                               animated: Bool = false, shouldRefresh: Bool = true) {
+                                               animated: Bool = true, shouldRefresh: Bool = true) {
         guard let presenter = UIApplication.shared.keyWindow?.rootViewController else { return }
         let navigationSettings = TypographyKitViewController
             .NavigationSettings(animated: animated,
