@@ -20,22 +20,21 @@ extension UITextView {
             self.text = self.text?.letterCase(newValue)
         }
     }
-
+    
     @objc public var fontTextStyle: UIFont.TextStyle {
         get {
             // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFont.TextStyle
         }
         set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.fontTextStyle,
+            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
             if let typography = Typography(for: newValue) {
                 self.typography = typography
             }
         }
     }
-
+    
     @objc public var fontTextStyleName: String {
         get {
             return fontTextStyle.rawValue
@@ -44,15 +43,14 @@ extension UITextView {
             fontTextStyle = UIFont.TextStyle(rawValue: newValue)
         }
     }
-
+    
     public var typography: Typography {
         get {
             // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography) as! Typography
         }
         set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.typography,
+            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
             if let newFont = newValue.font(UIApplication.shared.preferredContentSizeCategory) {
                 self.font = newFont
@@ -63,13 +61,13 @@ extension UITextView {
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(contentSizeCategoryDidChange(_:)),
-                                                   name: UIContentSizeCategory.didChangeNotification,
-                                                   object: nil)
+            let notificationCenter = NotificationCenter.default
+            notificationCenter.removeObserver(self)
+            notificationCenter.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)),
+                                           name: UIContentSizeCategory.didChangeNotification, object: nil)
         }
     }
-
+    
     public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
                                letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
         // Update text.
@@ -86,7 +84,8 @@ extension UITextView {
         // Apply overriding parameters.
         typography.textColor = textColor ?? typography.textColor
         typography.letterCase = letterCase ?? typography.letterCase
-        
+        self.fontTextStyle = style
+        self.typography = typography
         let mutableString = NSMutableAttributedString(attributedString: attrString)
         let textRange = NSRange(location: 0, length: attrString.string.count)
         mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
@@ -94,9 +93,9 @@ extension UITextView {
         })
         self.attributedText = mutableString
     }
-
+    
     // MARK: Functions
-
+    
     public func text(_ text: String?,
                      style: UIFont.TextStyle,
                      letterCase: LetterCase? = nil,
@@ -115,13 +114,14 @@ extension UITextView {
             self.typography = typography
         }
     }
-
+    
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
-            if attributedText != nil {
+            if isAttributed(attributedText) {
                 self.attributedText(attributedText, style: fontTextStyle)
+            } else {
+                self.font = self.typography.font(newValue)
             }
-            self.font = self.typography.font(newValue)
             self.setNeedsLayout()
         }
     }

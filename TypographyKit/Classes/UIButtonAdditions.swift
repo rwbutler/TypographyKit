@@ -16,22 +16,21 @@ extension UIButton {
         }
         return controlStates
     }
-
+    
     @objc public var fontTextStyle: UIFont.TextStyle {
         get {
             // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle) as! UIFont.TextStyle
         }
         set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.fontTextStyle,
+            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.fontTextStyle,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
             if let typography = Typography(for: newValue) {
                 self.typography = typography
             }
         }
     }
-
+    
     @objc public var fontTextStyleName: String {
         get {
             return fontTextStyle.rawValue
@@ -40,29 +39,27 @@ extension UIButton {
             fontTextStyle = UIFont.TextStyle(rawValue: newValue)
         }
     }
-
+    
     public var letterCase: LetterCase {
         get {
             // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase) as! LetterCase
         }
         set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.letterCase,
+            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
             let title = self.title(for: .normal)?.letterCase(newValue)
             self.setTitle(title, for: .normal)
         }
     }
-
+    
     public var typography: Typography {
         get {
             // swiftlint:disable:next force_cast
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography) as! Typography
         }
         set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.typography,
+            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
             if let newFont = newValue.font(UIApplication.shared.preferredContentSizeCategory) {
                 self.titleLabel?.font = newFont
@@ -75,15 +72,15 @@ extension UIButton {
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(contentSizeCategoryDidChange(_:)),
-                                                   name: UIContentSizeCategory.didChangeNotification,
-                                                   object: nil)
+            let notificationCenter = NotificationCenter.default
+            notificationCenter.removeObserver(self)
+            notificationCenter.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)),
+                                                   name: UIContentSizeCategory.didChangeNotification, object: nil)
         }
     }
-
+    
     // MARK: Functions
-
+    
     public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
                                letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
         // Update text.
@@ -97,10 +94,12 @@ extension UIButton {
         guard var typography = Typography(for: style), let attrString = titleLabel?.attributedText else {
             return
         }
+        
         // Apply overriding parameters.
         typography.textColor = textColor ?? typography.textColor
         typography.letterCase = letterCase ?? typography.letterCase
-        
+        self.fontTextStyle = style
+        self.typography = typography
         let mutableString = NSMutableAttributedString(attributedString: attrString)
         let textRange = NSRange(location: 0, length: attrString.string.count)
         mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
@@ -108,7 +107,7 @@ extension UIButton {
         })
         self.setAttributedTitle(mutableString, for: .normal)
     }
-
+    
     public func text(_ text: String?, style: UIFont.TextStyle, letterCase: LetterCase? = nil,
                      textColor: UIColor? = nil) {
         if let text = text {
@@ -125,13 +124,14 @@ extension UIButton {
             self.typography = typography
         }
     }
-
+    
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
-            if let attributedText = titleLabel?.attributedText {
+            if let attributedText = titleLabel?.attributedText, isAttributed(attributedText) {
                 self.attributedText(attributedText, style: fontTextStyle)
+            } else {
+                self.titleLabel?.font = self.typography.font(newValue)
             }
-            self.titleLabel?.font = self.typography.font(newValue)
         }
     }
 }

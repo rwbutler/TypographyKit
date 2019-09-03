@@ -15,6 +15,17 @@ extension UITextView: TypographyKitElement {}
 
 extension TypographyKitElement {
     
+    /// Determines whether or not the element with the given `attributedText` value is `plain` or `attributed`.
+    func isAttributed(_ attributedText: NSAttributedString?) -> Bool {
+        guard let attributedText = attributedText, !attributedText.string.isEmpty else {
+            return false
+        }
+        var range = NSRange()
+        attributedText.attributes(at: 0, effectiveRange: &range)
+        return attributedText.string.count != range.length
+        
+    }
+    
     /// Updates a given `NSMutableAttributedString` with the given attributes and typography in the specified range.
     func update(attributedString: NSMutableAttributedString, with attrs: [NSAttributedString.Key: Any],
                 in range: NSRange, and typography: Typography) {

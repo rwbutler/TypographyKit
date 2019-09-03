@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.3] - 2019-09-03
+### Changed
+Fixed an issue whereby attributed text would not be updated correctly.
+
 ## [2.2.2] - 2019-09-02
 ### Changed
 Fixed an issue whereby invoking `UIFont(name:, size:)` using the name of the system font (as part of setting a new font size for attributed text) causes the font to be set to Times New Roman.

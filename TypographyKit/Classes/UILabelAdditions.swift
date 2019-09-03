@@ -64,10 +64,10 @@ extension UILabel {
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(contentSizeCategoryDidChange(_:)),
-                                                   name: UIContentSizeCategory.didChangeNotification,
-                                                   object: nil)
+            let notificationCenter = NotificationCenter.default
+            notificationCenter.removeObserver(self)
+            notificationCenter.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)),
+                                           name: UIContentSizeCategory.didChangeNotification, object: nil)
         }
     }
     
@@ -89,7 +89,8 @@ extension UILabel {
         // Apply overriding parameters.
         typography.textColor = textColor ?? typography.textColor
         typography.letterCase = letterCase ?? typography.letterCase
-        
+        self.fontTextStyle = style
+        self.typography = typography
         let mutableString = NSMutableAttributedString(attributedString: attrString)
         let textRange = NSRange(location: 0, length: attrString.string.count)
         mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
@@ -117,10 +118,11 @@ extension UILabel {
     
     @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
-            if attributedText != nil {
+            if isAttributed(attributedText) {
                 self.attributedText(attributedText, style: fontTextStyle)
+            } else {
+                self.font = self.typography.font(newValue)
             }
-            self.font = self.typography.font(newValue)
             self.setNeedsLayout()
         }
     }
