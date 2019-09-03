@@ -67,12 +67,12 @@ public struct TypographyKit {
     
     // MARK: Functions
     internal static func colorName(color: UIColor) -> String? {
-        return colors.first(where: { $0.value == color })?.key
+        return colors.first(where: { $0.value == color })?.key 
     }
     
     @available(iOS 9.0, *)
     public static func presentTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
-                                               animated: Bool = false, shouldRefresh: Bool = true) {
+                                               animated: Bool = true, shouldRefresh: Bool = true) {
         let currentBundle = Bundle(for: TKColorsViewController.self)
         let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
         let viewController = storyboard.instantiateInitialViewController()
@@ -119,20 +119,18 @@ public struct TypographyKit {
     
     /// Presents TypographyKitViewController modally.
     public static func presentTypographyStyles(delegate: TypographyKitViewControllerDelegate? = nil,
-                                               animated: Bool = false, shouldRefresh: Bool = true) {
+                                               animated: Bool = true, shouldRefresh: Bool = true) {
         guard let presenter = UIApplication.shared.keyWindow?.rootViewController else { return }
-        let typographyKitViewController = TypographyKitViewController(style: .grouped)
-        typographyKitViewController.delegate = delegate
-        typographyKitViewController.modalPresentationStyle = .overCurrentContext
-        let navigationController = UINavigationController(rootViewController: typographyKitViewController)
         let navigationSettings = TypographyKitViewController
             .NavigationSettings(animated: animated,
                                 autoClose: true,
                                 closeButtonAlignment: .closeButtonLeftExportButtonRight,
                                 isModal: true,
-                                isNavigationBarHidden: navigationController.isNavigationBarHidden,
+                                isNavigationBarHidden: false,
                                 shouldRefresh: shouldRefresh)
-        typographyKitViewController.navigationSettings = navigationSettings
+        let viewController = typographyKitVC(navSettings: navigationSettings, delegate: delegate)
+        viewController.modalPresentationStyle = .overCurrentContext
+        let navigationController = UINavigationController(rootViewController: viewController)
         if navigationSettings.shouldRefresh {
             TypographyKit.refresh()
         }
@@ -142,11 +140,10 @@ public struct TypographyKit {
     public static func presentTypographyStyles(delegate: TypographyKitViewControllerDelegate? = nil,
                                                navigationSettings: ViewControllerNavigationSettings) {
         guard let presenter = UIApplication.shared.keyWindow?.rootViewController else { return }
-        let typographyKitViewController = TypographyKitViewController(style: .grouped)
-        typographyKitViewController.delegate = delegate
-        typographyKitViewController.modalPresentationStyle = .overCurrentContext
-        let navigationController = UINavigationController(rootViewController: typographyKitViewController)
-        typographyKitViewController.navigationSettings = navigationSettings
+        let viewController = typographyKitVC(navSettings: navigationSettings, delegate: delegate)
+        viewController.modalPresentationStyle = .overCurrentContext
+        let navigationController = UINavigationController(rootViewController: viewController)
+        
         if navigationSettings.shouldRefresh {
             TypographyKit.refresh()
         }
@@ -202,32 +199,37 @@ public struct TypographyKit {
                                             navigationController: UINavigationController,
                                             animated: Bool = false,
                                             shouldRefresh: Bool = true) {
-        let typographyKitViewController = TypographyKitViewController(style: .grouped)
         let navigationSettings = TypographyKitViewController
             .NavigationSettings(animated: animated,
                                 autoClose: true,
                                 isNavigationBarHidden: navigationController.isNavigationBarHidden,
                                 shouldRefresh: shouldRefresh)
-        typographyKitViewController.delegate = delegate
-        typographyKitViewController.navigationSettings = navigationSettings
+        let viewController = typographyKitVC(navSettings: navigationSettings, delegate: delegate)
         navigationController.isNavigationBarHidden = false
         if navigationSettings.shouldRefresh {
             TypographyKit.refresh()
         }
-        navigationController.pushViewController(typographyKitViewController, animated: animated)
+        navigationController.pushViewController(viewController, animated: animated)
     }
     
     public static func pushTypographyStyles(delegate: TypographyKitViewControllerDelegate? = nil,
                                             navigationController: UINavigationController,
                                             navigationSettings: ViewControllerNavigationSettings) {
-        let typographyKitViewController = TypographyKitViewController(style: .grouped)
-        typographyKitViewController.delegate = delegate
-        typographyKitViewController.navigationSettings = navigationSettings
+        let viewController = typographyKitVC(navSettings: navigationSettings, delegate: delegate)
         navigationController.isNavigationBarHidden = false
         if navigationSettings.shouldRefresh {
             TypographyKit.refresh()
         }
-        navigationController.pushViewController(typographyKitViewController, animated: navigationSettings.animated)
+        navigationController.pushViewController(viewController, animated: navigationSettings.animated)
+    }
+    
+    static func typographyKitVC(navSettings: ViewControllerNavigationSettings,
+                                delegate: TypographyKitViewControllerDelegate?) -> TypographyKitViewController {
+        let typographyKitViewController = TypographyKitViewController(style: .plain)
+        typographyKitViewController.delegate = delegate
+        typographyKitViewController.navigationSettings = navSettings
+        return typographyKitViewController
+        
     }
     
     public static func refresh(_ completion: ((TypographyKit.Configuration?) -> Void)? = nil) {

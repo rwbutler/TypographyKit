@@ -14,6 +14,8 @@ class TKColorsViewController: UIViewController {
     public typealias Delegate = TypographyKitViewControllerDelegate
     public typealias NavigationSettings = ViewControllerNavigationSettings
     
+    @IBOutlet var headerView: UISegmentedControl!
+    
     // MARK: State
     weak var delegate: Delegate?
     var navigationSettings: NavigationSettings?
@@ -37,6 +39,11 @@ class TKColorsViewController: UIViewController {
         delegate?.viewControllerDidFinish()
     }
     
+    @IBAction func changeStyle(_ sender: UISegmentedControl) {
+        guard #available(iOS 13, *) else { print("unavailable"); return}
+        let style = TypographyInterfaceStyle.allCases[sender.selectedSegmentIndex]
+        overrideUserInterfaceStyle = style.userInterfaceStyle
+    }
 }
 
 @available(iOS 9.0, *)
@@ -67,6 +74,16 @@ extension TKColorsViewController: UITableViewDelegate {
         return 100.0
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard #available(iOS 13, *) else { return nil }
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard #available(iOS 13, *) else { return 0 }
+        return headerView.frame.height
+    }
+    
 }
 
 @available(iOS 9.0, *)
@@ -92,7 +109,20 @@ private extension TKColorsViewController {
     }
     
     func configureView() {
+        configureHeader()
         configureNavigationBar()
+    }
+    
+    private func configureHeader() {
+        guard #available(iOS 13, *) else { return }
+        headerView.removeAllSegments()
+        TypographyInterfaceStyle.allCases.enumerated().forEach { x in
+            let (index, style) = x
+            headerView.insertSegment(withTitle: style.rawValue.upperCamelCased(), at: index, animated: false)
+        }
+
+        let currentStyle = TypographyInterfaceStyle(style: traitCollection.userInterfaceStyle)
+        headerView.selectedSegmentIndex = TypographyInterfaceStyle.allCases.firstIndex(of: currentStyle) ?? 0
     }
     
     /// Hides or unhides the navigation bar according to navigational preferences.

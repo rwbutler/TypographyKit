@@ -7,4 +7,4 @@
 
 import Foundation
 
-typealias TypographyColors = [String: UIColor]
+typealias TypographyColors = [String: TypographyColor]

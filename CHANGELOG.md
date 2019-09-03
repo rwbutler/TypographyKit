@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2019-09-03
+### Added
+Support for Xcode 11 and dark mode in iOS 13.
+
 ## [2.2.3] - 2019-09-03
 ### Changed
 Fixed an issue whereby attributed text would not be updated correctly.
@@ -35,7 +39,7 @@ Fixed an issue whereby invoking `UIFont(name:, size:)` using the name of the sys
 ### Changed
 - Added support for Swift 5.0.
 
-## [1.1.5] - 2019-07-01
+## [1.1.5] - 2019-07-01 (Swift 4.2)
 ### Added
 - Support for scaling using `UIFontMetrics` where iOS 11 using the `TypographyKit.scalingMode` property.
 - Better support for using the system font by listing the font name as `System` or the font name and weight e.g. `System-Bold`.

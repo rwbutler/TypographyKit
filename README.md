@@ -16,8 +16,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 - [Features](#features)
 - [Roadmap](#roadmap)
-- [What's New in TypographyKit 2.0.0?](#whats-new-in-typographykit-200)
-- [What's New in TypographyKit 1.1.5?](#whats-new-in-typographykit-115)
+- [What's New in TypographyKit 3.0.0?](#whats-new-in-typographykit-300)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
 	- [Carthage](#carthage)
@@ -48,13 +47,9 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 - [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
 - [x] Use either a PList or JSON to define your TypographyKit configuration. 
 
-## Roadmap
+## What's new in TypographyKit 3.0.0?
 
-Upcoming features for TypographyKit include:
-
-- [x] Support for dark mode in iOS 13.
-
-## What's new in TypographyKit 2.0.0?
+TypographyKit 3.0.0 supports Xcode 11 and dark mode in iOS 13 and supports iOS 8.2 and above. The last version supporting Xcode 10 and targeting the iOS 12 SDK is version 2.2.3.
 
 TypographyKit 2.0.0 brings support for Swift 5.0. The previous version supporting Swift 4.2 is version 1.1.5.
 
@@ -70,9 +65,7 @@ Or if you are using Carthage add the following to your `Cartfile`:
 github "rwbutler/TypographyKit" ~> 1.1.5
 ```
 
-## What's new in TypographyKit 1.1.5?
-
-It is now possible to reference the system font or system font and weight as part of your configuration by setting the `font-name` property value to `System` or e.g. `System-Bold` to additionally specify the font weight.
+In TypographyKit 1.1.5 is now possible to reference the system font or system font and weight as part of your configuration by setting the `font-name` property value to `System` or e.g. `System-Bold` to additionally specify the font weight.
 
 It is now possible to use `UIFontMetrics` to scale fonts where iOS 11 is available and using the system-provided `UIFont.TextStyle` options only by setting the `scaling-mode` property in the configuration file. Allowable values include `stepping` (default behavior), `uifontmetrics` and `uifontmetrics-with-fallback`. See [`CHANGELOG.md`](./CHANGELOG.md).
 
