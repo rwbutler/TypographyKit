@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 public struct Typography {
     public let name: String
     public let fontName: String?
