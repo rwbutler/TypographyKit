@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 // Public interface
 public struct TypographyKit {
     

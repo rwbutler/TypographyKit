@@ -5,6 +5,8 @@
 //  Created by Roger Smith on 02/08/2019.
 //
 
+import UIKit
+
 struct FontTextStyleParser {
     
     typealias TextStyleResult = Result<Typography, ParsingError>

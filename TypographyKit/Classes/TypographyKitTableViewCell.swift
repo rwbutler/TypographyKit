@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class TypographyKitTableViewCell: UITableViewCell {
     @IBOutlet weak var typographyStyleName: UILabel!

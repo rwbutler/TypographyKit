@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] - 2019-09-11
+### Updated
+Resolved an issues with setting `NSAttributedString` on UILabel` updating all fonts to the specified typography style even where a font attribute was already set.
+
 ## [3.0.0] - 2019-09-03
 ### Added
 Support for Xcode 11 and dark mode in iOS 13.

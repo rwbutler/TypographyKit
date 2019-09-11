@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 public indirect enum TypographyColor {
     
     // MARK: - Type definitions

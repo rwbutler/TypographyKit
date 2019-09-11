@@ -6,14 +6,21 @@
 //
 
 import Foundation
+import UIKit
 
-protocol TypographyKitElement {}
-extension UIButton: TypographyKitElement {}
-extension UILabel: TypographyKitElement {}
-extension UITextField: TypographyKitElement {}
-extension UITextView: TypographyKitElement {}
+@objc protocol TypographyKitElement {
+    @objc func contentSizeCategoryDidChange(_ notification: NSNotification)
+    func isAttributed() -> Bool
+}
 
 extension TypographyKitElement {
+    
+    func addObserver() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self, name: UIContentSizeCategory.didChangeNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)),
+                                       name: UIContentSizeCategory.didChangeNotification, object: nil)
+    }
     
     /// Determines whether or not the element with the given `attributedText` value is `plain` or `attributed`.
     func isAttributed(_ attributedText: NSAttributedString?) -> Bool {

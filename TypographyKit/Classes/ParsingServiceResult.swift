@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 struct ParsingServiceResult {
     let configurationSettings: ConfigurationSettings
     let typographyColors: [String: UIColor]

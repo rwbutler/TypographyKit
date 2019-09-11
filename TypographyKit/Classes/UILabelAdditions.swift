@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 extension UILabel {
+    
     @objc public var fontTextStyle: UIFont.TextStyle {
         get {
             // swiftlint:disable:next force_cast
@@ -42,7 +44,9 @@ extension UILabel {
             objc_setAssociatedObject(self,
                                      &TypographyKitPropertyAdditionsKey.letterCase,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
-            self.text = self.text?.letterCase(newValue)
+            if !isAttributed() {
+                self.text = self.text?.letterCase(newValue)
+            }
         }
     }
     
@@ -52,9 +56,12 @@ extension UILabel {
             return objc_getAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography) as! Typography
         }
         set {
-            objc_setAssociatedObject(self,
-                                     &TypographyKitPropertyAdditionsKey.typography,
+            objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
+            addObserver()
+            guard !isAttributed() else {
+                return
+            }
             if let newFont = newValue.font(UIApplication.shared.preferredContentSizeCategory) {
                 self.font = newFont
             }
@@ -64,10 +71,6 @@ extension UILabel {
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
-            let notificationCenter = NotificationCenter.default
-            notificationCenter.removeObserver(self)
-            notificationCenter.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)),
-                                           name: UIContentSizeCategory.didChangeNotification, object: nil)
         }
     }
     
@@ -83,7 +86,7 @@ extension UILabel {
         if let textColor = textColor {
             self.textColor = textColor
         }
-        guard var typography = Typography(for: style), let attrString = attributedText else {
+        guard var typography = Typography(for: style), let attrString = text else {
             return
         }
         // Apply overriding parameters.
@@ -116,7 +119,18 @@ extension UILabel {
         }
     }
     
-    @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
+}
+
+extension UILabel: TypographyKitElement {
+    
+    func isAttributed() -> Bool {
+        guard let attributedText = attributedText else {
+            return false
+        }
+        return isAttributed(attributedText)
+    }
+    
+    func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
             if isAttributed(attributedText) {
                 self.attributedText(attributedText, style: fontTextStyle)

@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 extension UITextField {
+    
     public var letterCase: LetterCase {
         get {
             // swiftlint:disable:next force_cast
@@ -16,7 +18,9 @@ extension UITextField {
         set {
             objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
-            self.text = self.text?.letterCase(newValue)
+            if !isAttributed() {
+                self.text = self.text?.letterCase(newValue)
+            }
         }
     }
     
@@ -52,6 +56,10 @@ extension UITextField {
         set {
             objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
+            addObserver()
+            guard !isAttributed() else {
+                return
+            }
             if let newFont = newValue.font(UIApplication.shared.preferredContentSizeCategory) {
                 self.font = newFont
             }
@@ -61,10 +69,6 @@ extension UITextField {
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
-            let notificationCenter = NotificationCenter.default
-            notificationCenter.removeObserver(self)
-            notificationCenter.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)),
-                                           name: UIContentSizeCategory.didChangeNotification, object: nil)
         }
     }
     
@@ -80,7 +84,7 @@ extension UITextField {
         if let textColor = textColor {
             self.textColor = textColor
         }
-        guard var typography = Typography(for: style), let attrString = attributedText else {
+        guard var typography = Typography(for: style), let attrString = text else {
             return
         }
         // Apply overriding parameters.
@@ -113,7 +117,18 @@ extension UITextField {
         }
     }
     
-    @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
+}
+
+extension UITextField: TypographyKitElement {
+    
+    func isAttributed() -> Bool {
+        guard let attributedText = attributedText else {
+            return false
+        }
+        return isAttributed(attributedText)
+    }
+    
+    func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
             if isAttributed(attributedText) {
                 self.attributedText(attributedText, style: fontTextStyle)
@@ -123,4 +138,5 @@ extension UITextField {
             self.setNeedsLayout()
         }
     }
+    
 }

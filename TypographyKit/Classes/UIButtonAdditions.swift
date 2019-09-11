@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIButton {
+    
     private var controlStates: [UIControl.State] {
         var controlStates: [UIControl.State] = [.normal, .highlighted, .disabled, .selected, .application]
         if #available(iOS 9, *) {
@@ -48,8 +50,10 @@ extension UIButton {
         set {
             objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.letterCase,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
-            let title = self.title(for: .normal)?.letterCase(newValue)
-            self.setTitle(title, for: .normal)
+            if !isAttributed() {
+                let title = self.title(for: .normal)?.letterCase(newValue)
+                self.setTitle(title, for: .normal)
+            }
         }
     }
     
@@ -61,6 +65,10 @@ extension UIButton {
         set {
             objc_setAssociatedObject(self, &TypographyKitPropertyAdditionsKey.typography,
                                      newValue, .OBJC_ASSOCIATION_RETAIN)
+            addObserver()
+            guard !isAttributed() else {
+                return
+            }
             if let newFont = newValue.font(UIApplication.shared.preferredContentSizeCategory) {
                 self.titleLabel?.font = newFont
             }
@@ -72,10 +80,6 @@ extension UIButton {
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
-            let notificationCenter = NotificationCenter.default
-            notificationCenter.removeObserver(self)
-            notificationCenter.addObserver(self, selector: #selector(contentSizeCategoryDidChange(_:)),
-                                                   name: UIContentSizeCategory.didChangeNotification, object: nil)
         }
     }
     
@@ -91,7 +95,7 @@ extension UIButton {
         if let textColor = textColor {
             self.setTitleColor(textColor, for: .normal)
         }
-        guard var typography = Typography(for: style), let attrString = titleLabel?.attributedText else {
+        guard var typography = Typography(for: style), let attrString = text else {
             return
         }
         
@@ -125,7 +129,18 @@ extension UIButton {
         }
     }
     
-    @objc private func contentSizeCategoryDidChange(_ notification: NSNotification) {
+}
+
+extension UIButton: TypographyKitElement {
+    
+    func isAttributed() -> Bool {
+        guard let attributedText = titleLabel?.attributedText else {
+            return false
+        }
+        return isAttributed(attributedText)
+    }
+    
+    func contentSizeCategoryDidChange(_ notification: NSNotification) {
         if let newValue = notification.userInfo?[UIContentSizeCategory.newValueUserInfoKey] as? UIContentSizeCategory {
             if let attributedText = titleLabel?.attributedText, isAttributed(attributedText) {
                 self.attributedText(attributedText, style: fontTextStyle)
@@ -134,4 +149,5 @@ extension UIButton {
             }
         }
     }
+    
 }
