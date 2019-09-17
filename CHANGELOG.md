@@ -4,8 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2019-09-17
+### Added
+Added parameter `replacingDefaultTextColor` to function `attributedText(_ text:, style:,letterCase:, textColor: UIColor?)` allowing the most frequently occurring text color in an attributed string to be replaced with the value of the `textColor` parameter.
+
 ## [3.0.1] - 2019-09-11
-### Updated
+### Changed
 Resolved an issues with setting `NSAttributedString` on UILabel` updating all fonts to the specified typography style even where a font attribute was already set.
 
 ## [3.0.0] - 2019-09-03

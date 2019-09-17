@@ -76,8 +76,13 @@ extension UILabel {
     
     // MARK: Functions
     
+    /// - parameters:
+    ///     - replacingDefaultTextColor: If the `NSAttributedString` already specifies `foregroundColor` attributes
+    /// then setting this value to `true` determines the most used foregroundColor attribute and replaces the color
+    /// value with the value of the `textColor` parameter.
     public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
-                               letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
+                               letterCase: LetterCase? = nil, textColor: UIColor? = nil,
+                               replacingDefaultTextColor: Bool = false) {
         // Update text.
         if let text = text {
             self.attributedText = text
@@ -100,6 +105,11 @@ extension UILabel {
             update(attributedString: mutableString, with: value, in: range, and: typography)
         })
         self.attributedText = mutableString
+        if replacingDefaultTextColor {
+            let defaultColor = defaultTextColor(in: mutableString)
+            let replacementString = replaceTextColor(defaultColor, with: typography.textColor, in: mutableString)
+            self.attributedText = replacementString
+        }
     }
 
     public func text(_ text: String?, style: UIFont.TextStyle, letterCase: LetterCase? = nil,

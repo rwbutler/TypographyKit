@@ -86,7 +86,8 @@ extension UIButton {
     // MARK: Functions
     
     public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
-                               letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
+                               letterCase: LetterCase? = nil, textColor: UIColor? = nil,
+                               replacingDefaultTextColor: Bool = false) {
         // Update text.
         if let text = text {
             self.setAttributedTitle(text, for: .normal)
@@ -110,6 +111,11 @@ extension UIButton {
             update(attributedString: mutableString, with: value, in: range, and: typography)
         })
         self.setAttributedTitle(mutableString, for: .normal)
+        if replacingDefaultTextColor {
+            let defaultColor = defaultTextColor(in: mutableString)
+            let replacementString = replaceTextColor(defaultColor, with: typography.textColor, in: mutableString)
+            self.setAttributedTitle(replacementString, for: .normal)
+        }
     }
     
     public func text(_ text: String?, style: UIFont.TextStyle, letterCase: LetterCase? = nil,

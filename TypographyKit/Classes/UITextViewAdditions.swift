@@ -73,7 +73,8 @@ extension UITextView {
     }
     
     public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
-                               letterCase: LetterCase? = nil, textColor: UIColor? = nil) {
+                               letterCase: LetterCase? = nil, textColor: UIColor? = nil,
+                               replacingDefaultTextColor: Bool = false) {
         // Update text.
         if let text = text {
             self.attributedText = text
@@ -96,6 +97,11 @@ extension UITextView {
             update(attributedString: mutableString, with: value, in: range, and: typography)
         })
         self.attributedText = mutableString
+        if replacingDefaultTextColor {
+            let defaultColor = defaultTextColor(in: mutableString)
+            let replacementString = replaceTextColor(defaultColor, with: typography.textColor, in: mutableString)
+            self.attributedText = replacementString
+        }
     }
     
     // MARK: Functions
