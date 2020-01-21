@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypographyKit" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dx-WJ-xp7">
-                                <rect key="frame" x="132" y="30" width="111.5" height="20.5"/>
+                                <rect key="frame" x="132" y="10" width="111.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -31,7 +29,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="UITextView content will resize with the user's Text Size preference." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wic-EW-q8f">
-                                <rect key="frame" x="26" y="70.5" width="323" height="49.5"/>
+                                <rect key="frame" x="26" y="50.5" width="323" height="49.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -40,9 +38,8 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="UITextField content will do the same." borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQM-xr-ytX">
-                                <rect key="frame" x="26" y="140" width="323" height="30"/>
+                                <rect key="frame" x="26" y="120" width="323" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -50,7 +47,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="baF-RR-tAw">
-                                <rect key="frame" x="93.5" y="190" width="188" height="30"/>
+                                <rect key="frame" x="93.5" y="174" width="188" height="30"/>
                                 <state key="normal" title="And don't forget UIButtons."/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
@@ -68,7 +65,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example extending an existing font style" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx8-d3-8iw">
-                                <rect key="frame" x="34.5" y="301" width="306.5" height="20.5"/>
+                                <rect key="frame" x="34.5" y="285" width="306.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -76,8 +73,9 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="interactive-text"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example using the system font" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-G9-IRn">
-                                <rect key="frame" x="70.5" y="260" width="234" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-G9-IRn">
+                                <rect key="frame" x="20" y="244" width="335" height="21"/>
+                                <string key="text">Example using the system font Example using the system font Example using the system font Example using the system font Example using the system font</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -97,7 +95,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqB-Rn-cdS">
-                                <rect key="frame" x="39" y="341.5" width="297" height="27"/>
+                                <rect key="frame" x="39" y="325.5" width="297" height="27"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Example using an ">
                                         <attributes>
@@ -122,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06g-yE-c4J">
-                                <rect key="frame" x="26" y="388.5" width="323" height="39"/>
+                                <rect key="frame" x="26" y="372.5" width="323" height="39"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Example button using an ">
@@ -145,12 +143,13 @@
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.84705882352941175" green="0.47450980392156861" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2lc-eq-7dG"/>
                             <constraint firstItem="fqB-Rn-cdS" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="320-MH-QNh"/>
                             <constraint firstItem="OQs-iP-6r0" firstAttribute="leading" secondItem="gth-By-DPQ" secondAttribute="leading" id="3In-S0-AuS"/>
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="3NM-0U-Ri5"/>
+                            <constraint firstAttribute="trailing" secondItem="acd-G9-IRn" secondAttribute="trailing" constant="20" id="6gf-i0-6ss"/>
                             <constraint firstItem="fqB-Rn-cdS" firstAttribute="top" secondItem="sx8-d3-8iw" secondAttribute="bottom" constant="20" id="8v7-YN-4sN"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="baF-RR-tAw" secondAttribute="trailing" constant="10" id="DTH-Bs-dGB"/>
                             <constraint firstItem="fqB-Rn-cdS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="Dqz-0J-v2g"/>
@@ -169,6 +168,7 @@
                             <constraint firstItem="06g-yE-c4J" firstAttribute="top" secondItem="fqB-Rn-cdS" secondAttribute="bottom" constant="20" id="YSt-0Y-1jV"/>
                             <constraint firstItem="06g-yE-c4J" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Yjy-sI-Gii"/>
                             <constraint firstItem="3Dx-WJ-xp7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="ZDN-rH-IaO"/>
+                            <constraint firstItem="acd-G9-IRn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="Zci-TL-DsR"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="top" secondItem="Wic-EW-q8f" secondAttribute="bottom" constant="20" id="Zl4-04-KV8"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="06g-yE-c4J" secondAttribute="trailing" constant="10" id="bS8-LX-gb7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wic-EW-q8f" secondAttribute="trailing" constant="10" id="giU-DR-1Gs"/>

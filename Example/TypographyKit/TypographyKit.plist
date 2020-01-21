@@ -17,6 +17,11 @@
 	</dict>
 	<key>typography-kit</key>
 	<dict>
+		<key>labels</key>
+		<dict>
+			<key>line-break</key>
+			<string>word-wrap</string>
+		</dict>
 		<key>point-step-size</key>
 		<integer>2</integer>
 		<key>point-step-multiplier</key>
@@ -46,13 +51,13 @@
 			<key>letter-case</key>
 			<string>regular</string>
 		</dict>
-        <key>interactive-text</key>
-        <dict>
-            <key>extends</key>
-            <string>paragraph</string>
-            <key>text-color</key>
-            <string>interactive</string>
-        </dict>
+		<key>interactive-text</key>
+		<dict>
+			<key>extends</key>
+			<string>paragraph</string>
+			<key>text-color</key>
+			<string>interactive</string>
+		</dict>
 	</dict>
 </dict>
 </plist>

@@ -37,6 +37,8 @@
 		BEA6024D22F488B200CCB31E /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA6024C22F488B200CCB31E /* ParsingError.swift */; };
 		C774084DEDE0DAFFFC6CA43E4602B10E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		CCF8A45E22B996699CA8F024A1729D32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		D8CC864523D60FEA004D94F7 /* LabelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC864323D60F73004D94F7 /* LabelSettings.swift */; };
+		D8CC864823D7196C004D94F7 /* NSLineBreakMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CC864623D718F4004D94F7 /* NSLineBreakMode.swift */; };
 		E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A081ECB980D0036D182 /* UILabelAdditions.swift */; };
 		E4370A0E1ECB983C0036D182 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A021ECB97A90036D182 /* Typography.swift */; };
 		E4370A0F1ECB98400036D182 /* LetterCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A041ECB97C60036D182 /* LetterCase.swift */; };
@@ -116,6 +118,8 @@
 		D1167A36FE362F586555214654B14B56 /* TypographyKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TypographyKit.xcconfig; sourceTree = "<group>"; };
 		D21B51F10DF52BAE7B3A55646A35F665 /* Pods-TypographyKit_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TypographyKit_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		D77B796212B302F7B261C186FFF5F92B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8CC864323D60F73004D94F7 /* LabelSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSettings.swift; sourceTree = "<group>"; };
+		D8CC864623D718F4004D94F7 /* NSLineBreakMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLineBreakMode.swift; sourceTree = "<group>"; };
 		DB3F7C35B571B7F98D669C9F776E6B8D /* Pods-TypographyKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TypographyKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DCB4DB4FE3F74E37E2C7F9020AA432A4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4370A021ECB97A90036D182 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 				E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */,
 				135C78DB20F7662300BDB06D /* UIColorAdditions.swift */,
 				133A83F8230D5AB500A10591 /* TypographyKitElement.swift */,
+				D8CC864623D718F4004D94F7 /* NSLineBreakMode.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 				E494EAF61F1A35C200E13158 /* ConfigurationType.swift */,
 				E494EAF81F1A35E000E13158 /* ConfigurationKey.swift */,
 				E494EB041F1A462300E13158 /* ConfigurationSettings.swift */,
+				D8CC864323D60F73004D94F7 /* LabelSettings.swift */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -574,7 +580,7 @@
 				LastUpgradeCheck = 0940;
 				TargetAttributes = {
 					56BBB2E8F1AE2D92BFED105A2A890449 = {
-						LastSwiftMigration = 1100;
+						LastSwiftMigration = 1130;
 					};
 					65D76B0CEC0219205589D8239A4F50C7 = {
 						LastSwiftMigration = 1020;
@@ -638,6 +644,7 @@
 				13317E2622CA1F4B00C96CD9 /* ScalingMode.swift in Sources */,
 				E4370A101ECB98440036D182 /* StringAdditions.swift in Sources */,
 				E494EB081F1A4A2E00E13158 /* ParsingServiceResult.swift in Sources */,
+				D8CC864823D7196C004D94F7 /* NSLineBreakMode.swift in Sources */,
 				13DFA4C521CD318C00CD9AEA /* CloseButtonAlignment.swift in Sources */,
 				13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */,
 				E494EAF91F1A35E000E13158 /* ConfigurationKey.swift in Sources */,
@@ -652,6 +659,7 @@
 				E494EAFF1F1A3F7600E13158 /* PropertyListParsingService.swift in Sources */,
 				135C78DD20F7662C00BDB06D /* UIColorAdditions.swift in Sources */,
 				E4370A0E1ECB983C0036D182 /* Typography.swift in Sources */,
+				D8CC864523D60FEA004D94F7 /* LabelSettings.swift in Sources */,
 				E4370A0C1ECB98330036D182 /* UILabelAdditions.swift in Sources */,
 				13DFA4C621CD319700CD9AEA /* ViewControllerNavigationSettings.swift in Sources */,
 				BEA6024722F4874900CCB31E /* TypographyInterfaceStyle.swift in Sources */,

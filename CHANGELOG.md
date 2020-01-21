@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0] - 2020-01-21
+### Added
+Added the ability to globally specify the line breaking mode for `UILabel` using the `line-break` property of `labels`. For an example, see the sample app.
+
 ## [3.1.0] - 2019-09-17
 ### Added
 Added parameter `replacingDefaultTextColor` to function `attributedText(_ text:, style:,letterCase:, textColor: UIColor?)` allowing the most frequently occurring text color in an attributed string to be replaced with the value of the `textColor` parameter.

@@ -43,7 +43,8 @@ extension TypographyKitElement {
         return defaultColorEntry.color
     }
     
-    func replaceTextColor(_ color: UIColor, with newColor: UIColor?, in attributedString: NSAttributedString) -> NSAttributedString {
+    func replaceTextColor(_ color: UIColor, with newColor: UIColor?,
+                          in attributedString: NSAttributedString) -> NSAttributedString {
         guard let newColor = newColor else {
             return attributedString
         }

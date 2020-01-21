@@ -14,6 +14,9 @@
         "text-dark": "text darker"
 	},
 	"typography-kit": {
+        "labels": {
+            "line-break": "word-wrap"
+        },
         "minimum-point-size": 10,
         "maximum-point-size": 100,
 		"point-step-size": 2,

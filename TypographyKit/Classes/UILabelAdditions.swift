@@ -71,6 +71,10 @@ extension UILabel {
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
+            if let lineBreak = TypographyKit.lineBreak {
+                self.lineBreakMode = lineBreak
+                self.numberOfLines = 0
+            }
         }
     }
     

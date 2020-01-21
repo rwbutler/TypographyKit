@@ -47,6 +47,10 @@ public struct TypographyKit {
         return configuration?.typographyStyles ?? [:]
     }()
     
+    public static var lineBreak: NSLineBreakMode? = {
+        return configuration?.configurationSettings.labels.lineBreak
+    }()
+    
     public static var minimumPointSize: Float? = {
         return configuration?.configurationSettings.minimumPointSize
     }()
