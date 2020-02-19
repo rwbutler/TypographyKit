@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 Added the ability to specify a minimum and / or maximum point size per typography style e.g.
 
-```swift
+```json
 		"paragraph": {
 			"font-name": "Avenir-Medium",
             "minimum-point-size": 12,
