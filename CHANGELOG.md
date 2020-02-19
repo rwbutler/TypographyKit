@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.3.0] - 2020-02-19
+### Added
+Added the ability to specify a minimum and / or maximum point size per typography style e.g.
+
+```swift
+		"paragraph": {
+			"font-name": "Avenir-Medium",
+            "minimum-point-size": 12,
+            "maximum-point-size": 24,
+			"point-size": 18,
+			"text-color": "text",
+			"letter-case": "regular"
+		}
+``` 
+
 ## [3.2.0] - 2020-01-21
 ### Added
 Added the ability to globally specify the line breaking mode for `UILabel` using the `line-break` property of `labels`. For an example, see the sample app.

@@ -32,6 +32,8 @@
 		},
 		"paragraph": {
 			"font-name": "Avenir-Medium",
+            "minimum-point-size": 12,
+            "maximum-point-size": 24,
 			"point-size": 18,
 			"text-color": "text",
 			"letter-case": "regular"

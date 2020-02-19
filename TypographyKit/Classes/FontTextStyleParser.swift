@@ -83,6 +83,8 @@ private extension FontTextStyleParser {
     
     func typography(_ key: String, _ fontTextStyle: [String: Any]) -> Typography {
         let fontName = fontTextStyle[ConfigurationKey.fontName.rawValue] as? String
+        let maxPointSize = fontTextStyle[ConfigurationKey.maximumPointSize.rawValue] as? Float
+        let minPointSize = fontTextStyle[ConfigurationKey.minimumPointSize.rawValue] as? Float
         let pointSize = fontTextStyle[ConfigurationKey.pointSize.rawValue] as? Float
         var textColor: UIColor?
         if let textColorName = fontTextStyle[ConfigurationKey.textColor.rawValue] as? String {
@@ -92,9 +94,8 @@ private extension FontTextStyleParser {
         if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
             letterCase = LetterCase(rawValue: letterCaseName)
         }
-        
-        return Typography(name: key, fontName: fontName, fontSize: pointSize,
-                                  letterCase: letterCase, textColor: textColor)
+        return Typography(name: key, fontName: fontName, fontSize: pointSize, letterCase: letterCase,
+                          maximumPointSize: maxPointSize, minimumPointSize: minPointSize, textColor: textColor)
     }
     
     /// Extends the original Typography style with another style, replacing properties of the
@@ -102,10 +103,12 @@ private extension FontTextStyleParser {
     func extend(_ original: Typography, with modified: Typography) -> Typography {
         let newFace = modified.fontName ?? original.fontName
         let newSize = modified.pointSize ?? original.pointSize
+        let newMaxSize = modified.maximumPointSize ?? original.maximumPointSize
+        let newMinSize = modified.minimumPointSize ?? original.minimumPointSize
         let newCase = modified.letterCase ?? original.letterCase
         let newColor = modified.textColor ?? original.textColor
-        return Typography(name: modified.name, fontName: newFace, fontSize: newSize,
-                          letterCase: newCase, textColor: newColor)
+        return Typography(name: modified.name, fontName: newFace, fontSize: newSize, letterCase: newCase,
+                          maximumPointSize: newMaxSize, minimumPointSize: newMinSize, textColor: newColor)
     }
     
 }
