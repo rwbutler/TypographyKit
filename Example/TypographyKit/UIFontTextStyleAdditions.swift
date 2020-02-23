@@ -12,4 +12,5 @@ import UIKit
 extension UIFont.TextStyle {
     static let heading = UIFont.TextStyle(rawValue: "heading")
     static let paragraph = UIFont.TextStyle(rawValue: "paragraph")
+    static let interactive = UIFont.TextStyle(rawValue: "interactive-text")
 }

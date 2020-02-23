@@ -94,8 +94,13 @@ private extension FontTextStyleParser {
         if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
             letterCase = LetterCase(rawValue: letterCaseName)
         }
+        var scalingMode: ScalingMode?
+        if let scalingModeName = fontTextStyle[ConfigurationKey.scalingMode.rawValue] as? String {
+            scalingMode = ScalingMode(rawValue: scalingModeName)
+        }
         return Typography(name: key, fontName: fontName, fontSize: pointSize, letterCase: letterCase,
-                          maximumPointSize: maxPointSize, minimumPointSize: minPointSize, textColor: textColor)
+                          maximumPointSize: maxPointSize, minimumPointSize: minPointSize, scalingMode: scalingMode,
+                          textColor: textColor)
     }
     
     /// Extends the original Typography style with another style, replacing properties of the
@@ -107,8 +112,10 @@ private extension FontTextStyleParser {
         let newMinSize = modified.minimumPointSize ?? original.minimumPointSize
         let newCase = modified.letterCase ?? original.letterCase
         let newColor = modified.textColor ?? original.textColor
+        let newScalingMode = modified.scalingMode ?? original.scalingMode
         return Typography(name: modified.name, fontName: newFace, fontSize: newSize, letterCase: newCase,
-                          maximumPointSize: newMaxSize, minimumPointSize: newMinSize, textColor: newColor)
+                          maximumPointSize: newMaxSize, minimumPointSize: newMinSize,
+                          scalingMode: newScalingMode, textColor: newColor)
     }
     
 }

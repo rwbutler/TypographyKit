@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132EA94624016CBF0077E597 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA94524016CBF0077E597 /* SwiftUIView.swift */; };
+		132EA94824016E000077E597 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA94724016E000077E597 /* MenuViewController.swift */; };
+		132EA94A240179270077E597 /* SwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA949240179270077E597 /* SwiftUIViewController.swift */; };
+		132EA9902402AD380077E597 /* UIKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA98F2402AD380077E597 /* UIKitViewController.swift */; };
 		135C78DF20F7C14500BDB06D /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C78DE20F7C14500BDB06D /* UIColorAdditions.swift */; };
 		13DAF9752047198B0076E016 /* TypographyKit.json in Resources */ = {isa = PBXBuildFile; fileRef = 13DAF9742047198B0076E016 /* TypographyKit.json */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -32,13 +35,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		132EA94524016CBF0077E597 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		132EA94724016E000077E597 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		132EA949240179270077E597 /* SwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewController.swift; sourceTree = "<group>"; };
+		132EA98F2402AD380077E597 /* UIKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewController.swift; sourceTree = "<group>"; };
 		135C78DE20F7C14500BDB06D /* UIColorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorAdditions.swift; sourceTree = "<group>"; };
 		13DAF9742047198B0076E016 /* TypographyKit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TypographyKit.json; sourceTree = "<group>"; };
 		41AB6D3FB80D226587D8FF2B /* Pods_TypographyKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* TypographyKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypographyKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -77,6 +83,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		132EA94324016B9A0077E597 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				132EA94724016E000077E597 /* MenuViewController.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		132EA94424016C910077E597 /* SwiftUI Example */ = {
+			isa = PBXGroup;
+			children = (
+				132EA94524016CBF0077E597 /* SwiftUIView.swift */,
+				132EA949240179270077E597 /* SwiftUIViewController.swift */,
+			);
+			name = "SwiftUI Example";
+			sourceTree = "<group>";
+		};
+		132EA98D2402ACB00077E597 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				132EA98E2402ACD50077E597 /* UIKit Example */,
+				132EA94324016B9A0077E597 /* Menu */,
+				132EA94424016C910077E597 /* SwiftUI Example */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		132EA98E2402ACD50077E597 /* UIKit Example */ = {
+			isa = PBXGroup;
+			children = (
+				132EA98F2402AD380077E597 /* UIKitViewController.swift */,
+			);
+			name = "UIKit Example";
+			sourceTree = "<group>";
+		};
 		135C78E020F7C44000BDB06D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +125,15 @@
 				E43CC45D1ED0715F0062FEA5 /* UIFontTextStyleAdditions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		13942CF42402B47800E91EEB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				135C78E020F7C44000BDB06D /* Extensions */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 		4423B83F2BB4D0BD243A1139 /* Frameworks */ = {
@@ -119,15 +169,9 @@
 		607FACD21AFB9204008FA782 /* Example for TypographyKit */ = {
 			isa = PBXGroup;
 			children = (
-				135C78E020F7C44000BDB06D /* Extensions */,
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				13942CF42402B47800E91EEB /* Shared */,
+				132EA98D2402ACB00077E597 /* UI */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
-				13DAF9742047198B0076E016 /* TypographyKit.json */,
-				E4370A111ECB9C450036D182 /* TypographyKit.plist */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 			);
 			name = "Example for TypographyKit";
 			path = TypographyKit;
@@ -136,6 +180,11 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				E4370A111ECB9C450036D182 /* TypographyKit.plist */,
+				13DAF9742047198B0076E016 /* TypographyKit.json */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -398,9 +447,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				132EA9902402AD380077E597 /* UIKitViewController.swift in Sources */,
+				132EA94A240179270077E597 /* SwiftUIViewController.swift in Sources */,
+				132EA94824016E000077E597 /* MenuViewController.swift in Sources */,
 				135C78DF20F7C14500BDB06D /* UIColorAdditions.swift in Sources */,
 				E43CC45E1ED0715F0062FEA5 /* UIFontTextStyleAdditions.swift in Sources */,
+				132EA94624016CBF0077E597 /* SwiftUIView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +608,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TypographyKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -571,6 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TypographyKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";

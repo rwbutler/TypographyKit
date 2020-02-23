@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2020-02-23
+### Added
+- Support for SwiftUI. A typography style can be applied to a SwiftUI `Text` view as follows:
+
+```swift
+Text("A string").typography(style: .interactive) 
+```
+
+Letter casing can be applied directly to a String as follows:
+
+```swift
+"A string".letterCase(style: .interactive)
+```
+
+- Scaling mode may now be specified on a per typography style basis using the `scaling-mode` key.
+
+### Changed
+- The default scaling mode (if one is not specified) is now `UIFontMetrics` with fallback to stepping prior to iOS 11.0.
+- Improvements to scaling using `UIFontMetrics` including respecting minimum point size constraints.
+
+
 ## [3.3.0] - 2020-02-19
 ### Added
 Added the ability to specify a minimum and / or maximum point size per typography style e.g.

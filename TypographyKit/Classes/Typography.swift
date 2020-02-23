@@ -15,6 +15,7 @@ public struct Typography {
     public let minimumPointSize: Float?
     public let pointSize: Float? // base point size for font
     public var letterCase: LetterCase?
+    public var scalingMode: ScalingMode?
     public var textColor: UIColor?
     private let textStyle: UIFont.TextStyle
     private static let contentSizeCategoryMap: [UIContentSizeCategory: Float] = [
@@ -60,19 +61,22 @@ public struct Typography {
         self.minimumPointSize = typographyStyle.minimumPointSize
         self.pointSize = typographyStyle.pointSize
         self.letterCase = typographyStyle.letterCase
+        self.scalingMode = typographyStyle.scalingMode
         self.textColor = typographyStyle.textColor
         self.textStyle = textStyle
     }
     
     public init(name: String, fontName: String? = nil, fontSize: Float? = nil,
                 letterCase: LetterCase? = nil, maximumPointSize: Float? = nil,
-                minimumPointSize: Float? = nil, textColor: UIColor? = nil) {
+                minimumPointSize: Float? = nil, scalingMode: ScalingMode? = nil,
+                textColor: UIColor? = nil) {
         self.name = name
         self.fontName = fontName
         self.maximumPointSize = maximumPointSize
         self.minimumPointSize = minimumPointSize
         self.pointSize = fontSize
         self.letterCase = letterCase
+        self.scalingMode = scalingMode
         self.textColor = textColor
         self.textStyle = UIFont.TextStyle(rawValue: name)
     }
@@ -88,7 +92,7 @@ public struct Typography {
         guard let fontName = self.fontName, let pointSize = self.pointSize else {
             return nil
         }
-        switch TypographyKit.scalingMode {
+        switch resolvedScalingMode() {
         case .fontMetrics:
             if #available(iOS 11.0, *) {
                 return scaleUsingFontMetrics(fontName, pointSize: pointSize, textStyle: textStyle)
@@ -120,6 +124,10 @@ private extension Typography {
     
     private func resolvedMinPointSize() -> Float? {
         return minimumPointSize ?? TypographyKit.minimumPointSize
+    }
+    
+    private func resolvedScalingMode() -> ScalingMode {
+        return scalingMode ?? TypographyKit.scalingMode
     }
     
     /// Resolves font definitions defined in configuration to the system font with the specified `UIFont.Weight`.
@@ -157,9 +165,19 @@ private extension Typography {
         } else {
             font = UIFont(name: fontName, size: CGFloat(pointSize))
         }
-        let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
-        guard let newFont = font else { return nil }
-        return fontMetrics.scaledFont(for: newFont)
+        guard var newFont = font else {
+            return nil
+        }
+        if let maxPointSize = resolvedMaxPointSize() {
+            newFont = UIFontMetrics.default.scaledFont(for: newFont, maximumPointSize: CGFloat(maxPointSize))
+        } else {
+            newFont = UIFontMetrics.default.scaledFont(for: newFont)
+        }
+        if let minimumPointSize = resolvedMinPointSize(), newFont.pointSize < CGFloat(minimumPointSize) {
+            return UIFont(name: newFont.fontName, size: CGFloat(minimumPointSize))
+        } else {
+            return newFont
+        }
     }
     
     /// Scales `UIFont` using a step size * multiplier increasing in-line with the `UIContentSizeCategory` value.

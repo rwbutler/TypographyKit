@@ -8,7 +8,7 @@
         "gold": "#FFAB01",
         "royal-blue": "#08224C",
         "text": {
-            "light": "",
+            "light": "black",
             "dark": "lightest gray"
         },
         "text-dark": "text darker"
@@ -21,7 +21,7 @@
         "maximum-point-size": 100,
 		"point-step-size": 2,
 		"point-step-multiplier": 1,
-        "scaling-mode": "stepping"
+        "scaling-mode": "uifontmetrics-with-fallback"
 	},
 	"ui-font-text-styles": {
 		"heading": {
@@ -33,7 +33,7 @@
 		"paragraph": {
 			"font-name": "Avenir-Medium",
             "minimum-point-size": 12,
-            "maximum-point-size": 24,
+            "maximum-point-size": 34,
 			"point-size": 18,
 			"text-color": "text",
 			"letter-case": "regular"

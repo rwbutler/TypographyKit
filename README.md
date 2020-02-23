@@ -16,6 +16,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 - [Features](#features)
 - [Roadmap](#roadmap)
+- [What's New in TypographyKit 4.0.0?](#whats-new-in-typographykit-400)
 - [What's New in TypographyKit 3.0.0?](#whats-new-in-typographykit-300)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
@@ -39,6 +40,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 ## Features
 
 - [x] Dynamic Type support for UILabel, UIButton, UITextField and UITextView as well as some support for NSAttributedString.
+- [x] Dynamic Type support for SwiftUI.
 - [x] Dynamic Type support for custom fonts prior to iOS 11 (iOS 8 onwards).
 - [x] Optionally support Dynamic Type using *zero code* (by setting the `fontTextStyleName` key path String to the name of your typography style in IB). 
 - [x] Helps make your app visually consistent across all screen by allowing you to define all of your typography styles and app color scheme in a single location.
@@ -46,6 +48,24 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 - [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Details]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
 - [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
 - [x] Use either a PList or JSON to define your TypographyKit configuration. 
+
+## What's new in TypographyKit 4.0.0?
+
+TypographyKit 4.0.0 introduces support for SwiftUI. In order to make use of TypographyKit with SwiftUI, create a TypographyKit configuration file (either JSON or PList) and an extension on `UIFontTextStyle` as described in the [Usage](#usage) section, then simply apply your typography style to a SwiftUI `Text` view as follows:
+
+```swift
+Text("An example using TypographyKit with SwiftUI")
+.typography(style: .interactive)
+```
+
+A letter case may be applied directly to the String as follows:
+
+```swift
+"An example using TypographyKit with SwiftUI"
+.letterCase(style: .interactive)
+```
+
+This results in the letter case defined for the specified typography style (in config) being applied.
 
 ## What's new in TypographyKit 3.0.0?
 

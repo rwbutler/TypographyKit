@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132EA950240184B50077E597 /* ViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA94E240184B10077E597 /* ViewAdditions.swift */; };
 		13317E2622CA1F4B00C96CD9 /* ScalingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */; };
 		133A83762302FAE200A10591 /* TKColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133A83752302FAE200A10591 /* TKColorsViewController.swift */; };
 		133A837A2302FB4800A10591 /* TKColorsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 133A83792302FB4800A10591 /* TKColorsViewController.storyboard */; };
@@ -72,6 +73,7 @@
 /* Begin PBXFileReference section */
 		0164F88DE54097B2924C93B085E3AF14 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A758ACFE9821CA5BED01D51743713CA /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		132EA94E240184B10077E597 /* ViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAdditions.swift; sourceTree = "<group>"; };
 		13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingMode.swift; sourceTree = "<group>"; };
 		133A83752302FAE200A10591 /* TKColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TKColorsViewController.swift; sourceTree = "<group>"; };
 		133A83792302FB4800A10591 /* TKColorsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TKColorsViewController.storyboard; sourceTree = "<group>"; };
@@ -172,6 +174,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		132EA94B2401846E0077E597 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				132EA94D240184960077E597 /* Extensions */,
+			);
+			name = SwiftUI;
+			sourceTree = "<group>";
+		};
+		132EA94C2401847A0077E597 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				132EA94B2401846E0077E597 /* SwiftUI */,
+				E4735D981EF002D2007DD0DB /* UIKit */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		132EA94D240184960077E597 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				132EA94E240184B10077E597 /* ViewAdditions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		133A83742302FAC100A10591 /* Typography Colors */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,9 +375,9 @@
 		CE3B4FF611C9B63D4685514DD9CC3CFB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				132EA94C2401847A0077E597 /* UI */,
 				E494EAFA1F1A362300E13158 /* TypographyKit.swift */,
 				E494EB001F1A40FF00E13158 /* Services */,
-				E4735D981EF002D2007DD0DB /* UIKit */,
 				E4735D971EF002C3007DD0DB /* Model */,
 				E43CC4591ED06AC40062FEA5 /* String */,
 			);
@@ -651,6 +678,7 @@
 				E494EAFB1F1A362300E13158 /* TypographyKit.swift in Sources */,
 				13DFA4C021CD305800CD9AEA /* TypographyKitViewControllerDelegate.swift in Sources */,
 				E43CC45A1ED06BD70062FEA5 /* TypographyColor.swift in Sources */,
+				132EA950240184B50077E597 /* ViewAdditions.swift in Sources */,
 				E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */,
 				133A837D2302FDA400A10591 /* TKColorCell.swift in Sources */,
 				138F0E802146C81800CA8D8F /* TypographyKitTableViewCell.swift in Sources */,
@@ -919,7 +947,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 3.3.0;
+				MARKETING_VERSION = 4.0.0;
 				MODULEMAP_FILE = "Target Support Files/TypographyKit/TypographyKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rwbutler.TypographyKit;
@@ -1037,7 +1065,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 3.3.0;
+				MARKETING_VERSION = 4.0.0;
 				MODULEMAP_FILE = "Target Support Files/TypographyKit/TypographyKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rwbutler.TypographyKit;

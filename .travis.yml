@@ -1,5 +1,5 @@
-language: objective-c
-osx_image: xcode11
+language: swift
+osx_image: xcode11.3
 before_install:
   - gem install cocoapods -v '1.7.1'
 install:
@@ -8,5 +8,5 @@ script:
   - gem install travis
   - travis lint .travis.yml --no-interactive
   - swiftlint
-  - xcodebuild clean build -workspace Example/TypographyKit.xcworkspace -scheme TypographyKit-Example -destination "platform=iOS Simulator,name=iPhone 11" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+  - xcodebuild clean build -workspace Example/TypographyKit.xcworkspace -scheme TypographyKit-Example -destination "platform=iOS Simulator,name=iPhone 11" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
   - pod lib lint --allow-warnings

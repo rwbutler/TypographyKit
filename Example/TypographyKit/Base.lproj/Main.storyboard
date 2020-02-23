@@ -1,16 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="sg4-zY-DIy">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="oEx-1E-kKD">
+            <objects>
+                <navigationController id="sg4-zY-DIy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qFQ-nr-nhK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hmb-fV-SFL" kind="relationship" relationship="rootViewController" id="AEM-z7-XWX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZQs-Nb-AFO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1110" y="-385"/>
+        </scene>
+        <!--TypographyKit-->
+        <scene sceneID="N3k-A0-wkd">
+            <objects>
+                <viewController title="TypographyKit" id="Hmb-fV-SFL" customClass="MenuViewController" customModule="TypographyKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PlV-Q6-sQL"/>
+                        <viewControllerLayoutGuide type="bottom" id="mFL-vo-e7R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nV8-ee-fwA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="119" translatesAutoresizingMaskIntoConstraints="NO" id="ZEw-0x-yyz">
+                                <rect key="frame" x="20" y="52" width="335" height="607"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtM-Qk-Idv">
+                                        <rect key="frame" x="120" y="0.0" width="95" height="62.5"/>
+                                        <state key="normal" title="UIKit Example"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="vXZ-lx-hvc" kind="show" id="VJy-Bg-Qhw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4K-ld-nrl">
+                                        <rect key="frame" x="111.5" y="181.5" width="112" height="62.5"/>
+                                        <state key="normal" title="SwiftUI Example"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="pCD-kh-GtG" kind="show" id="fJg-kg-hLj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gth-By-DPQ">
+                                        <rect key="frame" x="83.5" y="363" width="168" height="62.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <state key="normal" title="View typography colors"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="presentTypographyColors:" destination="Hmb-fV-SFL" eventType="touchUpInside" id="pRL-SG-DTR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQs-iP-6r0">
+                                        <rect key="frame" x="85" y="544.5" width="165" height="62.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <state key="normal" title="View typography styles"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="presentTypographyStyles:" destination="Hmb-fV-SFL" eventType="touchUpInside" id="L45-Al-0tf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mFL-vo-e7R" firstAttribute="top" secondItem="ZEw-0x-yyz" secondAttribute="bottom" constant="8" symbolic="YES" id="CaW-fL-Ghl"/>
+                            <constraint firstItem="ZEw-0x-yyz" firstAttribute="top" secondItem="PlV-Q6-sQL" secondAttribute="bottom" constant="8" symbolic="YES" id="Nos-tU-Oii"/>
+                            <constraint firstAttribute="trailing" secondItem="ZEw-0x-yyz" secondAttribute="trailing" constant="20" symbolic="YES" id="cDD-4j-pgm"/>
+                            <constraint firstItem="ZEw-0x-yyz" firstAttribute="leading" secondItem="nV8-ee-fwA" secondAttribute="leading" constant="20" symbolic="YES" id="wmB-2z-NNf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZfV-iI-Gqf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rks-7h-u0q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-282" y="-384"/>
+        </scene>
+        <!--SwiftUI Example-->
+        <scene sceneID="7ve-1z-Cmd">
+            <objects>
+                <hostingController title="SwiftUI Example" id="pCD-kh-GtG" customClass="SwiftUIViewController" customModule="TypographyKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gjH-yG-p45"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gTM-GR-74d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="542" y="-152"/>
+        </scene>
+        <!--UIKit Example-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="TypographyKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="UIKit Example" id="vXZ-lx-hvc" customClass="UIKitViewController" customModule="TypographyKit_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -19,17 +119,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TypographyKit" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Dx-WJ-xp7">
-                                <rect key="frame" x="132" y="10" width="111.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="heading"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="UITextView content will resize with the user's Text Size preference." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wic-EW-q8f">
-                                <rect key="frame" x="26" y="50.5" width="323" height="49.5"/>
+                                <rect key="frame" x="26" y="52" width="323" height="49.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -38,7 +129,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="UITextField content will do the same." borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQM-xr-ytX">
-                                <rect key="frame" x="26" y="120" width="323" height="34"/>
+                                <rect key="frame" x="26" y="121.5" width="323" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -47,25 +138,14 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="baF-RR-tAw">
-                                <rect key="frame" x="93.5" y="174" width="188" height="30"/>
+                                <rect key="frame" x="93.5" y="175.5" width="188" height="30"/>
                                 <state key="normal" title="And don't forget UIButtons."/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQs-iP-6r0">
-                                <rect key="frame" x="103.5" y="613" width="168" height="34"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <state key="normal" title="View typography styles"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="presentTypographyStyles:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fBQ-5a-aLC"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example extending an existing font style" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx8-d3-8iw">
-                                <rect key="frame" x="34.5" y="285" width="306.5" height="20.5"/>
+                                <rect key="frame" x="34.5" y="347" width="306.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -73,9 +153,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="interactive-text"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-G9-IRn">
-                                <rect key="frame" x="20" y="244" width="335" height="21"/>
-                                <string key="text">Example using the system font Example using the system font Example using the system font Example using the system font Example using the system font</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UILabel example using the system font Example using the system font Example using the system font Example using the system font" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acd-G9-IRn">
+                                <rect key="frame" x="31" y="245.5" width="313.5" height="81.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -83,19 +162,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="example"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gth-By-DPQ">
-                                <rect key="frame" x="103.5" y="569" width="168" height="34"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <state key="normal" title="View typography colors"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fontTextStyleName" value="paragraph"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="presentTypographyColors:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PWN-rc-BjL"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqB-Rn-cdS">
-                                <rect key="frame" x="39" y="325.5" width="297" height="27"/>
+                                <rect key="frame" x="39" y="387.5" width="297" height="27"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Example using an ">
                                         <attributes>
@@ -120,7 +188,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06g-yE-c4J">
-                                <rect key="frame" x="26" y="372.5" width="323" height="39"/>
+                                <rect key="frame" x="26" y="434.5" width="323" height="39"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Example button using an ">
@@ -145,56 +213,45 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3Dx-WJ-xp7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="2lc-eq-7dG"/>
                             <constraint firstItem="fqB-Rn-cdS" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="320-MH-QNh"/>
-                            <constraint firstItem="OQs-iP-6r0" firstAttribute="leading" secondItem="gth-By-DPQ" secondAttribute="leading" id="3In-S0-AuS"/>
-                            <constraint firstItem="3Dx-WJ-xp7" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="3NM-0U-Ri5"/>
-                            <constraint firstAttribute="trailing" secondItem="acd-G9-IRn" secondAttribute="trailing" constant="20" id="6gf-i0-6ss"/>
+                            <constraint firstItem="Wic-EW-q8f" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="5LH-Gh-4ac"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="acd-G9-IRn" secondAttribute="trailing" constant="20" id="6gf-i0-6ss"/>
                             <constraint firstItem="fqB-Rn-cdS" firstAttribute="top" secondItem="sx8-d3-8iw" secondAttribute="bottom" constant="20" id="8v7-YN-4sN"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="baF-RR-tAw" secondAttribute="trailing" constant="10" id="DTH-Bs-dGB"/>
                             <constraint firstItem="fqB-Rn-cdS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="Dqz-0J-v2g"/>
                             <constraint firstItem="baF-RR-tAw" firstAttribute="top" secondItem="CQM-xr-ytX" secondAttribute="bottom" constant="20" id="Ean-dA-53B"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="fqB-Rn-cdS" secondAttribute="trailing" constant="10" id="FFP-Zr-le5"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="HaK-K9-u7C"/>
-                            <constraint firstItem="OQs-iP-6r0" firstAttribute="top" secondItem="gth-By-DPQ" secondAttribute="bottom" constant="10" id="Igz-7X-kGj"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="sx8-d3-8iw" secondAttribute="trailing" constant="10" id="KUR-bx-ciR"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3Dx-WJ-xp7" secondAttribute="trailing" id="KdD-sc-e5j"/>
                             <constraint firstItem="sx8-d3-8iw" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="LAG-O7-GiX"/>
                             <constraint firstItem="Wic-EW-q8f" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="R3Q-rS-cbb"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="OQs-iP-6r0" secondAttribute="trailing" constant="10" id="TxO-Z9-odi"/>
                             <constraint firstItem="acd-G9-IRn" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Uqd-N6-WJx"/>
-                            <constraint firstItem="OQs-iP-6r0" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="VDh-HC-vrv"/>
                             <constraint firstItem="06g-yE-c4J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="WVK-bE-u2y"/>
                             <constraint firstItem="06g-yE-c4J" firstAttribute="top" secondItem="fqB-Rn-cdS" secondAttribute="bottom" constant="20" id="YSt-0Y-1jV"/>
                             <constraint firstItem="06g-yE-c4J" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Yjy-sI-Gii"/>
-                            <constraint firstItem="3Dx-WJ-xp7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="ZDN-rH-IaO"/>
-                            <constraint firstItem="acd-G9-IRn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="Zci-TL-DsR"/>
+                            <constraint firstItem="acd-G9-IRn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="Zci-TL-DsR"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="top" secondItem="Wic-EW-q8f" secondAttribute="bottom" constant="20" id="Zl4-04-KV8"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="06g-yE-c4J" secondAttribute="trailing" constant="10" id="bS8-LX-gb7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wic-EW-q8f" secondAttribute="trailing" constant="10" id="giU-DR-1Gs"/>
                             <constraint firstItem="Wic-EW-q8f" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="hS7-aM-N5h"/>
                             <constraint firstItem="sx8-d3-8iw" firstAttribute="top" secondItem="acd-G9-IRn" secondAttribute="bottom" constant="20" id="kUC-F6-E4f"/>
-                            <constraint firstItem="OQs-iP-6r0" firstAttribute="trailing" secondItem="gth-By-DPQ" secondAttribute="trailing" id="koS-Pc-p5J"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="OQs-iP-6r0" secondAttribute="bottom" constant="20" id="lJR-7v-YUz"/>
-                            <constraint firstItem="OQs-iP-6r0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="mfM-cy-3Ro"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CQM-xr-ytX" secondAttribute="trailing" constant="10" id="oGu-1P-bd5"/>
                             <constraint firstItem="acd-G9-IRn" firstAttribute="top" secondItem="baF-RR-tAw" secondAttribute="bottom" constant="40" id="t9D-u3-i4E"/>
                             <constraint firstItem="CQM-xr-ytX" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="tar-81-zOu"/>
-                            <constraint firstItem="Wic-EW-q8f" firstAttribute="top" secondItem="3Dx-WJ-xp7" secondAttribute="bottom" constant="20" id="uK9-Ep-mtf"/>
                             <constraint firstItem="baF-RR-tAw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="wqN-Uc-FsH"/>
                             <constraint firstItem="baF-RR-tAw" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="yWB-ut-z4V"/>
                             <constraint firstItem="sx8-d3-8iw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="zFm-j9-DPf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7mx-DT-yME"/>
                     <connections>
                         <outlet property="attributedStringButton" destination="06g-yE-c4J" id="czW-WZ-2va"/>
                         <outlet property="attributedStringLabel" destination="fqB-Rn-cdS" id="VgV-oW-bbw"/>
-                        <outlet property="colorsButton" destination="gth-By-DPQ" id="kgi-gF-FgY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="36.431784107946029"/>
+            <point key="canvasLocation" x="542" y="-832"/>
         </scene>
     </scenes>
 </document>

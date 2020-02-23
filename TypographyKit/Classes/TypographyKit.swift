@@ -68,7 +68,7 @@ public struct TypographyKit {
     }()
     
     public static var scalingMode: ScalingMode = {
-        return configuration?.configurationSettings.scalingMode ?? .stepping
+        return configuration?.configurationSettings.scalingMode ?? .fontMetricsWithSteppingFallback
     }()
     
     // MARK: Functions

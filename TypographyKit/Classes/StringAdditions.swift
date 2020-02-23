@@ -29,6 +29,13 @@ public extension String {
             return self
         }
     }
+    
+    func letterCase(style: UIFont.TextStyle) -> String {
+        guard let letterCase = Typography(for: style)?.letterCase else {
+            return self
+        }
+        return self.letterCase(letterCase)
+    }
 
     func kebabCased(preserveSuffix: Bool = false) -> String {
         return self.capitalizeSubSequences(capitalizeFirst: false, conjunction: "-", preserveSuffix: preserveSuffix)
