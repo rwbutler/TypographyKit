@@ -5,6 +5,8 @@
 //  Created by Ross Butler on 2/28/18.
 //
 
+import Foundation
+
 struct JSONParsingService: ParsingService {
     
     func parse(_ data: Data) -> ParsingServiceResult? {

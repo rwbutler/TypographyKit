@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct LabelSettings {
     var lineBreak: NSLineBreakMode?

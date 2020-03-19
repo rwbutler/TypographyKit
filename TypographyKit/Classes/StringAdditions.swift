@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 public extension String {
     func letterCase(_ letterCase: LetterCase, preserveSuffix: Bool = false) -> String {
         switch letterCase {

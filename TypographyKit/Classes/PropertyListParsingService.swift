@@ -6,6 +6,8 @@
 //
 //
 
+import Foundation
+
 struct PropertyListParsingService: ParsingService {
     
     func parse(_ data: Data) -> ParsingServiceResult? {

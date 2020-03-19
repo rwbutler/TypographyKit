@@ -6,6 +6,7 @@
 //
 
 import os
+import Foundation
 
 struct LoggingService {
     static func log(error: ParsingError, key: String) {

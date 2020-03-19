@@ -6,6 +6,9 @@
 //
 //
 
+import Foundation
+import UIKit
+
 protocol ParsingService {
     func parse(_ data: Data) -> ParsingServiceResult?
 }
