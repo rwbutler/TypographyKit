@@ -310,13 +310,7 @@ private extension TypographyKit {
     }
     
     private static func parseConfiguration(data: Data) -> ParsingServiceResult? {
-        var parsingService: ParsingService?
-        switch configurationType {
-        case .plist:
-            parsingService = PropertyListParsingService()
-        case .json:
-            parsingService = JSONParsingService()
-        }
-        return parsingService?.parse(data)
+        let parsingService = StrategicParsingService(strategy: configurationType)
+        return parsingService.parse(data)
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		132652A524446BB7003FDA45 /* StrategicParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132652A424446BB7003FDA45 /* StrategicParsingService.swift */; };
 		132EA950240184B50077E597 /* ViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA94E240184B10077E597 /* ViewAdditions.swift */; };
 		13317E2622CA1F4B00C96CD9 /* ScalingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */; };
 		133A83762302FAE200A10591 /* TKColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133A83752302FAE200A10591 /* TKColorsViewController.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		0164F88DE54097B2924C93B085E3AF14 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A758ACFE9821CA5BED01D51743713CA /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		132652A424446BB7003FDA45 /* StrategicParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicParsingService.swift; sourceTree = "<group>"; };
 		132EA94E240184B10077E597 /* ViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAdditions.swift; sourceTree = "<group>"; };
 		13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingMode.swift; sourceTree = "<group>"; };
 		133A83752302FAE200A10591 /* TKColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TKColorsViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				BEA6024822F487DB00CCB31E /* FontTextStyleParser.swift */,
 				E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */,
 				13DAF971204717A70076E016 /* JSONParsingService.swift */,
+				132652A424446BB7003FDA45 /* StrategicParsingService.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				BEA6024B22F487ED00CCB31E /* ColorParser.swift in Sources */,
 				135A677F21F7879A004B4C54 /* TypographyKitConfiguration.swift in Sources */,
 				E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */,
+				132652A524446BB7003FDA45 /* StrategicParsingService.swift in Sources */,
 				E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */,
 				133A83762302FAE200A10591 /* TKColorsViewController.swift in Sources */,
 			);
