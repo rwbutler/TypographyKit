@@ -145,7 +145,7 @@ private extension ColorParser {
         }
         
         guard colors[.light] != nil else {
-            return .failure(ParsingError.invalidDynamicColor)
+            return .failure(.invalidDynamicColor)
         }
         return .success(.dynamicColor(colors: colors))
     }
