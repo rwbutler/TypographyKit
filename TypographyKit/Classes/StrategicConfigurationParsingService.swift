@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StrategicParsingService: ParsingService {
+struct StrategicConfigurationParsingService: ConfigurationParsingService {
     
     typealias ParsingStrategy = ConfigurationType
     private let strategy: ParsingStrategy
@@ -16,8 +16,8 @@ struct StrategicParsingService: ParsingService {
         self.strategy = strategy
     }
     
-    func parse(_ data: Data) -> ParsingServiceResult? {
-        let parsingImplementation: ParsingService
+    func parse(_ data: Data) -> ConfigurationParsingResult {
+        let parsingImplementation: ConfigurationParsingService
         switch strategy {
         case .json:
             parsingImplementation = JSONParsingService()

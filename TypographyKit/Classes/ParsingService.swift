@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 
-protocol ParsingService {
-    func parse(_ data: Data) -> ParsingServiceResult?
+typealias ConfigurationParsingResult = Result<ConfigurationModel, ConfigurationParsingError>
+
+protocol ConfigurationParsingService {
+    func parse(_ data: Data) -> ConfigurationParsingResult
 }
 
 private enum CodingKeys {
@@ -27,12 +29,12 @@ private enum CodingKeys {
 typealias FontTextStyleEntries = [String: [String: Any]]
 typealias ColorEntries = [String: Any]
 
-extension ParsingService {
+extension ConfigurationParsingService {
     
     // MARK: - Type definitions
     fileprivate typealias ExtendedTypographyStyleEntry = (existingStyleName: String, newStyle: Typography)
     
-    func parse(_ configEntries: [String: Any]) -> ParsingServiceResult? {
+    func parse(_ configEntries: [String: Any]) -> ConfigurationParsingResult {
         let configuration: ConfigurationSettings
         if let typographyKitConfig = configEntries[CodingKeys.umbrellaEntry] as? [String: Any],
             let stepSize = typographyKitConfig[CodingKeys.pointStepSize] as? Float,
@@ -60,8 +62,8 @@ extension ParsingService {
         var fontParser = FontTextStyleParser(textStyles: fontTextStyles, colorEntries: typographyColors)
         let typographyStyles = fontParser.parseFonts()
         
-        return ParsingServiceResult(settings: configuration, colors: uiColors,
-                                    styles: typographyStyles)
+        return .success(ConfigurationModel(settings: configuration, colors: uiColors,
+                                    styles: typographyStyles))
     }
     
     /// Translates a dictionary of configuration settings into a `LabelSettings` model object.

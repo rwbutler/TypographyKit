@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		132652A524446BB7003FDA45 /* StrategicParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132652A424446BB7003FDA45 /* StrategicParsingService.swift */; };
+		132652A524446BB7003FDA45 /* StrategicConfigurationParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132652A424446BB7003FDA45 /* StrategicConfigurationParsingService.swift */; };
+		132652B824449F7B003FDA45 /* ConfigurationParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132652B724449F7B003FDA45 /* ConfigurationParsingError.swift */; };
 		132EA950240184B50077E597 /* ViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA94E240184B10077E597 /* ViewAdditions.swift */; };
 		13317E2622CA1F4B00C96CD9 /* ScalingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */; };
 		133A83762302FAE200A10591 /* TKColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133A83752302FAE200A10591 /* TKColorsViewController.swift */; };
@@ -55,7 +56,7 @@
 		E494EAFF1F1A3F7600E13158 /* PropertyListParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */; };
 		E494EB031F1A412600E13158 /* ParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB021F1A412600E13158 /* ParsingService.swift */; };
 		E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB041F1A462300E13158 /* ConfigurationSettings.swift */; };
-		E494EB081F1A4A2E00E13158 /* ParsingServiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB071F1A4A2E00E13158 /* ParsingServiceResult.swift */; };
+		E494EB081F1A4A2E00E13158 /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB071F1A4A2E00E13158 /* ConfigurationModel.swift */; };
 		E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */; };
 		E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */; };
 		E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */; };
@@ -74,7 +75,8 @@
 /* Begin PBXFileReference section */
 		0164F88DE54097B2924C93B085E3AF14 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A758ACFE9821CA5BED01D51743713CA /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		132652A424446BB7003FDA45 /* StrategicParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicParsingService.swift; sourceTree = "<group>"; };
+		132652A424446BB7003FDA45 /* StrategicConfigurationParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategicConfigurationParsingService.swift; sourceTree = "<group>"; };
+		132652B724449F7B003FDA45 /* ConfigurationParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationParsingError.swift; sourceTree = "<group>"; };
 		132EA94E240184B10077E597 /* ViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAdditions.swift; sourceTree = "<group>"; };
 		13317E2422CA1B4A00C96CD9 /* ScalingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingMode.swift; sourceTree = "<group>"; };
 		133A83752302FAE200A10591 /* TKColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TKColorsViewController.swift; sourceTree = "<group>"; };
@@ -141,7 +143,7 @@
 		E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyListParsingService.swift; sourceTree = "<group>"; };
 		E494EB021F1A412600E13158 /* ParsingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingService.swift; sourceTree = "<group>"; };
 		E494EB041F1A462300E13158 /* ConfigurationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationSettings.swift; sourceTree = "<group>"; };
-		E494EB071F1A4A2E00E13158 /* ParsingServiceResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingServiceResult.swift; sourceTree = "<group>"; };
+		E494EB071F1A4A2E00E13158 /* ConfigurationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
 		E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewAdditions.swift; sourceTree = "<group>"; };
 		E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldAdditions.swift; sourceTree = "<group>"; };
 		EE7B84523676BEA727C4020121C00682 /* TypographyKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TypographyKit-dummy.m"; sourceTree = "<group>"; };
@@ -490,7 +492,8 @@
 		E494EB061F1A4A0C00E13158 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E494EB071F1A4A2E00E13158 /* ParsingServiceResult.swift */,
+				E494EB071F1A4A2E00E13158 /* ConfigurationModel.swift */,
+				132652B724449F7B003FDA45 /* ConfigurationParsingError.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -502,7 +505,7 @@
 				BEA6024822F487DB00CCB31E /* FontTextStyleParser.swift */,
 				E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */,
 				13DAF971204717A70076E016 /* JSONParsingService.swift */,
-				132652A424446BB7003FDA45 /* StrategicParsingService.swift */,
+				132652A424446BB7003FDA45 /* StrategicConfigurationParsingService.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -673,7 +676,7 @@
 			files = (
 				13317E2622CA1F4B00C96CD9 /* ScalingMode.swift in Sources */,
 				E4370A101ECB98440036D182 /* StringAdditions.swift in Sources */,
-				E494EB081F1A4A2E00E13158 /* ParsingServiceResult.swift in Sources */,
+				E494EB081F1A4A2E00E13158 /* ConfigurationModel.swift in Sources */,
 				D8CC864823D7196C004D94F7 /* NSLineBreakMode.swift in Sources */,
 				13DFA4C521CD318C00CD9AEA /* CloseButtonAlignment.swift in Sources */,
 				13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */,
@@ -697,6 +700,7 @@
 				138F0E7F2146B99B00CA8D8F /* TypographyKitViewController.swift in Sources */,
 				BEA6024922F487DB00CCB31E /* FontTextStyleParser.swift in Sources */,
 				E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */,
+				132652B824449F7B003FDA45 /* ConfigurationParsingError.swift in Sources */,
 				BE2157B82319633C00139DCC /* LoggingService.swift in Sources */,
 				E43CC45B1ED06BE40062FEA5 /* RegularExpressionMatchable.swift in Sources */,
 				13BB900722C3A6D7006D19E7 /* TypographyColors.swift in Sources */,
@@ -710,7 +714,7 @@
 				BEA6024B22F487ED00CCB31E /* ColorParser.swift in Sources */,
 				135A677F21F7879A004B4C54 /* TypographyKitConfiguration.swift in Sources */,
 				E494EB051F1A462300E13158 /* ConfigurationSettings.swift in Sources */,
-				132652A524446BB7003FDA45 /* StrategicParsingService.swift in Sources */,
+				132652A524446BB7003FDA45 /* StrategicConfigurationParsingService.swift in Sources */,
 				E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */,
 				133A83762302FAE200A10591 /* TKColorsViewController.swift in Sources */,
 			);

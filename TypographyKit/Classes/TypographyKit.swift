@@ -251,13 +251,13 @@ public struct TypographyKit {
     }
     
     public static func refreshWithData(_ data: Data, completion: ((TypographyKit.Configuration?) -> Void)? = nil) {
-        configuration = loadConfigurationWithData(data)
-        guard let colors = configuration?.typographyColors,
-            let settings = configuration?.configurationSettings,
-            let styles = configuration?.typographyStyles else {
-                completion?(nil)
-                return
+        guard case let .success(configuration) = loadConfigurationWithData(data) else {
+            completion?(nil)
+            return
         }
+        let colors = configuration.typographyColors
+        let settings = configuration.configurationSettings
+        let styles = configuration.typographyStyles
         let config = TypographyKitConfiguration(colors: colors, settings: settings, styles: styles)
         completion?(config)
     }
@@ -275,7 +275,7 @@ private extension TypographyKit {
             .appendingPathComponent("\(configurationName).\(configurationType.rawValue)")
     }
     
-    static var configuration: ParsingServiceResult? = loadConfiguration()
+    static var configuration: ConfigurationModel? = loadConfiguration()
     
     static let configurationName: String = "TypographyKit"
     
@@ -283,21 +283,27 @@ private extension TypographyKit {
         return Bundle.main.url(forResource: configurationName, withExtension: configType.rawValue)
     }
     
-    static func loadConfiguration() -> ParsingServiceResult? {
+    static func loadConfiguration() -> ConfigurationModel? {
         guard let configurationURL = configurationURL,
             let data = try? Data(contentsOf: configurationURL) else {
-                return loadConfigurationWithData(nil)
+                guard case let .success(model) = loadConfigurationWithData(nil) else {
+                    return nil
+                }
+                return model
         }
-        return loadConfigurationWithData(data)
+        guard case let .success(model) = loadConfigurationWithData(data) else {
+            return nil
+        }
+        return model
     }
     
-    static func loadConfigurationWithData(_ data: Data?) -> ParsingServiceResult? {
+    static func loadConfigurationWithData(_ data: Data?) -> ConfigurationParsingResult {
         guard let data = data else {
             guard let cachedConfigurationURL = cachedConfigurationURL,
                 let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
                     guard let bundledConfigurationURL = bundledConfigurationURL(),
                         let bundledData = try? Data(contentsOf: bundledConfigurationURL) else {
-                            return nil
+                            return .failure(.emptyPayload)
                     }
                     return parseConfiguration(data: bundledData)
             }
@@ -309,8 +315,8 @@ private extension TypographyKit {
         return parseConfiguration(data: data)
     }
     
-    private static func parseConfiguration(data: Data) -> ParsingServiceResult? {
-        let parsingService = StrategicParsingService(strategy: configurationType)
+    private static func parseConfiguration(data: Data) -> ConfigurationParsingResult {
+        let parsingService = StrategicConfigurationParsingService(strategy: configurationType)
         return parsingService.parse(data)
     }
 }

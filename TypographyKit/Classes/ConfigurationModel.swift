@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ParsingServiceResult {
+struct ConfigurationModel {
     let configurationSettings: ConfigurationSettings
     let typographyColors: [String: UIColor]
     let typographyStyles: [String: Typography]

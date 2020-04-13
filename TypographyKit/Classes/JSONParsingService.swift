@@ -7,12 +7,15 @@
 
 import Foundation
 
-struct JSONParsingService: ParsingService {
+struct JSONParsingService: ConfigurationParsingService {
     
-    func parse(_ data: Data) -> ParsingServiceResult? {
+    func parse(_ data: Data) -> ConfigurationParsingResult {
+        guard !data.isEmpty else {
+            return .failure(.emptyPayload)
+        }
         guard let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: [])
             as? [String: Any] else {
-                return nil
+                return .failure(.unexpectedFormat)
         }
         return parse(jsonDictionary)
     }

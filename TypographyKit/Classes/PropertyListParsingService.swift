@@ -8,14 +8,17 @@
 
 import Foundation
 
-struct PropertyListParsingService: ParsingService {
+struct PropertyListParsingService: ConfigurationParsingService {
     
-    func parse(_ data: Data) -> ParsingServiceResult? {
+    func parse(_ data: Data) -> ConfigurationParsingResult {
+        guard !data.isEmpty else {
+            return .failure(.emptyPayload)
+        }
         guard let plistDictionary = ((try? PropertyListSerialization.propertyList(from: data, options: [],
                                                                                 format: nil)
             as? [String: Any]) as [String: Any]??),
             let result = plistDictionary else {
-                return nil
+                return .failure(.unexpectedFormat)
         }
         return parse(result)
     }
