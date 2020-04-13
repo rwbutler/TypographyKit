@@ -22,3 +22,5 @@ DerivedData
 .bundle
 Carthage
 *.afdesign
+Package.resolved
+*.afdesign
