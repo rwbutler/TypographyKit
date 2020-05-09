@@ -95,12 +95,21 @@ public struct Typography {
         switch resolvedScalingMode() {
         case .fontMetrics:
             if #available(iOS 11.0, *) {
-                return scaleUsingFontMetrics(fontName, pointSize: pointSize, textStyle: textStyle)
+                return scaleUsingFontMetrics(
+                    fontName,
+                    pointSize: pointSize,
+                    textStyle: textStyle,
+                    contentSizeCategory: contentSizeCategory
+                )
             }
             return nil
         case .fontMetricsWithSteppingFallback:
             if #available(iOS 11.0, *),
-                let scaledFont = scaleUsingFontMetrics(fontName, pointSize: pointSize, textStyle: textStyle) {
+                let scaledFont = scaleUsingFontMetrics(
+                    fontName,
+                    pointSize: pointSize,
+                    textStyle: textStyle,
+                    contentSizeCategory: contentSizeCategory) {
                 return scaledFont
             }
             return scaleUsingStepping(fontName, pointSize: pointSize, contentSize: contentSizeCategory)
@@ -158,20 +167,26 @@ private extension Typography {
     
     /// Scales `UIFont` using a `UIFontMetrics` obtained from a `UIFont.TextStyle` introduced in iOS 11.0.
     @available(iOS 11.0, *)
-    private func scaleUsingFontMetrics(_ fontName: String, pointSize: Float, textStyle: UIFont.TextStyle) -> UIFont? {
-        let font: UIFont?
-        if let systemFont = resolveSystemFont(fontName, pointSize: pointSize) {
-            font = systemFont
-        } else {
-            font = UIFont(name: fontName, size: CGFloat(pointSize))
-        }
-        guard var newFont = font else {
+    private func scaleUsingFontMetrics(
+        _ fontName: String,
+        pointSize: Float,
+        textStyle: UIFont.TextStyle,
+        contentSizeCategory: UIContentSizeCategory
+    ) -> UIFont? {
+        
+        guard var newFont = (resolveSystemFont(fontName, pointSize: pointSize)
+            ?? UIFont(name: fontName, size: CGFloat(pointSize))) else {
             return nil
         }
+        let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
         if let maxPointSize = resolvedMaxPointSize() {
-            newFont = UIFontMetrics.default.scaledFont(for: newFont, maximumPointSize: CGFloat(maxPointSize))
+            newFont = UIFontMetrics.default.scaledFont(
+                for: newFont,
+                maximumPointSize: CGFloat(maxPointSize),
+                compatibleWith: traitCollection
+            )
         } else {
-            newFont = UIFontMetrics.default.scaledFont(for: newFont)
+            newFont = UIFontMetrics.default.scaledFont(for: newFont, compatibleWith: traitCollection)
         }
         if let minimumPointSize = resolvedMinPointSize(), newFont.pointSize < CGFloat(minimumPointSize) {
             return UIFont(name: newFont.fontName, size: CGFloat(minimumPointSize))
