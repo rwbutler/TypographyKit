@@ -11,27 +11,7 @@ import UIKit
 
 extension UIButton {
     
-    @objc public enum TitleColorApplyMode: Int {
-        case all
-        case none
-        case normal
-        case whereUnspecified
-        
-        init?(string: String) {
-            switch string {
-            case "all":
-                self = .all
-            case "none":
-                self = .none
-            case "normal":
-                self = .normal
-            case "where-unspecified":
-                self = .whereUnspecified
-            default:
-                return nil
-            }
-        }
-    }
+    public typealias TitleColorApplyMode = ButtonTitleColorApplyMode
     
     @objc public var fontTextStyle: UIFont.TextStyle {
         get {

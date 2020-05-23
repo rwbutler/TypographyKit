@@ -22,6 +22,7 @@
 		13ACC04B2479657700146DEA /* UIControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ACC04A2479657700146DEA /* UIControlState.swift */; };
 		13ACC04C2479792200146DEA /* TypographyKitConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135A677E21F7879A004B4C54 /* TypographyKitConfiguration.swift */; };
 		13ACC05124798CB700146DEA /* ButtonSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ACC04F24798CA800146DEA /* ButtonSettings.swift */; };
+		13ACC0532479969C00146DEA /* ButtonTitleColorApplyMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ACC0522479969C00146DEA /* ButtonTitleColorApplyMode.swift */; };
 		13BB900622C3A6D3006D19E7 /* TypographyStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB900422C3A6B6006D19E7 /* TypographyStyles.swift */; };
 		13BB900722C3A6D7006D19E7 /* TypographyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BB900222C3A685006D19E7 /* TypographyColors.swift */; };
 		13DAF973204717E40076E016 /* JSONParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DAF971204717A70076E016 /* JSONParsingService.swift */; };
@@ -92,6 +93,7 @@
 		138F0E7E2146B7A100CA8D8F /* TypographyKitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypographyKitTableViewCell.xib; sourceTree = "<group>"; };
 		13ACC04A2479657700146DEA /* UIControlState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControlState.swift; sourceTree = "<group>"; };
 		13ACC04F24798CA800146DEA /* ButtonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSettings.swift; sourceTree = "<group>"; };
+		13ACC0522479969C00146DEA /* ButtonTitleColorApplyMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTitleColorApplyMode.swift; sourceTree = "<group>"; };
 		13BB900222C3A685006D19E7 /* TypographyColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyColors.swift; sourceTree = "<group>"; };
 		13BB900422C3A6B6006D19E7 /* TypographyStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypographyStyles.swift; sourceTree = "<group>"; };
 		13DAF971204717A70076E016 /* JSONParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingService.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				133A83F8230D5AB500A10591 /* TypographyKitElement.swift */,
 				D8CC864623D718F4004D94F7 /* NSLineBreakMode.swift */,
 				13ACC04A2479657700146DEA /* UIControlState.swift */,
+				13ACC0522479969C00146DEA /* ButtonTitleColorApplyMode.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				13BB900722C3A6D7006D19E7 /* TypographyColors.swift in Sources */,
 				BEA6024D22F488B200CCB31E /* ParsingError.swift in Sources */,
 				E494EAF51F1A359100E13158 /* TypographyKitPropertyAdditionsKey.swift in Sources */,
+				13ACC0532479969C00146DEA /* ButtonTitleColorApplyMode.swift in Sources */,
 				13BB900622C3A6D3006D19E7 /* TypographyStyles.swift in Sources */,
 				E494EB031F1A412600E13158 /* ParsingService.swift in Sources */,
 				A9107AE55CB63D23A51201BB01F82CD0 /* TypographyKit-dummy.m in Sources */,
