@@ -73,9 +73,7 @@ extension UIButton {
                 self.titleLabel?.font = newFont
             }
             if let textColor = newValue.textColor {
-                for controlState in controlStates {
-                    self.setTitleColor(textColor, for: controlState)
-                }
+                self.setTitleColor(textColor, for: .normal)
             }
             if let disabledTextColor = newValue.disabledTextColor {
                 self.setTitleColor(disabledTextColor, for: .disabled)
