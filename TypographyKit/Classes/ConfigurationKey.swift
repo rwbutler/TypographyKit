@@ -15,4 +15,7 @@ enum ConfigurationKey: String {
     case pointSize = "point-size"
     case scalingMode = "scaling-mode"
     case textColor = "text-color"
+    case disabledTextColor = "disabled-text-color"
+    case highlightedTextColor = "highlighted-text-color"
+    case selectedTextColor = "selected-text-color"
 }

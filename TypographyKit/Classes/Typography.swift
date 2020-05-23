@@ -17,6 +17,9 @@ public struct Typography {
     public var letterCase: LetterCase?
     public var scalingMode: ScalingMode?
     public var textColor: UIColor?
+    public var disabledTextColor: UIColor?
+    public var highlightedTextColor: UIColor?
+    public var selectedTextColor: UIColor?
     private let textStyle: UIFont.TextStyle
     private static let contentSizeCategoryMap: [UIContentSizeCategory: Float] = [
         UIContentSizeCategory.extraSmall: -3,
@@ -63,13 +66,17 @@ public struct Typography {
         self.letterCase = typographyStyle.letterCase
         self.scalingMode = typographyStyle.scalingMode
         self.textColor = typographyStyle.textColor
+        self.disabledTextColor = typographyStyle.disabledTextColor
+        self.highlightedTextColor = typographyStyle.highlightedTextColor
+        self.selectedTextColor = typographyStyle.selectedTextColor
         self.textStyle = textStyle
     }
     
     public init(name: String, fontName: String? = nil, fontSize: Float? = nil,
                 letterCase: LetterCase? = nil, maximumPointSize: Float? = nil,
                 minimumPointSize: Float? = nil, scalingMode: ScalingMode? = nil,
-                textColor: UIColor? = nil) {
+                textColor: UIColor? = nil, disabledTextColor: UIColor? = nil,
+                highlightedTextColor: UIColor? = nil, selectedTextColor: UIColor? = nil) {
         self.name = name
         self.fontName = fontName
         self.maximumPointSize = maximumPointSize
@@ -78,6 +85,9 @@ public struct Typography {
         self.letterCase = letterCase
         self.scalingMode = scalingMode
         self.textColor = textColor
+        self.disabledTextColor = disabledTextColor
+        self.highlightedTextColor = highlightedTextColor
+        self.selectedTextColor = selectedTextColor
         self.textStyle = UIFont.TextStyle(rawValue: name)
     }
     

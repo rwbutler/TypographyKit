@@ -74,16 +74,22 @@ extension TypographyKitElement {
     /// Updates a given `NSMutableAttributedString` with the given attributes and typography in the specified range.
     func update(attributedString: NSMutableAttributedString, with attrs: [NSAttributedString.Key: Any],
                 in range: NSRange, and typography: Typography) {
+        update(attributedString: attributedString, with: attrs, in: range,
+               typographyFont: typography.font(), typographyTextColor: typography.textColor)
+    }
+    
+    func update(attributedString: NSMutableAttributedString, with attrs: [NSAttributedString.Key: Any],
+                in range: NSRange, typographyFont: UIFont?, typographyTextColor: UIColor?) {
         let fontAttribute = attrs[.font] as? UIFont
-        if let font = fontAttribute ?? typography.font() {
-            let fontSize = typography.font()?.pointSize ?? font.pointSize
+        if let font = fontAttribute ?? typographyFont {
+            let fontSize = typographyFont?.pointSize ?? font.pointSize
             let fontWithSize = font.withSize(fontSize)
             // The font size of the typography size should be the priority in order to support Dynamic Type.
             attributedString.removeAttribute(.font, range: range)
             attributedString.addAttribute(.font, value: fontWithSize, range: range)
         }
         let textColorAttribute = attrs[.foregroundColor] as? UIColor
-        if let textColor = textColorAttribute ?? typography.textColor {
+        if let textColor = textColorAttribute ?? typographyTextColor {
             attributedString.removeAttribute(.foregroundColor, range: range)
             attributedString.addAttribute(.foregroundColor, value: textColor, range: range)
         }

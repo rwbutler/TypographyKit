@@ -50,6 +50,12 @@
 			<string>text</string>
 			<key>letter-case</key>
 			<string>regular</string>
+			<key>disabled-text-color</key>
+			<string>#AAAAAA</string>
+			<key>highlighted-text-color</key>
+			<string>#FF0000</string>
+			<key>selected-text-color</key>
+			<string>#00FF00</string>
 		</dict>
 		<key>interactive-text</key>
 		<dict>

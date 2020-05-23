@@ -90,6 +90,18 @@ private extension FontTextStyleParser {
         if let textColorName = fontTextStyle[ConfigurationKey.textColor.rawValue] as? String {
             textColor = colorEntries[textColorName]?.uiColor ?? TypographyColor(string: textColorName)?.uiColor
         }
+        var disabledTextColor: UIColor?
+        if let textColorName = fontTextStyle[ConfigurationKey.disabledTextColor.rawValue] as? String {
+            disabledTextColor = colorEntries[textColorName]?.uiColor ?? TypographyColor(string: textColorName)?.uiColor
+        }
+        var highlightedTextColor: UIColor?
+        if let textColorName = fontTextStyle[ConfigurationKey.highlightedTextColor.rawValue] as? String {
+            highlightedTextColor = colorEntries[textColorName]?.uiColor ?? TypographyColor(string: textColorName)?.uiColor
+        }
+        var selectedTextColor: UIColor?
+        if let textColorName = fontTextStyle[ConfigurationKey.highlightedTextColor.rawValue] as? String {
+            selectedTextColor = colorEntries[textColorName]?.uiColor ?? TypographyColor(string: textColorName)?.uiColor
+        }
         var letterCase: LetterCase?
         if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
             letterCase = LetterCase(rawValue: letterCaseName)
@@ -100,7 +112,8 @@ private extension FontTextStyleParser {
         }
         return Typography(name: key, fontName: fontName, fontSize: pointSize, letterCase: letterCase,
                           maximumPointSize: maxPointSize, minimumPointSize: minPointSize, scalingMode: scalingMode,
-                          textColor: textColor)
+                          textColor: textColor, disabledTextColor: disabledTextColor,
+                          highlightedTextColor: highlightedTextColor, selectedTextColor: selectedTextColor)
     }
     
     /// Extends the original Typography style with another style, replacing properties of the

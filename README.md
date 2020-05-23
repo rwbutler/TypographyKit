@@ -207,6 +207,25 @@ Typography styles you define in TypographyKit.plist can optionally include a tex
 	</dict>
 ```
 
+From version x.y.z onwards, UIButtons support additional properties that allow setting the title color based on the control state:
+
+```xml
+	<key>ui-font-text-styles</key>
+	<dict>
+		<key>button</key>
+		<dict>
+			<key>text-color</key>
+			<string>#2C0E8C</string>
+			<key>disabled-text-color</key>
+			<string>#AAAAAA</string>
+			<key>highlighted-color</key>
+			<string>#FF000</string>
+			<key>selected-text-color</key>
+			<string>#2C0E8C</string>
+		</dict>
+	</dict>
+```
+
 ### Extending Styles
 From version 1.1.3 onwards it is possible to use an existing typography style to create a new one. For example, imagine you would like to create a new style based on an existing one but changing the text color. We can use the `extends` keyword to extend a style that exists already and then specify which properties of the that style to override e.g. the `text-color` property.
 

@@ -35,7 +35,10 @@
             "minimum-point-size": 12,
             "maximum-point-size": 34,
 			"point-size": 18,
-			"text-color": "text",
+            "text-color": "text",
+            "disabled-text-color": "#AAAAAA",
+            "highlighted-text-color": "#FF0000",
+            "selected-text-color": "#00FF00",
 			"letter-case": "regular"
 		},
         "example": {

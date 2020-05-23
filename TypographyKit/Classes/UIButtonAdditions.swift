@@ -77,6 +77,15 @@ extension UIButton {
                     self.setTitleColor(textColor, for: controlState)
                 }
             }
+            if let disabledTextColor = newValue.disabledTextColor {
+                self.setTitleColor(disabledTextColor, for: .disabled)
+            }
+            if let highlightedTextColor = newValue.highlightedTextColor {
+                self.setTitleColor(highlightedTextColor, for: .highlighted)
+            }
+            if let selectedTextColor = newValue.selectedTextColor {
+                self.setTitleColor(selectedTextColor, for: .selected)
+            }
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
@@ -105,16 +114,36 @@ extension UIButton {
         typography.letterCase = letterCase ?? typography.letterCase
         self.fontTextStyle = style
         self.typography = typography
+        
+        attributedText(attrString, for: .normal,
+                       replacingDefaultTextColor: replacingDefaultTextColor, replacingTextColor: typography.textColor)
+        if let textColor = typography.disabledTextColor {
+            attributedText(attrString, for: .disabled,
+                           replacingDefaultTextColor: replacingDefaultTextColor, replacingTextColor: textColor)
+        }
+        if let textColor = typography.highlightedTextColor {
+            attributedText(attrString, for: .highlighted,
+                           replacingDefaultTextColor: replacingDefaultTextColor, replacingTextColor: textColor)
+        }
+        if let textColor = typography.selectedTextColor {
+            attributedText(attrString, for: .selected,
+                           replacingDefaultTextColor: replacingDefaultTextColor, replacingTextColor: textColor)
+        }
+    }
+    
+    private func attributedText(_ attrString: NSAttributedString, for state: UIControl.State,
+                                replacingDefaultTextColor: Bool, replacingTextColor: UIColor?) {
         let mutableString = NSMutableAttributedString(attributedString: attrString)
         let textRange = NSRange(location: 0, length: attrString.string.count)
         mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
-            update(attributedString: mutableString, with: value, in: range, and: typography)
+            update(attributedString: mutableString, with: value, in: range,
+                   typographyFont: typography.font(), typographyTextColor: replacingTextColor)
         })
-        self.setAttributedTitle(mutableString, for: .normal)
+        self.setAttributedTitle(mutableString, for: state)
         if replacingDefaultTextColor {
             let defaultColor = defaultTextColor(in: mutableString)
-            let replacementString = replaceTextColor(defaultColor, with: typography.textColor, in: mutableString)
-            self.setAttributedTitle(replacementString, for: .normal)
+            let replacementString = replaceTextColor(defaultColor, with: replacingTextColor, in: mutableString)
+            self.setAttributedTitle(replacementString, for: state)
         }
     }
     
