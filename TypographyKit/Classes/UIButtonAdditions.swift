@@ -11,12 +11,26 @@ import UIKit
 
 extension UIButton {
     
-    private var controlStates: [UIControl.State] {
-        var controlStates: [UIControl.State] = [.normal, .highlighted, .disabled, .selected, .application]
-        if #available(iOS 9, *) {
-            controlStates.append(.focused)
+    @objc public enum TitleColorApplyMode: Int {
+        case all
+        case none
+        case normal
+        case whereUnspecified
+        
+        init?(string: String) {
+            switch string {
+            case "all":
+                self = .all
+            case "none":
+                self = .none
+            case "normal":
+                self = .normal
+            case "where-unspecified":
+                self = .whereUnspecified
+            default:
+                return nil
+            }
         }
-        return controlStates
     }
     
     @objc public var fontTextStyle: UIFont.TextStyle {
@@ -57,6 +71,23 @@ extension UIButton {
         }
     }
     
+    @objc public var titleColorApplyMode: TitleColorApplyMode {
+        get {
+            objc_getAssociatedObject(
+                self,
+                &TypographyKitPropertyAdditionsKey.titleColorApplyMode
+            ) as? TitleColorApplyMode ?? TypographyKit.buttonTitleColorApplyMode
+        }
+        set {
+            objc_setAssociatedObject(
+                self,
+                &TypographyKitPropertyAdditionsKey.titleColorApplyMode,
+                newValue,
+                .OBJC_ASSOCIATION_RETAIN
+            )
+        }
+    }
+    
     public var typography: Typography {
         get {
             // swiftlint:disable:next force_cast
@@ -73,9 +104,7 @@ extension UIButton {
                 self.titleLabel?.font = newFont
             }
             if let textColor = newValue.textColor {
-                for controlState in controlStates {
-                    self.setTitleColor(textColor, for: controlState)
-                }
+                applyTitleColor(textColor, mode: titleColorApplyMode)
             }
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
@@ -152,6 +181,38 @@ extension UIButton: TypographyKitElement {
                 self.attributedText(attributedText, style: fontTextStyle)
             } else {
                 self.titleLabel?.font = self.typography.font(newValue)
+            }
+        }
+    }
+    
+}
+
+extension UIButton {
+    
+    func applyTitleColor(_ color: UIColor, mode: TitleColorApplyMode) {
+        switch mode {
+        case .all:
+            UIControl.State.allCases.forEach { controlState in
+                setTitleColor(color, for: controlState)
+            }
+        case .none:
+            return
+        case .normal:
+            setTitleColor(color, for: .normal)
+        case .whereUnspecified:
+            applyTitleColorWhereNoneSpecified(color)
+        }
+    }
+    
+    private func applyTitleColorWhereNoneSpecified(_ color: UIColor) {
+        let defaultButton = UIButton(type: buttonType)
+        let normalStateColor = titleColor(for: .normal)
+        UIControl.State.allCases.forEach { controlState in
+            let defaultStateColor = defaultButton.titleColor(for: controlState)
+            let currentStateColor = titleColor(for: controlState)
+            if defaultStateColor == currentStateColor
+                || (controlState != .normal && currentStateColor == normalStateColor) {
+                setTitleColor(color, for: controlState)
             }
         }
     }

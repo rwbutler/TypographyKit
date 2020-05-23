@@ -6,9 +6,10 @@
 //
 //
 
+import UIKit
+
 struct ConfigurationSettings {
-    
-    /// Settings which apply specifically to labels.
+    let buttons: ButtonSettings
     let labels: LabelSettings
     let minimumPointSize: Float?
     let maximumPointSize: Float?
@@ -16,8 +17,16 @@ struct ConfigurationSettings {
     let pointStepMultiplier: Float
     let scalingMode: ScalingMode?
     
-    init(labels: LabelSettings, minPointSize: Float? = nil, maxPointSize: Float? = nil,
-         pointStepSize: Float = 2.0, pointStepMultiplier: Float = 1.0, scalingMode: String? = nil) {
+    init(
+        buttons: ButtonSettings,
+        labels: LabelSettings,
+        minPointSize: Float? = nil,
+        maxPointSize: Float? = nil,
+        pointStepSize: Float = 2.0,
+        pointStepMultiplier: Float = 1.0,
+        scalingMode: String? = nil
+    ) {
+        self.buttons = buttons
         self.labels = labels
         self.minimumPointSize = minPointSize
         self.maximumPointSize = maxPointSize

@@ -16,6 +16,7 @@ protocol ConfigurationParsingService {
 }
 
 private enum CodingKeys {
+    static let buttons = "buttons"
     static let colorsEntry = "typography-colors"
     static let labels = "labels"
     static let minimumPointSize = "minimum-point-size"
@@ -39,16 +40,24 @@ extension ConfigurationParsingService {
         if let typographyKitConfig = configEntries[CodingKeys.umbrellaEntry] as? [String: Any],
             let stepSize = typographyKitConfig[CodingKeys.pointStepSize] as? Float,
             let stepMultiplier = typographyKitConfig[CodingKeys.pointStepMultiplier] as? Float {
+            let buttonsConfig = typographyKitConfig[CodingKeys.buttons] as? [String: String]
             let labelsConfig = typographyKitConfig[CodingKeys.labels] as? [String: String]
+            let buttonSettings = self.buttonSettings(buttonsConfig)
             let labelSettings = self.labelSettings(labelsConfig)
             let minimumPointSize = typographyKitConfig[CodingKeys.minimumPointSize] as? Float
             let maximumPointSize = typographyKitConfig[CodingKeys.maximumPointSize] as? Float
             let scalingMode = typographyKitConfig[CodingKeys.scalingMode] as? String
-            configuration = ConfigurationSettings(labels: labelSettings, minPointSize: minimumPointSize,
-                                                  maxPointSize: maximumPointSize, pointStepSize: stepSize,
-                                                  pointStepMultiplier: stepMultiplier, scalingMode: scalingMode)
+            configuration = ConfigurationSettings(
+                buttons: buttonSettings,
+                labels: labelSettings,
+                minPointSize: minimumPointSize,
+                maxPointSize: maximumPointSize,
+                pointStepSize: stepSize,
+                pointStepMultiplier: stepMultiplier,
+                scalingMode: scalingMode
+            )
         } else {
-            configuration = ConfigurationSettings(labels: LabelSettings())
+            configuration = ConfigurationSettings(buttons: ButtonSettings(), labels: LabelSettings())
         }
         
         // Colors
@@ -64,6 +73,15 @@ extension ConfigurationParsingService {
         
         return .success(ConfigurationModel(settings: configuration, colors: uiColors,
                                     styles: typographyStyles))
+    }
+    
+    /// Translates a dictionary of configuration settings into a `ButtonSettings` model object.
+    private func buttonSettings(_ config: [String: String]?) -> ButtonSettings {
+        guard let config = config, let lineBreakConfig = config["title-color-apply"],
+            let applyMode = UIButton.TitleColorApplyMode(string: lineBreakConfig) else {
+                return ButtonSettings()
+        }
+        return ButtonSettings(titleColorApplyMode: applyMode)
     }
     
     /// Translates a dictionary of configuration settings into a `LabelSettings` model object.

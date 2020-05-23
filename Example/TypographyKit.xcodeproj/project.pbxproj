@@ -12,12 +12,12 @@
 		132EA94A240179270077E597 /* SwiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA949240179270077E597 /* SwiftUIViewController.swift */; };
 		132EA9902402AD380077E597 /* UIKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132EA98F2402AD380077E597 /* UIKitViewController.swift */; };
 		135C78DF20F7C14500BDB06D /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135C78DE20F7C14500BDB06D /* UIColorAdditions.swift */; };
+		13ACC04E24797D3100146DEA /* UIButtonTitleColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13ACC04D24797D3100146DEA /* UIButtonTitleColorTests.swift */; };
 		13DAF9752047198B0076E016 /* TypographyKit.json in Resources */ = {isa = PBXBuildFile; fileRef = 13DAF9742047198B0076E016 /* TypographyKit.json */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		9DC7221B6A86B5830AB8B4C9 /* Pods_TypographyKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AB6D3FB80D226587D8FF2B /* Pods_TypographyKit_Example.framework */; };
 		D4B141901BD1FE770E1D61D3 /* Pods_TypographyKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B464A035B5F53ABCECFEFB43 /* Pods_TypographyKit_Tests.framework */; };
 		E4370A121ECB9C450036D182 /* TypographyKit.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4370A111ECB9C450036D182 /* TypographyKit.plist */; };
@@ -40,6 +40,7 @@
 		132EA949240179270077E597 /* SwiftUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewController.swift; sourceTree = "<group>"; };
 		132EA98F2402AD380077E597 /* UIKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewController.swift; sourceTree = "<group>"; };
 		135C78DE20F7C14500BDB06D /* UIColorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorAdditions.swift; sourceTree = "<group>"; };
+		13ACC04D24797D3100146DEA /* UIButtonTitleColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonTitleColorTests.swift; sourceTree = "<group>"; };
 		13DAF9742047198B0076E016 /* TypographyKit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TypographyKit.json; sourceTree = "<group>"; };
 		41AB6D3FB80D226587D8FF2B /* Pods_TypographyKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* TypographyKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypographyKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,7 +51,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* TypographyKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TypographyKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6B0937BF10E152624B06A882 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		794134C9F24FF33556688DF4 /* Pods-TypographyKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypographyKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypographyKit_Tests/Pods-TypographyKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		804755A28AB849CA8DEF3FEA /* Pods-TypographyKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypographyKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypographyKit_Tests/Pods-TypographyKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				13ACC04D24797D3100146DEA /* UIButtonTitleColorTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -461,7 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				13ACC04E24797D3100146DEA /* UIButtonTitleColorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +611,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rwbutler.TypographyKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -627,7 +627,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rwbutler.TypographyKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -647,6 +647,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypographyKit_Example.app/TypographyKit_Example";
 			};
 			name = Debug;
 		};
@@ -659,6 +660,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypographyKit_Example.app/TypographyKit_Example";
 			};
 			name = Release;
 		};

@@ -10,4 +10,5 @@ enum TypographyKitPropertyAdditionsKey {
     static var fontTextStyle: UInt8 = 0
     static var typography: UInt8 = 1
     static var letterCase: UInt8 = 2
+    static var titleColorApplyMode: UInt8 = 3
 }
