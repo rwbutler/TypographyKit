@@ -17,6 +17,10 @@ public struct TypographyKit {
     typealias Styles = [String: Typography]
     
     // MARK: Global state
+    public static var buttonTitleColorApplyMode: UIButton.TitleColorApplyMode = {
+        configuration?.configurationSettings.buttons.titleColorApplyMode ?? .whereUnspecified
+    }()
+    
     public static var colors: [String: UIColor] = {
         return configuration?.typographyColors ?? [:]
     }()
@@ -238,7 +242,7 @@ public struct TypographyKit {
         
     }
     
-    public static func refresh(_ completion: ((TypographyKit.Configuration?) -> Void)? = nil) {
+    public static func refresh(_ completion: ((Configuration?) -> Void)? = nil) {
         configuration = loadConfiguration()
         guard let colors = configuration?.typographyColors,
             let settings = configuration?.configurationSettings,
@@ -246,11 +250,11 @@ public struct TypographyKit {
                 completion?(nil)
                 return
         }
-        let config = TypographyKitConfiguration(colors: colors, settings: settings, styles: styles)
+        let config = Configuration(colors: colors, settings: settings, styles: styles)
         completion?(config)
     }
     
-    public static func refreshWithData(_ data: Data, completion: ((TypographyKit.Configuration?) -> Void)? = nil) {
+    public static func refreshWithData(_ data: Data, completion: ((Configuration?) -> Void)? = nil) {
         guard case let .success(configuration) = loadConfigurationWithData(data) else {
             completion?(nil)
             return
@@ -258,7 +262,7 @@ public struct TypographyKit {
         let colors = configuration.typographyColors
         let settings = configuration.configurationSettings
         let styles = configuration.typographyStyles
-        let config = TypographyKitConfiguration(colors: colors, settings: settings, styles: styles)
+        let config = Configuration(colors: colors, settings: settings, styles: styles)
         completion?(config)
     }
     
