@@ -125,10 +125,14 @@ private extension FontTextStyleParser {
         let newMinSize = modified.minimumPointSize ?? original.minimumPointSize
         let newCase = modified.letterCase ?? original.letterCase
         let newColor = modified.textColor ?? original.textColor
+        let newDisabledColor = modified.disabledTextColor ?? original.disabledTextColor
+        let newHighlightedColor = modified.highlightedTextColor ?? original.highlightedTextColor
+        let newSelectedColor = modified.selectedTextColor ?? original.selectedTextColor
         let newScalingMode = modified.scalingMode ?? original.scalingMode
         return Typography(name: modified.name, fontName: newFace, fontSize: newSize, letterCase: newCase,
                           maximumPointSize: newMaxSize, minimumPointSize: newMinSize,
-                          scalingMode: newScalingMode, textColor: newColor)
+                          scalingMode: newScalingMode, textColor: newColor, disabledTextColor: newDisabledColor,
+                          highlightedTextColor: newHighlightedColor, selectedTextColor: newSelectedColor)
     }
     
 }
