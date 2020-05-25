@@ -18,4 +18,5 @@ enum ConfigurationKey: String {
     case disabledTextColor = "disabled-text-color"
     case highlightedTextColor = "highlighted-text-color"
     case selectedTextColor = "selected-text-color"
+    case tintColor = "tint-color"
 }

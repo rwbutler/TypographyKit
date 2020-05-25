@@ -95,6 +95,9 @@ extension UIButton {
             if let selectedTextColor = newValue.selectedTextColor {
                 self.setTitleColor(selectedTextColor, for: .selected)
             }
+            if let tintColor = newValue.tintColor {
+                self.tintColor = tintColor
+            }
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }

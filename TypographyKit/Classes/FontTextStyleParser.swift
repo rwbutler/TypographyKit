@@ -96,11 +96,16 @@ private extension FontTextStyleParser {
         }
         var highlightedTextColor: UIColor?
         if let textColorName = fontTextStyle[ConfigurationKey.highlightedTextColor.rawValue] as? String {
+            // swiftlint:disable line_length
             highlightedTextColor = colorEntries[textColorName]?.uiColor ?? TypographyColor(string: textColorName)?.uiColor
         }
         var selectedTextColor: UIColor?
-        if let textColorName = fontTextStyle[ConfigurationKey.highlightedTextColor.rawValue] as? String {
+        if let textColorName = fontTextStyle[ConfigurationKey.selectedTextColor.rawValue] as? String {
             selectedTextColor = colorEntries[textColorName]?.uiColor ?? TypographyColor(string: textColorName)?.uiColor
+        }
+        var tintColor: UIColor?
+        if let tintColorName = fontTextStyle[ConfigurationKey.tintColor.rawValue] as? String {
+            tintColor = colorEntries[tintColorName]?.uiColor ?? TypographyColor(string: tintColorName)?.uiColor
         }
         var letterCase: LetterCase?
         if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
@@ -113,7 +118,8 @@ private extension FontTextStyleParser {
         return Typography(name: key, fontName: fontName, fontSize: pointSize, letterCase: letterCase,
                           maximumPointSize: maxPointSize, minimumPointSize: minPointSize, scalingMode: scalingMode,
                           textColor: textColor, disabledTextColor: disabledTextColor,
-                          highlightedTextColor: highlightedTextColor, selectedTextColor: selectedTextColor)
+                          highlightedTextColor: highlightedTextColor, selectedTextColor: selectedTextColor,
+                          tintColor: tintColor)
     }
     
     /// Extends the original Typography style with another style, replacing properties of the
@@ -128,11 +134,13 @@ private extension FontTextStyleParser {
         let newDisabledColor = modified.disabledTextColor ?? original.disabledTextColor
         let newHighlightedColor = modified.highlightedTextColor ?? original.highlightedTextColor
         let newSelectedColor = modified.selectedTextColor ?? original.selectedTextColor
+        let newTintColor = modified.tintColor ?? original.tintColor
         let newScalingMode = modified.scalingMode ?? original.scalingMode
         return Typography(name: modified.name, fontName: newFace, fontSize: newSize, letterCase: newCase,
                           maximumPointSize: newMaxSize, minimumPointSize: newMinSize,
                           scalingMode: newScalingMode, textColor: newColor, disabledTextColor: newDisabledColor,
-                          highlightedTextColor: newHighlightedColor, selectedTextColor: newSelectedColor)
+                          highlightedTextColor: newHighlightedColor, selectedTextColor: newSelectedColor,
+                          tintColor: newTintColor)
     }
     
 }
