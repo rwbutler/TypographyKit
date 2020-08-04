@@ -29,7 +29,7 @@ class TypographyKitColorsViewController: UIViewController {
     var navigationSettings: NavigationSettings?
     
     override func viewDidLoad() {
-        title = "Typography Colors"
+        title = "TypographyKit Colors"
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
