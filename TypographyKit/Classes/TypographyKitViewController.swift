@@ -39,15 +39,20 @@ class TypographyKitViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellReuseIdentifier = String(describing: TypographyKitTableViewCell.self)
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+        let cellReuseIdentifier = "cell"
+        let cell: UITableViewCell
+        
+        if let dequeuedCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) {
+            cell = dequeuedCell
+        } else {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
+        }
         let typographyStyleName = typographyStyleNames[indexPath.row]
-        guard let typographyKitCell = cell as? TypographyKitTableViewCell,
-            let typographyStyle = TypographyKit.fontTextStyles[typographyStyleName] else {
+        guard let typographyStyle = TypographyKit.fontTextStyles[typographyStyleName] else {
             return cell
         }
-        typographyKitCell.typographyStyleName.text = typographyStyleName
-        typographyKitCell.typographyStyleName.fontTextStyleName = typographyStyleName
+        cell.textLabel?.text = typographyStyleName
+        cell.textLabel?.fontTextStyleName = typographyStyleName
         var typographyStyleDetails: String = ""
         if let fontName = typographyStyle.fontName, let pointSize = typographyStyle.pointSize {
             typographyStyleDetails = "\(fontName) @ \(pointSize)pt"
@@ -58,16 +63,16 @@ class TypographyKitViewController: UITableViewController {
                 typographyStyleDetails.append(", \(letterCase.description)")
             }
         }
-        typographyKitCell.typographyStyleDetails.text = typographyStyleDetails
-        typographyKitCell.typographyStyleDetails.textColor = typographyStyle.textColor
+        cell.detailTextLabel?.text = typographyStyleDetails
+        cell.detailTextLabel?.textColor = typographyStyle.textColor
         if let typographyColor = typographyStyle.textColor {
             if colorIsBright(color: typographyColor) {
-                typographyKitCell.contentView.backgroundColor = UIColor.gray
+                cell.contentView.backgroundColor = UIColor.gray
             } else {
-                typographyKitCell.contentView.backgroundColor = UIColor.white
+                cell.contentView.backgroundColor = UIColor.white
             }
         }
-        return typographyKitCell
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -129,9 +134,9 @@ private extension TypographyKitViewController {
     }
 
     private func configureTableView() {
-        let cellReuseIdentifier = String(describing: TypographyKitTableViewCell.self)
-        let cellNib = UINib(nibName: cellReuseIdentifier, bundle: Bundle(for: type(of: self)))
-        tableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
+        //let cellReuseIdentifier = "cell"//String(describing: TypographyKitTableViewCell.self)
+        //let cellNib = UINib(nibName: cellReuseIdentifier, bundle: Bundle(for: type(of: self)))
+        //tableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.dataSource = self
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension

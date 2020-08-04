@@ -83,16 +83,13 @@ public struct TypographyKit {
     @available(iOS 9.0, *)
     public static func presentTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
                                                animated: Bool = true, shouldRefresh: Bool = true) {
-        let currentBundle = Bundle(for: TKColorsViewController.self)
-        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
-        let viewController = storyboard.instantiateInitialViewController()
-        guard let colorsViewController = viewController as? TKColorsViewController,
-            let presenter = UIApplication.shared.keyWindow?.rootViewController else {
+        let viewController = TypographyKitColorsViewController()
+        guard let presenter = UIApplication.shared.keyWindow?.rootViewController else {
                 return
         }
-        colorsViewController.delegate = delegate
-        colorsViewController.modalPresentationStyle = .overCurrentContext
-        let navigationController = UINavigationController(rootViewController: colorsViewController)
+        viewController.delegate = delegate
+        viewController.modalPresentationStyle = .overCurrentContext
+        let navigationController = UINavigationController(rootViewController: viewController)
         let navigationSettings = TypographyKitViewController
             .NavigationSettings(animated: animated,
                                 autoClose: true,
@@ -100,7 +97,7 @@ public struct TypographyKit {
                                 isModal: true,
                                 isNavigationBarHidden: navigationController.isNavigationBarHidden,
                                 shouldRefresh: shouldRefresh)
-        colorsViewController.navigationSettings = navigationSettings
+        viewController.navigationSettings = navigationSettings
         if shouldRefresh {
             TypographyKit.refresh()
         }
@@ -110,17 +107,14 @@ public struct TypographyKit {
     @available(iOS 9.0, *)
     public static func presentTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
                                                navigationSettings: ViewControllerNavigationSettings) {
-        let currentBundle = Bundle(for: TKColorsViewController.self)
-        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
-        let viewController = storyboard.instantiateInitialViewController()
-        guard let colorsViewController = viewController as? TKColorsViewController,
-            let presenter = UIApplication.shared.keyWindow?.rootViewController else {
+        let viewController = TypographyKitColorsViewController()
+        guard let presenter = UIApplication.shared.keyWindow?.rootViewController else {
                 return
         }
-        colorsViewController.delegate = delegate
-        colorsViewController.modalPresentationStyle = .overCurrentContext
-        let navigationController = UINavigationController(rootViewController: colorsViewController)
-        colorsViewController.navigationSettings = navigationSettings
+        viewController.delegate = delegate
+        viewController.modalPresentationStyle = .overCurrentContext
+        let navigationController = UINavigationController(rootViewController: viewController)
+        viewController.navigationSettings = navigationSettings
         if navigationSettings.shouldRefresh {
             TypographyKit.refresh()
         }
@@ -165,43 +159,33 @@ public struct TypographyKit {
                                             navigationController: UINavigationController,
                                             animated: Bool = false,
                                             shouldRefresh: Bool = true) {
-        let currentBundle = Bundle(for: TKColorsViewController.self)
-        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
-        let viewController = storyboard.instantiateInitialViewController()
-        guard let colorsViewController = viewController as? TKColorsViewController else {
-            return
-        }
-        colorsViewController.delegate = delegate
+        let viewController = TypographyKitColorsViewController()
+        viewController.delegate = delegate
         let navigationSettings = TypographyKitViewController
             .NavigationSettings(animated: animated,
                                 autoClose: true,
                                 isNavigationBarHidden: navigationController.isNavigationBarHidden,
                                 shouldRefresh: shouldRefresh)
-        colorsViewController.navigationSettings = navigationSettings
+        viewController.navigationSettings = navigationSettings
         navigationController.isNavigationBarHidden = false
         if shouldRefresh {
             TypographyKit.refresh()
         }
-        navigationController.pushViewController(colorsViewController, animated: animated)
+        navigationController.pushViewController(viewController, animated: animated)
     }
     
     @available(iOS 9.0, *)
     public static func pushTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
                                             navigationController: UINavigationController,
                                             navigationSettings: ViewControllerNavigationSettings) {
-        let currentBundle = Bundle(for: TKColorsViewController.self)
-        let storyboard = UIStoryboard(name: "TKColorsViewController", bundle: currentBundle)
-        let viewController = storyboard.instantiateInitialViewController()
-        guard let colorsViewController = viewController as? TKColorsViewController else {
-            return
-        }
-        colorsViewController.delegate = delegate
-        colorsViewController.navigationSettings = navigationSettings
+        let viewController = TypographyKitColorsViewController()
+        viewController.delegate = delegate
+        viewController.navigationSettings = navigationSettings
         navigationController.isNavigationBarHidden = false
         if navigationSettings.shouldRefresh {
             TypographyKit.refresh()
         }
-        navigationController.pushViewController(colorsViewController, animated: navigationSettings.animated)
+        navigationController.pushViewController(viewController, animated: navigationSettings.animated)
     }
     
     /// Allows TypographyKitViewController to be pushed onto a navigation stack
