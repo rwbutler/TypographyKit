@@ -134,9 +134,6 @@ private extension TypographyKitViewController {
     }
 
     private func configureTableView() {
-        //let cellReuseIdentifier = "cell"//String(describing: TypographyKitTableViewCell.self)
-        //let cellNib = UINib(nibName: cellReuseIdentifier, bundle: Bundle(for: type(of: self)))
-        //tableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.dataSource = self
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
