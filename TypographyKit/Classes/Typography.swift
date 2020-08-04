@@ -173,9 +173,8 @@ private extension Typography {
         textStyle: UIFont.TextStyle,
         contentSizeCategory: UIContentSizeCategory
     ) -> UIFont? {
-        
-        guard var newFont = (resolveSystemFont(fontName, pointSize: pointSize)
-            ?? UIFont(name: fontName, size: CGFloat(pointSize))) else {
+
+        guard var newFont = font(fontName, pointSize: pointSize) else {
             return nil
         }
         let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
@@ -189,7 +188,7 @@ private extension Typography {
             newFont = UIFontMetrics.default.scaledFont(for: newFont, compatibleWith: traitCollection)
         }
         if let minimumPointSize = resolvedMinPointSize(), newFont.pointSize < CGFloat(minimumPointSize) {
-            return UIFont(name: newFont.fontName, size: CGFloat(minimumPointSize))
+            return font(fontName, pointSize: minimumPointSize)
         } else {
             return newFont
         }
@@ -211,12 +210,13 @@ private extension Typography {
             if let maximumPointSize = resolvedMaxPointSize(), maximumPointSize < newPointSize {
                 newPointSize = maximumPointSize
             }
-            if let systemFont = resolveSystemFont(fontName, pointSize: newPointSize) {
-                return systemFont
-            }
-            return UIFont(name: fontName, size: CGFloat(newPointSize))
+            return font(fontName, pointSize: newPointSize)
     }
-    
+
+    private func font(_ fontName: String, pointSize: Float) -> UIFont? {
+        resolveSystemFont(fontName, pointSize: pointSize) ?? UIFont(name: fontName, size: CGFloat(pointSize))
+    }
+
     /// Resolves font entries in configuration to the following `UIFont` methods:
     /// System -> systemFont(ofSize: CGFloat) -> UIFont
     /// BoldSystem -> boldSystemFont(ofSize: CGFloat) -> UIFont
