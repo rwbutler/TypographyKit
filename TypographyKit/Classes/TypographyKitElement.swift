@@ -60,6 +60,44 @@ extension TypographyKitElement {
         return mutableString
     }
     
+    /// Determines the most used background color in the provided `NSAttributedString`.
+    func defaultBackgroundColor(in attributedString: NSAttributedString) -> UIColor {
+        var colorAttributes: [UIColor: Int] = [:]
+        let strRange = NSRange(location: 0, length: attributedString.string.count)
+        attributedString.enumerateAttributes(in: strRange, options: [], using: { value, _, _ in
+            if let colorAttribute = value[.backgroundColor] as? UIColor {
+                if var count = colorAttributes[colorAttribute] {
+                    count += 1
+                    colorAttributes[colorAttribute] = count
+                } else {
+                    colorAttributes[colorAttribute] = 1
+                }
+            }
+        })
+        var defaultColorEntry = (color: UIColor.black, count: 0)
+        for (color, colorCount) in colorAttributes where colorCount > defaultColorEntry.count {
+            defaultColorEntry = (color: color, count: colorCount)
+        }
+        return defaultColorEntry.color
+    }
+    
+    func replaceBackgroundColor(_ color: UIColor, with newColor: UIColor?,
+                                in attributedString: NSAttributedString) -> NSAttributedString {
+        guard let newColor = newColor else {
+            return attributedString
+        }
+        let mutableString = NSMutableAttributedString(attributedString: attributedString)
+        let textRange = NSRange(location: 0, length: attributedString.string.count)
+        mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
+            if let backgroundColorAttribute = value[.backgroundColor] as? UIColor,
+                backgroundColorAttribute == color {
+                mutableString.removeAttribute(.backgroundColor, range: range)
+                mutableString.addAttribute(.backgroundColor, value: newColor, range: range)
+            }
+        })
+        return mutableString
+    }
+    
     /// Determines whether or not the element with the given `attributedText` value is `plain` or `attributed`.
     func isAttributed(_ attributedText: NSAttributedString?) -> Bool {
         guard let attributedText = attributedText, !attributedText.string.isEmpty else {

@@ -21,6 +21,7 @@ public struct Typography {
     public var highlightedTextColor: UIColor?
     public var selectedTextColor: UIColor?
     public var tintColor: UIColor?
+    public var backgroundColor: UIColor?
     private let textStyle: UIFont.TextStyle
     private static let contentSizeCategoryMap: [UIContentSizeCategory: Float] = [
         UIContentSizeCategory.extraSmall: -3,
@@ -71,6 +72,7 @@ public struct Typography {
         self.highlightedTextColor = typographyStyle.highlightedTextColor
         self.selectedTextColor = typographyStyle.selectedTextColor
         self.tintColor = typographyStyle.tintColor
+        self.backgroundColor = typographyStyle.backgroundColor
         self.textStyle = textStyle
     }
     
@@ -79,7 +81,7 @@ public struct Typography {
                 minimumPointSize: Float? = nil, scalingMode: ScalingMode? = nil,
                 textColor: UIColor? = nil, disabledTextColor: UIColor? = nil,
                 highlightedTextColor: UIColor? = nil, selectedTextColor: UIColor? = nil,
-                tintColor: UIColor? = nil) {
+                tintColor: UIColor? = nil, backgroundColor: UIColor? = nil) {
         self.name = name
         self.fontName = fontName
         self.maximumPointSize = maximumPointSize
@@ -92,6 +94,7 @@ public struct Typography {
         self.highlightedTextColor = highlightedTextColor
         self.selectedTextColor = selectedTextColor
         self.tintColor = tintColor
+        self.backgroundColor = backgroundColor
         self.textStyle = UIFont.TextStyle(rawValue: name)
     }
     

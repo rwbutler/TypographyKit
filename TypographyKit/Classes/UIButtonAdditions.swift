@@ -98,6 +98,9 @@ extension UIButton {
             if let tintColor = newValue.tintColor {
                 self.tintColor = tintColor
             }
+            if let backgroundColor = newValue.backgroundColor {
+                self.backgroundColor = backgroundColor
+            }
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }
@@ -108,7 +111,7 @@ extension UIButton {
     
     public func attributedText(_ text: NSAttributedString?, style: UIFont.TextStyle,
                                letterCase: LetterCase? = nil, textColor: UIColor? = nil,
-                               replacingDefaultTextColor: Bool = false) {
+                               replacingDefaultTextColor: Bool = false, replacingDefaultBackgroundColor: Bool = false) {
         // Update text.
         if let text = text {
             self.setAttributedTitle(text, for: .normal)
@@ -141,22 +144,40 @@ extension UIButton {
             attributedText(attrString, for: .selected,
                            replacingDefaultTextColor: replacingDefaultTextColor, replacingTextColor: textColor)
         }
+        if let backgroundColor = typography.backgroundColor {
+            attributedText(attrString, for: .normal,
+                           replacingDefaultBackgroundColor: replacingDefaultBackgroundColor,
+                           replacingBackgroundColor: backgroundColor)
+        }
     }
     
     private func attributedText(_ attrString: NSAttributedString, for state: UIControl.State,
-                                replacingDefaultTextColor: Bool, replacingTextColor: UIColor?) {
+                                replacingDefaultTextColor: Bool = false, replacingTextColor: UIColor? = nil,
+                                replacingDefaultBackgroundColor: Bool = false,
+                                replacingBackgroundColor: UIColor? = nil) {
         let mutableString = NSMutableAttributedString(attributedString: attrString)
         let textRange = NSRange(location: 0, length: attrString.string.count)
         mutableString.enumerateAttributes(in: textRange, options: [], using: { value, range, _ in
             update(attributedString: mutableString, with: value, in: range,
                    typographyFont: typography.font(), typographyTextColor: replacingTextColor)
         })
-        self.setAttributedTitle(mutableString, for: state)
+
         if replacingDefaultTextColor {
             let defaultColor = defaultTextColor(in: mutableString)
             let replacementString = replaceTextColor(defaultColor, with: replacingTextColor, in: mutableString)
-            self.setAttributedTitle(replacementString, for: state)
+            mutableString.setAttributedString(replacementString)
         }
+        
+        if replacingDefaultBackgroundColor {
+            let defaultColor = defaultTextColor(in: mutableString)
+            let replacementString = replaceBackgroundColor(
+                defaultColor,
+                with: replacingBackgroundColor,
+                in: mutableString)
+            mutableString.setAttributedString(replacementString)
+        }
+        
+        self.setAttributedTitle(mutableString, for: state)
     }
     
     public func text(_ text: String?, style: UIFont.TextStyle, letterCase: LetterCase? = nil,

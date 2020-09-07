@@ -68,6 +68,9 @@ extension UILabel {
             if let textColor = newValue.textColor {
                 self.textColor = textColor
             }
+            if let backgroundColor = newValue.backgroundColor {
+                self.backgroundColor = backgroundColor
+            }
             if let letterCase = newValue.letterCase {
                 self.letterCase = letterCase
             }

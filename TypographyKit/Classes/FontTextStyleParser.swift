@@ -107,6 +107,10 @@ private extension FontTextStyleParser {
         if let tintColorName = fontTextStyle[ConfigurationKey.tintColor.rawValue] as? String {
             tintColor = colorEntries[tintColorName]?.uiColor ?? TypographyColor(string: tintColorName)?.uiColor
         }
+        var backgroundColor: UIColor?
+        if let backgroundColorName = fontTextStyle[ConfigurationKey.backgroundColor.rawValue] as? String {
+            backgroundColor = colorEntries[backgroundColorName]?.uiColor ?? TypographyColor(string: backgroundColorName)?.uiColor
+        }
         var letterCase: LetterCase?
         if let letterCaseName = fontTextStyle[ConfigurationKey.letterCase.rawValue] as? String {
             letterCase = LetterCase(rawValue: letterCaseName)
@@ -119,7 +123,7 @@ private extension FontTextStyleParser {
                           maximumPointSize: maxPointSize, minimumPointSize: minPointSize, scalingMode: scalingMode,
                           textColor: textColor, disabledTextColor: disabledTextColor,
                           highlightedTextColor: highlightedTextColor, selectedTextColor: selectedTextColor,
-                          tintColor: tintColor)
+                          tintColor: tintColor, backgroundColor: backgroundColor)
     }
     
     /// Extends the original Typography style with another style, replacing properties of the
@@ -135,12 +139,13 @@ private extension FontTextStyleParser {
         let newHighlightedColor = modified.highlightedTextColor ?? original.highlightedTextColor
         let newSelectedColor = modified.selectedTextColor ?? original.selectedTextColor
         let newTintColor = modified.tintColor ?? original.tintColor
+        let newBackgroundColor = modified.backgroundColor ?? original.backgroundColor
         let newScalingMode = modified.scalingMode ?? original.scalingMode
         return Typography(name: modified.name, fontName: newFace, fontSize: newSize, letterCase: newCase,
                           maximumPointSize: newMaxSize, minimumPointSize: newMinSize,
                           scalingMode: newScalingMode, textColor: newColor, disabledTextColor: newDisabledColor,
                           highlightedTextColor: newHighlightedColor, selectedTextColor: newSelectedColor,
-                          tintColor: newTintColor)
+                          tintColor: newTintColor, backgroundColor: newBackgroundColor)
     }
     
 }

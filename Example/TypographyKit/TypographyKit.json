@@ -27,8 +27,10 @@
 		"heading": {
 			"font-name": "Avenir-Medium",
 			"point-size": 36,
-			"text-color": "text",
-			"letter-case": "regular"
+			
+			"letter-case": "regular",
+            "text-color": "green",
+            "background-color": "red"
 		},
 		"paragraph": {
 			"font-name": "Avenir-Medium",
@@ -39,7 +41,8 @@
             "disabled-text-color": "#AAAAAA",
             "highlighted-text-color": "#FF0000",
             "selected-text-color": "#00FF00",
-			"letter-case": "regular"
+            "letter-case": "regular",
+            "background-color": "red"
 		},
         "example": {
             "font-name": "System-Bold",
