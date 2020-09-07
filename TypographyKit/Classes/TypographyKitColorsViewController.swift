@@ -1,27 +1,47 @@
 //
-//  TKColorsViewController.swift
+//  TypographyKitColorsViewController.swift
 //  TypographyKit
 //
-//  Created by Ross Butler on 8/13/19.
+//  Created by Ross Butler on 04/08/2020.
 //
 
 import Foundation
 import UIKit
 
 @available(iOS 9.0, *)
-class TKColorsViewController: UIViewController {
+class TypographyKitColorsViewController: UIViewController {
     
     // MARK: Type Definitions
     public typealias Delegate = TypographyKitViewControllerDelegate
     public typealias NavigationSettings = ViewControllerNavigationSettings
     
-    @IBOutlet var headerView: UISegmentedControl!
+    lazy var headerView: UISegmentedControl = {
+        let segControl = UISegmentedControl(items: [])
+        segControl.addTarget(self, action: #selector(changeStyle), for: .valueChanged)
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        }
+        return segControl
+    }()
     
     // MARK: State
     weak var delegate: Delegate?
     var navigationSettings: NavigationSettings?
     
     override func viewDidLoad() {
+        title = "TypographyKit Colors"
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        tableView.register(TypographyKitColorCell.self, forCellReuseIdentifier: "cell")
         configureView()
     }
     
@@ -48,7 +68,7 @@ class TKColorsViewController: UIViewController {
 }
 
 @available(iOS 9.0, *)
-extension TKColorsViewController: UITableViewDataSource {
+extension TypographyKitColorsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TypographyKit.colors.keys.count
@@ -56,7 +76,7 @@ extension TKColorsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        guard let colorCell = cell as? TKColorCell else {
+        guard let colorCell = cell as? TypographyKitColorCell else {
             return cell
         }
         let colors = TypographyKit.colors
@@ -69,7 +89,7 @@ extension TKColorsViewController: UITableViewDataSource {
 }
 
 @available(iOS 9.0, *)
-extension TKColorsViewController: UITableViewDelegate {
+extension TypographyKitColorsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
@@ -88,7 +108,7 @@ extension TKColorsViewController: UITableViewDelegate {
 }
 
 @available(iOS 9.0, *)
-private extension TKColorsViewController {
+private extension TypographyKitColorsViewController {
     
     private func configureNavigationBar() {
         let closeButtonType = navigationSettings?.closeButton ?? .done
@@ -121,7 +141,7 @@ private extension TKColorsViewController {
             let (index, style) = x
             headerView.insertSegment(withTitle: style.rawValue.upperCamelCased(), at: index, animated: false)
         }
-
+        
         let currentStyle = TypographyInterfaceStyle(style: traitCollection.userInterfaceStyle)
         headerView.selectedSegmentIndex = TypographyInterfaceStyle.allCases.firstIndex(of: currentStyle) ?? 0
     }
