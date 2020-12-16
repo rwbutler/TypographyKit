@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "TypographyKit",
     platforms: [
-        .iOS("8.2")
+        .iOS(.v9)
     ],
     products: [
         .library(
