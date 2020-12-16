@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.2.2] - 2020-12-16
+### Changed
+- Removes a warning relating to iOS 8 being unsupported as a deployment target in Xcode 12 (thanks to @atrinh0).
+
 ## [4.2.1] - 2020-08-04
 ### Changed
 - Fixed support for Swift Package Manager.
