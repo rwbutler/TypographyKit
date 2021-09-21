@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.3.2] - 2021-09-21
+## Changed
+- Support for disabling font scaling either system-wide and/or per-font.
+- Support for custom letter spacing in font styles plist.
+
 ## [4.2.2] - 2020-12-16
 ### Changed
 - Removes a warning relating to iOS 8 being unsupported as a deployment target in Xcode 12 (thanks to @atrinh0).
