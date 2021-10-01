@@ -24,3 +24,4 @@ Carthage
 *.afdesign
 Package.resolved
 *.afdesign
+*.xcworkspacedata
