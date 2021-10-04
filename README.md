@@ -13,7 +13,6 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
 	- [Carthage](#carthage)
-- [Example App](#example-app)
 - [Usage](#usage)
 	- [Typography Styles](#typography-styles)
 	- [Extending Styles](#extending-styles)
