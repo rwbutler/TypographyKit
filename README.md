@@ -121,13 +121,9 @@ From the macOS Terminal run `carthage update --platform iOS` to build the framew
 
 For more information [see here](https://github.com/Carthage/Carthage#quick-start).
 
-## Example App
-
-An example app exists in the [Example directory](https://github.com/grindrllc/TypographyKit/tree/master/Example) to provide some pointers on getting started.
-
 ## Usage
 
-Include a TypographyKit.plist as part of your app project ([example](./Example/TypographyKit/TypographyKit.plist)) in which you define your typography styles.
+Include a TypographyKit.plist as part of your app project in which you define your typography styles.
 
 ```xml
 	<key>ui-font-text-styles</key>
@@ -142,7 +138,7 @@ Include a TypographyKit.plist as part of your app project ([example](./Example/T
 	</dict>
 ```
 
-Or if you prefer to use JSON you may include a TypographyKit.json ([example](./Example/TypographyKit/TypographyKit.json)) instead.
+Or if you prefer to use JSON you may include a TypographyKit.json instead.
 
 Define additional UIFontTextStyles within your app matching those defined in your .plist:
 
