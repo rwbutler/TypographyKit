@@ -1,14 +1,6 @@
 
 ![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/master/docs/images/typography-kit-banner.png)
 
-[![CI Status](http://img.shields.io/travis/rwbutler/TypographyKit.svg?style=flat)](https://travis-ci.org/rwbutler/TypographyKit)
-[![Version](https://img.shields.io/cocoapods/v/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
-[![Platform](https://img.shields.io/cocoapods/p/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
-[![Twitter](https://img.shields.io/badge/twitter-@ross_w_butler-blue.svg?style=flat)](https://twitter.com/ross_w_butler)
-[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://swift.org/)
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 TypographyKit makes it easy to define typography styles and colour palettes in your iOS app helping you achieve visual consistency in your design as well as supporting [Dynamic Type](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/) even when using custom fonts. [[Summary]](https://medium.com/@rwbutler/typographykit-an-ios-framework-to-help-you-support-dynamic-type-and-enable-visual-consistency-bce7e4a82c30) [[Detailed]](https://medium.com/@rwbutler/dynamic-type-in-ios-with-typographykit-9ed0ac5dbf64)
 
@@ -21,7 +13,6 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
 	- [Carthage](#carthage)
-- [Example App](#example-app)
 - [Usage](#usage)
 	- [Typography Styles](#typography-styles)
 	- [Extending Styles](#extending-styles)
@@ -32,10 +23,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 	- [Remote Configuration](#remote-configuration)
 - [Author](#author)
 - [License](#license)
-- [Additional Software](#additional-software)
-	- [Controls](#controls)
-	- [Frameworks](#frameworks)
-	- [Tools](#tools)
+
 
 ## Features
 
@@ -82,7 +70,7 @@ pod "TypographyKit" "~> 1.1.5"
 Or if you are using Carthage add the following to your `Cartfile`:
 
 ```ogdl
-github "rwbutler/TypographyKit" ~> 1.1.5
+github "grindrllc/TypographyKit" ~> 1.1.5
 ```
 
 In TypographyKit 1.1.5 is now possible to reference the system font or system font and weight as part of your configuration by setting the `font-name` property value to `System` or e.g. `System-Bold` to additionally specify the font weight.
@@ -125,20 +113,16 @@ brew install carthage
 In order to integrate TypographyKit into your project via Carthage, add the following line to your project's Cartfile:
 
 ```ogdl
-github "rwbutler/TypographyKit"
+github "grindrllc/TypographyKit"
 ```
 
 From the macOS Terminal run `carthage update --platform iOS` to build the framework then drag `TypographyKit.framework` into your Xcode project.
 
 For more information [see here](https://github.com/Carthage/Carthage#quick-start).
 
-## Example App
-
-An example app exists in the [Example directory](https://github.com/rwbutler/TypographyKit/tree/master/Example) to provide some pointers on getting started.
-
 ## Usage
 
-Include a TypographyKit.plist as part of your app project ([example](./Example/TypographyKit/TypographyKit.plist)) in which you define your typography styles.
+Include a TypographyKit.plist as part of your app project in which you define your typography styles.
 
 ```xml
 	<key>ui-font-text-styles</key>
@@ -153,7 +137,7 @@ Include a TypographyKit.plist as part of your app project ([example](./Example/T
 	</dict>
 ```
 
-Or if you prefer to use JSON you may include a TypographyKit.json ([example](./Example/TypographyKit/TypographyKit.json)) instead.
+Or if you prefer to use JSON you may include a TypographyKit.json instead.
 
 Define additional UIFontTextStyles within your app matching those defined in your .plist:
 
@@ -181,7 +165,7 @@ self.titleLabel.fontTextStyle = .heading
 
 If you are happy to use strings, an alternative means of setting the `fontTextStyle` property is to set the key path `fontTextStyleName` on your UIKit element to the string value representing your fontTextStyle - in the example above, this would be 'heading'.
 
-![Setting the fontTextStyleName key path in Interface Builder](https://github.com/rwbutler/TypographyKit/raw/master/key-path.png)
+![Setting the fontTextStyleName key path in Interface Builder](https://github.com/grindrllc/TypographyKit/raw/master/key-path.png)
 
 Using this method it is possible to support Dynamic Type in your application with *zero code*.
 
@@ -382,7 +366,7 @@ Optionally, you may clamp the font point size to a lower and / or upper bound us
 TypographyKit also allows you to host your configuration remotely so that your colors and font styles can be updated dynamically. To do so, simply add the following line to your app delegate so that it is invoked when your app finishes launching:
 
 ```swift
-TypographyKit.configurationURL = URL(string: "https://github.com/rwbutler/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.plist")
+TypographyKit.configurationURL = URL(string: "https://github.com/grindrllc/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.plist")
 ```
 
 Your typography styles and colors will be updated the next time your app is launched. However, should you need your styles to be updated sooner you may call ``` TypographyKit.refresh()```.
@@ -394,40 +378,3 @@ Your typography styles and colors will be updated the next time your app is laun
 ## License
 
 TypographyKit is available under the MIT license. See the [LICENSE file](./LICENSE) for more info.
-
-## Additional Software
-
-### Controls
-
-* [AnimatedGradientView](https://github.com/rwbutler/AnimatedGradientView) - Powerful gradient animations made simple for iOS.
-
-|[AnimatedGradientView](https://github.com/rwbutler/AnimatedGradientView) |
-|:-------------------------:|
-|[![AnimatedGradientView](https://raw.githubusercontent.com/rwbutler/AnimatedGradientView/master/docs/images/animated-gradient-view-logo.png)](https://github.com/rwbutler/AnimatedGradientView) 
-
-### Frameworks
-
-* [Cheats](https://github.com/rwbutler/Cheats) - Retro cheat codes for modern iOS apps.
-* [Connectivity](https://github.com/rwbutler/Connectivity) - Improves on Reachability for determining Internet connectivity in your iOS application.
-* [FeatureFlags](https://github.com/rwbutler/FeatureFlags) - Allows developers to configure feature flags, run multiple A/B or MVT tests using a bundled / remotely-hosted JSON configuration file.
-* [FlexibleRowHeightGridLayout](https://github.com/rwbutler/FlexibleRowHeightGridLayout) - A UICollectionView grid layout designed to support Dynamic Type by allowing the height of each row to size to fit content.
-* [Hash](https://github.com/rwbutler/Hash) - Lightweight means of generating message digests and HMACs using popular hash functions including MD5, SHA-1, SHA-256.
-* [Skylark](https://github.com/rwbutler/Skylark) - Fully Swift BDD testing framework for writing Cucumber scenarios using Gherkin syntax.
-* [TailorSwift](https://github.com/rwbutler/TailorSwift) - A collection of useful Swift Core Library / Foundation framework extensions.
-* [TypographyKit](https://github.com/rwbutler/TypographyKit) - Consistent & accessible visual styling on iOS with Dynamic Type support.
-* [Updates](https://github.com/rwbutler/Updates) - Automatically detects app updates and gently prompts users to update.
-
-|[Cheats](https://github.com/rwbutler/Cheats) |[Connectivity](https://github.com/rwbutler/Connectivity) | [FeatureFlags](https://github.com/rwbutler/FeatureFlags) | [Skylark](https://github.com/rwbutler/Skylark) | [TypographyKit](https://github.com/rwbutler/TypographyKit) | [Updates](https://github.com/rwbutler/Updates) |
-|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-|[![Cheats](https://raw.githubusercontent.com/rwbutler/Cheats/master/docs/images/cheats-logo.png)](https://github.com/rwbutler/Cheats) |[![Connectivity](https://github.com/rwbutler/Connectivity/raw/master/ConnectivityLogo.png)](https://github.com/rwbutler/Connectivity) | [![FeatureFlags](https://raw.githubusercontent.com/rwbutler/FeatureFlags/master/docs/images/feature-flags-logo.png)](https://github.com/rwbutler/FeatureFlags) | [![Skylark](https://github.com/rwbutler/Skylark/raw/master/SkylarkLogo.png)](https://github.com/rwbutler/Skylark) | [![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/master/docs/images/typography-kit-logo.png)](https://github.com/rwbutler/TypographyKit) | [![Updates](https://raw.githubusercontent.com/rwbutler/Updates/master/docs/images/updates-logo.png)](https://github.com/rwbutler/Updates)
-
-### Tools
-
-* [Clear DerivedData](https://github.com/rwbutler/ClearDerivedData) - Utility to quickly clear your DerivedData directory simply by typing `cdd` from the Terminal.
-* [Config Validator](https://github.com/rwbutler/ConfigValidator) - Config Validator validates & uploads your configuration files and cache clears your CDN as part of your CI process.
-* [IPA Uploader](https://github.com/rwbutler/IPAUploader) - Uploads your apps to TestFlight & App Store.
-* [Palette](https://github.com/rwbutler/TypographyKitPalette) - Makes your [TypographyKit](https://github.com/rwbutler/TypographyKit) color palette available in Xcode Interface Builder.
-
-|[Config Validator](https://github.com/rwbutler/ConfigValidator) | [IPA Uploader](https://github.com/rwbutler/IPAUploader) | [Palette](https://github.com/rwbutler/TypographyKitPalette)|
-|:-------------------------:|:-------------------------:|:-------------------------:|
-|[![Config Validator](https://raw.githubusercontent.com/rwbutler/ConfigValidator/master/docs/images/config-validator-logo.png)](https://github.com/rwbutler/ConfigValidator) | [![IPA Uploader](https://raw.githubusercontent.com/rwbutler/IPAUploader/master/docs/images/ipa-uploader-logo.png)](https://github.com/rwbutler/IPAUploader) | [![Palette](https://raw.githubusercontent.com/rwbutler/TypographyKitPalette/master/docs/images/typography-kit-palette-logo.png)](https://github.com/rwbutler/TypographyKitPalette)

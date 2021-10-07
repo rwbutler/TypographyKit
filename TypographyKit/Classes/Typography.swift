@@ -15,6 +15,7 @@ public struct Typography {
     public let minimumPointSize: Float?
     public let pointSize: Float? // base point size for font
     public var letterCase: LetterCase?
+    public var letterSpacing: Double = 0
     public var scalingMode: ScalingMode?
     public var textColor: UIColor?
     private let textStyle: UIFont.TextStyle
@@ -61,21 +62,23 @@ public struct Typography {
         self.minimumPointSize = typographyStyle.minimumPointSize
         self.pointSize = typographyStyle.pointSize
         self.letterCase = typographyStyle.letterCase
+        self.letterSpacing = typographyStyle.letterSpacing
         self.scalingMode = typographyStyle.scalingMode
         self.textColor = typographyStyle.textColor
         self.textStyle = textStyle
     }
     
     public init(name: String, fontName: String? = nil, fontSize: Float? = nil,
-                letterCase: LetterCase? = nil, maximumPointSize: Float? = nil,
-                minimumPointSize: Float? = nil, scalingMode: ScalingMode? = nil,
-                textColor: UIColor? = nil) {
+                letterCase: LetterCase? = nil, letterSpacing: Double = 0,
+                maximumPointSize: Float? = nil, minimumPointSize: Float? = nil,
+                scalingMode: ScalingMode? = nil, textColor: UIColor? = nil) {
         self.name = name
         self.fontName = fontName
         self.maximumPointSize = maximumPointSize
         self.minimumPointSize = minimumPointSize
         self.pointSize = fontSize
         self.letterCase = letterCase
+        self.letterSpacing = letterSpacing
         self.scalingMode = scalingMode
         self.textColor = textColor
         self.textStyle = UIFont.TextStyle(rawValue: name)
@@ -115,6 +118,8 @@ public struct Typography {
             return scaleUsingStepping(fontName, pointSize: pointSize, contentSize: contentSizeCategory)
         case .stepping:
             return scaleUsingStepping(fontName, pointSize: pointSize, contentSize: contentSizeCategory)
+        case .disabled:
+            return font(fontName, pointSize: pointSize)
         }
     }
     
