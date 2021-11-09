@@ -99,10 +99,17 @@ private extension FontTextStyleParser {
             scalingMode = ScalingMode(rawValue: scalingModeName)
         }
         let letterSpacing = fontTextStyle[ConfigurationKey.letterSpacing.rawValue] as? Double ?? 0
-
-        return Typography(name: key, fontName: fontName, fontSize: pointSize, letterCase: letterCase,
-                          letterSpacing: letterSpacing, maximumPointSize: maxPointSize, minimumPointSize: minPointSize,
-                          scalingMode: scalingMode, textColor: textColor)
+        return Typography(
+            name: key,
+            fontName: fontName,
+            fontSize: pointSize,
+            letterCase: letterCase,
+            letterSpacing: letterSpacing,
+            maximumPointSize: maxPointSize,
+            minimumPointSize: minPointSize,
+            scalingMode: scalingMode,
+            textColor: textColor
+        )
     }
     
     /// Extends the original Typography style with another style, replacing properties of the

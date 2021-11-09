@@ -68,10 +68,17 @@ public struct Typography {
         self.textStyle = textStyle
     }
     
-    public init(name: String, fontName: String? = nil, fontSize: Float? = nil,
-                letterCase: LetterCase? = nil, letterSpacing: Double = 0,
-                maximumPointSize: Float? = nil, minimumPointSize: Float? = nil,
-                scalingMode: ScalingMode? = nil, textColor: UIColor? = nil) {
+    public init(
+        name: String,
+        fontName: String? = nil,
+        fontSize: Float? = nil,
+        letterCase: LetterCase? = nil,
+        letterSpacing: Double = 0,
+        maximumPointSize: Float? = nil,
+        minimumPointSize: Float? = nil,
+        scalingMode: ScalingMode? = nil,
+        textColor: UIColor? = nil
+    ) {
         self.name = name
         self.fontName = fontName
         self.maximumPointSize = maximumPointSize

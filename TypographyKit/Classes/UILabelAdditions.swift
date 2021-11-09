@@ -115,7 +115,9 @@ extension UILabel {
             self.attributedText = replacementString
         }
         if self.typography.letterSpacing > 0 {
-            guard let attrString = self.attributedText else { return }
+            guard let attrString = self.attributedText else {
+                return
+            }
             let spacingString = NSMutableAttributedString(attributedString: attrString)
             spacingString.addAttribute(.kern, value: self.typography.letterSpacing, range: textRange)
             self.attributedText = spacingString
@@ -136,7 +138,7 @@ extension UILabel {
                 typography.letterCase = letterCase
             }
             self.typography = typography
-
+            
             if self.typography.letterSpacing > 0 {
                 self.attributedText(NSAttributedString(string: self.text ?? ""), style: style)
             }
