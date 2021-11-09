@@ -15,4 +15,5 @@ enum ConfigurationKey: String {
     case pointSize = "point-size"
     case scalingMode = "scaling-mode"
     case textColor = "text-color"
+    case letterSpacing = "letter-spacing"
 }

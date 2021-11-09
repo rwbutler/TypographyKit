@@ -98,9 +98,11 @@ private extension FontTextStyleParser {
         if let scalingModeName = fontTextStyle[ConfigurationKey.scalingMode.rawValue] as? String {
             scalingMode = ScalingMode(rawValue: scalingModeName)
         }
+        let letterSpacing = fontTextStyle[ConfigurationKey.letterSpacing.rawValue] as? Double ?? 0
+
         return Typography(name: key, fontName: fontName, fontSize: pointSize, letterCase: letterCase,
-                          maximumPointSize: maxPointSize, minimumPointSize: minPointSize, scalingMode: scalingMode,
-                          textColor: textColor)
+                          letterSpacing: letterSpacing, maximumPointSize: maxPointSize, minimumPointSize: minPointSize,
+                          scalingMode: scalingMode, textColor: textColor)
     }
     
     /// Extends the original Typography style with another style, replacing properties of the

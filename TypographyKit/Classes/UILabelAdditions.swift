@@ -114,6 +114,12 @@ extension UILabel {
             let replacementString = replaceTextColor(defaultColor, with: typography.textColor, in: mutableString)
             self.attributedText = replacementString
         }
+        if self.typography.letterSpacing > 0 {
+            guard let attrString = self.attributedText else { return }
+            let spacingString = NSMutableAttributedString(attributedString: attrString)
+            spacingString.addAttribute(.kern, value: self.typography.letterSpacing, range: textRange)
+            self.attributedText = spacingString
+        }
     }
 
     public func text(_ text: String?, style: UIFont.TextStyle, letterCase: LetterCase? = nil,
@@ -130,6 +136,10 @@ extension UILabel {
                 typography.letterCase = letterCase
             }
             self.typography = typography
+
+            if self.typography.letterSpacing > 0 {
+                self.attributedText(NSAttributedString(string: self.text ?? ""), style: style)
+            }
         }
     }
     

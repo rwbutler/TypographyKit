@@ -17,5 +17,8 @@ public enum ScalingMode: String {
     
     /// Point size is scaled with increasing `UIContentSizeCategory` using a step size * multiplier.
     case stepping = "stepping"
+
+    /// Fonts are displayed at the specified size, and accessibility settings are ignored.
+    case disabled = "disabled"
     
 }
