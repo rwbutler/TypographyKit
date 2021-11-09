@@ -51,7 +51,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 ## What's new in TypographyKit 4.0.0?
 
-TypographyKit 4.0.0 introduces support for SwiftUI. In order to make use of TypographyKit with SwiftUI, create a TypographyKit configuration file (either JSON or PList) and an extension on `UIFontTextStyle` as described in the [Usage](#usage) section, then simply apply your typography style to a SwiftUI `Text` view as follows:
+TypographyKit 4.0.0 introduces support for SwiftUI. In order to make use of TypographyKit with SwiftUI, create a TypographyKit configuration file (either JSON or PList) and an extension on `UIFont.TextStyle` as described in the [Usage](#usage) section, then simply apply your typography style to a SwiftUI `Text` view as follows:
 
 ```swift
 Text("An example using TypographyKit with SwiftUI")
@@ -155,12 +155,12 @@ Include a TypographyKit.plist as part of your app project ([example](./Example/T
 
 Or if you prefer to use JSON you may include a TypographyKit.json ([example](./Example/TypographyKit/TypographyKit.json)) instead.
 
-Define additional UIFontTextStyles within your app matching those defined in your .plist:
+Define additional UIFont.TextStyles within your app matching those defined in your .plist:
 
 ```swift
-extension UIFontTextStyle
+extension UIFont.TextStyle
 {
-    static let heading = UIFontTextStyle(rawValue: "heading")
+    static let heading = UIFont.TextStyle(rawValue: "heading")
 }
 ```
 
@@ -174,7 +174,7 @@ Use TypographyKit's UIKit additions:
 self.titleLabel.text("My label text", style: .heading)
 ```
 
-Or where your text has been set through IB simply set the UIFontTextStyle programmatically:
+Or where your text has been set through IB simply set the UIFont.TextStyle programmatically:
 ```swift
 self.titleLabel.fontTextStyle = .heading
 ```
@@ -185,7 +185,7 @@ If you are happy to use strings, an alternative means of setting the `fontTextSt
 
 Using this method it is possible to support Dynamic Type in your application with *zero code*.
 
-Your UILabel and UIButton elements will automatically respond to changes in the Dynamic Type setting on iOS on setting a UIFontTextStyle with no further work needed.
+Your UILabel and UIButton elements will automatically respond to changes in the Dynamic Type setting on iOS on setting a UIFont.TextStyle with no further work needed.
 
 ### Typography Styles
 Typography styles you define in TypographyKit.plist can optionally include a text color and a letter case.
