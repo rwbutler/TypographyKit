@@ -30,12 +30,14 @@ struct FontTextStyleParser {
 private extension FontTextStyleParser {
     
     mutating func parse(_ key: String, _ value: [String: Any]) {
-        //Already Parsed
-        if typographyFontStyles[key] != nil { return }
-        
-        //Already found to be invalid
-        if invalidStyles[key] != nil { return }
-            
+        // Already Parsed
+        if typographyFontStyles[key] != nil {
+            return
+        }
+        // Already found to be invalid
+        if invalidStyles[key] != nil {
+            return
+        }
         backTrace.append(key)
         switch parseFontTextStyle(key, value) {
         case .success(let color):

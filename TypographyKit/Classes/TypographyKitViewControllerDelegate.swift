@@ -7,6 +7,6 @@
 
 import Foundation
 
-@objc public protocol TypographyKitViewControllerDelegate: class {
+@objc public protocol TypographyKitViewControllerDelegate: AnyObject {
     @objc func viewControllerDidFinish()
 }

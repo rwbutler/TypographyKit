@@ -15,16 +15,16 @@ private struct TypographyStyle: ViewModifier {
     
     @Environment(\.sizeCategory) var sizeCategory
     
-    var color: Color {
+    var color: Color? {
         guard let textColor = Typography(for: style)?.textColor else {
-            return Color.black
+            return nil
         }
         return Color(textColor)
     }
     
-    var font: Font {
+    var font: Font? {
         guard let font = Typography(for: style)?.font() else {
-            return Font.body
+            return nil
         }
         return Font.custom(font.fontName, size: font.pointSize)
     }
@@ -32,7 +32,9 @@ private struct TypographyStyle: ViewModifier {
     var style: UIFont.TextStyle
     
     func body(content: Content) -> some View {
-        return content.font(font).foregroundColor(color)
+        return content
+            .font(font)
+            .foregroundColor(color)
     }
     
 }
