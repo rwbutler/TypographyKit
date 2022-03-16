@@ -33,10 +33,25 @@ private struct TypographyStyle: ViewModifier {
     
     func body(content: Content) -> some View {
         return content
-            .font(font)
-            .foregroundColor(color)
+            .ifLet(font) { $0.font($1) }
+            .ifLet(color) { $0.foregroundColor($1) }
     }
     
+}
+
+@available(iOS 13, *)
+extension View {
+    @ViewBuilder
+    func ifLet<V, Transform: View>(
+        _ value: V?,
+        transform: (Self, V) -> Transform
+    ) -> some View {
+        if let value = value {
+            transform(self, value)
+        } else {
+            self
+        }
+    }
 }
 
 @available(iOS 13, macCatalyst 13, tvOS 13, watchOS 6, *)
