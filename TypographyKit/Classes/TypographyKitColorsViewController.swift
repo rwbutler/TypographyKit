@@ -49,7 +49,6 @@ class TypographyKitColorsViewController: UIViewController {
         if viewControllerShouldDismiss() {
             let isAnimated: Bool = navigationSettings?.animated ?? true
             let isModal: Bool = navigationSettings?.isModal ?? (navigationController == nil)
-            
             if isModal {
                 dismiss(animated: isAnimated, completion: nil)
             } else {
@@ -61,9 +60,12 @@ class TypographyKitColorsViewController: UIViewController {
     }
     
     @IBAction func changeStyle(_ sender: UISegmentedControl) {
-        guard #available(iOS 13, *) else { print("unavailable"); return}
+        guard #available(iOS 13, *) else {
+            return
+        }
         let style = TypographyInterfaceStyle.allCases[sender.selectedSegmentIndex]
         overrideUserInterfaceStyle = style.userInterfaceStyle
+        navigationController?.navigationBar.overrideUserInterfaceStyle = style.userInterfaceStyle
     }
 }
 
@@ -137,8 +139,8 @@ private extension TypographyKitColorsViewController {
     private func configureHeader() {
         guard #available(iOS 13, *) else { return }
         headerView.removeAllSegments()
-        TypographyInterfaceStyle.allCases.enumerated().forEach { x in
-            let (index, style) = x
+        TypographyInterfaceStyle.allCases.enumerated().forEach { style in
+            let (index, style) = style
             headerView.insertSegment(withTitle: style.rawValue.upperCamelCased(), at: index, animated: false)
         }
         

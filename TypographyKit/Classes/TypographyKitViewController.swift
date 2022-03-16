@@ -92,19 +92,26 @@ class TypographyKitViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard #available(iOS 13, *) else { return nil }
+        guard #available(iOS 13, *) else {
+            return nil
+        }
         return styleControl
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard #available(iOS 13, *) else { return 0 }
+        guard #available(iOS 13, *) else {
+            return 0
+        }
         return styleControl.frame.height
     }
     
     @objc func changeStyle(_ sender: UISegmentedControl) {
-        guard #available(iOS 13, *) else { return }
+        guard #available(iOS 13, *) else {
+            return
+        }
         let style = TypographyInterfaceStyle.allCases[sender.selectedSegmentIndex]
         overrideUserInterfaceStyle = style.userInterfaceStyle
+        navigationController?.navigationBar.overrideUserInterfaceStyle = UITraitCollection.current.userInterfaceStyle
         tableView.reloadData()
     }
 }
@@ -140,7 +147,9 @@ private extension TypographyKitViewController {
     }
     
     private func configureHeader() {
-        guard #available(iOS 13, *) else { return }
+        guard #available(iOS 13, *) else {
+            return
+        }
         styleControl.removeAllSegments()
         TypographyInterfaceStyle.allCases.enumerated().forEach { item in
             let (index, style) = item
@@ -180,7 +189,9 @@ private extension TypographyKitViewController {
         let pdfData = NSMutableData()
         UIGraphicsBeginPDFContextToData(pdfData, tableViewContentRect, nil)
         UIGraphicsBeginPDFPage()
-        guard let pdfContext = UIGraphicsGetCurrentContext() else { return }
+        guard let pdfContext = UIGraphicsGetCurrentContext() else {
+            return
+        }
         for section in 0..<tableView.numberOfSections {
             for row in 0..<tableView.numberOfRows(inSection: section) {
                 let indexPath = IndexPath(row: row, section: section)
