@@ -16,25 +16,29 @@ private struct TypographyStyle: ViewModifier {
     @Environment(\.sizeCategory) var sizeCategory
     
     var color: Color? {
-        guard let textColor = Typography(for: style)?.textColor else {
+        guard let textColor = Typography(for: style, scalingMode: scalingMode)?.textColor else {
             return nil
         }
         return Color(textColor)
     }
     
     var font: Font? {
-        guard let font = Typography(for: style)?.font() else {
+        guard let font = Typography(for: style, scalingMode: scalingMode)?.font() else {
             return nil
         }
-        return Font.custom(font.fontName, size: font.pointSize)
+        return Font(font as CTFont)
     }
     
-    var style: UIFont.TextStyle
+    let scalingMode: ScalingMode?
+    let style: UIFont.TextStyle
     
     func body(content: Content) -> some View {
         return content
-            .ifLet(font) { $0.font($1) }
-            .ifLet(color) { $0.foregroundColor($1) }
+            .ifLet(font) { content, font in
+                content.font(font) }
+            .ifLet(color) { view, color in
+                view.foregroundColor(color)
+            }
     }
     
 }
@@ -56,8 +60,8 @@ extension View {
 
 @available(iOS 13, macCatalyst 13, tvOS 13, watchOS 6, *)
 public extension View {
-    func typography(style: UIFont.TextStyle) -> some View {
-        return modifier(TypographyStyle(style: style))
+    func typography(style: UIFont.TextStyle, scalingMode: ScalingMode? = .disabled) -> some View {
+        return modifier(TypographyStyle(scalingMode: scalingMode, style: style))
     }
 }
 

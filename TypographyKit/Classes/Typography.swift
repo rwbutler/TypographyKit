@@ -52,7 +52,7 @@ public struct Typography {
     private static let monospacedDigitSystemFontName = "MonospacedDigit\(systemFontName)"
     private static let systemFontName = "System"
     
-    public init?(for textStyle: UIFont.TextStyle) {
+    public init?(for textStyle: UIFont.TextStyle, scalingMode: ScalingMode? = nil) {
         guard let typographyStyle = TypographyKit.fontTextStyles[textStyle.rawValue] else {
             return nil
         }
@@ -63,7 +63,7 @@ public struct Typography {
         self.pointSize = typographyStyle.pointSize
         self.letterCase = typographyStyle.letterCase
         self.letterSpacing = typographyStyle.letterSpacing
-        self.scalingMode = typographyStyle.scalingMode
+        self.scalingMode = scalingMode ?? typographyStyle.scalingMode
         self.textColor = typographyStyle.textColor
         self.textStyle = textStyle
     }
