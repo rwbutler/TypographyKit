@@ -60,7 +60,7 @@ extension View {
 
 @available(iOS 13, macCatalyst 13, tvOS 13, watchOS 6, *)
 public extension View {
-    func typography(style: UIFont.TextStyle, scalingMode: ScalingMode? = .disabled) -> some View {
+    func typography(style: UIFont.TextStyle, scalingMode: ScalingMode? = nil) -> some View {
         return modifier(TypographyStyle(scalingMode: scalingMode, style: style))
     }
 }
