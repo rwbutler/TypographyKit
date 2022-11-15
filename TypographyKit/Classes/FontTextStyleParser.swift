@@ -30,12 +30,14 @@ struct FontTextStyleParser {
 private extension FontTextStyleParser {
     
     mutating func parse(_ key: String, _ value: [String: Any]) {
-        //Already Parsed
-        if typographyFontStyles[key] != nil { return }
-        
-        //Already found to be invalid
-        if invalidStyles[key] != nil { return }
-            
+        // Already Parsed
+        if typographyFontStyles[key] != nil {
+            return
+        }
+        // Already found to be invalid
+        if invalidStyles[key] != nil {
+            return
+        }
         backTrace.append(key)
         switch parseFontTextStyle(key, value) {
         case .success(let color):
@@ -100,9 +102,17 @@ private extension FontTextStyleParser {
         }
         let letterSpacing = fontTextStyle[ConfigurationKey.letterSpacing.rawValue] as? Double ?? 0
 
-        return Typography(name: key, fontName: fontName, fontSize: pointSize, letterCase: letterCase,
-                          letterSpacing: letterSpacing, maximumPointSize: maxPointSize, minimumPointSize: minPointSize,
-                          scalingMode: scalingMode, textColor: textColor)
+        return Typography(
+            name: key,
+            fontName: fontName,
+            fontSize: pointSize,
+            letterCase: letterCase,
+            letterSpacing: letterSpacing,
+            maximumPointSize: maxPointSize,
+            minimumPointSize: minPointSize,
+            scalingMode: scalingMode,
+            textColor: textColor
+        )
     }
     
     /// Extends the original Typography style with another style, replacing properties of the

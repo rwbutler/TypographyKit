@@ -4,11 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.3.0] - 2021-10-01
+## [4.4.0] - 2022-08-16
 ## Changed
+- When using the View modifier in SwiftUI, the scaling mode can be specified as a parameter e.g. `.typography(style: .interactive, scalingMode: .fontMetrics)`. By default the scaling mode specified in the configuration will be applied.
+
+## [4.3.2] - 2022-03-16
+## Changed
+- Fixed an issue concerning font colors in SwiftUI.
+
+## [4.3.1] - 2021-11-09
+## Changed
+- Allow Color and Font for typography styles in SwiftUI to be nullable.
+
+## [4.3.0] - 2021-11-09
+## Added
+- Support for disabling font scaling either system-wide and/or per-font.
+- Support for custom letter spacing in font styles plist.
 - Forked to grindrllc.
-- Added letter-spacing as font attribute.
-- Can disable automatic font scaling globally or per font.
 
 ## [4.2.2] - 2020-12-16
 ### Changed

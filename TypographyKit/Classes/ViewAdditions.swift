@@ -15,32 +15,53 @@ private struct TypographyStyle: ViewModifier {
     
     @Environment(\.sizeCategory) var sizeCategory
     
-    var color: Color {
-        guard let textColor = Typography(for: style)?.textColor else {
-            return Color.black
+    var color: Color? {
+        guard let textColor = Typography(for: style, scalingMode: scalingMode)?.textColor else {
+            return nil
         }
         return Color(textColor)
     }
     
-    var font: Font {
-        guard let font = Typography(for: style)?.font() else {
-            return Font.body
+    var font: Font? {
+        guard let font = Typography(for: style, scalingMode: scalingMode)?.font() else {
+            return nil
         }
-        return Font.custom(font.fontName, size: font.pointSize)
+        return Font(font as CTFont)
     }
     
-    var style: UIFont.TextStyle
+    let scalingMode: ScalingMode?
+    let style: UIFont.TextStyle
     
     func body(content: Content) -> some View {
-        return content.font(font).foregroundColor(color)
+        return content
+            .ifLet(font) { content, font in
+                content.font(font) }
+            .ifLet(color) { view, color in
+                view.foregroundColor(color)
+            }
     }
     
 }
 
+@available(iOS 13, *)
+extension View {
+    @ViewBuilder
+    func ifLet<V, Transform: View>(
+        _ value: V?,
+        transform: (Self, V) -> Transform
+    ) -> some View {
+        if let value = value {
+            transform(self, value)
+        } else {
+            self
+        }
+    }
+}
+
 @available(iOS 13, macCatalyst 13, tvOS 13, watchOS 6, *)
 public extension View {
-    func typography(style: UIFont.TextStyle) -> some View {
-        return modifier(TypographyStyle(style: style))
+    func typography(style: UIFont.TextStyle, scalingMode: ScalingMode? = nil) -> some View {
+        return modifier(TypographyStyle(scalingMode: scalingMode, style: style))
     }
 }
 
