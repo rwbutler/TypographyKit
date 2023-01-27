@@ -41,13 +41,14 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 ## Features
 
 - [x] Dynamic Type support for SwiftUI.
+- [x] Helps keep your app visually consistent across all screens by allowing you to define all of your typography styles and app color scheme in a single location.
+- [x] Host and update your font styles and color schemes [remotely](#remote-configuration). [[Details]](https://medium.com/@rwbutler/remotely-configured-colour-palettes-in-typographykit-e565c927e2b4)
 - [x] Dynamic Type support for UIKit (including UILabel, UIButton, UITextField and UITextView as well as some support for NSAttributedString).
 	- [x] Support for Dynamic Type using *zero code* (by setting the `fontTextStyleName` key path String to the name of your typography style in Interface Builder). 
-- [x] Helps make your app visually consistent across all screen by allowing you to define all of your typography styles and app color scheme in a single location.
-- [x] Host and update your font styles and color schemes [remotely](#remote-configuration). [[Details]](https://medium.com/@rwbutler/remotely-configured-colour-palettes-in-typographykit-e565c927e2b4)
+- [x] Use either JSON or Property List (.plist) to define your TypographyKit configuration. 
 - [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Details]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
 - [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
-- [x] Use either a PList or JSON to define your TypographyKit configuration. 
+
 
 ## What's new in TypographyKit 5.0.0?
 
@@ -142,22 +143,37 @@ An example app exists in the [Example directory](https://github.com/rwbutler/Typ
 
 ## Usage
 
-Include a TypographyKit.plist as part of your app project ([example](./Example/TypographyKit/TypographyKit.plist)) in which you define your typography styles.
+Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.json)) or TypographyKit.plist ([example](./Example/TypographyKit/TypographyKit.plist)) as part of your app project in which you define your typography styles:
 
-```xml
-	<key>ui-font-text-styles</key>
-	<dict>
-		<key>heading</key>
-		<dict>
-			<key>font-name</key>
-			<string>Avenir-Medium</string>
-			<key>point-size</key>
-			<integer>36</integer>
-		</dict>
-	</dict>
+```json
+{
+	"typography-colors": {
+        "background": {
+            "dark": "dark royal-blue",
+            "light": "lightest gray"
+        },
+        "gold": "#FFAB01",
+        "royal-blue": "#08224C"
+	},
+	"typography-kit": {
+        "labels": {
+            "line-break": "word-wrap"
+        },
+        "minimum-point-size": 10,
+        "maximum-point-size": 100,
+		    "point-step-size": 2,
+		    "point-step-multiplier": 1,
+        "scaling-mode": "uifontmetrics-with-fallback"
+	},
+	"ui-font-text-styles": {
+		"heading": {
+			"font-name": "Avenir-Medium",
+			"point-size": 36,
+			"text-color": "text",
+			"letter-case": "regular"
+		}
+}
 ```
-
-Or if you prefer to use JSON you may include a TypographyKit.json ([example](./Example/TypographyKit/TypographyKit.json)) instead.
 
 Define additional UIFont.TextStyles within your app matching those defined in your .plist:
 
