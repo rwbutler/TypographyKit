@@ -1,7 +1,7 @@
 
-![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/master/docs/images/typography-kit-banner.png)
+![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/main/docs/images/typography-kit-banner.png)
 
-[![Build Status](https://app.travis-ci.com/rwbutler/TypographyKit.svg?branch=master)](https://app.travis-ci.com/rwbutler/TypographyKit)
+[![Build Status](https://app.travis-ci.com/rwbutler/TypographyKit.svg?branch=main)](https://app.travis-ci.com/rwbutler/TypographyKit)
 [![Version](https://img.shields.io/cocoapods/v/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
@@ -15,14 +15,13 @@ TypographyKit makes it easy to define typography styles and colour palettes in y
 To learn more about how to use TypographyKit, take a look at the table of contents below:
 
 - [Features](#features)
-- [Roadmap](#roadmap)
 - [What's New in TypographyKit 5.0.0?](#whats-new-in-typographykit-500)
 - [What's New in TypographyKit 4.0.0?](#whats-new-in-typographykit-400)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
 	- [Carthage](#carthage)
-- [Example App](#example-app)
 - [Usage](#usage)
+	- [Example App](#example-app)
 	- [Configuration](#configuration)
 	- [Swift UI](#swift-ui)
 		- [Colors](#colors)
@@ -35,6 +34,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 		- [Letter Casing](#letter-casing)
 		- [Dynamic Type Configuration](#dynamic-type-configuration)
 		- [Remote Configuration](#remote-configuration)
+- [Contributing](CONTRIBUTING.md)
 - [Author](#author)
 - [License](#license)
 - [Additional Software](#additional-software)
@@ -119,13 +119,12 @@ From the macOS Terminal run `carthage update --platform iOS` to build the framew
 
 For more information [see here](https://github.com/Carthage/Carthage#quick-start).
 
-## Example App
-
-An example app exists in the [Example directory](https://github.com/rwbutler/TypographyKit/tree/master/Example) to provide some pointers on getting started.
-
 ## Usage
+### Example App
+An example app exists in the [Example directory](https://github.com/rwbutler/TypographyKit/tree//Example) to provide some pointers on getting started.
+
 ### Configuration
-Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.json)) or TypographyKit.plist ([example](./Example/TypographyKit/TypographyKit.plist)) as part of your app project in which you define your typography styles:
+Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKit/blob/main/Example/TypographyKit/TypographyKit.json)) or TypographyKit.plist ([example](./Example/TypographyKit/TypographyKit.plist)) as part of your app project in which you define your colors and typography styles:
 
 ```json
 {
@@ -188,7 +187,7 @@ self.titleLabel.fontTextStyle = .heading
 
 If you are happy to use strings, an alternative means of setting the `fontTextStyle` property is to set the key path `fontTextStyleName` on your UIKit element to the string value representing your fontTextStyle - in the example above, this would be 'heading'.
 
-![Setting the fontTextStyleName key path in Interface Builder](https://github.com/rwbutler/TypographyKit/raw/master/key-path.png)
+![Setting the fontTextStyleName key path in Interface Builder](https://github.com/rwbutler/TypographyKit/raw/main/key-path.png)
 
 Using this method it is possible to support Dynamic Type in your application with *zero code*.
 
@@ -389,7 +388,7 @@ Optionally, you may clamp the font point size to a lower and / or upper bound us
 TypographyKit also allows you to host your configuration remotely so that your colors and font styles can be updated dynamically. To do so, simply add the following line to your app delegate so that it is invoked when your app finishes launching:
 
 ```swift
-TypographyKit.configurationURL = URL(string: "https://github.com/rwbutler/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.plist")
+TypographyKit.configurationURL = URL(string: "https://github.com/rwbutler/TypographyKit/blob/main/Example/TypographyKit/TypographyKit.plist")
 ```
 
 Your typography styles and colors will be updated the next time your app is launched. However, should you need your styles to be updated sooner you may call ``` TypographyKit.refresh()```.
@@ -426,7 +425,7 @@ TypographyKit is available under the MIT license. See the [LICENSE file](./LICEN
 
 |[Cheats](https://github.com/rwbutler/Cheats) |[Connectivity](https://github.com/rwbutler/Connectivity) | [FeatureFlags](https://github.com/rwbutler/FeatureFlags) | [Skylark](https://github.com/rwbutler/Skylark) | [TypographyKit](https://github.com/rwbutler/TypographyKit) | [Updates](https://github.com/rwbutler/Updates) |
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-|[![Cheats](https://raw.githubusercontent.com/rwbutler/Cheats/master/docs/images/cheats-logo.png)](https://github.com/rwbutler/Cheats) |[![Connectivity](https://github.com/rwbutler/Connectivity/raw/master/ConnectivityLogo.png)](https://github.com/rwbutler/Connectivity) | [![FeatureFlags](https://raw.githubusercontent.com/rwbutler/FeatureFlags/master/docs/images/feature-flags-logo.png)](https://github.com/rwbutler/FeatureFlags) | [![Skylark](https://github.com/rwbutler/Skylark/raw/master/SkylarkLogo.png)](https://github.com/rwbutler/Skylark) | [![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/master/docs/images/typography-kit-logo.png)](https://github.com/rwbutler/TypographyKit) | [![Updates](https://raw.githubusercontent.com/rwbutler/Updates/master/docs/images/updates-logo.png)](https://github.com/rwbutler/Updates)
+|[![Cheats](https://raw.githubusercontent.com/rwbutler/Cheats/master/docs/images/cheats-logo.png)](https://github.com/rwbutler/Cheats) |[![Connectivity](https://github.com/rwbutler/Connectivity/raw/master/ConnectivityLogo.png)](https://github.com/rwbutler/Connectivity) | [![FeatureFlags](https://raw.githubusercontent.com/rwbutler/FeatureFlags/master/docs/images/feature-flags-logo.png)](https://github.com/rwbutler/FeatureFlags) | [![Skylark](https://github.com/rwbutler/Skylark/raw/master/SkylarkLogo.png)](https://github.com/rwbutler/Skylark) | [![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/main/docs/images/typography-kit-logo.png)](https://github.com/rwbutler/TypographyKit) | [![Updates](https://raw.githubusercontent.com/rwbutler/Updates/master/docs/images/updates-logo.png)](https://github.com/rwbutler/Updates)
 
 ### Tools
 
