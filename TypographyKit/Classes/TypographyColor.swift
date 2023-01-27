@@ -6,6 +6,9 @@
 //
 //
 
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
 import UIKit
 
 public indirect enum TypographyColor {
@@ -68,6 +71,16 @@ public indirect enum TypographyColor {
     
     public var ciColor: CIColor {
         return self.uiColor.ciColor
+    }
+    
+    @available(iOS 13.0, *)
+    public var color: Color {
+        Color(uiColor)
+    }
+    
+    @available(iOS 13.0, *)
+    public var swiftUI: Color {
+        color
     }
     
     public var uiColor: UIColor {

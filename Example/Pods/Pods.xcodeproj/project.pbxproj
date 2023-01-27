@@ -258,15 +258,15 @@
 		138F0E8421470D2700CA8D8F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E4370A081ECB980D0036D182 /* UILabelAdditions.swift */,
-				E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */,
-				E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */,
-				E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */,
-				135C78DB20F7662300BDB06D /* UIColorAdditions.swift */,
-				133A83F8230D5AB500A10591 /* TypographyKitElement.swift */,
-				D8CC864623D718F4004D94F7 /* NSLineBreakMode.swift */,
-				13ACC04A2479657700146DEA /* UIControlState.swift */,
 				13ACC0522479969C00146DEA /* ButtonTitleColorApplyMode.swift */,
+				D8CC864623D718F4004D94F7 /* NSLineBreakMode.swift */,
+				133A83F8230D5AB500A10591 /* TypographyKitElement.swift */,
+				E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */,
+				135C78DB20F7662300BDB06D /* UIColorAdditions.swift */,
+				13ACC04A2479657700146DEA /* UIControlState.swift */,
+				E4370A081ECB980D0036D182 /* UILabelAdditions.swift */,
+				E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */,
+				E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
