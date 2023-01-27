@@ -18,7 +18,6 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 - [Roadmap](#roadmap)
 - [What's New in TypographyKit 5.0.0?](#whats-new-in-typographykit-500)
 - [What's New in TypographyKit 4.0.0?](#whats-new-in-typographykit-400)
-- [What's New in TypographyKit 3.0.0?](#whats-new-in-typographykit-300)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
 	- [Carthage](#carthage)
@@ -71,28 +70,6 @@ A letter case may be applied directly to the String as follows:
 ```
 
 This results in the letter case defined for the specified typography style (in config) being applied.
-
-## What's new in TypographyKit 3.0.0?
-
-TypographyKit 3.0.0 supports Xcode 11 and dark mode in iOS 13 and supports iOS 8.2 and above. The last version supporting Xcode 10 and targeting the iOS 12 SDK is version 2.2.3.
-
-TypographyKit 2.0.0 brings support for Swift 5.0. The previous version supporting Swift 4.2 is version 1.1.5.
-
-If you require the Swift 4.2 version then in your `Podfile`:
-
-```ruby
-pod "TypographyKit" "~> 1.1.5" 
-```
-
-Or if you are using Carthage add the following to your `Cartfile`:
-
-```ogdl
-github "rwbutler/TypographyKit" ~> 1.1.5
-```
-
-From TypographyKit 1.1.5 it was possible to reference the system font (and optionally, weight) as part of your configuration by setting the `font-name` property value to `System` or e.g. `System-Bold` to additionally specify the font weight.
-
-It is now possible to use `UIFontMetrics` to scale fonts where iOS 11 is available and using the system-provided `UIFont.TextStyle` options only by setting the `scaling-mode` property in the configuration file. Allowable values include `stepping` (default behavior), `uifontmetrics` and `uifontmetrics-with-fallback`. See [`CHANGELOG.md`](./CHANGELOG.md).
 
 ## Installation
 
@@ -148,22 +125,22 @@ Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKi
 ```json
 {
 	"typography-colors": {
-        "background": {
-            "dark": "dark royal-blue",
-            "light": "lightest gray"
-        },
-        "gold": "#FFAB01",
-        "royal-blue": "#08224C"
+		"background": {
+			"dark": "dark royal-blue",
+			"light": "lightest gray"
+    },
+		"gold": "#FFAB01",
+		"royal-blue": "#08224C"
 	},
 	"typography-kit": {
-        "labels": {
-            "line-break": "word-wrap"
-        },
-        "minimum-point-size": 10,
-        "maximum-point-size": 100,
-		    "point-step-size": 2,
-		    "point-step-multiplier": 1,
-        "scaling-mode": "uifontmetrics-with-fallback"
+		"labels": {
+	    "line-break": "word-wrap"
+    },
+		"minimum-point-size": 10,
+		"maximum-point-size": 100,
+		"point-step-size": 2,
+		"point-step-multiplier": 1,
+		"scaling-mode": "uifontmetrics-with-fallback"
 	},
 	"ui-font-text-styles": {
 		"heading": {
@@ -172,6 +149,7 @@ Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKi
 			"text-color": "text",
 			"letter-case": "regular"
 		}
+	}
 }
 ```
 
