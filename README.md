@@ -16,6 +16,7 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 - [Features](#features)
 - [Roadmap](#roadmap)
+- [What's New in TypographyKit 5.0.0?](#whats-new-in-typographykit-500)
 - [What's New in TypographyKit 4.0.0?](#whats-new-in-typographykit-400)
 - [What's New in TypographyKit 3.0.0?](#whats-new-in-typographykit-300)
 - [Installation](#installation)
@@ -48,6 +49,10 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 - [x] Use [Palette](https://github.com/rwbutler/TypographyKitPalette) to make the same colour scheme used programmatically available for use in Interface Builder. [[Details]](https://medium.com/@rwbutler/palette-for-typographykit-fd724f324c52)
 - [x] Define letter case as part of typography styles with [simple letter case conversion available](#letter-casing).
 - [x] Use either a PList or JSON to define your TypographyKit configuration. 
+
+## What's new in TypographyKit 5.0.0?
+
+TypographyKit 5.0.0 drops support for iOS 9.0, updating the deployment target to 11.0 in line with Xcode 14.
 
 ## What's new in TypographyKit 4.0.0?
 
@@ -85,7 +90,7 @@ Or if you are using Carthage add the following to your `Cartfile`:
 github "rwbutler/TypographyKit" ~> 1.1.5
 ```
 
-In TypographyKit 1.1.5 is now possible to reference the system font or system font and weight as part of your configuration by setting the `font-name` property value to `System` or e.g. `System-Bold` to additionally specify the font weight.
+From TypographyKit 1.1.5 it was possible to reference the system font (and optionally, weight) as part of your configuration by setting the `font-name` property value to `System` or e.g. `System-Bold` to additionally specify the font weight.
 
 It is now possible to use `UIFontMetrics` to scale fonts where iOS 11 is available and using the system-provided `UIFont.TextStyle` options only by setting the `scaling-mode` property in the configuration file. Allowable values include `stepping` (default behavior), `uifontmetrics` and `uifontmetrics-with-fallback`. See [`CHANGELOG.md`](./CHANGELOG.md).
 
@@ -360,7 +365,7 @@ myLabel.text("hello world", style: .heading, letterCase: .capitalized)
 ### Dynamic Type Configuration
 By default, your font point size will increase by 2 points for each notch on the Larger Text slider in the iOS accessibility settings however you may optionally specify how your UIKit elements react to changes in UIContentSizeCategory. 
 
-You may specify your own point step size and multiplier by inclusion of a dictionary with key ```typography-kit``` as part of your ```TypographyKit.plist``` file.
+You may specify your own point step size and multiplier by inclusion of a dictionary with key ```typography-kit``` as part of your ```TypographyKit.json``` (or ```TypographyKit.plist``` if preferred) file.
 
 ```xml
 <key>typography-kit</key>
