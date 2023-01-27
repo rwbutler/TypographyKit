@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.5.0] - 2023-01-27
+## Added
+
+## Changed
+
+
 ## [4.4.0] - 2022-08-16
 ## Changed
 - When using the View modifier in SwiftUI, the scaling mode can be specified as a parameter e.g. `.typography(style: .interactive, scalingMode: .fontMetrics)`. By default the scaling mode specified in the configuration will be applied.
