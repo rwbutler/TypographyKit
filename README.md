@@ -128,32 +128,32 @@ Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKi
 
 ```json
 {
-	"typography-colors": {
-		"background": {
-			"dark": "dark royal-blue",
-			"light": "lightest gray"
+    "typography-colors": {
+        "background": {
+            "dark": "dark royal-blue",
+            "light": "lightest gray"
+        },
+        "gold": "#FFAB01",
+        "royal-blue": "#08224C"
     },
-		"gold": "#FFAB01",
-		"royal-blue": "#08224C"
-	},
-	"typography-kit": {
-		"labels": {
-	    "line-break": "word-wrap"
+    "typography-kit": {
+        "labels": {
+            "line-break": "word-wrap"
+        },
+        "minimum-point-size": 10,
+        "maximum-point-size": 100,
+        "point-step-size": 2,
+        "point-step-multiplier": 1,
+        "scaling-mode": "uifontmetrics-with-fallback"
     },
-		"minimum-point-size": 10,
-		"maximum-point-size": 100,
-		"point-step-size": 2,
-		"point-step-multiplier": 1,
-		"scaling-mode": "uifontmetrics-with-fallback"
-	},
-	"ui-font-text-styles": {
-		"heading": {
-			"font-name": "Avenir-Medium",
-			"point-size": 36,
-			"text-color": "text",
-			"letter-case": "regular"
-		}
-	}
+    "ui-font-text-styles": {
+            "heading": {
+            "font-name": "Avenir-Medium",
+            "point-size": 36,
+            "text-color": "text",
+            "letter-case": "regular"
+        }
+    }
 }
 ```
 
