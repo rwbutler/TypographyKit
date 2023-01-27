@@ -24,3 +24,5 @@ Carthage
 *.afdesign
 Package.resolved
 *.afdesign
+.swiftpm/**
+*.icloud
