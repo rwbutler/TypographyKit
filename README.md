@@ -23,13 +23,18 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 	- [Carthage](#carthage)
 - [Example App](#example-app)
 - [Usage](#usage)
-	- [Typography Styles](#typography-styles)
-	- [Extending Styles](#extending-styles)
-	- [Color Palettes](#color-palettes)
-	- [UIColor(named:)](#uicolornamed)
-	- [Letter Casing](#letter-casing)
-	- [Dynamic Type Configuration](#dynamic-type-configuration)
-	- [Remote Configuration](#remote-configuration)
+	- [Configuration](#configuration)
+	- [Swift UI](#swift-ui)
+		- [Colors](#colors)
+		- [Typography (Fonts)](#typography-fonts)
+	- [UI Kit](#ui-kit)
+		- [Typography Styles](#typography-styles)
+		- [Extending Styles](#extending-styles)
+		- [Color Palettes](#color-palettes)
+		- [UIColor(named:)](#uicolornamed)
+		- [Letter Casing](#letter-casing)
+		- [Dynamic Type Configuration](#dynamic-type-configuration)
+		- [Remote Configuration](#remote-configuration)
 - [Author](#author)
 - [License](#license)
 - [Additional Software](#additional-software)
@@ -119,7 +124,7 @@ For more information [see here](https://github.com/Carthage/Carthage#quick-start
 An example app exists in the [Example directory](https://github.com/rwbutler/TypographyKit/tree/master/Example) to provide some pointers on getting started.
 
 ## Usage
-
+### Configuration
 Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKit/blob/master/Example/TypographyKit/TypographyKit.json)) or TypographyKit.plist ([example](./Example/TypographyKit/TypographyKit.plist)) as part of your app project in which you define your typography styles:
 
 ```json
@@ -153,6 +158,10 @@ Include a TypographyKit.json ([example](https://github.com/rwbutler/TypographyKi
 }
 ```
 
+
+### Swift UI
+#### Colors
+#### Typography (Fonts)
 Define additional UIFont.TextStyles within your app matching those defined in your .plist:
 
 ```swift
