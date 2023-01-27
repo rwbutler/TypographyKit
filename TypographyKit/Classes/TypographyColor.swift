@@ -116,7 +116,7 @@ public indirect enum TypographyColor {
         case .clear:
             return .clear
         case .named(let colorName):
-            if #available(iOS 11, *), let color = UIColor(named: colorName) {
+            if let color = UIColor(named: colorName) {
                 return color
             }
             return TypographyColor.colorNameMap[colorName]! // Previously validated
@@ -144,7 +144,7 @@ public indirect enum TypographyColor {
     // MARK: - Initializer
     public init?(string: String) {
         let isInColorMap = TypographyColor.colorNameMap[string] != nil
-        if #available(iOS 11, *), UIColor(named: string) != nil || isInColorMap { // Validate a color is returned
+        if UIColor(named: string) != nil || isInColorMap { // Validate a color is returned
             self = .named(string: string)
             return
         }

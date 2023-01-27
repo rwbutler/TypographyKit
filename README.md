@@ -318,7 +318,7 @@ myLabel.text("hello world", style: .heading, textColor: .blue)
 ```
 
 ### UIColor(named:)
-TypographyKit also supports definition of colors via asset catalogs available from iOS 11 onwards. Simply include the name of the color as part of your style in the configuration file and if the color is found in your asset catalog it will automatically be applied.
+TypographyKit supports definition of colors via asset catalogs. Simply include the name of the color as part of your style in the configuration file and if the color is found in your asset catalog it will automatically be applied.
 
 ### Letter Casing
 
