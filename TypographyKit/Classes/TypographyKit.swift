@@ -13,6 +13,7 @@ import UIKit
 public typealias TK = TypographyKit
 
 // Public interface
+// swiftlint:disable:next type_body_length
 public struct TypographyKit {
     
     public typealias Colors = [String: TypographyColor]
