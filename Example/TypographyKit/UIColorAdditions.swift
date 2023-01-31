@@ -10,5 +10,5 @@ import TypographyKit
 import UIKit
 
 extension UIColor {
-    static let background: UIColor = TypographyKit.colors["background"]!
+    static let background: UIColor = TypographyKit.uiColor(named: "background")
 }

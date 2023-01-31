@@ -6,14 +6,18 @@
 //
 //
 
+import SwiftUI
 import UIKit
+
+// swiftlint:disable:next type_name
+public typealias TK = TypographyKit
 
 // Public interface
 public struct TypographyKit {
     
-    typealias Colors = [String: UIColor]
+    public typealias Colors = [String: TypographyColor]
     public typealias Configuration = TypographyKitConfiguration
-    typealias Settings = ConfigurationSettings
+    public typealias Settings = TypographyKitSettings
     typealias Styles = [String: Typography]
     
     // MARK: Global state
@@ -21,7 +25,7 @@ public struct TypographyKit {
         configuration?.configurationSettings.buttons.titleColorApplyMode ?? .whereUnspecified
     }()
     
-    public static var colors: [String: UIColor] = {
+    static var colors: Colors = {
         return configuration?.typographyColors ?? [:]
     }()
     
@@ -47,12 +51,32 @@ public struct TypographyKit {
         return .json // default
     }()
     
+    /// The color to be used if a color with the specified name cannot be found.
+    public static var fallbackColor: TypographyColor = .clear
+    
     public static var fontTextStyles: [String: Typography] = {
         return configuration?.typographyStyles ?? [:]
     }()
     
+    public static var isDevelopment: Bool = {
+#if DEBUG
+        return true
+#else
+        return false
+#endif
+    }()
+    
+    // These property must be initialised *after* `isDevelopment` because it is dependent on it.
+    public static var developmentColor: TypographyColor = {
+        if isDevelopment {
+            return .red
+        } else {
+            return .clear
+        }
+    }()
+    
     public static var lineBreak: NSLineBreakMode? = {
-        return configuration?.configurationSettings.labels.lineBreak
+        return configuration?.configurationSettings.labels.lineBreakMode
     }()
     
     public static var minimumPointSize: Float? = {
@@ -75,17 +99,49 @@ public struct TypographyKit {
         return configuration?.configurationSettings.scalingMode ?? .fontMetricsWithSteppingFallback
     }()
     
+    public static var shouldCrashIfColorNotFound: Bool = false
+    public static var shouldUseDevelopmentColors: Bool = false
+    
     // MARK: Functions
-    internal static func colorName(color: UIColor) -> String? {
-        return colors.first(where: { $0.value == color })?.key 
+    @available(iOS 13.0, *)
+    public static func color(named colorName: String) -> Color {
+        return tkColor(named: colorName).color
+    }
+    
+    static func colorName(color: UIColor) -> String? {
+        return colors.first(where: { $0.value.uiColor == color })?.key
+    }
+    
+    public static func tkColor(named colorName: String) -> TypographyColor {
+        guard let color = colors[colorName] else {
+            if isDevelopment {
+                if shouldCrashIfColorNotFound {
+                    fatalError("Unable to locate color named '\(colorName)' and 'shouldCrashIfColorNotFound' = 'true'.")
+                } else if shouldUseDevelopmentColors {
+                    return developmentColor
+                } else {
+                    return fallbackColor
+                }
+            } else {
+                return fallbackColor
+            }
+        }
+        return color
+    }
+    
+    public static func uiColor(named colorName: String) -> UIColor {
+        return tkColor(named: colorName).uiColor
     }
     
     @available(iOS 9.0, *)
-    public static func presentTypographyColors(delegate: TypographyKitViewControllerDelegate? = nil,
-                                               animated: Bool = true, shouldRefresh: Bool = true) {
+    public static func presentTypographyColors(
+        delegate: TypographyKitViewControllerDelegate? = nil,
+        animated: Bool = true,
+        shouldRefresh: Bool = true
+    ) {
         let viewController = TypographyKitColorsViewController()
         guard let presenter = UIApplication.shared.keyWindow?.rootViewController else {
-                return
+            return
         }
         viewController.delegate = delegate
         viewController.modalPresentationStyle = .overCurrentContext
@@ -109,7 +165,7 @@ public struct TypographyKit {
                                                navigationSettings: ViewControllerNavigationSettings) {
         let viewController = TypographyKitColorsViewController()
         guard let presenter = UIApplication.shared.keyWindow?.rootViewController else {
-                return
+            return
         }
         viewController.delegate = delegate
         viewController.modalPresentationStyle = .overCurrentContext
@@ -226,28 +282,29 @@ public struct TypographyKit {
         
     }
     
-    public static func refresh(_ completion: ((Configuration?) -> Void)? = nil) {
+    public static func refresh(_ completion: ((Settings?) -> Void)? = nil) {
         configuration = loadConfiguration()
         guard let colors = configuration?.typographyColors,
-            let settings = configuration?.configurationSettings,
-            let styles = configuration?.typographyStyles else {
-                completion?(nil)
-                return
+              let configSettings = configuration?.configurationSettings,
+              let styles = configuration?.typographyStyles else {
+            completion?(nil)
+            return
         }
-        let config = Configuration(colors: colors, settings: settings, styles: styles)
-        completion?(config)
+        let settings = Settings(colors: colors, configuration: configSettings, styles: styles)
+        completion?(settings)
     }
     
-    public static func refreshWithData(_ data: Data, completion: ((Configuration?) -> Void)? = nil) {
+    public static func refreshWithData(_ data: Data, completion: ((Settings?) -> Void)? = nil) {
         guard case let .success(configuration) = loadConfigurationWithData(data) else {
             completion?(nil)
             return
         }
-        let colors = configuration.typographyColors
-        let settings = configuration.configurationSettings
-        let styles = configuration.typographyStyles
-        let config = Configuration(colors: colors, settings: settings, styles: styles)
-        completion?(config)
+        let settings = Settings(
+            colors: configuration.typographyColors,
+            configuration: configuration.configurationSettings,
+            styles: configuration.typographyStyles
+        )
+        completion?(settings)
     }
     
 }
@@ -272,12 +329,11 @@ private extension TypographyKit {
     }
     
     static func loadConfiguration() -> ConfigurationModel? {
-        guard let configurationURL = configurationURL,
-            let data = try? Data(contentsOf: configurationURL) else {
-                guard case let .success(model) = loadConfigurationWithData(nil) else {
-                    return nil
-                }
-                return model
+        guard let configurationURL = configurationURL, let data = try? Data(contentsOf: configurationURL) else {
+            guard case let .success(model) = loadConfigurationWithData(nil) else {
+                return nil
+            }
+            return model
         }
         guard case let .success(model) = loadConfigurationWithData(data) else {
             return nil
@@ -288,12 +344,12 @@ private extension TypographyKit {
     static func loadConfigurationWithData(_ data: Data?) -> ConfigurationParsingResult {
         guard let data = data else {
             guard let cachedConfigurationURL = cachedConfigurationURL,
-                let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
-                    guard let bundledConfigurationURL = bundledConfigurationURL(),
-                        let bundledData = try? Data(contentsOf: bundledConfigurationURL) else {
-                            return .failure(.emptyPayload)
-                    }
-                    return parseConfiguration(data: bundledData)
+                  let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
+                guard let bundledConfigurationURL = bundledConfigurationURL(),
+                      let bundledData = try? Data(contentsOf: bundledConfigurationURL) else {
+                    return .failure(.emptyPayload)
+                }
+                return parseConfiguration(data: bundledData)
             }
             return parseConfiguration(data: cachedData)
         }

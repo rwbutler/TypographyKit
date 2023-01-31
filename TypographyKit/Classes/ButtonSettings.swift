@@ -9,5 +9,9 @@ import Foundation
 import UIKit
 
 struct ButtonSettings {
-    var titleColorApplyMode: UIButton.TitleColorApplyMode?
+    let titleColorApplyMode: ButtonTitleColorApplyMode
+    
+    init(titleColorApplyMode: ButtonTitleColorApplyMode = .whereUnspecified) {
+        self.titleColorApplyMode = titleColorApplyMode
+    }
 }

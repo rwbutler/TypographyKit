@@ -9,11 +9,11 @@
 import UIKit
 
 struct ConfigurationModel {
-    let configurationSettings: ConfigurationSettings
-    let typographyColors: [String: UIColor]
+    let configurationSettings: TypographyKitConfiguration
+    let typographyColors: TypographyKit.Colors
     let typographyStyles: [String: Typography]
     
-    init(settings: ConfigurationSettings, colors: [String: UIColor], styles: [String: Typography]) {
+    init(settings: TypographyKitConfiguration, colors: TypographyKit.Colors, styles: [String: Typography]) {
         self.configurationSettings = settings
         self.typographyColors = colors
         self.typographyStyles = styles

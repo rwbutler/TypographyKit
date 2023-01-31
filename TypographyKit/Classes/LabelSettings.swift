@@ -9,5 +9,9 @@ import Foundation
 import UIKit
 
 struct LabelSettings {
-    var lineBreak: NSLineBreakMode?
+    let lineBreakMode: NSLineBreakMode
+    
+    init(lineBreakMode: NSLineBreakMode = .byWordWrapping) {
+        self.lineBreakMode = lineBreakMode
+    }
 }

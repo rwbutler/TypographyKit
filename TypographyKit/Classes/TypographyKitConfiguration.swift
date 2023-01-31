@@ -2,19 +2,41 @@
 //  TypographyKitConfiguration.swift
 //  TypographyKit
 //
-//  Created by Ross Butler on 1/22/19.
+//  Created by Ross Butler on 7/15/17.
+//
 //
 
-import Foundation
+import UIKit
 
-public class TypographyKitConfiguration {
-    let colors: TypographyKit.Colors
-    let settings: TypographyKit.Settings
-    let styles: TypographyKit.Styles
+public struct TypographyKitConfiguration {
+    let buttons: ButtonSettings
+    let labels: LabelSettings
+    let minimumPointSize: Float?
+    let maximumPointSize: Float?
+    let pointStepSize: Float
+    let pointStepMultiplier: Float
+    let scalingMode: ScalingMode?
     
-    init(colors: TypographyKit.Colors, settings: TypographyKit.Settings, styles: TypographyKit.Styles) {
-        self.colors = colors
-        self.settings = settings
-        self.styles = styles
+    init(
+        buttons: ButtonSettings = ButtonSettings(),
+        labels: LabelSettings = LabelSettings(),
+        minPointSize: Float? = nil,
+        maxPointSize: Float? = nil,
+        pointStepSize: Float = 2.0,
+        pointStepMultiplier: Float = 1.0,
+        scalingMode: String? = nil
+    ) {
+        self.buttons = buttons
+        self.labels = labels
+        self.minimumPointSize = minPointSize
+        self.maximumPointSize = maxPointSize
+        self.pointStepSize = pointStepSize
+        self.pointStepMultiplier = pointStepMultiplier
+        if let scalingModeStr = scalingMode {
+            self.scalingMode = ScalingMode(rawValue: scalingModeStr)
+        } else {
+            self.scalingMode = nil
+        }
     }
+    
 }

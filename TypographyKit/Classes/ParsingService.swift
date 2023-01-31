@@ -36,10 +36,10 @@ extension ConfigurationParsingService {
     fileprivate typealias ExtendedTypographyStyleEntry = (existingStyleName: String, newStyle: Typography)
     
     func parse(_ configEntries: [String: Any]) -> ConfigurationParsingResult {
-        let configuration: ConfigurationSettings
+        let configuration: TypographyKitConfiguration
         if let typographyKitConfig = configEntries[CodingKeys.umbrellaEntry] as? [String: Any],
-            let stepSize = typographyKitConfig[CodingKeys.pointStepSize] as? Float,
-            let stepMultiplier = typographyKitConfig[CodingKeys.pointStepMultiplier] as? Float {
+           let stepSize = typographyKitConfig[CodingKeys.pointStepSize] as? Float,
+           let stepMultiplier = typographyKitConfig[CodingKeys.pointStepMultiplier] as? Float {
             let buttonsConfig = typographyKitConfig[CodingKeys.buttons] as? [String: String]
             let labelsConfig = typographyKitConfig[CodingKeys.labels] as? [String: String]
             let buttonSettings = self.buttonSettings(buttonsConfig)
@@ -47,7 +47,7 @@ extension ConfigurationParsingService {
             let minimumPointSize = typographyKitConfig[CodingKeys.minimumPointSize] as? Float
             let maximumPointSize = typographyKitConfig[CodingKeys.maximumPointSize] as? Float
             let scalingMode = typographyKitConfig[CodingKeys.scalingMode] as? String
-            configuration = ConfigurationSettings(
+            configuration = TypographyKitConfiguration(
                 buttons: buttonSettings,
                 labels: labelSettings,
                 minPointSize: minimumPointSize,
@@ -57,29 +57,28 @@ extension ConfigurationParsingService {
                 scalingMode: scalingMode
             )
         } else {
-            configuration = ConfigurationSettings(buttons: ButtonSettings(), labels: LabelSettings())
+            configuration = TypographyKitConfiguration(buttons: ButtonSettings(), labels: LabelSettings())
         }
         
         // Colors
         let colorEntries = configEntries[CodingKeys.colorsEntry] as? ColorEntries ?? [:]
         var colorParser = ColorParser(colors: colorEntries)
         let typographyColors = colorParser.parseColors()
-        let uiColors = typographyColors.mapValues { $0.uiColor }
         
         // Fonts
         let fontTextStyles = configEntries[CodingKeys.stylesEntry] as? FontTextStyleEntries ?? [:]
         var fontParser = FontTextStyleParser(textStyles: fontTextStyles, colorEntries: typographyColors)
         let typographyStyles = fontParser.parseFonts()
-        
-        return .success(ConfigurationModel(settings: configuration, colors: uiColors,
-                                    styles: typographyStyles))
+        let config = ConfigurationModel(settings: configuration, colors: typographyColors, styles: typographyStyles)
+        return .success(config)
     }
     
     /// Translates a dictionary of configuration settings into a `ButtonSettings` model object.
     private func buttonSettings(_ config: [String: String]?) -> ButtonSettings {
-        guard let config = config, let lineBreakConfig = config["title-color-apply"],
-            let applyMode = UIButton.TitleColorApplyMode(string: lineBreakConfig) else {
-                return ButtonSettings()
+        guard let config = config,
+              let lineBreakConfig = config["title-color-apply"],
+              let applyMode = UIButton.TitleColorApplyMode(string: lineBreakConfig) else {
+            return ButtonSettings()
         }
         return ButtonSettings(titleColorApplyMode: applyMode)
     }
@@ -87,10 +86,10 @@ extension ConfigurationParsingService {
     /// Translates a dictionary of configuration settings into a `LabelSettings` model object.
     private func labelSettings(_ config: [String: String]?) -> LabelSettings {
         guard let config = config, let lineBreakConfig = config["line-break"],
-            let lineBreak = NSLineBreakMode(string: lineBreakConfig) else {
-                return LabelSettings()
+              let lineBreakMode = NSLineBreakMode(string: lineBreakConfig) else {
+            return LabelSettings()
         }
-        return LabelSettings(lineBreak: lineBreak)
+        return LabelSettings(lineBreakMode: lineBreakMode)
     }
     
 }

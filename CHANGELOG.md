@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [5.0.0] - 2023-01-27
 ## Added
 - Properties `color` and `swiftUI` allow a SwiftUI `Color` to be obtained from a `TypographyKitColor`.
+- All methods & properties previously accessed using `TypographyKit.` may now be accessed using the shortened form: `TK.`.
+- Support for RGBA colour values e.g. rgba(255,255,255,255).
+- Support for hexadecimal color values with transparency e.g. #FFFFFFFF.
 
 ## Changed
-
+- `TypographyKit.colors` should no longer be used. Instead use:
+	- For SwiftUI: `TypographyKit.color(named:)` or `TK.color(named:)`.
+	- For UIKit: `TypographyKit.uiColor(named:)` or `TK.uiColor(named:)`.
+	- Or: `TypographyKit.tkColor(named:).color` (for SwiftUI) or `TypographyKit.tkColor(named:).uiColor` (for UIKit).
+- `ConfigurationSettings` renamed to `TypographyKitConfiguration`. This object contains the configuration values supplied by the developer (along with any default configuration values).
+- `TypgraphyKitConfiguration` renamed to `TypographyKitSettings`. This object contains the current configuration as well as loaded colors and typography styles.
 
 ## [4.4.0] - 2022-08-16
 ## Changed

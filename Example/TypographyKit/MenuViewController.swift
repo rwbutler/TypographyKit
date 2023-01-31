@@ -19,17 +19,27 @@ class MenuViewController: UIViewController {
 
     @IBAction func presentTypographyColors(_ sender: UIButton) {
         if #available(iOS 9.0, *), let navController = navigationController {
-            let navSettings = ViewControllerNavigationSettings(animated: true,
-                                                               closeButtonAlignment: .noCloseButtonExportButtonRight)
-            TypographyKit.pushTypographyColors(navigationController: navController, navigationSettings: navSettings)
+            let navSettings = ViewControllerNavigationSettings(
+                animated: true,
+                closeButtonAlignment: .noCloseButtonExportButtonRight
+            )
+            TypographyKit.pushTypographyColors(
+                navigationController: navController,
+                navigationSettings: navSettings
+            )
         }
     }
 
     @IBAction func presentTypographyStyles(_ sender: UIButton) {
         if let navController = navigationController {
-            let navSettings = ViewControllerNavigationSettings(animated: true,
-                                                               closeButtonAlignment: .noCloseButtonExportButtonRight)
-            TypographyKit.pushTypographyStyles(navigationController: navController, navigationSettings: navSettings)
+            let navSettings = ViewControllerNavigationSettings(
+                animated: true,
+                closeButtonAlignment: .noCloseButtonExportButtonRight
+            )
+            TypographyKit.pushTypographyStyles(
+                navigationController: navController,
+                navigationSettings: navSettings
+            )
         }
     }
 

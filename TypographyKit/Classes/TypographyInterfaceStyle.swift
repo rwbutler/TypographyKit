@@ -7,7 +7,7 @@
 
 import UIKit
 
-public enum TypographyInterfaceStyle: String, CaseIterable {
+public enum TypographyInterfaceStyle: String, CaseIterable, Codable {
     
     case light
     case dark

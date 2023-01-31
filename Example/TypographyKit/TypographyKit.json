@@ -6,7 +6,7 @@
             "light": "lightest gray"
         },
         "gold": "#FFAB01",
-        "royal-blue": "#08224C",
+        "royal-blue": "#08224CFF",
         "text": {
             "light": "black",
             "dark": "lightest gray"

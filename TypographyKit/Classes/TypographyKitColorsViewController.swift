@@ -84,7 +84,7 @@ extension TypographyKitColorsViewController: UITableViewDataSource {
         let colors = TypographyKit.colors
         let colorName = Array(colors.keys).sorted()[indexPath.row]
         let colorValue = colors[colorName]
-        colorCell.configure(title: colorName, color: colorValue)
+        colorCell.configure(title: colorName, color: colorValue?.uiColor)
         return colorCell
     }
     

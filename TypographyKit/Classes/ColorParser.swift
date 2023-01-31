@@ -19,7 +19,7 @@ struct ColorParser {
     mutating func parseColors() -> TypographyColors {
         colors.forEach { (key, value) in
             backTrace = []
-            parseCol(key: key, value: value)
+            parseColor(key: key, value: value)
         }
         return typographyColors
     }
@@ -28,10 +28,14 @@ struct ColorParser {
 
 private extension ColorParser {
     
-    mutating func parseCol(key: String, value: Any?) {
-        if typographyColors[key] != nil { return } // Already Parsed
+    mutating func parseColor(key: String, value: Any?) {
+        if typographyColors[key] != nil {
+            return
+        } // Already Parsed.
     
-        if invalidColors[key] != nil { return } // Already found to be invalid
+        if invalidColors[key] != nil {
+            return
+        } // Already found to be invalid.
         
         backTrace.append(key)
         switch parseColor(key, value) {
@@ -122,7 +126,7 @@ private extension ColorParser {
 private extension ColorParser {
     
     mutating func parseAliasedColor(_ key: String, _ value: Any) -> TypographyColor? {
-        parseCol(key: key, value: value)
+        parseColor(key: key, value: value)
         return typographyColors[key]
     }
     
@@ -135,7 +139,9 @@ private extension ColorParser {
         var colors: [TypographyInterfaceStyle: TypographyColor] = [:]
         
         colorDictionary.forEach { (styleName, value) in
-            guard let style = TypographyInterfaceStyle(rawValue: styleName.lowercased()) else { return }
+            guard let style = TypographyInterfaceStyle(rawValue: styleName.lowercased()) else {
+                return
+            }
             switch parseColorString(value) {
             case .success(let color):
                 colors[style] = color
