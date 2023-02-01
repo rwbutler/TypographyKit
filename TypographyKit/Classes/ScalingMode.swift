@@ -8,6 +8,7 @@
 import Foundation
 
 public enum ScalingMode: String {
+    static let `default` = fontMetricsWithSteppingFallback
     
     /// Uses `UIFontMetrics` to return a scaled `UIFont`.
     case fontMetrics = "uifontmetrics"
@@ -20,5 +21,4 @@ public enum ScalingMode: String {
 
     /// Fonts are displayed at the specified size, and accessibility settings are ignored.
     case disabled = "disabled"
-    
 }

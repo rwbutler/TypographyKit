@@ -56,7 +56,6 @@
 		E494EAFF1F1A3F7600E13158 /* PropertyListParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */; };
 		E494EB031F1A412600E13158 /* ParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB021F1A412600E13158 /* ParsingService.swift */; };
 		E494EB051F1A462300E13158 /* TypographyKitConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB041F1A462300E13158 /* TypographyKitConfiguration.swift */; };
-		E494EB081F1A4A2E00E13158 /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494EB071F1A4A2E00E13158 /* ConfigurationModel.swift */; };
 		E4FA8D571F61858900C39A93 /* UIButtonAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4370A0A1ECB98220036D182 /* UIButtonAdditions.swift */; };
 		E4FA8D581F61891F00C39A93 /* UITextFieldAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */; };
 		E4FA8D591F61892100C39A93 /* UITextViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */; };
@@ -143,7 +142,6 @@
 		E494EAFE1F1A3F7600E13158 /* PropertyListParsingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyListParsingService.swift; sourceTree = "<group>"; };
 		E494EB021F1A412600E13158 /* ParsingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsingService.swift; sourceTree = "<group>"; };
 		E494EB041F1A462300E13158 /* TypographyKitConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypographyKitConfiguration.swift; sourceTree = "<group>"; };
-		E494EB071F1A4A2E00E13158 /* ConfigurationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
 		E4FA8D4E1F617B3400C39A93 /* UITextViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewAdditions.swift; sourceTree = "<group>"; };
 		E4FA8D511F617E4D00C39A93 /* UITextFieldAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldAdditions.swift; sourceTree = "<group>"; };
 		EE7B84523676BEA727C4020121C00682 /* TypographyKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TypographyKit-dummy.m"; sourceTree = "<group>"; };
@@ -484,7 +482,6 @@
 		E494EB061F1A4A0C00E13158 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E494EB071F1A4A2E00E13158 /* ConfigurationModel.swift */,
 				132652B724449F7B003FDA45 /* ConfigurationParsingError.swift */,
 			);
 			name = Model;
@@ -667,7 +664,6 @@
 			files = (
 				13317E2622CA1F4B00C96CD9 /* ScalingMode.swift in Sources */,
 				E4370A101ECB98440036D182 /* StringAdditions.swift in Sources */,
-				E494EB081F1A4A2E00E13158 /* ConfigurationModel.swift in Sources */,
 				D8CC864823D7196C004D94F7 /* NSLineBreakMode.swift in Sources */,
 				13DFA4C521CD318C00CD9AEA /* CloseButtonAlignment.swift in Sources */,
 				1338A66124D9C104009B20F8 /* TypographyKitColorsViewController.swift in Sources */,
