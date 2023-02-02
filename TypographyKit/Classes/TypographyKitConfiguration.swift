@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct TypographyKitConfiguration {
+public struct TypographyKitConfiguration: Codable {
     let buttons: ButtonSettings
     let developmentColor: TypographyColor
     let isDevelopment: Bool
@@ -134,5 +134,15 @@ public struct TypographyKitConfiguration {
     
     func shouldUseDevelopmentColors(_ value: Bool) -> Self {
         copy(shouldUseDevelopmentColors: value)
+    }
+}
+
+extension TypographyKitConfiguration: CustomStringConvertible {
+    public var description: String {
+        guard let jsonData = try? JSONEncoder().encode(self),
+              let jsonString = String(data: jsonData, encoding: .utf8) else {
+            return ""
+        }
+        return jsonString
     }
 }

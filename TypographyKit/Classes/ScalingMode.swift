@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum ScalingMode: String {
+public enum ScalingMode: String, Codable {
     static let `default` = fontMetricsWithSteppingFallback
     
     /// Uses `UIFontMetrics` to return a scaled `UIFont`.

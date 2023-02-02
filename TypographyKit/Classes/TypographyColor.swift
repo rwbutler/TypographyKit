@@ -11,7 +11,7 @@ import SwiftUI
 #endif
 import UIKit
 
-public indirect enum TypographyColor {
+public indirect enum TypographyColor: Codable {
     
     // MARK: - Type definitions
     private struct RegEx {

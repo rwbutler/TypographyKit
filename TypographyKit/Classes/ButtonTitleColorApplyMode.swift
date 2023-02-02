@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public enum ButtonTitleColorApplyMode: Int {
+@objc public enum ButtonTitleColorApplyMode: Int, Codable {
     case all                // applies the style color to all control states
     case none               // doesn't apply the style color to any control states
     case normal             // applies the style color to the .normal state only

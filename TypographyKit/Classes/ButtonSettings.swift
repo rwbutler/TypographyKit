@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct ButtonSettings {
+struct ButtonSettings: Codable {
     let titleColorApplyMode: ButtonTitleColorApplyMode
     
     init(titleColorApplyMode: ButtonTitleColorApplyMode = .whereUnspecified) {

@@ -23,11 +23,11 @@ public struct TypographyKit {
     
     // MARK: Global state
     public static var buttonTitleColorApplyMode: UIButton.TitleColorApplyMode = {
-        configuration?.configuration.buttons.titleColorApplyMode ?? .whereUnspecified
+        settings?.configuration.buttons.titleColorApplyMode ?? .whereUnspecified
     }()
     
     static var colors: Colors = {
-        return configuration?.colors ?? [:]
+        return settings?.colors ?? [:]
     }()
     
     public static var configurationURL: URL? = bundledConfigurationURL() {
@@ -56,7 +56,7 @@ public struct TypographyKit {
     public static var fallbackColor: TypographyColor = .clear
     
     public static var fontTextStyles: [String: Typography] = {
-        return configuration?.styles ?? [:]
+        return settings?.styles ?? [:]
     }()
     
     public static var isDevelopment: Bool = {
@@ -77,35 +77,35 @@ public struct TypographyKit {
     }()
     
     public static var lineBreak: NSLineBreakMode? = {
-        return configuration?.configuration.labels.lineBreakMode
+        return settings?.configuration.labels.lineBreakMode
     }()
     
     public static var minimumPointSize: Float? = {
-        return configuration?.configuration.minimumPointSize
+        return settings?.configuration.minimumPointSize
     }()
     
     public static var maximumPointSize: Float? = {
-        return configuration?.configuration.maximumPointSize
+        return settings?.configuration.maximumPointSize
     }()
     
     public static var pointStepSize: Float = {
-        return configuration?.configuration.pointStepSize ?? 2.0
+        return settings?.configuration.pointStepSize ?? 2.0
     }()
     
     public static var pointStepMultiplier: Float = {
-        return configuration?.configuration.pointStepMultiplier ?? 1.0
+        return settings?.configuration.pointStepMultiplier ?? 1.0
     }()
     
     public static var scalingMode: ScalingMode = {
-        return configuration?.configuration.scalingMode ?? ScalingMode.default
+        return settings?.configuration.scalingMode ?? ScalingMode.default
     }()
     
     public static var shouldCrashIfColorNotFound: Bool = {
-        return configuration?.configuration.shouldCrashIfColorNotFound ?? false
+        return settings?.configuration.shouldCrashIfColorNotFound ?? false
     }()
     
     public static var shouldUseDevelopmentColors: Bool = {
-        return configuration?.configuration.shouldUseDevelopmentColors ?? false
+        return settings?.configuration.shouldUseDevelopmentColors ?? false
     }()
     
     // MARK: Functions
@@ -119,10 +119,10 @@ public struct TypographyKit {
     }
     
     public static func configure(with configuration: TypographyKitConfiguration) {
-        guard let settings = loadConfiguration() else {
+        guard let settings = loadSettings() else {
             return
         }
-        Self.configuration = settings.updateConfiguration(configuration)
+        Self.settings = settings.updateConfiguration(configuration)
     }
     
     public static func tkColor(named colorName: String) -> TypographyColor {
@@ -296,10 +296,10 @@ public struct TypographyKit {
     }
     
     public static func refresh(_ completion: ((Settings?) -> Void)? = nil) {
-        configuration = loadConfiguration()
-        guard let colors = configuration?.colors,
-              let configSettings = configuration?.configuration,
-              let styles = configuration?.styles else {
+        settings = loadSettings()
+        guard let colors = settings?.colors,
+              let configSettings = settings?.configuration,
+              let styles = settings?.styles else {
             completion?(nil)
             return
         }
@@ -308,7 +308,7 @@ public struct TypographyKit {
     }
     
     public static func refreshWithData(_ data: Data, completion: ((Settings?) -> Void)? = nil) {
-        guard case let .success(settings) = loadConfigurationWithData(data) else {
+        guard case let .success(settings) = loadSettings(from: data) else {
             completion?(nil)
             return
         }
@@ -328,28 +328,28 @@ private extension TypographyKit {
             .appendingPathComponent("\(configurationName).\(configurationType.rawValue)")
     }
     
-    static var configuration: TypographyKitSettings? = loadConfiguration()
-    
     static let configurationName: String = "TypographyKit"
     
     static func bundledConfigurationURL(_ configType: ConfigurationType = TypographyKit.configurationType) -> URL? {
         return Bundle.main.url(forResource: configurationName, withExtension: configType.rawValue)
     }
     
-    static func loadConfiguration() -> TypographyKitSettings? {
+    static var settings: TypographyKitSettings? = loadSettings()
+    
+    static func loadSettings() -> TypographyKitSettings? {
         guard let configurationURL = configurationURL, let data = try? Data(contentsOf: configurationURL) else {
-            guard case let .success(model) = loadConfigurationWithData(nil) else {
+            guard case let .success(model) = loadSettings(from: nil) else {
                 return nil
             }
             return model
         }
-        guard case let .success(model) = loadConfigurationWithData(data) else {
+        guard case let .success(model) = loadSettings(from: data) else {
             return nil
         }
         return model
     }
     
-    static func loadConfigurationWithData(_ data: Data?) -> ConfigurationParsingResult {
+    static func loadSettings(from data: Data?) -> ConfigurationParsingResult {
         guard let data = data else {
             guard let cachedConfigurationURL = cachedConfigurationURL,
                   let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
