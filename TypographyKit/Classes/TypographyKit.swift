@@ -91,6 +91,7 @@ public struct TypographyKit {
     }
     
     /// Requires iOS 13 in order to use as part of a task; otherwise must use the `await` keyword.
+    @available(iOS 13.0, *)
     @discardableResult
     public static func configure(
         with configuration: TypographyKitConfiguration = TypographyKitConfiguration.default
@@ -151,6 +152,7 @@ public struct TypographyKit {
         }
     }
     
+    @available(iOS 13.0, *)
     public static func refresh() async {
         guard let settings = Self.settings else {
             return
@@ -376,6 +378,7 @@ private extension TypographyKit {
     
     static var settings: TypographyKitSettings?
     
+    @available(iOS 13.0, *)
     static func loadSettings(configurationURL: URL?) async -> TypographyKitSettings? {
         guard let configurationURL = configurationURL, let data = try? Data(contentsOf: configurationURL) else {
             guard case let .success(model) = loadSettings(from: nil) else { // Data not received - load from cache.
