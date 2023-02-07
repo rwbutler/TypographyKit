@@ -9,7 +9,31 @@
 import UIKit
 
 public struct TypographyKitConfiguration: Codable {
+    public static var `default`: TypographyKitConfiguration = {
+#if DEBUG
+let developmentColor = TypographyColor.red
+let isDevelopment = true
+#else
+let developmentColor = TypographyColor.clear
+let isDevelopment = false
+#endif
+        return Self.init(
+            buttons: ButtonSettings(titleColorApplyMode: .whereUnspecified),
+            configurationURL: TypographyKit.bundledConfigurationURL(TypographyKit.configurationType),
+            developmentColor: developmentColor,
+            isDevelopment: isDevelopment,
+            labels: LabelSettings(lineBreakMode: .byWordWrapping),
+            minPointSize: nil,
+            maxPointSize: nil,
+            pointStepMultiplier: 1.0,
+            pointStepSize: 2.0,
+            scalingMode: "uifontmetrics-with-fallback",
+            shouldCrashIfColorNotFound: false,
+            shouldUseDevelopmentColors: false
+        )
+    }()
     let buttons: ButtonSettings
+    let configurationURL: URL?
     let developmentColor: TypographyColor
     let isDevelopment: Bool
     let labels: LabelSettings
@@ -22,19 +46,21 @@ public struct TypographyKitConfiguration: Codable {
     let shouldUseDevelopmentColors: Bool
     
     init(
-        buttons: ButtonSettings = ButtonSettings(),
+        buttons: ButtonSettings,
+        configurationURL: URL?,
         developmentColor: TypographyColor,
         isDevelopment: Bool,
-        labels: LabelSettings = LabelSettings(),
+        labels: LabelSettings,
         minPointSize: Float? = nil,
         maxPointSize: Float? = nil,
         pointStepMultiplier: Float,
         pointStepSize: Float,
-        scalingMode: String? = nil,
-        shouldCrashIfColorNotFound: Bool = false,
-        shouldUseDevelopmentColors: Bool = false
+        scalingMode: String,
+        shouldCrashIfColorNotFound: Bool,
+        shouldUseDevelopmentColors: Bool
     ) {
         self.buttons = buttons
+        self.configurationURL = configurationURL
         self.developmentColor = developmentColor
         self.isDevelopment = isDevelopment
         self.labels = labels
@@ -42,11 +68,7 @@ public struct TypographyKitConfiguration: Codable {
         self.maximumPointSize = maxPointSize
         self.pointStepSize = pointStepSize
         self.pointStepMultiplier = pointStepMultiplier
-        if let scalingModeStr = scalingMode {
-            self.scalingMode = ScalingMode(rawValue: scalingModeStr) ?? ScalingMode.default
-        } else {
-            self.scalingMode = ScalingMode.default
-        }
+        self.scalingMode = ScalingMode(rawValue: scalingMode) ?? ScalingMode.default
         self.shouldCrashIfColorNotFound = shouldCrashIfColorNotFound
         self.shouldUseDevelopmentColors = shouldUseDevelopmentColors
     }
@@ -55,6 +77,7 @@ public struct TypographyKitConfiguration: Codable {
     /// whilst allowing one or more values to be overridden.
     private func copy(
         buttons: ButtonSettings? = nil,
+        configurationURL: URL? = nil,
         developmentColor: TypographyColor? = nil,
         isDevelopment: Bool? = nil,
         labels: LabelSettings? = nil,
@@ -68,17 +91,19 @@ public struct TypographyKitConfiguration: Codable {
     ) -> Self {
         let buttons: ButtonSettings = buttons ?? self.buttons
         let developmentColor: TypographyColor = developmentColor ?? self.developmentColor
+        let configurationURL: URL? = configurationURL ?? self.configurationURL
         let isDevelopment: Bool = isDevelopment ?? self.isDevelopment
         let labels: LabelSettings = labels ?? self.labels
         let minimumPointSize: Float? = minimumPointSize ?? self.minimumPointSize
         let maximumPointSize: Float? = maximumPointSize ?? self.maximumPointSize
         let pointStepSize: Float = pointStepSize ?? self.pointStepSize
         let pointStepMultiplier: Float = pointStepMultiplier ?? self.pointStepMultiplier
-        let scalingMode: ScalingMode? = scalingMode ?? self.scalingMode
+        let scalingMode: ScalingMode = scalingMode ?? self.scalingMode
         let shouldCrashIfColorNotFound: Bool = shouldCrashIfColorNotFound ?? self.shouldCrashIfColorNotFound
         let shouldUseDevelopmentColors: Bool = shouldUseDevelopmentColors ?? self.shouldUseDevelopmentColors
         return .init(
             buttons: buttons,
+            configurationURL: configurationURL,
             developmentColor: developmentColor,
             isDevelopment: isDevelopment,
             labels: labels,
@@ -86,53 +111,57 @@ public struct TypographyKitConfiguration: Codable {
             maxPointSize: maximumPointSize,
             pointStepMultiplier: pointStepMultiplier,
             pointStepSize: pointStepSize,
-            scalingMode: scalingMode?.rawValue,
+            scalingMode: scalingMode.rawValue,
             shouldCrashIfColorNotFound: shouldCrashIfColorNotFound,
             shouldUseDevelopmentColors: shouldUseDevelopmentColors
         )
     }
     
-    func setButtonTitleColorApplyMode(_ value: ButtonTitleColorApplyMode) -> Self {
-        copy(buttons: ButtonSettings(titleColorApplyMode: value))
+    public func setButtonSettings(_ value: ButtonSettings?) -> Self {
+        copy(buttons: buttons)
     }
     
-    func setDevelopmentColor(_ color: TypographyColor) -> Self {
+    public func setConfigurationURL(_ url: URL?) -> Self {
+        copy(configurationURL: url)
+    }
+    
+    public func setDevelopmentColor(_ color: TypographyColor?) -> Self {
         copy(developmentColor: color)
     }
     
-    func setIsDevelopment(_ value: Bool) -> Self {
+    public func setIsDevelopment(_ value: Bool?) -> Self {
         copy(isDevelopment: value)
     }
     
-    func setLinkBreakMode(_ mode: NSLineBreakMode) -> Self {
-        copy(labels: LabelSettings(lineBreakMode: mode))
+    public func setLabelSettings(_ value: LabelSettings?) -> Self {
+        copy(labels: labels)
     }
     
-    func setMinimumPointSize(_ size: Float) -> Self {
+    public func setMinimumPointSize(_ size: Float?) -> Self {
         copy(minimumPointSize: size)
     }
     
-    func setMaximumPointSize(_ size: Float) -> Self {
+    public func setMaximumPointSize(_ size: Float?) -> Self {
         copy(maximumPointSize: size)
     }
     
-    func setPointStepSize(_ stepSize: Float) -> Self {
+    public func setPointStepSize(_ stepSize: Float?) -> Self {
         copy(pointStepSize: stepSize)
     }
     
-    func setPointStepMultiplier(_ multiplier: Float) -> Self {
+    public func setPointStepMultiplier(_ multiplier: Float?) -> Self {
         copy(pointStepMultiplier: multiplier)
     }
     
-    func setScalingMode(_ scalingMode: ScalingMode) -> Self {
+    public func setScalingMode(_ scalingMode: ScalingMode?) -> Self {
         copy(scalingMode: scalingMode)
     }
     
-    func shouldCrashIfColorNotFound(_ shouldCrash: Bool) -> Self {
+    public func setShouldCrashIfColorNotFound(_ shouldCrash: Bool?) -> Self {
         copy(shouldCrashIfColorNotFound: shouldCrash)
     }
     
-    func shouldUseDevelopmentColors(_ value: Bool) -> Self {
+    public func setShouldUseDevelopmentColors(_ value: Bool?) -> Self {
         copy(shouldUseDevelopmentColors: value)
     }
 }
@@ -144,5 +173,11 @@ extension TypographyKitConfiguration: CustomStringConvertible {
             return ""
         }
         return jsonString
+    }
+}
+
+extension TypographyKitConfiguration: Equatable {
+    public static func == (lhs: TypographyKitConfiguration, rhs: TypographyKitConfiguration) -> Bool {
+        return true
     }
 }

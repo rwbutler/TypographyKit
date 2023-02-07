@@ -14,9 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions
-        launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        TypographyKit.configurationURL = Bundle.main.url(forResource: "TypographyKit", withExtension: "json")
+    func application(
+        _ application: UIApplication, didFinishLaunchingWithOptions
+                              launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        // Replace bundle URL with remote URL - TypographyKit will find TypographyKit.json in the bundle by default.
+        let configurationURL = Bundle.main.url(forResource: "TypographyKit", withExtension: "json")
+        // For apps supporting iOS 11 & 12, otherwise use async / await versions of this method.
+        TypographyKit.configure(
+            with: TypographyKitConfiguration.default
+                .setConfigurationURL(configurationURL)
+        )
         return true
     }
 

@@ -14,6 +14,7 @@
         "text-dark": "text darker"
 	},
 	"typography-kit": {
+        "development-color": "red",
         "labels": {
             "line-break": "word-wrap"
         },
@@ -21,7 +22,8 @@
         "maximum-point-size": 100,
 		"point-step-size": 2,
 		"point-step-multiplier": 1,
-        "scaling-mode": "uifontmetrics-with-fallback"
+        "scaling-mode": "uifontmetrics-with-fallback",
+        "should-use-development-colors": true
 	},
 	"ui-font-text-styles": {
 		"heading": {

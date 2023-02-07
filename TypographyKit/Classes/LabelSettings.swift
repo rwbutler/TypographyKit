@@ -8,11 +8,19 @@
 import Foundation
 import UIKit
 
-struct LabelSettings: Codable {
+public struct LabelSettings: Codable {
     let lineBreakMode: NSLineBreakMode
     
-    init(lineBreakMode: NSLineBreakMode = .byWordWrapping) {
+    init(lineBreakMode: NSLineBreakMode) {
         self.lineBreakMode = lineBreakMode
+    }
+    
+    private func copy(lineBreakMode: NSLineBreakMode? = nil) -> Self {
+        .init(lineBreakMode: lineBreakMode ?? self.lineBreakMode)
+    }
+    
+    func setLineBreakMode(_ lineBreakMode: NSLineBreakMode?) -> Self {
+        copy(lineBreakMode: lineBreakMode)
     }
 }
 
