@@ -20,6 +20,7 @@ private enum CodingKeys {
     static let colorsEntry = "typography-colors"
     static let configurationURL = "configuration-url"
     static let developmentColor = "development-color"
+    static let fallbackColor = "fallback-color"
     static let isDevelopment = "is-development"
     static let labels = "labels"
     static let minimumPointSize = "minimum-point-size"
@@ -59,6 +60,12 @@ extension ConfigurationParsingService {
             } else {
                 developmentColor = nil
             }
+            let fallbackColor: TypographyColor?
+            if let fallbackColorKey = typographyKitConfig[CodingKeys.fallbackColor] as? String {
+                fallbackColor = typographyColors[fallbackColorKey]
+            } else {
+                fallbackColor = nil
+            }
             let isDevelopment = typographyKitConfig[CodingKeys.isDevelopment] as? Bool
             let labelsConfig = typographyKitConfig[CodingKeys.labels] as? [String: String]
             let labelSettings = self.labelSettings(labelsConfig)
@@ -79,6 +86,7 @@ extension ConfigurationParsingService {
                 .setButtonSettings(buttonSettings)
                 .setConfigurationURL(configurationURL)
                 .setDevelopmentColor(developmentColor)
+                .setFallbackColor(fallbackColor)
                 .setIsDevelopment(isDevelopment)
                 .setLabelSettings(labelSettings)
                 .setMinimumPointSize(minimumPointSize)
@@ -107,7 +115,7 @@ extension ConfigurationParsingService {
     /// Translates a dictionary of configuration settings into a `ButtonSettings` model object.
     private func buttonSettings(_ config: [String: String]?) -> ButtonSettings? {
         guard let config = config,
-              let lineBreakConfig = config["title-color-apply"],
+              let lineBreakConfig = config["title-color-apply-mode"],
               let applyMode = UIButton.TitleColorApplyMode(string: lineBreakConfig) else {
             return nil
         }
@@ -116,7 +124,7 @@ extension ConfigurationParsingService {
     
     /// Translates a dictionary of configuration settings into a `LabelSettings` model object.
     private func labelSettings(_ config: [String: String]?) -> LabelSettings? {
-        guard let config = config, let lineBreakConfig = config["line-break"],
+        guard let config = config, let lineBreakConfig = config["line-break-mode"],
               let lineBreakMode = NSLineBreakMode(string: lineBreakConfig) else {
             return nil
         }

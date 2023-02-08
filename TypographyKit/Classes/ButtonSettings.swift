@@ -11,7 +11,7 @@ import UIKit
 public struct ButtonSettings: Codable {
     let titleColorApplyMode: ButtonTitleColorApplyMode
     
-    init(titleColorApplyMode: ButtonTitleColorApplyMode = .whereUnspecified) {
+    public init(titleColorApplyMode: ButtonTitleColorApplyMode = .whereUnspecified) {
         self.titleColorApplyMode = titleColorApplyMode
     }
     
@@ -19,7 +19,7 @@ public struct ButtonSettings: Codable {
         .init(titleColorApplyMode: titleColorApplyMode ?? self.titleColorApplyMode)
     }
     
-    func setTitleColorApplyMode(titleColorApplyMode: ButtonTitleColorApplyMode?) -> Self {
+    public func setTitleColorApplyMode(titleColorApplyMode: ButtonTitleColorApplyMode?) -> Self {
         copy(titleColorApplyMode: titleColorApplyMode)
     }
 }

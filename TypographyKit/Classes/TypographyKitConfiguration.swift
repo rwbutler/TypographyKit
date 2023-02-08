@@ -128,6 +128,10 @@ let isDevelopment = false
         copy(buttons: buttons)
     }
     
+    public func setButtonTitleColorApplyMode(_ applyMode: ButtonTitleColorApplyMode?) -> Self {
+        copy(buttons: buttons.setTitleColorApplyMode(titleColorApplyMode: applyMode))
+    }
+    
     public func setConfigurationURL(_ url: URL?) -> Self {
         copy(configurationURL: url)
     }
@@ -146,6 +150,10 @@ let isDevelopment = false
     
     public func setLabelSettings(_ value: LabelSettings?) -> Self {
         copy(labels: labels)
+    }
+    
+    public func setLineBreakMode(_ lineBreakMode: NSLineBreakMode?) -> Self {
+        copy(labels: labels.setLineBreakMode(lineBreakMode))
     }
     
     public func setMinimumPointSize(_ size: Float?) -> Self {

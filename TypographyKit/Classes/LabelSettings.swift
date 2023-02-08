@@ -11,7 +11,7 @@ import UIKit
 public struct LabelSettings: Codable {
     let lineBreakMode: NSLineBreakMode
     
-    init(lineBreakMode: NSLineBreakMode) {
+    public init(lineBreakMode: NSLineBreakMode) {
         self.lineBreakMode = lineBreakMode
     }
     
@@ -19,7 +19,7 @@ public struct LabelSettings: Codable {
         .init(lineBreakMode: lineBreakMode ?? self.lineBreakMode)
     }
     
-    func setLineBreakMode(_ lineBreakMode: NSLineBreakMode?) -> Self {
+    public func setLineBreakMode(_ lineBreakMode: NSLineBreakMode?) -> Self {
         copy(lineBreakMode: lineBreakMode)
     }
 }
