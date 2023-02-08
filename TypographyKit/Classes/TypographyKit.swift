@@ -73,6 +73,29 @@ public struct TypographyKit {
     public static var shouldUseDevelopmentColors: Bool = TypographyKitConfiguration.default.shouldUseDevelopmentColors
     
     // MARK: Functions
+    
+    static func apply(_ settings: TypographyKitSettings?) {
+        guard let settings = settings else {
+            return
+        }
+        Self.settings = settings
+        colors = settings.colors
+        fontTextStyles = settings.styles
+        let configuration = settings.configuration
+        buttonTitleColorApplyMode = configuration.buttons.titleColorApplyMode
+        developmentColor = configuration.developmentColor
+        fallbackColor = configuration.fallbackColor
+        isDevelopment = configuration.isDevelopment
+        lineBreak = configuration.labels.lineBreakMode
+        minimumPointSize = configuration.minimumPointSize
+        maximumPointSize = configuration.maximumPointSize
+        pointStepSize = configuration.pointStepSize
+        pointStepMultiplier = configuration.pointStepMultiplier
+        scalingMode = configuration.scalingMode
+        shouldCrashIfColorNotFound = configuration.shouldCrashIfColorNotFound
+        shouldUseDevelopmentColors = configuration.shouldUseDevelopmentColors
+    }
+    
     @available(iOS 13.0, *)
     public static func color(named colorName: String) -> Color {
         return tkColor(named: colorName).color
@@ -100,18 +123,18 @@ public struct TypographyKit {
         guard let settings = Self.settings else {
             let updatedSettings = await loadSettings(configurationURL: configuration.configurationURL)?
                 .updateConfiguration(configuration)
-            Self.settings = updatedSettings
+            apply(updatedSettings)
             return updatedSettings
         }
         // Settings have been loaded but configurationURL hasn't changed.
         guard settings.configuration.configurationURL != configuration.configurationURL else {
             let updatedSettings = settings.updateConfiguration(configuration)
-            Self.settings = updatedSettings
+            apply(updatedSettings)
             return updatedSettings
         }
         let updatedSettings = await loadSettings(configurationURL: configuration.configurationURL)?
             .updateConfiguration(configuration)
-        Self.settings = updatedSettings
+        apply(updatedSettings)
         return updatedSettings
     }
     
@@ -125,20 +148,20 @@ public struct TypographyKit {
             guard let settings = Self.settings else {
                 let updatedSettings = loadSettingsSync(configurationURL: configuration.configurationURL)?
                     .updateConfiguration(configuration)
-                Self.settings = updatedSettings
+                apply(updatedSettings)
                 completion?(updatedSettings)
                 return
             }
             // Settings have been loaded but configurationURL hasn't changed.
             guard settings.configuration.configurationURL != configuration.configurationURL else {
                 let updatedSettings = settings.updateConfiguration(configuration)
-                Self.settings = updatedSettings
+                apply(updatedSettings)
                 completion?(updatedSettings)
                 return
             }
             let updatedSettings = loadSettingsSync(configurationURL: configuration.configurationURL)?
                 .updateConfiguration(configuration)
-            Self.settings = updatedSettings
+            apply(updatedSettings)
             completion?(updatedSettings)
         }
     }
@@ -148,7 +171,8 @@ public struct TypographyKit {
             guard let settings = Self.settings else {
                 return
             }
-            Self.settings = loadSettingsSync(configurationURL: settings.configuration.configurationURL)
+            let updatedSettings = loadSettingsSync(configurationURL: settings.configuration.configurationURL)
+            apply(updatedSettings)
         }
     }
     
@@ -157,7 +181,8 @@ public struct TypographyKit {
         guard let settings = Self.settings else {
             return
         }
-        Self.settings = await loadSettings(configurationURL: settings.configuration.configurationURL)
+        let updatedSettings = await loadSettings(configurationURL: settings.configuration.configurationURL)
+        apply(updatedSettings)
     }
     
     public static func tkColor(named colorName: String) -> TypographyColor {

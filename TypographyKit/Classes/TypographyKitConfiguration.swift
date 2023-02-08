@@ -22,6 +22,7 @@ let isDevelopment = false
             configurationURL: TypographyKit.bundledConfigurationURL(TypographyKit.configurationType),
             developmentColor: developmentColor,
             isDevelopment: isDevelopment,
+            fallbackColor: .clear,
             labels: LabelSettings(lineBreakMode: .byWordWrapping),
             minPointSize: nil,
             maxPointSize: nil,
@@ -35,6 +36,7 @@ let isDevelopment = false
     let buttons: ButtonSettings
     let configurationURL: URL?
     let developmentColor: TypographyColor
+    let fallbackColor: TypographyColor
     let isDevelopment: Bool
     let labels: LabelSettings
     let minimumPointSize: Float?
@@ -50,6 +52,7 @@ let isDevelopment = false
         configurationURL: URL?,
         developmentColor: TypographyColor,
         isDevelopment: Bool,
+        fallbackColor: TypographyColor,
         labels: LabelSettings,
         minPointSize: Float? = nil,
         maxPointSize: Float? = nil,
@@ -63,6 +66,7 @@ let isDevelopment = false
         self.configurationURL = configurationURL
         self.developmentColor = developmentColor
         self.isDevelopment = isDevelopment
+        self.fallbackColor = fallbackColor
         self.labels = labels
         self.minimumPointSize = minPointSize
         self.maximumPointSize = maxPointSize
@@ -79,6 +83,7 @@ let isDevelopment = false
         buttons: ButtonSettings? = nil,
         configurationURL: URL? = nil,
         developmentColor: TypographyColor? = nil,
+        fallbackColor: TypographyColor? = nil,
         isDevelopment: Bool? = nil,
         labels: LabelSettings? = nil,
         minimumPointSize: Float? = nil,
@@ -90,8 +95,9 @@ let isDevelopment = false
         shouldUseDevelopmentColors: Bool? = nil
     ) -> Self {
         let buttons: ButtonSettings = buttons ?? self.buttons
-        let developmentColor: TypographyColor = developmentColor ?? self.developmentColor
         let configurationURL: URL? = configurationURL ?? self.configurationURL
+        let developmentColor: TypographyColor = developmentColor ?? self.developmentColor
+        let fallbackColor: TypographyColor = fallbackColor ?? self.fallbackColor
         let isDevelopment: Bool = isDevelopment ?? self.isDevelopment
         let labels: LabelSettings = labels ?? self.labels
         let minimumPointSize: Float? = minimumPointSize ?? self.minimumPointSize
@@ -106,6 +112,7 @@ let isDevelopment = false
             configurationURL: configurationURL,
             developmentColor: developmentColor,
             isDevelopment: isDevelopment,
+            fallbackColor: fallbackColor,
             labels: labels,
             minPointSize: minimumPointSize,
             maxPointSize: maximumPointSize,
@@ -131,6 +138,10 @@ let isDevelopment = false
     
     public func setIsDevelopment(_ value: Bool?) -> Self {
         copy(isDevelopment: value)
+    }
+    
+    public func setFallbackColor(_ color: TypographyColor?) -> Self {
+        copy(fallbackColor: color)
     }
     
     public func setLabelSettings(_ value: LabelSettings?) -> Self {
