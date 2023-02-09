@@ -13,10 +13,8 @@ struct LoggingService {
         let logMessage = "TypographyKit \(key) \(error.localizedDescription)"
         if #available(iOS 10, *) {
             os_log("%@", log: OSLog.default, type: .debug, logMessage)
-        } else {
-            #if DEBUG
+        } else if TypographyKit.isDevelopment {
             NSLog(String(describing: logMessage))
-            #endif
         }
     }
 }

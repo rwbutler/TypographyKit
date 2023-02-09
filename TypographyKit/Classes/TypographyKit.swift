@@ -24,7 +24,8 @@ public struct TypographyKit {
     // MARK: Global state
     
     static func bundledConfigurationURL(_ configType: ConfigurationType = TypographyKit.configurationType) -> URL? {
-        return Bundle.main.url(forResource: configurationName, withExtension: configType.rawValue)
+        let configurationURL = Bundle.main.url(forResource: configurationName, withExtension: configType.rawValue)
+        return configurationURL
     }
     
     public static var buttonTitleColorApplyMode: UIButton.TitleColorApplyMode =
@@ -34,11 +35,12 @@ public struct TypographyKit {
         return settings?.colors ?? [:]
     }()
     
+    public static let configurationName: String = "TypographyKit"
+    
     public static var configurationType: ConfigurationType = {
-        for configurationType in ConfigurationType.allCases {
-            if bundledConfigurationURL(configurationType) != nil {
+        for configurationType in ConfigurationType.allCases
+            where bundledConfigurationURL(configurationType) != nil {
                 return configurationType
-            }
         }
         return .json // default
     }()
@@ -398,8 +400,6 @@ private extension TypographyKit {
                  create: true)
             .appendingPathComponent("\(configurationName).\(configurationType.rawValue)")
     }
-    
-    static let configurationName: String = "TypographyKit"
     
     static var settings: TypographyKitSettings?
     
