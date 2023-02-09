@@ -23,8 +23,8 @@ public struct TypographyKit {
     
     // MARK: Global state
     
-    static func bundledConfigurationURL(_ configType: ConfigurationType = TypographyKit.configurationType) -> URL? {
-        let configurationURL = Bundle.main.url(forResource: configurationName, withExtension: configType.rawValue)
+    static func bundledConfigurationURL(name: String, type: ConfigurationType) -> URL? {
+        let configurationURL = Bundle.main.url(forResource: name, withExtension: type.rawValue)
         return configurationURL
     }
     
@@ -35,15 +35,13 @@ public struct TypographyKit {
         return settings?.colors ?? [:]
     }()
     
-    public static let configurationName: String = "TypographyKit"
-    
-    public static var configurationType: ConfigurationType = {
+    public static func configurationType(configurationName: String) -> ConfigurationType {
         for configurationType in ConfigurationType.allCases
-            where bundledConfigurationURL(configurationType) != nil {
-                return configurationType
+        where bundledConfigurationURL(name: configurationName, type: configurationType) != nil {
+            return configurationType
         }
         return .json // default
-    }()
+    }
     
     public static var developmentColor: TypographyColor = TypographyKitConfiguration.default.developmentColor
     
@@ -123,7 +121,10 @@ public struct TypographyKit {
     ) async -> TypographyKitSettings? {
         // Settings haven't been loaded therefore an initial load must be performed.
         guard let settings = Self.settings else {
-            let updatedSettings = await loadSettings(configurationURL: configuration.configurationURL)?
+            let updatedSettings = await loadSettings(
+                configurationURL: configuration.configurationURL,
+                configurationType: configuration.configurationType
+            )?
                 .updateConfiguration(configuration)
             apply(updatedSettings)
             return updatedSettings
@@ -134,8 +135,10 @@ public struct TypographyKit {
             apply(updatedSettings)
             return updatedSettings
         }
-        let updatedSettings = await loadSettings(configurationURL: configuration.configurationURL)?
-            .updateConfiguration(configuration)
+        let updatedSettings = await loadSettings(
+            configurationURL: configuration.configurationURL,
+            configurationType: configuration.configurationType
+        )?.updateConfiguration(configuration)
         apply(updatedSettings)
         return updatedSettings
     }
@@ -148,8 +151,10 @@ public struct TypographyKit {
         DispatchQueue.global(qos: .userInteractive).async {
             // Settings haven't been loaded therefore an initial load must be performed.
             guard let settings = Self.settings else {
-                let updatedSettings = loadSettingsSync(configurationURL: configuration.configurationURL)?
-                    .updateConfiguration(configuration)
+                let updatedSettings = loadSettingsSync(
+                    configurationURL: configuration.configurationURL,
+                    configurationType: configuration.configurationType
+                )?.updateConfiguration(configuration)
                 apply(updatedSettings)
                 completion?(updatedSettings)
                 return
@@ -161,8 +166,10 @@ public struct TypographyKit {
                 completion?(updatedSettings)
                 return
             }
-            let updatedSettings = loadSettingsSync(configurationURL: configuration.configurationURL)?
-                .updateConfiguration(configuration)
+            let updatedSettings = loadSettingsSync(
+                configurationURL: configuration.configurationURL,
+                configurationType: configuration.configurationType
+            )?.updateConfiguration(configuration)
             apply(updatedSettings)
             completion?(updatedSettings)
         }
@@ -173,7 +180,11 @@ public struct TypographyKit {
             guard let settings = Self.settings else {
                 return
             }
-            let updatedSettings = loadSettingsSync(configurationURL: settings.configuration.configurationURL)
+            let configuration = settings.configuration
+            let updatedSettings = loadSettingsSync(
+                configurationURL: configuration.configurationURL,
+                configurationType: configuration.configurationType
+            )
             apply(updatedSettings)
         }
     }
@@ -183,8 +194,25 @@ public struct TypographyKit {
         guard let settings = Self.settings else {
             return
         }
-        let updatedSettings = await loadSettings(configurationURL: settings.configuration.configurationURL)
+        let configuration = settings.configuration
+        let updatedSettings = await loadSettings(
+            configurationURL: configuration.configurationURL,
+            configurationType: configuration.configurationType
+        )
         apply(updatedSettings)
+    }
+    
+    public static func refresh(
+        with data: Data,
+        configurationType: ConfigurationType? = nil,
+        completion: ((Settings?) -> Void)? = nil
+    ) {
+        let configurationType = (configurationType ?? Self.settings?.configuration.configurationType) ?? .json
+        guard case let .success(settings) = loadSettings(from: data, configurationType: configurationType) else {
+            completion?(nil)
+            return
+        }
+        completion?(settings)
     }
     
     public static func tkColor(named colorName: String) -> TypographyColor {
@@ -379,76 +407,80 @@ public struct TypographyKit {
         typographyKitViewController.navigationSettings = navSettings
         return typographyKitViewController
     }
-    
-    public static func refreshWithData(_ data: Data, completion: ((Settings?) -> Void)? = nil) {
-        guard case let .success(settings) = loadSettings(from: data) else {
-            completion?(nil)
-            return
-        }
-        completion?(settings)
-    }
-    
 }
 
 // Private properties & functions
 private extension TypographyKit {
     private static var cachedConfigurationURL: URL? {
+        let configuration = Self.settings?.configuration
+        guard let configurationName = configuration?.configurationName,
+              let configurationType = configuration?.configurationType else {
+            return nil
+        }
         return try? FileManager.default
-            .url(for: .cachesDirectory,
-                 in: .userDomainMask,
-                 appropriateFor: nil,
-                 create: true)
-            .appendingPathComponent("\(configurationName).\(configurationType.rawValue)")
+            .url(
+                for: .cachesDirectory,
+                in: .userDomainMask,
+                appropriateFor: nil,
+                create: true
+            ).appendingPathComponent("\(configurationName).\(configurationType.rawValue)")
     }
     
     static var settings: TypographyKitSettings?
     
     @available(iOS 13.0, *)
-    static func loadSettings(configurationURL: URL?) async -> TypographyKitSettings? {
+    static func loadSettings(
+        configurationURL: URL?,
+        configurationType: ConfigurationType
+    ) async -> TypographyKitSettings? {
         guard let configurationURL = configurationURL, let data = try? Data(contentsOf: configurationURL) else {
-            guard case let .success(model) = loadSettings(from: nil) else { // Data not received - load from cache.
+            // Data not received - load from cache.
+            guard case let .success(model) = loadSettings(from: nil, configurationType: configurationType) else {
                 return nil
             }
             return model
         }
-        guard case let .success(model) = loadSettings(from: data) else {
+        guard case let .success(model) = loadSettings(from: data, configurationType: configurationType) else {
             return nil
         }
         return model
     }
     
-    static func loadSettingsSync(configurationURL: URL?) -> TypographyKitSettings? {
+    static func loadSettingsSync(
+        configurationURL: URL?,
+        configurationType: ConfigurationType
+    ) -> TypographyKitSettings? {
         guard let configurationURL = configurationURL, let data = try? Data(contentsOf: configurationURL) else {
-            guard case let .success(model) = loadSettings(from: nil) else { // Data not received - load from cache.
+            // Data not received - load from cache.
+            guard case let .success(model) = loadSettings(from: nil, configurationType: configurationType) else {
                 return nil
             }
             return model
         }
-        guard case let .success(model) = loadSettings(from: data) else {
+        guard case let .success(model) = loadSettings(from: data, configurationType: configurationType) else {
             return nil
         }
         return model
     }
     
-    static func loadSettings(from data: Data?) -> ConfigurationParsingResult {
+    static func loadSettings(from data: Data?, configurationType: ConfigurationType) -> ConfigurationParsingResult {
         guard let data = data else {
             guard let cachedConfigurationURL = cachedConfigurationURL,
                   let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
-                guard let bundledConfigurationURL = bundledConfigurationURL(),
-                      let bundledData = try? Data(contentsOf: bundledConfigurationURL) else {
-                    return .failure(.emptyPayload)
-                }
-                return parseConfiguration(data: bundledData)
+                return .failure(.emptyPayload)
             }
-            return parseConfiguration(data: cachedData)
+            return parseConfiguration(data: cachedData, configurationType: configurationType)
         }
         if let cachedConfigurationURL = cachedConfigurationURL {
             try? data.write(to: cachedConfigurationURL)
         }
-        return parseConfiguration(data: data)
+        return parseConfiguration(data: data, configurationType: configurationType)
     }
     
-    private static func parseConfiguration(data: Data) -> ConfigurationParsingResult {
+    private static func parseConfiguration(
+        data: Data,
+        configurationType: ConfigurationType
+    ) -> ConfigurationParsingResult {
         let parsingService = StrategicConfigurationParsingService(strategy: configurationType)
         return parsingService.parse(data)
     }

@@ -17,9 +17,14 @@ let isDevelopment = true
 let developmentColor = TypographyColor.clear
 let isDevelopment = false
 #endif
+        let configurationName = "TypographyKit"
+        let configurationType = TypographyKit.configurationType(configurationName: configurationName)
+        let configurationURL = TypographyKit.bundledConfigurationURL(name: configurationName, type: configurationType)
         return Self.init(
             buttons: ButtonSettings(titleColorApplyMode: .whereUnspecified),
-            configurationURL: TypographyKit.bundledConfigurationURL(TypographyKit.configurationType),
+            configurationName: configurationName,
+            configurationType: configurationType,
+            configurationURL: configurationURL,
             developmentColor: developmentColor,
             isDevelopment: isDevelopment,
             fallbackColor: .clear,
@@ -34,6 +39,8 @@ let isDevelopment = false
         )
     }()
     let buttons: ButtonSettings
+    let configurationName: String
+    let configurationType: ConfigurationType
     let configurationURL: URL?
     let developmentColor: TypographyColor
     let fallbackColor: TypographyColor
@@ -49,6 +56,8 @@ let isDevelopment = false
     
     init(
         buttons: ButtonSettings,
+        configurationName: String,
+        configurationType: ConfigurationType,
         configurationURL: URL?,
         developmentColor: TypographyColor,
         isDevelopment: Bool,
@@ -63,6 +72,8 @@ let isDevelopment = false
         shouldUseDevelopmentColors: Bool
     ) {
         self.buttons = buttons
+        self.configurationName = configurationName
+        self.configurationType = configurationType
         self.configurationURL = configurationURL
         self.developmentColor = developmentColor
         self.isDevelopment = isDevelopment
@@ -81,6 +92,8 @@ let isDevelopment = false
     /// whilst allowing one or more values to be overridden.
     private func copy(
         buttons: ButtonSettings? = nil,
+        configurationName: String? = nil,
+        configurationType: ConfigurationType? = nil,
         configurationURL: URL? = nil,
         developmentColor: TypographyColor? = nil,
         fallbackColor: TypographyColor? = nil,
@@ -95,6 +108,8 @@ let isDevelopment = false
         shouldUseDevelopmentColors: Bool? = nil
     ) -> Self {
         let buttons: ButtonSettings = buttons ?? self.buttons
+        let configurationName: String = configurationName ?? self.configurationName
+        let configurationType: ConfigurationType = configurationType ?? self.configurationType
         let configurationURL: URL? = configurationURL ?? self.configurationURL
         let developmentColor: TypographyColor = developmentColor ?? self.developmentColor
         let fallbackColor: TypographyColor = fallbackColor ?? self.fallbackColor
@@ -109,6 +124,8 @@ let isDevelopment = false
         let shouldUseDevelopmentColors: Bool = shouldUseDevelopmentColors ?? self.shouldUseDevelopmentColors
         return .init(
             buttons: buttons,
+            configurationName: configurationName,
+            configurationType: configurationType,
             configurationURL: configurationURL,
             developmentColor: developmentColor,
             isDevelopment: isDevelopment,
@@ -130,6 +147,14 @@ let isDevelopment = false
     
     public func setButtonTitleColorApplyMode(_ applyMode: ButtonTitleColorApplyMode?) -> Self {
         copy(buttons: buttons.setTitleColorApplyMode(titleColorApplyMode: applyMode))
+    }
+    
+    public func setConfigurationName(_ name: String?) -> Self {
+        copy(configurationName: name)
+    }
+    
+    public func setConfigurationType(_ type: ConfigurationType?) -> Self {
+        copy(configurationType: type)
     }
     
     public func setConfigurationURL(_ url: URL?) -> Self {

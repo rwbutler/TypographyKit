@@ -6,7 +6,7 @@
 //
 //
 
-public enum ConfigurationType: String, CaseIterable, RawRepresentable {
+public enum ConfigurationType: String, CaseIterable, Codable, RawRepresentable {
     case json
     case plist
 }
