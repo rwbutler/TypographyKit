@@ -9,7 +9,7 @@ import Foundation
 
 struct JSONParsingService: ConfigurationParsingService {
     
-    func parse(_ data: Data) -> ConfigurationParsingResult {
+    func parse(_ data: Data, with existingConfig: TypographyKitConfiguration) -> ConfigurationParsingResult {
         guard !data.isEmpty else {
             return .failure(.emptyPayload)
         }
@@ -17,7 +17,7 @@ struct JSONParsingService: ConfigurationParsingService {
             as? [String: Any] else {
                 return .failure(.unexpectedFormat)
         }
-        return parse(jsonDictionary)
+        return parse(jsonDictionary, with: existingConfig)
     }
     
 }

@@ -16,7 +16,7 @@ struct StrategicConfigurationParsingService: ConfigurationParsingService {
         self.strategy = strategy
     }
     
-    func parse(_ data: Data) -> ConfigurationParsingResult {
+    func parse(_ data: Data, with existingConfig: TypographyKitConfiguration) -> ConfigurationParsingResult {
         let parsingImplementation: ConfigurationParsingService
         switch strategy {
         case .json:
@@ -24,7 +24,7 @@ struct StrategicConfigurationParsingService: ConfigurationParsingService {
         case .plist:
             parsingImplementation = PropertyListParsingService()
         }
-        return parsingImplementation.parse(data)
+        return parsingImplementation.parse(data, with: existingConfig)
     }
     
 }

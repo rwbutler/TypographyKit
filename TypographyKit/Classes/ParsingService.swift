@@ -12,7 +12,7 @@ import UIKit
 typealias ConfigurationParsingResult = Result<TypographyKitSettings, ConfigurationParsingError>
 
 protocol ConfigurationParsingService {
-    func parse(_ data: Data) -> ConfigurationParsingResult
+    func parse(_ data: Data, with existingConfig: TypographyKitConfiguration) -> ConfigurationParsingResult
 }
 
 private enum CodingKeys {
@@ -43,7 +43,7 @@ extension ConfigurationParsingService {
     // MARK: - Type definitions
     fileprivate typealias ExtendedTypographyStyleEntry = (existingStyleName: String, newStyle: Typography)
     
-    func parse(_ configEntries: [String: Any]) -> ConfigurationParsingResult {
+    func parse(_ configEntries: [String: Any], with existingConfig: TypographyKitConfiguration) -> ConfigurationParsingResult {
         // Colors
         let colorEntries = configEntries[CodingKeys.colorsEntry] as? ColorEntries ?? [:]
         var colorParser = ColorParser(colors: colorEntries)
@@ -101,7 +101,7 @@ extension ConfigurationParsingService {
             let shouldCrashIfColorNotFound = typographyKitConfig[CodingKeys.shouldCrashIfColorNotFound] as? Bool
             let shouldUseDevelopmentColors = typographyKitConfig[CodingKeys.shouldUseDevelopmentColors] as? Bool
             
-            configuration = TypographyKitConfiguration.default
+            configuration = existingConfig
                 .setButtonSettings(buttonSettings)
                 .setConfigurationName(configurationName)
                 .setConfigurationType(configurationType)
@@ -118,7 +118,7 @@ extension ConfigurationParsingService {
                 .setShouldCrashIfColorNotFound(shouldCrashIfColorNotFound)
                 .setShouldUseDevelopmentColors(shouldUseDevelopmentColors)
         } else {
-            configuration = TypographyKitConfiguration.default
+            configuration = existingConfig
         }
         
         // Fonts

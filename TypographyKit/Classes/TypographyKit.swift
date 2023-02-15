@@ -121,11 +121,7 @@ public struct TypographyKit {
     ) async -> TypographyKitSettings? {
         // Settings haven't been loaded therefore an initial load must be performed.
         guard let settings = Self.settings else {
-            let updatedSettings = await loadSettings(
-                configurationURL: configuration.configurationURL,
-                configurationType: configuration.configurationType
-            )?
-                .updateConfiguration(configuration)
+            let updatedSettings = await loadSettings(configuration: configuration)
             apply(updatedSettings)
             return updatedSettings
         }
@@ -135,10 +131,7 @@ public struct TypographyKit {
             apply(updatedSettings)
             return updatedSettings
         }
-        let updatedSettings = await loadSettings(
-            configurationURL: configuration.configurationURL,
-            configurationType: configuration.configurationType
-        )?.updateConfiguration(configuration)
+        let updatedSettings = await loadSettings(configuration: configuration)
         apply(updatedSettings)
         return updatedSettings
     }
@@ -151,10 +144,7 @@ public struct TypographyKit {
         DispatchQueue.global(qos: .userInteractive).async {
             // Settings haven't been loaded therefore an initial load must be performed.
             guard let settings = Self.settings else {
-                let updatedSettings = loadSettingsSync(
-                    configurationURL: configuration.configurationURL,
-                    configurationType: configuration.configurationType
-                )?.updateConfiguration(configuration)
+                let updatedSettings = loadSettingsSync(configuration: configuration)
                 apply(updatedSettings)
                 completion?(updatedSettings)
                 return
@@ -166,10 +156,7 @@ public struct TypographyKit {
                 completion?(updatedSettings)
                 return
             }
-            let updatedSettings = loadSettingsSync(
-                configurationURL: configuration.configurationURL,
-                configurationType: configuration.configurationType
-            )?.updateConfiguration(configuration)
+            let updatedSettings = loadSettingsSync(configuration: configuration)
             apply(updatedSettings)
             completion?(updatedSettings)
         }
@@ -177,38 +164,30 @@ public struct TypographyKit {
     
     public static func refresh() {
         DispatchQueue.global(qos: .userInteractive).async {
-            guard let settings = Self.settings else {
+            guard let configuration = Self.settings?.configuration else {
                 return
             }
-            let configuration = settings.configuration
-            let updatedSettings = loadSettingsSync(
-                configurationURL: configuration.configurationURL,
-                configurationType: configuration.configurationType
-            )
+            let updatedSettings = loadSettingsSync(configuration: configuration)
             apply(updatedSettings)
         }
     }
     
     @available(iOS 13.0, *)
     public static func refresh() async {
-        guard let settings = Self.settings else {
+        guard let configuration = Self.settings?.configuration else {
             return
         }
-        let configuration = settings.configuration
-        let updatedSettings = await loadSettings(
-            configurationURL: configuration.configurationURL,
-            configurationType: configuration.configurationType
-        )
+        let updatedSettings = await loadSettings(configuration: configuration)
         apply(updatedSettings)
     }
     
     public static func refresh(
         with data: Data,
-        configurationType: ConfigurationType? = nil,
+        configuration: Configuration? = nil,
         completion: ((Settings?) -> Void)? = nil
     ) {
-        let configurationType = (configurationType ?? Self.settings?.configuration.configurationType) ?? .json
-        guard case let .success(settings) = loadSettings(from: data, configurationType: configurationType) else {
+        let configuration = (configuration ?? Self.settings?.configuration) ?? TypographyKitConfiguration.default
+        guard case let .success(settings) = loadSettings(from: data, configuration: configuration) else {
             completion?(nil)
             return
         }
@@ -430,59 +409,57 @@ private extension TypographyKit {
     
     @available(iOS 13.0, *)
     static func loadSettings(
-        configurationURL: URL?,
-        configurationType: ConfigurationType
+        configuration: TypographyKitConfiguration
     ) async -> TypographyKitSettings? {
-        guard let configurationURL = configurationURL, let data = try? Data(contentsOf: configurationURL) else {
+        guard let configurationURL = configuration.configurationURL, let data = try? Data(contentsOf: configurationURL) else {
             // Data not received - load from cache.
-            guard case let .success(model) = loadSettings(from: nil, configurationType: configurationType) else {
+            guard case let .success(model) = loadSettings(from: nil, configuration: configuration) else {
                 return nil
             }
             return model
         }
-        guard case let .success(model) = loadSettings(from: data, configurationType: configurationType) else {
+        guard case let .success(model) = loadSettings(from: data, configuration: configuration) else {
             return nil
         }
         return model
     }
     
     static func loadSettingsSync(
-        configurationURL: URL?,
-        configurationType: ConfigurationType
+        configuration: TypographyKitConfiguration
     ) -> TypographyKitSettings? {
-        guard let configurationURL = configurationURL, let data = try? Data(contentsOf: configurationURL) else {
+        guard let configurationURL = configuration.configurationURL, let data = try? Data(contentsOf: configurationURL) else {
             // Data not received - load from cache.
-            guard case let .success(model) = loadSettings(from: nil, configurationType: configurationType) else {
+            guard case let .success(model) = loadSettings(from: nil, configuration: configuration) else {
                 return nil
             }
             return model
         }
-        guard case let .success(model) = loadSettings(from: data, configurationType: configurationType) else {
+        guard case let .success(model) = loadSettings(from: data, configuration: configuration) else {
             return nil
         }
         return model
     }
     
-    static func loadSettings(from data: Data?, configurationType: ConfigurationType) -> ConfigurationParsingResult {
+    static func loadSettings(from data: Data?, configuration: Configuration) -> ConfigurationParsingResult {
         guard let data = data else {
             guard let cachedConfigurationURL = cachedConfigurationURL,
                   let cachedData = try? Data(contentsOf: cachedConfigurationURL) else {
                 return .failure(.emptyPayload)
             }
-            return parseConfiguration(data: cachedData, configurationType: configurationType)
+            return parseConfiguration(data: cachedData, configuration: configuration)
         }
         if let cachedConfigurationURL = cachedConfigurationURL {
             try? data.write(to: cachedConfigurationURL)
         }
-        return parseConfiguration(data: data, configurationType: configurationType)
+        return parseConfiguration(data: data, configuration: configuration)
     }
     
     private static func parseConfiguration(
         data: Data,
-        configurationType: ConfigurationType
+        configuration: TypographyKitConfiguration
     ) -> ConfigurationParsingResult {
-        let parsingService = StrategicConfigurationParsingService(strategy: configurationType)
-        return parsingService.parse(data)
+        let parsingService = StrategicConfigurationParsingService(strategy: configuration.configurationType)
+        return parsingService.parse(data, with: configuration)
     }
     // swiftlint:disable:next file_length
 }

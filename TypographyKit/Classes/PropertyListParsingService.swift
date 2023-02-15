@@ -10,7 +10,7 @@ import Foundation
 
 struct PropertyListParsingService: ConfigurationParsingService {
     
-    func parse(_ data: Data) -> ConfigurationParsingResult {
+    func parse(_ data: Data, with existingConfig: TypographyKitConfiguration) -> ConfigurationParsingResult {
         guard !data.isEmpty else {
             return .failure(.emptyPayload)
         }
@@ -20,7 +20,7 @@ struct PropertyListParsingService: ConfigurationParsingService {
             let result = plistDictionary else {
                 return .failure(.unexpectedFormat)
         }
-        return parse(result)
+        return parse(result, with: existingConfig)
     }
     
 }
