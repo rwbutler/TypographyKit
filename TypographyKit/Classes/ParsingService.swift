@@ -83,8 +83,8 @@ extension ConfigurationParsingService {
                     type: configurationType
                 )
             }
-            let developmentColor = typographyColors[developmentColorKey ?? ""]
-            let fallbackColor = typographyColors[fallbackColorKey ?? ""]
+            let developmentColor = typographyColors[typographyKitDevelopmentColorKey]
+            let fallbackColor = typographyColors[typographyKitFallbackColorKey]
             let isDevelopment = typographyKitConfig[CodingKeys.isDevelopment] as? Bool
             let labelsConfig = typographyKitConfig[CodingKeys.labels] as? [String: String]
             let labelSettings = self.labelSettings(labelsConfig)
