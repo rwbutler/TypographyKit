@@ -154,7 +154,7 @@ let isDevelopment = false
         if configurationURL == nil || configurationURL?.isFileURL == true {
             return returnValue.copy(
                 configurationURL: TypographyKit.bundledConfigurationURL(
-                    name: configurationName,
+                    name: name ?? configurationName,
                     type: configurationType
                 )
             )
@@ -169,7 +169,7 @@ let isDevelopment = false
             return returnValue.copy(
                 configurationURL: TypographyKit.bundledConfigurationURL(
                     name: configurationName,
-                    type: configurationType
+                    type: type ?? configurationType
                 )
             )
         } else {
