@@ -45,14 +45,24 @@ extension ConfigurationParsingService {
     
     func parse(_ configEntries: [String: Any], with existingConfig: TypographyKitConfiguration) -> ConfigurationParsingResult {
         // Colors
-        let colorEntries = configEntries[CodingKeys.colorsEntry] as? ColorEntries ?? [:]
-        var colorParser = ColorParser(colors: colorEntries)
-        let typographyColors = colorParser.parseColors()
+        let typographyKitDevelopmentColorKey = "development-color"
+        let typographyKitFallbackColorKey = "fallback-color"
+        var colorEntries = configEntries[CodingKeys.colorsEntry] as? ColorEntries ?? [:]
+        let typographyColors: TypographyColors
         
         // Configuration
         let configuration: TypographyKitConfiguration
         if let typographyKitConfig = configEntries[CodingKeys.umbrellaEntry] as? [String: Any] {
-            
+            let developmentColorKey = typographyKitConfig[CodingKeys.developmentColor] as? String
+            if colorEntries[typographyKitDevelopmentColorKey] == nil {
+                colorEntries[typographyKitDevelopmentColorKey] = developmentColorKey
+            }
+            let fallbackColorKey = typographyKitConfig[CodingKeys.fallbackColor] as? String
+            if colorEntries[typographyKitFallbackColorKey] == nil {
+                colorEntries[typographyKitFallbackColorKey] = fallbackColorKey
+            }
+            var colorParser = ColorParser(colors: colorEntries)
+            typographyColors = colorParser.parseColors()
             let buttonsConfig = typographyKitConfig[CodingKeys.buttons] as? [String: String]
             let buttonSettings = self.buttonSettings(buttonsConfig)
             let configurationName = (typographyKitConfig[CodingKeys.configurationName] as? String) ?? "TypographyKit"
@@ -73,18 +83,8 @@ extension ConfigurationParsingService {
                     type: configurationType
                 )
             }
-            let developmentColor: TypographyColor?
-            if let developmentColorKey = typographyKitConfig[CodingKeys.developmentColor] as? String {
-                developmentColor = typographyColors[developmentColorKey]
-            } else {
-                developmentColor = nil
-            }
-            let fallbackColor: TypographyColor?
-            if let fallbackColorKey = typographyKitConfig[CodingKeys.fallbackColor] as? String {
-                fallbackColor = typographyColors[fallbackColorKey]
-            } else {
-                fallbackColor = nil
-            }
+            let developmentColor = typographyColors[developmentColorKey ?? ""]
+            let fallbackColor = typographyColors[fallbackColorKey ?? ""]
             let isDevelopment = typographyKitConfig[CodingKeys.isDevelopment] as? Bool
             let labelsConfig = typographyKitConfig[CodingKeys.labels] as? [String: String]
             let labelSettings = self.labelSettings(labelsConfig)
@@ -118,6 +118,8 @@ extension ConfigurationParsingService {
                 .setShouldCrashIfColorNotFound(shouldCrashIfColorNotFound)
                 .setShouldUseDevelopmentColors(shouldUseDevelopmentColors)
         } else {
+            var colorParser = ColorParser(colors: colorEntries)
+            typographyColors = colorParser.parseColors()
             configuration = existingConfig
         }
         
