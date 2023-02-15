@@ -18,6 +18,8 @@ protocol ConfigurationParsingService {
 private enum CodingKeys {
     static let buttons = "buttons"
     static let colorsEntry = "typography-colors"
+    static let configurationName = "configuration-name"
+    static let configurationType = "configuration-type"
     static let configurationURL = "configuration-url"
     static let developmentColor = "development-color"
     static let fallbackColor = "fallback-color"
@@ -53,7 +55,24 @@ extension ConfigurationParsingService {
             
             let buttonsConfig = typographyKitConfig[CodingKeys.buttons] as? [String: String]
             let buttonSettings = self.buttonSettings(buttonsConfig)
-            let configurationURL = typographyKitConfig[CodingKeys.configurationURL] as? URL
+            let configurationName = (typographyKitConfig[CodingKeys.configurationName] as? String) ?? "TypographyKit"
+            let configurationType: ConfigurationType
+            if let configTypeString = typographyKitConfig[CodingKeys.configurationType] as? String {
+                configurationType = ConfigurationType(rawValue: configTypeString)
+                ?? TypographyKit.configurationType(configurationName: configurationName)
+            } else {
+                configurationType = TypographyKit.configurationType(configurationName: configurationName)
+            }
+            
+            let configurationURL: URL?
+            if let parsedURL = typographyKitConfig[CodingKeys.configurationURL] as? URL {
+                configurationURL = parsedURL
+            } else {
+                configurationURL = TypographyKit.bundledConfigurationURL(
+                    name: configurationName,
+                    type: configurationType
+                )
+            }
             let developmentColor: TypographyColor?
             if let developmentColorKey = typographyKitConfig[CodingKeys.developmentColor] as? String {
                 developmentColor = typographyColors[developmentColorKey]
@@ -84,6 +103,8 @@ extension ConfigurationParsingService {
             
             configuration = TypographyKitConfiguration.default
                 .setButtonSettings(buttonSettings)
+                .setConfigurationName(configurationName)
+                .setConfigurationType(configurationType)
                 .setConfigurationURL(configurationURL)
                 .setDevelopmentColor(developmentColor)
                 .setFallbackColor(fallbackColor)
