@@ -40,7 +40,7 @@ public struct TypographyKit {
         where bundledConfigurationURL(name: configurationName, type: configurationType) != nil {
             return configurationType
         }
-        return .json // default
+        return .json // Defaults to JSON.
     }
     
     public static var developmentColor: TypographyColor = TypographyKitConfiguration.default.developmentColor

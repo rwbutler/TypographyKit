@@ -150,11 +150,31 @@ let isDevelopment = false
     }
     
     public func setConfigurationName(_ name: String?) -> Self {
-        copy(configurationName: name)
+        let returnValue = copy(configurationName: name)
+        if configurationURL == nil || configurationURL?.isFileURL == true {
+            return returnValue.copy(
+                configurationURL: TypographyKit.bundledConfigurationURL(
+                    name: configurationName,
+                    type: configurationType
+                )
+            )
+        } else {
+            return returnValue
+        }
     }
     
     public func setConfigurationType(_ type: ConfigurationType?) -> Self {
-        copy(configurationType: type)
+        let returnValue = copy(configurationType: type)
+        if configurationURL == nil || configurationURL?.isFileURL == true {
+            return returnValue.copy(
+                configurationURL: TypographyKit.bundledConfigurationURL(
+                    name: configurationName,
+                    type: configurationType
+                )
+            )
+        } else {
+            return returnValue
+        }
     }
     
     public func setConfigurationURL(_ url: URL?) -> Self {
