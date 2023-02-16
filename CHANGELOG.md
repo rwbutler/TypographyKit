@@ -10,8 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - All methods & properties previously accessed using `TypographyKit.` may now be accessed using the shortened form: `TK.`.
 - Support for RGBA colour values e.g. rgba(255,255,255,255).
 - Support for hexadecimal color values with transparency e.g. #FFFFFFFF.
+- New configuration options may now be declared as part of the TypographyKit JSON configuration file:
+	- `development-color`: If the app build is a development build and `should-use-development-colors` is `true` then when the value of a color hasn't been specified, TypographyKit will fallback to using the value of this color.
+	- `fallback-color`: If the app build is *not* a development build -or- the app build is a development build but `should-use-development-colors` is `false` then this color will be used if the value of a color has not been set.
+	- `is-development`: Can be used to set whether or not the build is a development build. If the value is not set, this is determined according to whether or not the build is debug.
+	- `should-crash-if-color-not-found`: If the build is a development build and the value of this key is `true` then if the value of a color hasn't been specified then the app will crash. Default value: `false`.
+	- `should-use-development-colors`: If the build is a development build and the value of this key is `true` then if the value of a color hasn't been specified then the specified `development-colour` will be used. Default value: `true`.
+
+- All configuration options specified in the TypographyKit configuration file may also be specified via the `TypographyKit.Configuration` object when configuring the framework. Note: Settings specified in the TypographyKit configuration file override settings specified programmatically.
+
 
 ## Changed
+- Deployment target updated to iOS 11.0 (dropped support for iOS 9.0 and 10.0 in-line with Xcode 14).
 - `TypographyKit.colors` should no longer be used. Instead use:
 	- For SwiftUI: `TypographyKit.color(named:)` or `TK.color(named:)`.
 	- For UIKit: `TypographyKit.uiColor(named:)` or `TK.uiColor(named:)`.

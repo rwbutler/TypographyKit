@@ -16,7 +16,6 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 - [Features](#features)
 - [What's New in TypographyKit 5.0.0?](#whats-new-in-typographykit-500)
-- [What's New in TypographyKit 4.0.0?](#whats-new-in-typographykit-400)
 - [Installation](#installation)
 	- [Cocoapods](#cocoapods)
 	- [Carthage](#carthage)
@@ -56,25 +55,44 @@ To learn more about how to use TypographyKit, take a look at the table of conten
 
 ## What's new in TypographyKit 5.0.0?
 
-TypographyKit 5.0.0 drops support for iOS 9.0, updating the deployment target to 11.0 in line with Xcode 14.
+- First-class support for SwiftUI colors - to obtain a color, use `TK.color(named:)`.
+- You may specify a fallback color to be used in the event that you forget to define a color. Use the `fallback-color` key to specify which color should be used in this case.
+    - Setting: `fallback-color`
+    - Default: Black in light mode and white in dark mode.
+- You may specify a development color which is used in the event that you forget to define a color in development builds. This color may be different from the fallback color. For example, you may want to use an easily noticeable color such as red to make it visually clear that you have forgotten to define a color in development builds. However, you may want to ensure that this red color will never be shown in production builds - this is why development colors will never be shown in production builds (instead the fallback color will be used).
+    - Setting: `development-color`
+    - Default: `red`
+    
+    - Setting: `is-development`
+    - Default: `true` in #DEBUG builds; `false` otherwise
+    
+    - Setting: `should-use-development-colors`
+    - Default: `true`
+    
+- You may optionally specify that your development app builds crash if you forget to define a color. This makes it even less likely that you will forget to specify a color value during development. This setting only affects development builds so there is no need to worry that production builds might crash. 
+    - Setting: `should-crash-if-color-not-found`
+    - Default: `false`
 
-## What's new in TypographyKit 4.0.0?
-
-TypographyKit 4.0.0 introduces support for SwiftUI. In order to make use of TypographyKit with SwiftUI, create a TypographyKit configuration file (either JSON or PList) and an extension on `UIFont.TextStyle` as described in the [Usage](#usage) section, then simply apply your typography style to a SwiftUI `Text` view as follows:
+- To start using the framework, now `import TypographyKit` and then configure as follows:
 
 ```swift
-Text("An example using TypographyKit with SwiftUI")
-.typography(style: .interactive)
+TypographyKit.configure(
+    with: TypographyKitConfiguration.default
+        .setConfigurationURL(configurationURL)
+)
 ```
 
-A letter case may be applied directly to the String as follows:
+Alternatively, an `async` version of this method exists for developers supporting iOS 13 and above:
 
 ```swift
-"An example using TypographyKit with SwiftUI"
-.letterCase(style: .interactive)
+await TypographyKit.configure(with:
+    TypographyKitConfiguration.default.setConfigurationURL(configurationURL)
+)
 ```
+- All configuration properties specified programmatically may alternatively be specified in the TypographyKit configuration file. 
+	- Note: Values in the configuration file override those specified programmatically.
 
-This results in the letter case defined for the specified typography style (in config) being applied.
+For a detailed list of changes, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Installation
 

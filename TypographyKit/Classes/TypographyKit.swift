@@ -196,6 +196,7 @@ public struct TypographyKit {
     
     public static func tkColor(named colorName: String) -> TypographyColor {
         guard let color = colors[colorName] else {
+            LoggingService.log(error: .notFound(element: colorName), key: colorName)
             if isDevelopment {
                 if shouldCrashIfColorNotFound {
                     fatalError("Unable to locate color named '\(colorName)' and 'shouldCrashIfColorNotFound' = 'true'.")
@@ -411,7 +412,8 @@ private extension TypographyKit {
     static func loadSettings(
         configuration: TypographyKitConfiguration
     ) async -> TypographyKitSettings? {
-        guard let configurationURL = configuration.configurationURL, let data = try? Data(contentsOf: configurationURL) else {
+        guard let configurationURL = configuration.configurationURL,
+                let data = try? Data(contentsOf: configurationURL) else {
             // Data not received - load from cache.
             guard case let .success(model) = loadSettings(from: nil, configuration: configuration) else {
                 return nil
@@ -427,7 +429,8 @@ private extension TypographyKit {
     static func loadSettingsSync(
         configuration: TypographyKitConfiguration
     ) -> TypographyKitSettings? {
-        guard let configurationURL = configuration.configurationURL, let data = try? Data(contentsOf: configurationURL) else {
+        guard let configurationURL = configuration.configurationURL,
+                let data = try? Data(contentsOf: configurationURL) else {
             // Data not received - load from cache.
             guard case let .success(model) = loadSettings(from: nil, configuration: configuration) else {
                 return nil

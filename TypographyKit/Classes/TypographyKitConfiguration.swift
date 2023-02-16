@@ -27,7 +27,10 @@ let isDevelopment = false
             configurationURL: configurationURL,
             developmentColor: developmentColor,
             isDevelopment: isDevelopment,
-            fallbackColor: .clear,
+            fallbackColor: .dynamicColor(colors: [
+                .light: .black,
+                .dark: .white
+            ]),
             labels: LabelSettings(lineBreakMode: .byWordWrapping),
             minPointSize: nil,
             maxPointSize: nil,
