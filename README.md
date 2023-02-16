@@ -1,5 +1,6 @@
 
-![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/main/docs/images/typography-kit-banner.png)
+![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/main/docs/images/typography-kit-banner.png#gh-light-mode-only)
+![TypographyKit](https://raw.githubusercontent.com/rwbutler/TypographyKit/main/docs/images/typography-kit-banner-dark.png#gh-dark-mode-only)
 
 [![Build Status](https://app.bitrise.io/app/bedbecf19faba2d2/status.svg?token=DYW4f17sboxJC7WunOVRfw&branch=main)](https://app.bitrise.io/app/bedbecf19faba2d2)
 [![Version](https://img.shields.io/cocoapods/v/TypographyKit.svg?style=flat)](http://cocoapods.org/pods/TypographyKit)
