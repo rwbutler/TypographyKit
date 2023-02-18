@@ -6,6 +6,7 @@
 //
 //
 
+import LetterCase
 import UIKit
 
 public struct Typography {

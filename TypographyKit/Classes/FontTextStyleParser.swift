@@ -5,6 +5,7 @@
 //  Created by Roger Smith on 02/08/2019.
 //
 
+import LetterCase
 import UIKit
 
 struct FontTextStyleParser {
