@@ -11,6 +11,7 @@
 		024FD0499A9D8509F441F79DD4E4184E /* TypographyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1378C73A41012AA5737AA51E6A62C4E8 /* TypographyColor.swift */; };
 		0507C9B9B1361519FA610277BA33F274 /* KeyDecodingStrategyAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E669CD0BE711891123F3E69FA66F2A7 /* KeyDecodingStrategyAdditions.swift */; };
 		0E51A5FBFD791E746187FFD36427CDCB /* NSLineBreakMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F22D58099B78518095DB8A2A28B496 /* NSLineBreakMode.swift */; };
+		13182B2F29A0FFC50048332A /* StringAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13182B2E29A0FFC50048332A /* StringAdditions.swift */; };
 		1BEA660044B74AE090B4C6D786607BFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		1C7A777DC4349BA4E295C2546549A2EA /* TypographyKitSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF21DFF5529E2B437B59FAE9703D1017 /* TypographyKitSettings.swift */; };
 		1F2F33C610D6C7CC7F0569737FB74163 /* TypographyKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C99F899ECB5970BDAA2AC99194AE94A /* TypographyKit-dummy.m */; };
@@ -101,8 +102,9 @@
 		01A6E9B9E43CFA605242C3B378EE1C1D /* String+RegularExpressionMatchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+RegularExpressionMatchable.swift"; path = "TypographyKit/Classes/String+RegularExpressionMatchable.swift"; sourceTree = "<group>"; };
 		04613BB08B04BFFD6F3ADAD2B3260D2F /* LetterCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LetterCase-umbrella.h"; sourceTree = "<group>"; };
 		0841B1058CC96749A95AFA2C6E9EF6B1 /* Pods-TypographyKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TypographyKit_Example.modulemap"; sourceTree = "<group>"; };
-		0D461B9B262F3126741CEF126F6FC53D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		0D461B9B262F3126741CEF126F6FC53D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		12541EDCF585329FD0A70799D06EC43D /* Pods-TypographyKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TypographyKit_Tests.modulemap"; sourceTree = "<group>"; };
+		13182B2E29A0FFC50048332A /* StringAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringAdditions.swift; path = TypographyKit/Classes/StringAdditions.swift; sourceTree = "<group>"; };
 		1378C73A41012AA5737AA51E6A62C4E8 /* TypographyColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyColor.swift; path = TypographyKit/Classes/TypographyColor.swift; sourceTree = "<group>"; };
 		17D1FB9850B60C3DB59CCD7C9BADE382 /* TypographyKitConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitConfiguration.swift; path = TypographyKit/Classes/TypographyKitConfiguration.swift; sourceTree = "<group>"; };
 		180D0CDB847732B3F9439667E222788A /* LetterCase */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LetterCase; path = LetterCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +119,7 @@
 		2D6DF4FFCDDF0B37D41CC99CB2A2EBCE /* JSONParsingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONParsingService.swift; path = TypographyKit/Classes/JSONParsingService.swift; sourceTree = "<group>"; };
 		2D8234F12B46CD887DB918C7509C96AD /* LetterCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LetterCase.release.xcconfig; sourceTree = "<group>"; };
 		31A154022A5A24DE0B30FAB03A1ADFFF /* Pods-TypographyKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TypographyKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		32BE1C3FF06556B8FC4ED5BC79898C1A /* typography-kit-logo.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; name = "typography-kit-logo.afdesign"; path = "docs/images/typography-kit-logo.afdesign"; sourceTree = "<group>"; };
+		32BE1C3FF06556B8FC4ED5BC79898C1A /* typography-kit-logo.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "typography-kit-logo.afdesign"; path = "docs/images/typography-kit-logo.afdesign"; sourceTree = "<group>"; };
 		3535CD839B740C432364F061CEEA27EA /* Pods-TypographyKit_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TypographyKit_Tests-dummy.m"; sourceTree = "<group>"; };
 		3B4278F3BD8A47918E2DCE6B606E91C1 /* LetterCase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LetterCase.swift; path = LetterCase/Classes/LetterCase.swift; sourceTree = "<group>"; };
 		3E669CD0BE711891123F3E69FA66F2A7 /* KeyDecodingStrategyAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyDecodingStrategyAdditions.swift; path = LetterCase/Classes/KeyDecodingStrategyAdditions.swift; sourceTree = "<group>"; };
@@ -133,7 +135,7 @@
 		5B41E96F25FFE1803B825BD67612E9BD /* TypographyKitViewControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitViewControllerDelegate.swift; path = TypographyKit/Classes/TypographyKitViewControllerDelegate.swift; sourceTree = "<group>"; };
 		614F280DCD3B514B42242AA90F793F2F /* CloseButtonAlignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloseButtonAlignment.swift; path = TypographyKit/Classes/CloseButtonAlignment.swift; sourceTree = "<group>"; };
 		62CF45F2367F33AC4BEBCC5FDD4828D3 /* ViewControllerNavigationSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewControllerNavigationSettings.swift; path = TypographyKit/Classes/ViewControllerNavigationSettings.swift; sourceTree = "<group>"; };
-		6362D872E12340780F5F0E6836960FAB /* TypographyKit2Banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; name = TypographyKit2Banner.afdesign; path = docs/images/TypographyKit2Banner.afdesign; sourceTree = "<group>"; };
+		6362D872E12340780F5F0E6836960FAB /* TypographyKit2Banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = TypographyKit2Banner.afdesign; path = docs/images/TypographyKit2Banner.afdesign; sourceTree = "<group>"; };
 		644ED8672D9E87A6672AD1955D44EBAD /* TypographyKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TypographyKit-Info.plist"; sourceTree = "<group>"; };
 		667938500E1AD681C3504CBF9AED19FE /* Typography.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typography.swift; path = TypographyKit/Classes/Typography.swift; sourceTree = "<group>"; };
 		6917D7AD763F193B7AE1CD8F6C1C2BC5 /* PropertyListParsingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PropertyListParsingService.swift; path = TypographyKit/Classes/PropertyListParsingService.swift; sourceTree = "<group>"; };
@@ -157,7 +159,7 @@
 		9955A89863D245EFBCFDAEA25B9C00A1 /* Pods-TypographyKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TypographyKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9A41B8C57FA49F31135CBEE7C347BDA3 /* TypographyStyles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyStyles.swift; path = TypographyKit/Classes/TypographyStyles.swift; sourceTree = "<group>"; };
 		9A4AB95C286AAA96A9852A70BB512F6A /* ButtonSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonSettings.swift; path = TypographyKit/Classes/ButtonSettings.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9EE7950F28393B9DA58A322B7F6AD7BF /* UIButtonAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIButtonAdditions.swift; path = TypographyKit/Classes/UIButtonAdditions.swift; sourceTree = "<group>"; };
 		A4901DEB5C71ABEF1BA8CFB7417222A3 /* UITextViewAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITextViewAdditions.swift; path = TypographyKit/Classes/UITextViewAdditions.swift; sourceTree = "<group>"; };
 		A79DBAD5A2D00FD2957A7A60EE1B82C8 /* TypographyKitColorsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitColorsViewController.swift; path = TypographyKit/Classes/TypographyKitColorsViewController.swift; sourceTree = "<group>"; };
@@ -176,16 +178,16 @@
 		D349CF360CD06FCA90A89F4D0B9EA6E3 /* TypographyKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TypographyKit.modulemap; sourceTree = "<group>"; };
 		D3BB1C89C5DFB6E5EF38733C40AEB227 /* LetterCaseOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LetterCaseOptions.swift; path = LetterCase/Classes/LetterCaseOptions.swift; sourceTree = "<group>"; };
 		D77901D22538D3871E87D4BB544F298F /* TypographyKitColorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitColorCell.swift; path = TypographyKit/Classes/TypographyKitColorCell.swift; sourceTree = "<group>"; };
-		D944584E25DB1314532C1711E0688056 /* TypographyKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TypographyKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D944584E25DB1314532C1711E0688056 /* TypographyKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = TypographyKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DB40E69F56E5FA7BC26FD33E04ED92C5 /* Pods-TypographyKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TypographyKit_Example-dummy.m"; sourceTree = "<group>"; };
 		DCD1F6B43ACFBF5968C6B39E510A9799 /* TypographyKitElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitElement.swift; path = TypographyKit/Classes/TypographyKitElement.swift; sourceTree = "<group>"; };
 		E04C5D5370778F8AE170F68C7AA51EBF /* TypographyKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TypographyKit-umbrella.h"; sourceTree = "<group>"; };
-		E04E067CC97BF2618E1C1644A836AEEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		E04E067CC97BF2618E1C1644A836AEEB /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E2734885AF63B102D9AB4E673C716C76 /* LetterCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LetterCase-prefix.pch"; sourceTree = "<group>"; };
 		E40347114ABA8147A26CDD3644FBCF88 /* TypographyInterfaceStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyInterfaceStyle.swift; path = TypographyKit/Classes/TypographyInterfaceStyle.swift; sourceTree = "<group>"; };
 		E6A853BC96372FB0F6F342F308EF8B37 /* Pods-TypographyKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TypographyKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E7649D49E585F437D10D97D92316A239 /* UIColorAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorAdditions.swift; path = TypographyKit/Classes/UIColorAdditions.swift; sourceTree = "<group>"; };
-		EA9245352560657592F536082ED4A7A9 /* typography-kit-banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; name = "typography-kit-banner.afdesign"; path = "docs/images/typography-kit-banner.afdesign"; sourceTree = "<group>"; };
+		EA9245352560657592F536082ED4A7A9 /* typography-kit-banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "typography-kit-banner.afdesign"; path = "docs/images/typography-kit-banner.afdesign"; sourceTree = "<group>"; };
 		F445C39025959D2A108D1AB4CA9B3E58 /* LetterCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LetterCase.modulemap; sourceTree = "<group>"; };
 		FDBD46D7A01C479094A95973C372030A /* ViewAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewAdditions.swift; path = TypographyKit/Classes/ViewAdditions.swift; sourceTree = "<group>"; };
 		FE6D6A25484232333E1652E4C55AD8C0 /* UILabelAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILabelAdditions.swift; path = TypographyKit/Classes/UILabelAdditions.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				E7649D49E585F437D10D97D92316A239 /* UIColorAdditions.swift */,
 				7D5662A148D6918D2EE133508CB0C2F6 /* UIControlState.swift */,
 				FE6D6A25484232333E1652E4C55AD8C0 /* UILabelAdditions.swift */,
+				13182B2E29A0FFC50048332A /* StringAdditions.swift */,
 				53E77D1C52241523B2D0A36239A3B87E /* UITextFieldAdditions.swift */,
 				A4901DEB5C71ABEF1BA8CFB7417222A3 /* UITextViewAdditions.swift */,
 				FDBD46D7A01C479094A95973C372030A /* ViewAdditions.swift */,
@@ -356,7 +359,6 @@
 				51AD0E72BE528D8141DBF4C9CF83A8C5 /* StringAdditions.swift */,
 				B26568945FA12DBB90C61C17E18AB03E /* Support Files */,
 			);
-			name = LetterCase;
 			path = LetterCase;
 			sourceTree = "<group>";
 		};
@@ -654,6 +656,7 @@
 				DEC6661E9723F75C769155738FCB6C24 /* UIColorAdditions.swift in Sources */,
 				D17C74D23FA1415AAE9623E885DBF95B /* UIControlState.swift in Sources */,
 				AC7B31B9EC72EBBA5206BA07C8067AAF /* UILabelAdditions.swift in Sources */,
+				13182B2F29A0FFC50048332A /* StringAdditions.swift in Sources */,
 				37574DBD54C647098ADE097905D4290A /* UITextFieldAdditions.swift in Sources */,
 				CF51355B9EF032A474D135E5EA0AE894 /* UITextViewAdditions.swift in Sources */,
 				8B3C327EAF78C61A4DD5FBBE96B3B602 /* ViewAdditions.swift in Sources */,
