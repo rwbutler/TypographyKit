@@ -1,0 +1,6 @@
+framework module LetterCase {
+  umbrella header "LetterCase-umbrella.h"
+
+  export *
+  module * { export * }
+}

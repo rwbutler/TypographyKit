@@ -1,16 +1,23 @@
 PODS:
-  - TypographyKit (0.1.0)
+  - LetterCase (1.6.0)
+  - TypographyKit (5.0.1):
+    - LetterCase
 
 DEPENDENCIES:
   - TypographyKit (from `../`)
 
+SPEC REPOS:
+  trunk:
+    - LetterCase
+
 EXTERNAL SOURCES:
   TypographyKit:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  TypographyKit: 8519c7d97c0cdfec2ed76eaa62e54f821b1973aa
+  LetterCase: bf8e92f53a91b1f825461ad1779d91fdd8bbe048
+  TypographyKit: 692749640577454a60b099b9c67dc4edce60cea5
 
-PODFILE CHECKSUM: 15768159cbfee0085340fd368c41d25d5cce6743
+PODFILE CHECKSUM: 183f93ea1ecd31a7684ab877dcd10fab2a22e6f2
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.11.3
