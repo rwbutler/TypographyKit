@@ -136,6 +136,7 @@ public struct TypographyKit {
         return updatedSettings
     }
     
+    @discardableResult
     public static func configureSync(
         with configuration: TypographyKitConfiguration = TypographyKitConfiguration.default
     ) -> TypographyKitSettings? {
