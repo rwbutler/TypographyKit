@@ -138,7 +138,7 @@ public struct TypographyKit {
     
     public static func configureSync(
         with configuration: TypographyKitConfiguration = TypographyKitConfiguration.default
-    ) async -> TypographyKitSettings? {
+    ) -> TypographyKitSettings? {
         // Settings haven't been loaded therefore an initial load must be performed.
         guard let settings = Self.settings else {
             let updatedSettings = loadSettingsSync(configuration: configuration)
