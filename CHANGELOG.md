@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0] - 2023-02-22
+## Added
+- Synchronous versions of the `configure` and `refresh` versions -> `configureSync` and `refreshSync`.
+
+## Changed
+- When calling the variant of `configure` which accepts a completion closure, the closure supplied will be invoked on the main thread following work completion.
+
 ## [5.0.0] - 2023-01-27
 ## Added
 - Properties `color` and `swiftUI` allow a SwiftUI `Color` to be obtained from a `TypographyKitColor`.

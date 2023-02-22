@@ -136,6 +136,26 @@ public struct TypographyKit {
         return updatedSettings
     }
     
+    public static func configureSync(
+        with configuration: TypographyKitConfiguration = TypographyKitConfiguration.default
+    ) async -> TypographyKitSettings? {
+        // Settings haven't been loaded therefore an initial load must be performed.
+        guard let settings = Self.settings else {
+            let updatedSettings = loadSettingsSync(configuration: configuration)
+            apply(updatedSettings)
+            return updatedSettings
+        }
+        // Settings have been loaded but configurationURL hasn't changed.
+        guard settings.configuration.configurationURL != configuration.configurationURL else {
+            let updatedSettings = settings.updateConfiguration(configuration)
+            apply(updatedSettings)
+            return updatedSettings
+        }
+        let updatedSettings = loadSettingsSync(configuration: configuration)
+        apply(updatedSettings)
+        return updatedSettings
+    }
+    
     // For use before iOS 13.0 - will be deprecated when Xcode drops support for iOS 11 & 12.
     public static func configure(
         with configuration: TypographyKitConfiguration = TypographyKitConfiguration.default,
@@ -158,40 +178,44 @@ public struct TypographyKit {
             }
             let updatedSettings = loadSettingsSync(configuration: configuration)
             apply(updatedSettings)
-            completion?(updatedSettings)
+            DispatchQueue.main.async {
+                completion?(updatedSettings)
+            }
         }
     }
     
-    public static func refresh() {
+    public static func refresh(completion: ((TypographyKitSettings?) -> Void)? = nil) {
         DispatchQueue.global(qos: .userInteractive).async {
             guard let configuration = Self.settings?.configuration else {
                 return
             }
             let updatedSettings = loadSettingsSync(configuration: configuration)
             apply(updatedSettings)
+            DispatchQueue.main.async {
+                completion?(updatedSettings)
+            }
         }
     }
     
     @available(iOS 13.0, *)
-    public static func refresh() async {
+    @discardableResult
+    public static func refresh() async -> TypographyKitSettings? {
         guard let configuration = Self.settings?.configuration else {
-            return
+            return nil
         }
         let updatedSettings = await loadSettings(configuration: configuration)
         apply(updatedSettings)
+        return updatedSettings
     }
     
-    public static func refresh(
-        with data: Data,
-        configuration: Configuration? = nil,
-        completion: ((Settings?) -> Void)? = nil
-    ) {
-        let configuration = (configuration ?? Self.settings?.configuration) ?? TypographyKitConfiguration.default
-        guard case let .success(settings) = loadSettings(from: data, configuration: configuration) else {
-            completion?(nil)
-            return
+    @discardableResult
+    public static func refreshSync() -> TypographyKitSettings? {
+        guard let configuration = Self.settings?.configuration else {
+            return nil
         }
-        completion?(settings)
+        let updatedSettings = loadSettingsSync(configuration: configuration)
+        apply(updatedSettings)
+        return updatedSettings
     }
     
     public static func tkColor(named colorName: String) -> TypographyColor {

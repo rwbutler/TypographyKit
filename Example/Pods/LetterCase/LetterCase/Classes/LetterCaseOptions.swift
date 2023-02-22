@@ -13,7 +13,7 @@ public struct LetterCaseOptions: OptionSet {
     static let preserveSuffix       = LetterCaseOptions(rawValue: 1 << 0)
     static let preservePunctuation  = LetterCaseOptions(rawValue: 1 << 1)
     static let stripPunctuation     = LetterCaseOptions(rawValue: 1 << 2)
-    
+
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }
