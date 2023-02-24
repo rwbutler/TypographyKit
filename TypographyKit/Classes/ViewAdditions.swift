@@ -22,6 +22,7 @@ private struct TypographyStyle: ViewModifier {
         return Color(textColor)
     }
     
+    @MainActor
     var font: Font? {
         guard let font = Typography(for: style, scalingMode: scalingMode)?.font() else {
             return nil

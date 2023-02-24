@@ -72,6 +72,7 @@ extension TypographyKitElement {
     }
     
     /// Updates a given `NSMutableAttributedString` with the given attributes and typography in the specified range.
+    @MainActor
     func update(attributedString: NSMutableAttributedString, with attrs: [NSAttributedString.Key: Any],
                 in range: NSRange, and typography: Typography) {
         let fontAttribute = attrs[.font] as? UIFont

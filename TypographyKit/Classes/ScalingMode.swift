@@ -17,8 +17,8 @@ public enum ScalingMode: String, Codable {
     case fontMetricsWithSteppingFallback = "uifontmetrics-with-fallback"
     
     /// Point size is scaled with increasing `UIContentSizeCategory` using a step size * multiplier.
-    case stepping = "stepping"
+    case stepping
 
     /// Fonts are displayed at the specified size, and accessibility settings are ignored.
-    case disabled = "disabled"
+    case disabled
 }

@@ -93,6 +93,7 @@ public struct Typography {
     }
     
     /// Convenience method for retrieving the font for the preferred `UIContentSizeCategory`.
+    @MainActor
     public func font() -> UIFont? {
         return font(UIApplication.shared.preferredContentSizeCategory)
     }
@@ -128,6 +129,7 @@ public struct Typography {
     }
     
     /// Convenience method for retrieving the line height.
+    @MainActor
     public func lineHeight() -> CGFloat? {
         return font()?.lineHeight
     }
