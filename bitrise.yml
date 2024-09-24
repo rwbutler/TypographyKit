@@ -12,7 +12,7 @@ workflows:
       - Set up [Connecting to an Apple service with API key](https://devcenter.bitrise.io/en/accounts/connecting-to-services/connecting-to-an-apple-service-with-api-key.html##).
       - Or further customise code signing following our [iOS code signing](https://devcenter.bitrise.io/en/code-signing/ios-code-signing.html) guide.
     steps:
-    - git-clone@7: {}
+    - git-clone@8.2.2: {}
     - cache-pull@2: {}
     - cocoapods-install@2: {}
     - xcode-archive@4:
@@ -30,7 +30,7 @@ workflows:
       Next steps:
       - Check out [Getting started with iOS apps](https://devcenter.bitrise.io/en/getting-started/getting-started-with-ios-apps.html).
     steps:
-    - git-clone@7: {}
+    - git-clone@8.2.2: {}
     - cache-pull@2: {}
     - cocoapods-install@2: {}
     - xcode-build-for-test@1:
