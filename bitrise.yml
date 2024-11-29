@@ -33,7 +33,7 @@ workflows:
     - git-clone@7: {}
     - cache-pull@2: {}
     - cocoapods-install@2: {}
-    - xcode-build-for-test@1:
+    - xcode-build-for-test@3.1.0:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
         - scheme: $BITRISE_SCHEME
