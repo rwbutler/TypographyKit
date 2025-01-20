@@ -1,6 +1,6 @@
 PODS:
   - LetterCase (1.6.0)
-  - TypographyKit (5.0.1):
+  - TypographyKit (6.0.0):
     - LetterCase
 
 DEPENDENCIES:
@@ -16,8 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   LetterCase: bf8e92f53a91b1f825461ad1779d91fdd8bbe048
-  TypographyKit: 692749640577454a60b099b9c67dc4edce60cea5
+  TypographyKit: bc354aa8ec2113e38522118b79fdd95090805ee4
 
-PODFILE CHECKSUM: 183f93ea1ecd31a7684ab877dcd10fab2a22e6f2
+PODFILE CHECKSUM: 91c4287a202ca5809d97565e8ed15983388da195
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.16.2
