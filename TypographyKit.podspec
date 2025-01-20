@@ -9,7 +9,7 @@ TypographyKit makes it easy to define typography styles in your iOS app helping 
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'rwbutler' => 'github@rwbutler.com' }
   s.source           = { :git => 'https://github.com/rwbutler/TypographyKit.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '12.0'
   s.source_files = 'TypographyKit/Classes/**/*'
   s.weak_frameworks = 'SwiftUI'
   s.dependency 'LetterCase'
