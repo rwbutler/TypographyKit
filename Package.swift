@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/rwbutler/LetterCase",
-            from: "1.6.1"
+            from: "2.0.0"
         )
     ],
     targets: [
