@@ -8,33 +8,33 @@
 import Foundation
 
 struct AnyKey: CodingKey {
-
+    
     static let empty = AnyKey(string: "")
-
+    
     var stringValue: String
     var intValue: Int?
-
+    
     init?(stringValue: String) {
         self.stringValue = stringValue
         self.intValue = nil
     }
-
+    
     init?(intValue: Int) {
         self.stringValue = String(intValue)
         self.intValue = intValue
     }
-
+    
     init(string: String) {
         self.stringValue = string
         self.intValue = nil
     }
-
+    
 }
 
 public extension JSONDecoder.KeyDecodingStrategy {
-
+    
     // MARK: - Aliases
-
+    
     static let convertFromCapitalized = letterCaseStrategy(for: .capitalized)
     static let convertFromDashCase = letterCaseStrategy(for: .kebab)
     static let convertFromKebabCase = letterCaseStrategy(for: .kebab)
@@ -46,9 +46,9 @@ public extension JSONDecoder.KeyDecodingStrategy {
     static let convertFromTrainCase = letterCaseStrategy(for: .train)
     static let convertFromUpperCase = letterCaseStrategy(for: .upper)
     static let convertFromUpperCamelCase = letterCaseStrategy(for: .upperCamel)
-
+    
     // MARK: - Conversion
-
+    
     static func letterCaseStrategy(
         from letterCase: LetterCase,
         to newLetterCase: LetterCase
@@ -66,17 +66,17 @@ public extension JSONDecoder.KeyDecodingStrategy {
             return AnyKey(string: newLetterCaseKey)
         }
     }
-
+    
     static func letterCaseStrategy(for letterCase: LetterCase) -> JSONDecoder.KeyDecodingStrategy {
         return letterCaseStrategy(from: letterCase, to: .lowerCamel)
     }
-
+    
 }
 
 public extension JSONEncoder.KeyEncodingStrategy {
-
+    
     // MARK: - Aliases
-
+    
     static let convertToCapitalized = letterCaseStrategy(for: .capitalized)
     static let convertToDashCase = letterCaseStrategy(for: .kebab)
     static let convertToKebabCase = letterCaseStrategy(for: .kebab)
@@ -88,9 +88,9 @@ public extension JSONEncoder.KeyEncodingStrategy {
     static let convertToTrainCase = letterCaseStrategy(for: .train)
     static let convertToUpperCase = letterCaseStrategy(for: .upper)
     static let convertToUpperCamelCase = letterCaseStrategy(for: .upperCamel)
-
+    
     // MARK: - Conversion
-
+    
     static func letterCaseStrategy(
         from letterCase: LetterCase,
         to newLetterCase: LetterCase
@@ -108,9 +108,9 @@ public extension JSONEncoder.KeyEncodingStrategy {
             return AnyKey(string: newLetterCaseKey)
         }
     }
-
+    
     static func letterCaseStrategy(for letterCase: LetterCase) -> JSONEncoder.KeyEncodingStrategy {
         return letterCaseStrategy(from: .lowerCamel, to: letterCase)
     }
-
+    
 }

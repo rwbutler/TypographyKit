@@ -8,9 +8,9 @@
 import Foundation
 
 public enum LetterCase: String {
-
+    
     public typealias Options = LetterCaseOptions
-
+    
     case regular                     // No transformation applied.
     case capitalized                 // e.g. Capitalized Case
     case kebab                       // e.g. kebab-case

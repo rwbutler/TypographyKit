@@ -8,7 +8,7 @@
 import Foundation
 
 public extension String {
-
+    
     func convert(
         from letterCase: LetterCase,
         to newLetterCase: LetterCase,
@@ -25,7 +25,7 @@ public extension String {
             return convertFromCaseWith(separator: "_", to: newLetterCase, options: options)
         }
     }
-
+    
     func letterCase(_ letterCase: LetterCase, options: LetterCase.Options = []) -> String {
         switch letterCase {
         case .capitalized:
@@ -52,7 +52,7 @@ public extension String {
             return input
         }
     }
-
+    
     func capitalized(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var input = self
         if options.contains(.stripPunctuation) {
@@ -60,7 +60,7 @@ public extension String {
         }
         return capitalizeSubSequences(capitalizeFirst: true, conjunction: " ", options: options, separator: separator)
     }
-
+    
     func kebabCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var options: LetterCase.Options = options
         if !options.contains(.preservePunctuation) {
@@ -68,7 +68,7 @@ public extension String {
         }
         return capitalizeSubSequences(capitalizeFirst: false, conjunction: "-", options: options, separator: separator)
     }
-
+    
     func lowerCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var input = self
         if options.contains(.stripPunctuation) {
@@ -77,7 +77,7 @@ public extension String {
         return capitalizeSubSequences(capitalizeFirst: false, conjunction: " ", options: options, separator: separator)
             .lowercased()
     }
-
+    
     func lowerCamelCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var options: LetterCase.Options = options
         if !options.contains(.preservePunctuation) {
@@ -89,7 +89,7 @@ public extension String {
         }
         return upperCamelCased
     }
-
+    
     func macroCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var options: LetterCase.Options = [options]
         if !options.contains(.preservePunctuation) {
@@ -98,7 +98,7 @@ public extension String {
         return capitalizeSubSequences(capitalizeFirst: true, conjunction: "_", options: options, separator: separator)
             .uppercased()
     }
-
+    
     func snakeCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var options: LetterCase.Options = options
         if !options.contains(.preservePunctuation) {
@@ -106,11 +106,11 @@ public extension String {
         }
         return capitalizeSubSequences(capitalizeFirst: false, conjunction: "_", options: options, separator: separator)
     }
-
+    
     func trainCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         return kebabCased(options: options, separator: separator).upperCased()
     }
-
+    
     func upperCamelCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var options: LetterCase.Options = options
         if !options.contains(.preservePunctuation) {
@@ -118,7 +118,7 @@ public extension String {
         }
         return capitalizeSubSequences(capitalizeFirst: true, options: options, separator: separator)
     }
-
+    
     func upperCased(options: LetterCase.Options = [], separator: String.Element? = " ") -> String {
         var input = self
         if options.contains(.stripPunctuation) {
@@ -127,12 +127,12 @@ public extension String {
         return capitalizeSubSequences(capitalizeFirst: true, conjunction: " ", options: options, separator: separator)
             .uppercased()
     }
-
+    
 }
 
 // Private API
 private extension String {
-
+    
     private func capitalizedSubSequences() -> [String.SubSequence] {
         let input = self
         var seqStartIndex = input.startIndex
@@ -152,7 +152,7 @@ private extension String {
         subSequences.append(subSequence)
         return subSequences
     }
-
+    
     func capitalizeSubSequences(
         capitalizeFirst: Bool,
         conjunction: String = "",
@@ -182,7 +182,7 @@ private extension String {
         }
         return result
     }
-
+    
     private func convertFromCaseWith(
         separator: String.Element?,
         to letterCase: LetterCase, options: LetterCase.Options = []
@@ -210,7 +210,7 @@ private extension String {
             return upperCamelCased(options: options, separator: separator)
         }
     }
-
+    
     /// Strips punctuation from the provided input `String` leaving only alphanumeric characters except
     /// for a given special character if one is specified.
     private func stripPunctuation(_ input: String, except: Character? = nil) -> String {
@@ -219,5 +219,5 @@ private extension String {
         }
         return String(chars)
     }
-
+    
 }

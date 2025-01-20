@@ -103,19 +103,19 @@
 		0391079BE082EC29BEEED1CF1F84426B /* TypographyKitPropertyAdditionsKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitPropertyAdditionsKey.swift; path = TypographyKit/Classes/TypographyKitPropertyAdditionsKey.swift; sourceTree = "<group>"; };
 		04613BB08B04BFFD6F3ADAD2B3260D2F /* LetterCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LetterCase-umbrella.h"; sourceTree = "<group>"; };
 		06EFD336C20F07EF593B5F7780F29576 /* UIButtonAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIButtonAdditions.swift; path = TypographyKit/Classes/UIButtonAdditions.swift; sourceTree = "<group>"; };
-		07C3A03E5B032F9AF962ED6F39AB04B9 /* TypographyKit2Banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = TypographyKit2Banner.afdesign; path = docs/images/TypographyKit2Banner.afdesign; sourceTree = "<group>"; };
+		07C3A03E5B032F9AF962ED6F39AB04B9 /* TypographyKit2Banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; name = TypographyKit2Banner.afdesign; path = docs/images/TypographyKit2Banner.afdesign; sourceTree = "<group>"; };
 		0841B1058CC96749A95AFA2C6E9EF6B1 /* Pods-TypographyKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TypographyKit_Example.modulemap"; sourceTree = "<group>"; };
 		0AB4B2096DE06C4B767C9E0AB834F81F /* CloseButtonAlignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CloseButtonAlignment.swift; path = TypographyKit/Classes/CloseButtonAlignment.swift; sourceTree = "<group>"; };
 		12541EDCF585329FD0A70799D06EC43D /* Pods-TypographyKit_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TypographyKit_Tests.modulemap"; sourceTree = "<group>"; };
 		1746B9E9D7A1B63E3EFE012082072619 /* JSONParsingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JSONParsingService.swift; path = TypographyKit/Classes/JSONParsingService.swift; sourceTree = "<group>"; };
-		180D0CDB847732B3F9439667E222788A /* LetterCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LetterCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		180D0CDB847732B3F9439667E222788A /* LetterCase */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LetterCase; path = LetterCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABEE70BB752B4BA42528E1A94A2A0BA /* ScalingMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScalingMode.swift; path = TypographyKit/Classes/ScalingMode.swift; sourceTree = "<group>"; };
 		1C19913F64D186A2D7AB96BF34DC5FD7 /* Pods-TypographyKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TypographyKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		1E1EEA966AFCC4A1D24E7E3D882FA6C6 /* TypographyKitViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitViewController.swift; path = TypographyKit/Classes/TypographyKitViewController.swift; sourceTree = "<group>"; };
 		21B9E41C1BCAE2E955290CEC04852025 /* ParsingError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParsingError.swift; path = TypographyKit/Classes/ParsingError.swift; sourceTree = "<group>"; };
 		27A686CE8DA42A5241D68F979E3B1D39 /* Pods-TypographyKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TypographyKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		2974B51FDAD1B79434F29F1A7FFB9A3A /* ButtonTitleColorApplyMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonTitleColorApplyMode.swift; path = TypographyKit/Classes/ButtonTitleColorApplyMode.swift; sourceTree = "<group>"; };
-		2A3F21D35690FD2952EA65653F9D234F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2A3F21D35690FD2952EA65653F9D234F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		2D8234F12B46CD887DB918C7509C96AD /* LetterCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LetterCase.release.xcconfig; sourceTree = "<group>"; };
 		2DCF87B483A5C10AA79DFE0D78F7A656 /* TypographyKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TypographyKit.modulemap; sourceTree = "<group>"; };
 		2F39812DB961DD51C292D2F8BEBBDBC7 /* LabelSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LabelSettings.swift; path = TypographyKit/Classes/LabelSettings.swift; sourceTree = "<group>"; };
@@ -134,13 +134,13 @@
 		42AF307C61D820547739B99D13177C41 /* TypographyKitViewControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitViewControllerDelegate.swift; path = TypographyKit/Classes/TypographyKitViewControllerDelegate.swift; sourceTree = "<group>"; };
 		48C99E44AC6D7843C403A71AB43FE38E /* TypographyKitColorCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitColorCell.swift; path = TypographyKit/Classes/TypographyKitColorCell.swift; sourceTree = "<group>"; };
 		4F0054284C2EE4B27DF323AD064E96CE /* UIControlState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIControlState.swift; path = TypographyKit/Classes/UIControlState.swift; sourceTree = "<group>"; };
-		50FF816399D6EAC6DDCDD44A8A206B54 /* Pods_TypographyKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50FF816399D6EAC6DDCDD44A8A206B54 /* Pods-TypographyKit_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TypographyKit_Example"; path = Pods_TypographyKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51AD0E72BE528D8141DBF4C9CF83A8C5 /* StringAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringAdditions.swift; path = LetterCase/Classes/StringAdditions.swift; sourceTree = "<group>"; };
 		56483EDB022C1099363840D2A4D96AEC /* NSLineBreakMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSLineBreakMode.swift; path = TypographyKit/Classes/NSLineBreakMode.swift; sourceTree = "<group>"; };
 		5C3E0FFBC2EF1A41F62060C56097CF30 /* TypographyKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TypographyKit.debug.xcconfig; sourceTree = "<group>"; };
 		5E642AA98A2A4BC233E90DFE7CD528F4 /* TypographyKitElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitElement.swift; path = TypographyKit/Classes/TypographyKitElement.swift; sourceTree = "<group>"; };
 		5EF2AAF52EB803A0B8DF63E5B7F44B16 /* UITextViewAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UITextViewAdditions.swift; path = TypographyKit/Classes/UITextViewAdditions.swift; sourceTree = "<group>"; };
-		625593957E6E7487761664D61B7C442D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		625593957E6E7487761664D61B7C442D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		699511FFF6D7430904E61599325EE3B8 /* ParsingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParsingService.swift; path = TypographyKit/Classes/ParsingService.swift; sourceTree = "<group>"; };
 		6AD38011BE31C51E6F51CB7B02B1D696 /* LetterCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LetterCase.debug.xcconfig; sourceTree = "<group>"; };
 		6AE69C639DED3F2082C18D99673CAB11 /* Pods-TypographyKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TypographyKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,18 +151,18 @@
 		8033B4A1015843820233E0F8B95C5E93 /* LetterCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LetterCase-dummy.m"; sourceTree = "<group>"; };
 		803B4384A0ADFAC73AFD9BE8AF11C19F /* Pods-TypographyKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TypographyKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		826D6BAA201C9FF738DE9434570DD1AD /* Typography.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typography.swift; path = TypographyKit/Classes/Typography.swift; sourceTree = "<group>"; };
-		851D40DF5398C7D86C94E1CCCDF022B7 /* TypographyKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = TypographyKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		851D40DF5398C7D86C94E1CCCDF022B7 /* TypographyKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TypographyKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		88219ABD798BF487CA2AC4FF4DF598E9 /* TypographyKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TypographyKit-umbrella.h"; sourceTree = "<group>"; };
-		8B35F08020F6B30A9FEEC1E1D5694B01 /* Pods_TypographyKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B35F08020F6B30A9FEEC1E1D5694B01 /* Pods-TypographyKit_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-TypographyKit_Tests"; path = Pods_TypographyKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E46E94F49BF783CEFCDC65D512DC4DC /* TypographyKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TypographyKit-dummy.m"; sourceTree = "<group>"; };
 		972536D77BB8605D8FE6E4730B2F6A73 /* LetterCase-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LetterCase-Info.plist"; sourceTree = "<group>"; };
 		9942BA0E69F0F8D2E4EA1CAE37F5762A /* RegularExpressionMatchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RegularExpressionMatchable.swift; path = TypographyKit/Classes/RegularExpressionMatchable.swift; sourceTree = "<group>"; };
 		9955A89863D245EFBCFDAEA25B9C00A1 /* Pods-TypographyKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TypographyKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0828EFA4D70AB0E33612039335672D5 /* TypographyKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TypographyKit-Info.plist"; sourceTree = "<group>"; };
 		A69D39AAB173F94B1DF7267B27546DA5 /* UILabelAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILabelAdditions.swift; path = TypographyKit/Classes/UILabelAdditions.swift; sourceTree = "<group>"; };
 		ACC4E85624B10C3D72CB79DD4006CCD7 /* TypographyColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyColor.swift; path = TypographyKit/Classes/TypographyColor.swift; sourceTree = "<group>"; };
-		B12EF4265B1882A61F01E1FF7812C604 /* TypographyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B12EF4265B1882A61F01E1FF7812C604 /* TypographyKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TypographyKit; path = TypographyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B37DAB16E1D95595362154292EC3BC0C /* ConfigurationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfigurationType.swift; path = TypographyKit/Classes/ConfigurationType.swift; sourceTree = "<group>"; };
 		B3CBDDD14ABD1240CD1D2B06FB99D782 /* LoggingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggingService.swift; path = TypographyKit/Classes/LoggingService.swift; sourceTree = "<group>"; };
 		B7E4CF9BCBAF16F824789D48EF1444E2 /* StrategicConfigurationParsingService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StrategicConfigurationParsingService.swift; path = TypographyKit/Classes/StrategicConfigurationParsingService.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		D3BB1C89C5DFB6E5EF38733C40AEB227 /* LetterCaseOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LetterCaseOptions.swift; path = LetterCase/Classes/LetterCaseOptions.swift; sourceTree = "<group>"; };
 		D40D58F834DF143A6BE158B4F3016D65 /* FontTextStyleParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontTextStyleParser.swift; path = TypographyKit/Classes/FontTextStyleParser.swift; sourceTree = "<group>"; };
 		D9119691BEFEA962670E3E22C579EDD3 /* TypographyInterfaceStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyInterfaceStyle.swift; path = TypographyKit/Classes/TypographyInterfaceStyle.swift; sourceTree = "<group>"; };
-		DAAE5F1CDC3404C94BDE0BAC45A4D805 /* typography-kit-banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "typography-kit-banner.afdesign"; path = "docs/images/typography-kit-banner.afdesign"; sourceTree = "<group>"; };
+		DAAE5F1CDC3404C94BDE0BAC45A4D805 /* typography-kit-banner.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; name = "typography-kit-banner.afdesign"; path = "docs/images/typography-kit-banner.afdesign"; sourceTree = "<group>"; };
 		DB40E69F56E5FA7BC26FD33E04ED92C5 /* Pods-TypographyKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TypographyKit_Example-dummy.m"; sourceTree = "<group>"; };
 		DDA45A9FFDB7D69200F531268B53580A /* TypographyKitSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyKitSettings.swift; path = TypographyKit/Classes/TypographyKitSettings.swift; sourceTree = "<group>"; };
 		DF628C4BE978CC2E8910A9312ACE4EC1 /* ViewControllerNavigationSettings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewControllerNavigationSettings.swift; path = TypographyKit/Classes/ViewControllerNavigationSettings.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 		E3AF1E095447EB4F17107F526C0598E9 /* typography-kit-logo.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "typography-kit-logo.png"; path = "docs/images/typography-kit-logo.png"; sourceTree = "<group>"; };
 		E3EF4113A6360CA4174C8C5BE70D6B15 /* typography-kit-large-logo.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "typography-kit-large-logo.png"; path = "docs/images/typography-kit-large-logo.png"; sourceTree = "<group>"; };
 		E6A853BC96372FB0F6F342F308EF8B37 /* Pods-TypographyKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TypographyKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		E989C4325D1916C7230B473D9CBAA448 /* typography-kit-logo.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "typography-kit-logo.afdesign"; path = "docs/images/typography-kit-logo.afdesign"; sourceTree = "<group>"; };
+		E989C4325D1916C7230B473D9CBAA448 /* typography-kit-logo.afdesign */ = {isa = PBXFileReference; includeInIndex = 1; name = "typography-kit-logo.afdesign"; path = "docs/images/typography-kit-logo.afdesign"; sourceTree = "<group>"; };
 		F445C39025959D2A108D1AB4CA9B3E58 /* LetterCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LetterCase.modulemap; sourceTree = "<group>"; };
 		F7E8EBBED5303EBB78F1C35DD8ADD4A8 /* TypographyStyles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyStyles.swift; path = TypographyKit/Classes/TypographyStyles.swift; sourceTree = "<group>"; };
 		FE67E220D4C4CD4CA395A628955E78C1 /* TypographyColors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypographyColors.swift; path = TypographyKit/Classes/TypographyColors.swift; sourceTree = "<group>"; };
@@ -241,10 +241,10 @@
 		582D6B3540CDA548529CB0AFA682815E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				180D0CDB847732B3F9439667E222788A /* LetterCase.framework */,
-				50FF816399D6EAC6DDCDD44A8A206B54 /* Pods_TypographyKit_Example.framework */,
-				8B35F08020F6B30A9FEEC1E1D5694B01 /* Pods_TypographyKit_Tests.framework */,
-				B12EF4265B1882A61F01E1FF7812C604 /* TypographyKit.framework */,
+				180D0CDB847732B3F9439667E222788A /* LetterCase */,
+				50FF816399D6EAC6DDCDD44A8A206B54 /* Pods-TypographyKit_Example */,
+				8B35F08020F6B30A9FEEC1E1D5694B01 /* Pods-TypographyKit_Tests */,
+				B12EF4265B1882A61F01E1FF7812C604 /* TypographyKit */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +291,7 @@
 				51AD0E72BE528D8141DBF4C9CF83A8C5 /* StringAdditions.swift */,
 				B26568945FA12DBB90C61C17E18AB03E /* Support Files */,
 			);
+			name = LetterCase;
 			path = LetterCase;
 			sourceTree = "<group>";
 		};
@@ -493,7 +494,7 @@
 			);
 			name = "Pods-TypographyKit_Example";
 			productName = Pods_TypographyKit_Example;
-			productReference = 50FF816399D6EAC6DDCDD44A8A206B54 /* Pods_TypographyKit_Example.framework */;
+			productReference = 50FF816399D6EAC6DDCDD44A8A206B54 /* Pods-TypographyKit_Example */;
 			productType = "com.apple.product-type.framework";
 		};
 		3FF0BDC6F6910AC0E5FE7888B5B67E38 /* TypographyKit */ = {
@@ -512,7 +513,7 @@
 			);
 			name = TypographyKit;
 			productName = TypographyKit;
-			productReference = B12EF4265B1882A61F01E1FF7812C604 /* TypographyKit.framework */;
+			productReference = B12EF4265B1882A61F01E1FF7812C604 /* TypographyKit */;
 			productType = "com.apple.product-type.framework";
 		};
 		486286B8F322CFB49970B446F2D2F53B /* Pods-TypographyKit_Tests */ = {
@@ -531,7 +532,7 @@
 			);
 			name = "Pods-TypographyKit_Tests";
 			productName = Pods_TypographyKit_Tests;
-			productReference = 8B35F08020F6B30A9FEEC1E1D5694B01 /* Pods_TypographyKit_Tests.framework */;
+			productReference = 8B35F08020F6B30A9FEEC1E1D5694B01 /* Pods-TypographyKit_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
 		5043A3CBF79CFE6BE7241973DB1B0EA3 /* LetterCase */ = {
@@ -549,7 +550,7 @@
 			);
 			name = LetterCase;
 			productName = LetterCase;
-			productReference = 180D0CDB847732B3F9439667E222788A /* LetterCase.framework */;
+			productReference = 180D0CDB847732B3F9439667E222788A /* LetterCase */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -570,6 +571,8 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 582D6B3540CDA548529CB0AFA682815E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -722,44 +725,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07085AEE8F199CB69E8C3540A26A6F14 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D8234F12B46CD887DB918C7509C96AD /* LetterCase.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/LetterCase/LetterCase-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/LetterCase/LetterCase-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/LetterCase/LetterCase.modulemap";
-				PRODUCT_MODULE_NAME = LetterCase;
-				PRODUCT_NAME = LetterCase;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -984,6 +949,45 @@
 			};
 			name = Debug;
 		};
+		5EE9CE4A51DDCD7EC90F6E14E12EB353 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AD38011BE31C51E6F51CB7B02B1D696 /* LetterCase.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/LetterCase/LetterCase-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/LetterCase/LetterCase-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LetterCase/LetterCase.modulemap";
+				PRODUCT_MODULE_NAME = LetterCase;
+				PRODUCT_NAME = LetterCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1045,43 +1049,6 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
-		};
-		82055C299A6FC69B73D4FB4420A64910 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AD38011BE31C51E6F51CB7B02B1D696 /* LetterCase.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/LetterCase/LetterCase-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/LetterCase/LetterCase-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/LetterCase/LetterCase.modulemap";
-				PRODUCT_MODULE_NAME = LetterCase;
-				PRODUCT_NAME = LetterCase;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		AD7E2567B2B9844FEEFB30E902D6A11A /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1162,14 +1129,54 @@
 			};
 			name = Debug;
 		};
+		DA05B9C1D2099111101B0FC3CE358437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D8234F12B46CD887DB918C7509C96AD /* LetterCase.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/LetterCase/LetterCase-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/LetterCase/LetterCase-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/LetterCase/LetterCase.modulemap";
+				PRODUCT_MODULE_NAME = LetterCase;
+				PRODUCT_NAME = LetterCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		184EE28E9C3F2A4668A1C737B227DC7C /* Build configuration list for PBXNativeTarget "LetterCase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				82055C299A6FC69B73D4FB4420A64910 /* Debug */,
-				07085AEE8F199CB69E8C3540A26A6F14 /* Release */,
+				5EE9CE4A51DDCD7EC90F6E14E12EB353 /* Debug */,
+				DA05B9C1D2099111101B0FC3CE358437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

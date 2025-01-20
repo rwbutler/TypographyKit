@@ -1,5 +1,5 @@
 PODS:
-  - LetterCase (1.6.0)
+  - LetterCase (2.0.0)
   - TypographyKit (6.0.0):
     - LetterCase
 
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LetterCase: bf8e92f53a91b1f825461ad1779d91fdd8bbe048
+  LetterCase: fcf09c2ccfd9f8dba7c16ff5d3c4be59838f4d79
   TypographyKit: bc354aa8ec2113e38522118b79fdd95090805ee4
 
 PODFILE CHECKSUM: 91c4287a202ca5809d97565e8ed15983388da195
