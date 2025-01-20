@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIControl.State: CaseIterable {
+extension UIControl.State: @retroactive CaseIterable {
 
     public typealias AllCases = [UIControl.State]
 
