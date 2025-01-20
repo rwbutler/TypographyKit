@@ -42,7 +42,7 @@ workflows:
     - deploy-to-bitrise-io@2: {}
 meta:
   bitrise.io:
-    stack: osx-xcode-14.1.x
+    stack: osx-xcode-16.2.x
 app:
   envs:
   - opts:
