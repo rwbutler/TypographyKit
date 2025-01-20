@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1420"
+   LastUpgradeVersion = "1620"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65D76B0CEC0219205589D8239A4F50C7"
+               BlueprintIdentifier = "3FF0BDC6F6910AC0E5FE7888B5B67E38"
                BuildableName = "TypographyKit.framework"
                BlueprintName = "TypographyKit"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -43,7 +43,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65D76B0CEC0219205589D8239A4F50C7"
+            BlueprintIdentifier = "3FF0BDC6F6910AC0E5FE7888B5B67E38"
             BuildableName = "TypographyKit.framework"
             BlueprintName = "TypographyKit"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -59,7 +59,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65D76B0CEC0219205589D8239A4F50C7"
+            BlueprintIdentifier = "3FF0BDC6F6910AC0E5FE7888B5B67E38"
             BuildableName = "TypographyKit.framework"
             BlueprintName = "TypographyKit"
             ReferencedContainer = "container:Pods.xcodeproj">
