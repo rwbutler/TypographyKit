@@ -15,7 +15,7 @@ workflows:
     - git-clone@7: {}
     - cache-pull@2: {}
     - cocoapods-install@2: {}
-    - xcode-archive@4:
+    - xcode-archive@6.1.2:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
         - scheme: $BITRISE_SCHEME
