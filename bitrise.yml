@@ -14,7 +14,7 @@ workflows:
     steps:
     - git-clone@7: {}
     - cache-pull@2: {}
-    - cocoapods-install@2: {}
+    - cocoapods-install@3.1.1: {}
     - xcode-archive@4:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
@@ -32,7 +32,7 @@ workflows:
     steps:
     - git-clone@7: {}
     - cache-pull@2: {}
-    - cocoapods-install@2: {}
+    - cocoapods-install@3.1.1: {}
     - xcode-build-for-test@3.1.1:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
